@@ -27,14 +27,14 @@ export const ExporeBrandCard = ({ brand }: Props) => {
                     />
                 </Link>
             </div>
-            <div className="leading-tight rounded-b border border-gray-300 grid gap-1 p-4">
+            <div className="leading-tight rounded-b border border-neutral-300 grid gap-1 p-4">
                 <div className="font-simple text-left overflow-hidden">
                     <Link to={`/brand/${brand.id}/${getSafeUrl(brand.name)}`}>
                         <p className="text-sm select-none text-neutral-900 text-ellipsis font-bold break-words line-clamp-1 md:line-clamp-none leading-tight">{brand?.name}</p>
                     </Link>
-                    <p className="flex gap-1 select-none text-neutral-500 text-sm">Total Products<span className="text-orange-800 font-semibold text-sm">{brand?.total_products == null ? 0 : brand?.total_products < 10 ? `${brand?.total_products}` : `${Math.round(brand?.total_products / 10) * 10}+`}</span></p>
+                    <p className="flex gap-1 select-none text-neutral-500 text-sm">Total Products<span className="text-brand-900 font-semibold text-sm">{brand?.total_products == null ? 0 : brand?.total_products < 10 ? `${brand?.total_products}` : `${Math.round(brand?.total_products / 10) * 10}+`}</span></p>
                 </div>
-                {/* <div className="bg-black text-neutral-50 w-full text-sm font-semibold py-1 flex flex-row whitespace-nowrap justify-center">
+                {/* <div className="bg-neutral-900 text-neutral-50 w-full text-sm font-semibold py-1 flex flex-row whitespace-nowrap justify-center">
                     <Link to={`/category/${brand?.id}/${getSafeUrl(brand?.name)}`} className="flex flex-row items-center">See Products <AiOutlineForward /></Link>
                 </div> */}
             </div>

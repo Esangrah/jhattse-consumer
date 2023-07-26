@@ -82,8 +82,8 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                 <div className="flex justify-center">
                     <div className="grid gap-1 w-1/3 sm:w-full p-4 bg-neutral-50">
                         <div className="flex justify-center text-neutral-900 font-semibold text-base leading-tight">Invoice/ Bill</div>
-                        <div className="grid pb-1 border-black border-b border-dashed gap-1">
-                            <div className="flex flex-col gap-1 pb-1 border-b border-black border-dashed">
+                        <div className="grid pb-1 border-neutral-900 border-b border-dashed gap-1">
+                            <div className="flex flex-col gap-1 pb-1 border-b border-neutral-900 border-dashed">
                                 <div className="flex justify-between gap-2">
                                     <div className="text-neutral-900 text-sm font-semibold">
                                         <span className="text-neutral-700 text-xs font-semibold">Sold By: </span>{order?.store?.name}
@@ -150,14 +150,14 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                 }
                             </div>
                         </div>
-                        <div className="grid border-b border-black border-dashed">
+                        <div className="grid border-b border-neutral-900 border-dashed">
                             {order?.bill_id && <div className="text-sm"><span className="font-medium text-neutral-600">Bill Id: </span>{order?.bill_id}</div>}
                             <div className="text-sm"><span className="font-semibold text-neutral-600">Order Id: </span>#{order?.short_id || order?.id}</div>
                             <div className="text-sm"><span className="font-semibold text-neutral-600">Date:</span> {Moment(order.added_on).format('YYYY-MM-DD')} {Moment(order.added_on).format('HH:mm')}</div>
                             {order?.info?.table && <div className="text-sm"><span className="font-medium text-neutral-600">Table No: </span>{order?.info?.table}</div>}
                         </div>
                         <div className="bg-neutral-50 ">
-                            <div className="grid grid-cols-6 border-black border-b border-dashed bg-neutral-50 p-1">
+                            <div className="grid grid-cols-6 border-neutral-900 border-b border-dashed bg-neutral-50 p-1">
                                 <div className="grid col-span-2">
                                     <div className='flex text-neutral-900 font-semibold text-sm'>Item</div>
                                     <div className='flex text-neutral-900 font-semibold text-sm'>Item Code</div>
@@ -172,7 +172,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                             </div>
                             {order?.orderitems && order?.orderitems.map((orderItem: TOrderItem) => {
                                 return (
-                                    <div className="grid grid-cols-6 border-b border-black border-dashed w-full items-start p-1" data-orderitem-id={orderItem.id}>
+                                    <div className="grid grid-cols-6 border-b border-neutral-900 border-dashed w-full items-start p-1" data-orderitem-id={orderItem.id}>
                                         <div className="grid col-span-2">
                                             <div className="flex text-neutral-900 line-clamp-2 text-xs overflow-hidden">{trimToLength((getCombinedName(orderItem?.inventory?.product, orderItem?.inventory?.variant_id) || orderItem?.inventory?.product?.name), 20)}</div>
                                             <div className="flex text-neutral-900 text-xs overflow-hidden">{orderItem?.inventory?.product?.gtin}</div>
@@ -186,7 +186,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
 
                                 )
                             })}
-                            <div className="grid grid-cols-6 border-b border-black border-dashed w-full items-start p-1">
+                            <div className="grid grid-cols-6 border-b border-neutral-900 border-dashed w-full items-start p-1">
                                 <div className="grid col-span-3 text-sm text-neutral-900">
                                     Total Qty : {order?.orderitems?.length}
                                 </div>
@@ -196,8 +196,8 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                             </div>
                             {
                                 order?.tax != 0 ?
-                                    <div className="grid border-b border-black border-dashed w-full items-start p-1 gap-1">
-                                        <div className="text-neutral-900 font-semibold text-md">Tax Information</div>
+                                    <div className="grid border-b border-neutral-900 border-dashed w-full items-start p-1 gap-1">
+                                        <div className="text-neutral-900 font-semibold text-base">Tax Information</div>
                                         {taxCalculate?.map((taxComponent) => {
                                             if (taxComponent?.tax > 0) {
                                                 return (
@@ -226,7 +226,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                     </div>
                                     : <></>
                             }
-                            <div className="grid border-b border-black border-dashed w-full items-start p-1">
+                            <div className="grid border-b border-neutral-900 border-dashed w-full items-start p-1">
                                 {
                                     savings != 0 ?
                                         <div className="flex flex-row justify-between">
@@ -248,9 +248,9 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                     <span className="text-sm text-neutral-900 font-semibold">₹{Math.round(order?.payable).toFixed(2)}</span>
                                 </div>
                             </div>
-                            <div className="grid border-b border-black border-dashed w-full items-start p-1">
-                                <div className="flex justify-center text-md font-semibold text-neutral-900">Powered by</div>
-                                <div className="flex justify-center text-md font-semibold text-neutral-900">Jhattse</div>
+                            <div className="grid border-b border-neutral-900 border-dashed w-full items-start p-1">
+                                <div className="flex justify-center text-base font-semibold text-neutral-900">Powered by</div>
+                                <div className="flex justify-center text-base font-semibold text-neutral-900">Jhattse</div>
                             </div>
                         </div>
                     </div>

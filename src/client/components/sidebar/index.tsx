@@ -117,10 +117,10 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                 :
                                 <div className="grid gap-4 grid-cols-2 p-4 bg-neutral-50 rounded-md">
                                     <Link to="/login">
-                                        <button className="whitespace-nowrap border border-gray-900 text-xl text-neutral-900 w-full rounded-md bg-neutral-50 font-semibold p-1 font-semibold">Login</button>
+                                        <button className="whitespace-nowrap border border-neutral-900 text-xl text-neutral-900 w-full rounded-md bg-neutral-50 font-semibold p-1 font-semibold">Login</button>
                                     </Link>
                                     <Link to="/signup">
-                                        <button className="whitespace-nowrap border border-black text-xl text-neutral-50 w-full rounded-md bg-neutral-900 font-semibold p-1 font-semibold">Sign Up</button>
+                                        <button className="whitespace-nowrap border border-neutral-900 text-xl text-neutral-50 w-full rounded-md bg-neutral-900 font-semibold p-1 font-semibold">Sign Up</button>
                                     </Link>
                                 </div>
                             }
@@ -203,12 +203,12 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                                             <span className="flex gap-2 items-center text-base font-semibold text-neutral-900"><CgMoreO />More</span>
                                                         </Box>
                                                         {isExpanded ? (
-                                                            <span className="flex items-center text-md text-neutral-900 font-semibold">
+                                                            <span className="flex items-center text-base text-neutral-900 font-semibold">
                                                                 <GrSubtract />
                                                             </span>
 
                                                         ) : (
-                                                            <span className="flex items-center text-md text-neutral-900 font-semibold">
+                                                            <span className="flex items-center text-base text-neutral-900 font-semibold">
                                                                 <GrAdd />
                                                             </span>
 

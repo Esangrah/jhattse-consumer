@@ -21,7 +21,7 @@ const Profile = () => {
             <Title title="Forgot Password" />
             <div className="flex flex-col justify-center items-center bg-neutral-50">
                 <div className="flex flex-col gap-4 p-4">
-                    <p className="text-md text-neutral-900">You are requesting for the password change.<br />You will recieve your mail in your requested emailid.</p>
+                    <p className="text-base text-neutral-900">You are requesting for the password change.<br />You will recieve your mail in your requested emailid.</p>
                     <div className="flex flex-col">
                         <label className="font-semibold whitespace-nowrap">Your Email</label>
                         <input className="mt-1 block w-full px-3 py-2 bg-neutral-50 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -30,7 +30,7 @@ const Profile = () => {
                       invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" placeholder="Enter your email" onChange={handleChange} value={email} />
                     </div>
                     <div className="px-2 mt-1">
-                        <button className={`text-base bg-black text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordRecovery(email).then((result) => { navigate("/screen/forgot-password"); }).catch(() => setMessage("Email not found"))} disabled={!valid}>Send Mail</button>
+                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordRecovery(email).then((result) => { navigate("/screen/forgot-password"); }).catch(() => setMessage("Email not found"))} disabled={!valid}>Send Mail</button>
                         <p className="text-error-900">{message}</p>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export const CategoryWidget = ({ index, isLoading, getNextResults, handleAccordi
     
 
     return (
-        <AccordionItem  className="bg-neutral-50 text-custom_gray border border-gray-400 rounded cursor-pointer font-bold mb-2 p-2 text-lg" onClick={() => handleAccordionItem()} >
+        <AccordionItem  className="bg-neutral-50 text-custom_gray border border-neutral-400 rounded cursor-pointer font-bold mb-2 p-2 text-lg" onClick={() => handleAccordionItem()} >
             <h2 id={productCategoryItem.name}>
                 <AccordionButton
                  onClick={() => handleAccordionButton(productCategoryItem, index)}>

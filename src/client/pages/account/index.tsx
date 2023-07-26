@@ -63,7 +63,7 @@ const Account = () => {
                     <div className="h-4"></div>
                     <div className="bg-neutral-50 grid gap-4 p-4">
                         <div><p className="font-bold text-xl text-neutral-900">Orders</p></div>
-                        <Link to={'/order/me'}><div className="flex flex-flow-row gap-2 items-center"><span><FaBox /></span><p className="font-base text-md text-neutral-900">My Orders</p></div></Link>
+                        <Link to={'/order/me'}><div className="flex flex-flow-row gap-2 items-center"><span><FaBox /></span><p className="font-base text-base text-neutral-900">My Orders</p></div></Link>
                     </div>
                     <div className="h-4"></div>
                     <div className="grid gap-4 bg-neutral-50 p-4">
@@ -96,18 +96,18 @@ const Account = () => {
                     <div className="h-6"></div>
                     <div className="grid grid-cols-3 gap-8 divide-x">
                         <div className="flex flex-col gap-2">
-                            <span onClick={() => setActive("myorders")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-gray-400 rounded-sm cursor-pointer ${active === "myorders" ? "border-r-8 border-golden rounded-r" : ""}`}>
+                            <span onClick={() => setActive("myorders")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-neutral-400 rounded-sm cursor-pointer ${active === "myorders" ? "border-r-8 border-golden rounded-r" : ""}`}>
                                 <p className={active === "myorders" ? "text-golden font-bold" : "text-custom_gray font-medium"}>My Orders</p>
                             </span>
-                            <span onClick={() => setActive("myaddresses")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-gray-400 rounded-sm cursor-pointer ${active === "myaddresses" ? "border-r-8 border-golden rounded-r" : ""}`}>
+                            <span onClick={() => setActive("myaddresses")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-neutral-400 rounded-sm cursor-pointer ${active === "myaddresses" ? "border-r-8 border-golden rounded-r" : ""}`}>
                                 <p className={active === "myaddresses" ? "text-golden font-bold" : "text-custom_gray font-medium"}>My Addresses</p>
                             </span>
-                            <span onClick={() => setActive("settings")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-gray-400 rounded-sm cursor-pointer ${active === "settings" ? "border-r-8 border-golden rounded-r" : ""}`}>
+                            <span onClick={() => setActive("settings")} className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-neutral-400 rounded-sm cursor-pointer ${active === "settings" ? "border-r-8 border-golden rounded-r" : ""}`}>
                                 <p className={active === "settings" ? "text-golden font-bold" : "text-custom_gray font-medium"}>Settings</p>
                             </span>
                             <span
                                 onClick={() => setActive("referAndEarn")}
-                                className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-gray-400 rounded-sm cursor-pointer ${active === "referAndEarn" ? "border-r-8 border-golden rounded-r" : ""}`}>
+                                className={`p-2 bg-neutral-50 text-neutral-900 border-1 border-neutral-400 rounded-sm cursor-pointer ${active === "referAndEarn" ? "border-r-8 border-golden rounded-r" : ""}`}>
                                 <p className={active === "referAndEarn" ? "text-golden font-bold" : "text-custom_gray font-medium"}>Refer and Earn</p>
                             </span>
                         </div>

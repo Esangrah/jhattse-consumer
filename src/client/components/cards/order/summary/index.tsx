@@ -21,32 +21,10 @@ export const OrderSummaryCard = ({ order }: Props) => {
 
 
     return (
-        // <div className="bg-neutral-50 shadow-md" data-order-id={order?.id} >
-        //     <div className="flex flex-row justify-between px-2">
-        //         <div>
-        //             <span className={`${order.delivery_mode == "Delivery" ? "bg-cyan-500" : "bg-success-500"} text-neutral-50 -ml-2 px-2 py-0.5 rounded-r-md font-semibold text-md`}>{order.delivery_mode}</span>
-        //             <span className="text-neutral-400"> from </span>
-        //             <Link to={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><span className="text-sky-500 font-semibold text-md">{order.store.name}</span></Link>
-        //         </div>
-        //         <div className="flex flex-col w-32 text-right">
-        //             <span className="text-yellow-600 font-semibold text-md">{order.status}</span>
-        //             <span className="text-sm font-semibold text-teal-600">{order.updated_on != null ? `Updated ${moment(order.updated_on).fromNow()}` : moment(order.added_on).fromNow()}</span>
-        //         </div>
-        //     </div>
-        //     <div className="divide-y divide-dashed">
-        //         <div className="p-2">
-        //             <OrderItemContainer ordersItems={order.orderitems} />
-        //         </div>
-        //         <div className="flex flex-row justify-between p-2">
-        //             <div><span className="text-neutral-500 font-semibold select-none">Total Cost: </span><span className="text-neutral-900 font-semibold text-md">{"₹"}{order.cost}</span></div>
-        //             <div><span className="text-neutral-400 select-none">Paid via </span><span className="text-sky-400 font-semibold text-md">{order.payment_mode}</span></div>
-        //         </div>
-        //     </div>
-        // </div>
         <div className="bg-neutral-50 flex flex-col divide-y rounded-md" data-order-id={order?.id}>
             <div className="p-4 flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                    <Link to={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><h2 className="text-lg font-semibold text-custom_black">{order.store.name}</h2></Link>
+                    <Link to={`/store/${order?.store.id}/${getSafeUrl(order?.store?.name)}`}><h2 className="text-lg font-semibold text-custom_black">{order.store.name}</h2></Link>
                     {
                         order.delivery_mode == "Delivery" ? <span className="bg-delivery rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
                             <span className="bg-storepickup rounded px-2 py-1 text-sm font-bold text-bannerText">PICKUP</span>

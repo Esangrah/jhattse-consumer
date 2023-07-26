@@ -144,7 +144,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
                 <p className="text-neutral-800 font-medium text-lg">{isEdit ? "Edit Address" : "Add Address"}</p>
                 <div className="inline-block w-1/2 pr-1">
                     <label className=" block text-sm text-neutral-600 ">Select type</label>
-                    <select id="type" name="type" value={address?.type} onChange={(evt) => handleSelect(evt)} className="w-18 bg-neutral-300 text-md text-neutral-800 p-1 outline-none rounded border-md border-gray-300 px-1 ">
+                    <select id="type" name="type" value={address?.type} onChange={(evt) => handleSelect(evt)} className="w-18 bg-neutral-300 text-base text-neutral-800 p-1 outline-none rounded border-md border-neutral-300 px-1 ">
                         <option value="home">Home</option>
                         <option value="work">Work</option>
                         <option value="other">Other</option>

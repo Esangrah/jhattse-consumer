@@ -18,8 +18,8 @@ export const StoreCartContainer = ({ cartItems }: Props) => {
             {!cartItems[0].deliverable &&
                 <div className="">
                     <div className="flex justify-between bg-teal-500 px-2 py-1 rounded-t-lg">
-                        <span className="font-semibold text-md text-neutral-50">Pickup From</span>
-                        <div className="flex font-semibold text-md text-neutral-50">
+                        <span className="font-semibold text-base text-neutral-50">Pickup From</span>
+                        <div className="flex font-semibold text-base text-neutral-50">
                             <span>{cartItems[0].inventory?.store?.address?.street_name}</span>
                             <p className="text-neutral-50 text-lg font-bold mt-1"><a href={`http://www.google.com/maps/place/${cartItems[0].inventory.store.address.latitude},${cartItems[0].inventory.store.address.longitude}`} target="_blank"><MdOutlineLocationOn/></a></p>
                         </div>

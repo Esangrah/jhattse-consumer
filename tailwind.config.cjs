@@ -1,6 +1,6 @@
 module.exports = {
     important: true,
-    content: ["./src/client/**/*.tsx"],
+    content: ["./index.html", "./src/client/**/*.tsx"],
     theme: {
         extend: {
             colors: {
@@ -134,7 +134,7 @@ module.exports = {
             variants: ["xs", "sm", "md"],
         },
         {
-            pattern: /text-(xs|md|lg|xl|2xl|3xl)*/,
+            pattern: /text-(xs|sm|base|lg|xl|2xl|3xl)*/,
             variants: ["xs", "sm", "md", "lg"],
         },
         {
@@ -143,7 +143,7 @@ module.exports = {
         },
         {
             pattern:
-                /(bg|to|from)-(blue|yellow|gray|black|white|sky|teal|orange|red|green)*/,
+                /(bg|to|from)-(blue|yellow|sky|teal|green)*/,
             variants: ["hover", "focus"],
         },
         {
@@ -151,7 +151,7 @@ module.exports = {
             variants: ["hover", "focus"],
         },
         {
-            pattern: /text-(blue|yellow|gray|black|white|sky|teal|orange|red|green)*/,
+            pattern: /text-(blue|yellow|sky|teal|green)*/,
             variants: ["hover", "focus"],
         },
         {
@@ -161,7 +161,7 @@ module.exports = {
             pattern: /bg-gradient-to-r/,
         },
         {
-            pattern: /divide-(white|black|gray)*/,
+            pattern: /divide-(white|black)*/,
         },
         {
             pattern: /max-(h|w)-*/,

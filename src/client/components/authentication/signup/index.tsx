@@ -95,7 +95,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
 
     return (
         <div className="w-full sm:h-full shadow sm:overflow-hidden sm:rounded-md">
-            <div className="bg-white p-4 sm:p-6">
+            <div className="bgneutral-50 p-4 sm:p-6">
                 <div className="grid grid-cols-6 gap-1">
                     <div className="col-span-6">
                         <div className="flex justify-center items-center">
@@ -185,7 +185,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     </div>
                 </div>
                 <div className="mt-4 text-right">
-                    <button onClick={() => handleSignup()} className="block w-full inline-flex justify-center rounded-md border border-transparent bg-yellow-400 py-1 px-4 text-base font-medium text-gray shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2">Sign Up</button>
+                    <button onClick={() => handleSignup()} className="block w-full inline-flex justify-center rounded-md border border-transparent bg-yellow-400 py-1 px-4 text-base font-medium text-neutral shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2">Sign Up</button>
                 </div>
                 <div className=" mt-4 text-right">
                     <p>Already have an Account? <Link to="/login"><span className="font-medium text-sky-500">Login</span></Link></p>

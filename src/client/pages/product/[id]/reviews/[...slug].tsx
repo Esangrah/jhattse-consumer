@@ -115,7 +115,7 @@ const ProductReview: React.FC = ({ initialProduct }: Props) => {
                                     </div>
                                 </div>
                                 <div className="bg-neutral-100">
-                                    <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}><div className="font-bold text-lg sm:text-md text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
+                                    <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}><div className="font-bold text-lg sm:text-base text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
                                     <div className="text-neutral-700">
                                         Price ₹<span>{product.mrp}</span>
                                     </div>

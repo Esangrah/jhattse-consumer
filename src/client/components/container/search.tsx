@@ -75,7 +75,7 @@ export const SearchContainer: React.FC<Props> = ({ element, noResult = <span>Res
                             :
                             (isLoadMore ?
                                 <div className="flex flex-col items-center p-2" ref={ref}>
-                                    <button disabled={!isLoadMore} className={!isLoadMore ? "white text-neutral active:bg-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-gray-300 opacity-60" : "white text-neutral active:bg-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-gray-300"} onClick={() => handleLoadMore()}>{!isLoadMore ? "No more products" : "Load More"}</button>
+                                    <button disabled={!isLoadMore} className={!isLoadMore ? "white text-neutral active:bg-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300 opacity-60" : "white text-neutral active:bg-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300"} onClick={() => handleLoadMore()}>{!isLoadMore ? "No more products" : "Load More"}</button>
                                 </div> : null))
                 }
             </>

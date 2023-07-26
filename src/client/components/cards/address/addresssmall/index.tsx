@@ -26,7 +26,7 @@ export const AddressSmallCard = () => {
         :
         <div className="">
           <div><span className="font-semibold">{address?.type && address?.type.length > 0 ? address?.type : "Home"}</span></div>
-          <div className="flex text-md">{`${address?.house_number}, ${address?.street_name}, ${address?.locality}, ${address?.city?.name}, ${address?.state?.name},  ${address?.pincode}`}</div>
+          <div className="flex text-base">{`${address?.house_number}, ${address?.street_name}, ${address?.locality}, ${address?.city?.name}, ${address?.state?.name},  ${address?.pincode}`}</div>
         </div>
       }
     </div>

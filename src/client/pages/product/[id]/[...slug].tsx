@@ -156,17 +156,17 @@ const ProductDetail: React.FC = ({ initialProduct }: Props) => {
                                 </div>
                                 {
                                     selectedInventory?.store?.id > 0 ?
-                                        <p className="text-neutral-500 font-bold text-md sm:text-sm leading-tight pb-5 sm:pb-3 h-8">
+                                        <p className="text-neutral-500 font-bold text-base sm:text-sm leading-tight pb-5 sm:pb-3 h-8">
                                             Sold By: {" "}
                                             <Link to={`/store/${selectedInventory?.store?.id}/${getSafeUrl(selectedInventory?.store?.name)}`}><span className="font-bold text-brand">{selectedInventory?.store?.name}</span></Link>
                                         </p>
                                         :
-                                        <p className="text-error-300 font-bold text-md sm:text-sm leading-tight pb-5">Unavailable</p>
+                                        <p className="text-error-300 font-bold text-base sm:text-sm leading-tight pb-5">Unavailable</p>
                                 }
 
 
                                 {product?.inventories?.length > 0 ?
-                                    <div className="flex flex-row items-center gap-4 pb-6 text-md sm:text-sm">
+                                    <div className="flex flex-row items-center gap-4 pb-6 text-base sm:text-sm">
                                         <span className="text-neutral-800 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.price || product?.inventories?.filter((inventory) => inventory.variant_id == variant?.id)[0]?.price || selectedInventory?.mrp)}</span>
                                         {(selectedInventory?.price !== null && selectedInventory?.mrp !== selectedInventory?.price) && <span className="line-through text-neutral-400 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.mrp || product?.inventories?.filter((inventory) => inventory.variant_id == variant?.id)[0]?.mrp)}</span>}
                                         {selectedInventory?.price != null && selectedInventory?.price < product.mrp ?

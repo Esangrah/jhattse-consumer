@@ -32,7 +32,7 @@ const Profile = () => {
             <Title title="Reset Password" />
             <div className="flex flex-col justify-center items-center bg-neutral-50">
                 <div className="flex flex-col w-full gap-4 p-4">
-                    <p className="text-md text-neutral-900">Please set secure new password.</p>
+                    <p className="text-base text-neutral-900">Please set secure new password.</p>
                     <div className="flex flex-col">
                         <label className="font-semibold whitespace-nowrap">New Password</label>
                         <input className="mt-1 block w-full px-3 py-2 bg-neutral-50 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
@@ -42,7 +42,7 @@ const Profile = () => {
                         <p className="text-neutral-300 text-xs">Password should be atleast 8 characters</p>
                     </div>
                     <div className="">
-                        <button className={`text-base bg-black text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordReset(state).then((res) => navigate("/screen/reset-successful"))} disabled={!valid}>Update Password</button>
+                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordReset(state).then((res) => navigate("/screen/reset-successful"))} disabled={!valid}>Update Password</button>
                     </div>
                 </div>
             </div>

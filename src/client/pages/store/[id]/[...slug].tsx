@@ -251,7 +251,7 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
                                 {
                                     productCategoriesList?.map((item, index) => {
                                         return <a href={`#${item.id.toString()}`} key={item.id}
-                                            className={activeSectionId === item.id.toString() ? 'p-2 bg-neutral-50 text-custom_gray border-1 border-gray-400 rounded-sm cursor-pointer border-r-8 border-golden rounded-r' : "p-2 bg-neutral-50 text-neutral-900 border-1 border-gray-400 rounded-sm cursor-pointer"}>
+                                            className={activeSectionId === item.id.toString() ? 'p-2 bg-neutral-50 text-custom_gray border-1 border-neutral-400 rounded-sm cursor-pointer border-r-8 border-golden rounded-r' : "p-2 bg-neutral-50 text-neutral-900 border-1 border-neutral-400 rounded-sm cursor-pointer"}>
                                             <p className={activeSectionId === item.id.toString() ? "text-golden font-bold" : "text-custom_gray font-medium"} onClick={() => {
                                                 handleCategoryButton(item, index);
                                                 handleSidebarLinkClick(item.id.toString());
@@ -347,7 +347,7 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
                             onClose={() => setIsCategoryOpen(false)}
                             onOpen={() => setIsCategoryOpen(true)}
                             boundary="scrollParent">
-                            <MenuButton as={Button} className="bg-neutral-50 font-bold font-sm tracking-wide text-custom_gray border-gray-400 rounded-sm">
+                            <MenuButton as={Button} className="bg-neutral-50 font-bold font-sm tracking-wide text-custom_gray border-neutral-400 rounded-sm">
                                 {!isCategoryOpen ? "CATEGORIES" : <div className='flex flex-row gap-1 items-center'> <AiOutlineClose className="inline" /> CLOSE</div>}
                             </MenuButton>
                             <Center>

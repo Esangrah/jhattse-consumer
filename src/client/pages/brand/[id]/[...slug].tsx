@@ -286,7 +286,7 @@ const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
                                                             height="150"
                                                             className="w-full max-h-60 object-cover rounded-lg"
                                                         />
-                                                        <span className="absolute text-neutral-50 font-bold text-lg bottom-0 left-0  bg-gradient-to-b from-transparent via-transparent to-black w-full px-4 h-20 flex items-center rounded-lg">
+                                                        <span className="absolute text-neutral-50 font-bold text-lg bottom-0 left-0  bg-gradient-to-b from-transparent via-transparent to-neutral-900 w-full px-4 h-20 flex items-center rounded-lg">
                                                             <p>{item?.name}</p>
                                                         </span>
                                                     </div>

@@ -134,7 +134,7 @@ export const AddReview: React.FC<Props> = ({ product_id, callback, review }) => 
                                 value={state?.comment} onChange={(evt) => handleComment(evt)}
                                 rows={1}
                                 cols={80}
-                                className="border-0 px-2 py-2  placeholder-black text-neutral-800 rounded-xl text-sm shadow focus:outline-none w-full"
+                                className="border-0 px-2 py-2  placeholder-neutral-900 text-neutral-800 rounded-xl text-sm shadow focus:outline-none w-full"
                                 placeholder="Write a review" required>
                             </textarea>
                         </div>

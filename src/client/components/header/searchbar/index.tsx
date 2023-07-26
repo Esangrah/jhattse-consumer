@@ -3,7 +3,7 @@ import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { getSafeUrl } from "@core/utils";
-import { Link} from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 
 import { getSearch } from "@api/graphql/search";
 import { useLocation } from "react-router-dom";
@@ -20,7 +20,7 @@ const renderTitle = (title: string, identifier: string) => (
         <a
             className="text-sky-500"
             style={{ float: "right" }}
-            href={`https://jhattse.com/search?q=&intent=${identifier}`}
+            href={`/search?q=&intent=${identifier}`}
         >
             more
         </a>
@@ -83,6 +83,7 @@ const initialOptions = new Map<string, any>([
 ]);
 
 export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
+    const navigator = useNavigate()
     const [query, setQuery] = useState<TSearch>();
     const [options, setOptions] = useState<Map<string, any>>();
     const [searchInput, setSearchInput] = useState("");
@@ -169,6 +170,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
                 .catch((err) => console.log("Error", err));
         }
     }, [query?.descriptor?.q]);
+
     const handleSearch = async (q: string) => {
         setQuery({
             ...query,
@@ -177,8 +179,15 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
         });
     };
 
+    const handleSelect = async (element, option) => {
+        console.log(element, option)
+        if (option?.label?.props?.href != undefined) {
+            navigator(option?.label?.props?.href)
+        }
+    }
+
     return (
-        <div className="search flex flex-row w-full grow-1 justify-center bg-black rounded-lg">
+        <div className="search flex flex-row w-full grow-1 justify-center rounded-lg">
             <AutoComplete
                 defaultActiveFirstOption
                 popupClassName="p-1"
@@ -187,6 +196,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
                 options={Array.from(options === undefined ? [] : options.values())}
                 notFoundContent={options && options.size === 0 && "No results found"}
                 onSearch={handleSearch}
+                onSelect={handleSelect}
             >
                 <Input
                     size="large"

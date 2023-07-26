@@ -68,7 +68,7 @@ const OrderPage = () => {
                     <div className="grid gap-2 py-2 px-2 sm:px-0 w-1/2 sm:w-full" >
                         {deliveryItems.length > 0 && <div>
                             <div className="flex justify-between bg-success-900 px-2 py-1 rounded-t-lg">
-                                <span className="font-semibold text-md text-neutral-50">Deliver To</span>
+                                <span className="font-semibold text-base text-neutral-50">Deliver To</span>
                                 <span><button className="text-neutral-50 font-semibold flex flex-row items-center gap-1" onClick={ChangeAddress}>CHANGE<FaRegEdit /></button></span>
                             </div>
                             <AddressSmallCard />

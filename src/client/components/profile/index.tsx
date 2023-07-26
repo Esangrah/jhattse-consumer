@@ -117,20 +117,20 @@ export const ProfileCard = () => {
                 </div>
                 <div className="grid gap-4">
                     <div className="grid gap-4">
-                        <label className=" block text-md text-neutral-600">First Name</label>
-                        <input className={`w-full p-2 text-md text-neutral-700 border border-black rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="first_name" value={user?.first_name} required placeholder={user?.first_name} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
+                        <label className=" block text-base text-neutral-600">First Name</label>
+                        <input className={`w-full p-2 text-base text-neutral-700 border border-neutral-900 rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="first_name" value={user?.first_name} required placeholder={user?.first_name} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
                     </div>
                     <div className="grid gap-4">
-                        <label className=" block text-md text-neutral-600">Last Name</label>
-                        <input className={`w-full p-2 text-md text-neutral-700 border border-black rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="last_name" value={user?.last_name} required placeholder={user?.last_name} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
+                        <label className=" block text-base text-neutral-600">Last Name</label>
+                        <input className={`w-full p-2 text-base text-neutral-700 border border-neutral-900 rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="last_name" value={user?.last_name} required placeholder={user?.last_name} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
                     </div>
                     <div className="grid gap-4">
-                        <label className=" block text-md text-neutral-600">Email</label>
-                        <input className={`w-full p-2 text-md text-neutral-700 border border-black rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="email" value={user?.email} required placeholder={user?.email} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
+                        <label className=" block text-base text-neutral-600">Email</label>
+                        <input className={`w-full p-2 text-base text-neutral-700 border border-neutral-900 rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="email" value={user?.email} required placeholder={user?.email} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
                     </div>
                     <div className="grid gap-4">
                         <div className="flex gap-2">
-                            <label className=" block text-md text-neutral-600">Mobile Number</label>
+                            <label className=" block text-base text-neutral-600">Mobile Number</label>
                             {
                                 user?.phone_verified === true ?
                                     <span className="flex items-center text-lg text-green-500"><MdVerified /></span>
@@ -138,11 +138,11 @@ export const ProfileCard = () => {
                                     <button onClick={() => { handleVerify() }} ><span className="text-sm text-sky-500">Verify</span></button>
                             }
                         </div>
-                        <input className={`w-full p-2 text-md text-neutral-700 border border-black rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="phone" value={user?.phone} required placeholder={user?.phone} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
+                        <input className={`w-full p-2 text-base text-neutral-700 border border-neutral-900 rounded ${isedit == true ? "" : "cursor-not-allowed"}`} type="text" name="phone" value={user?.phone} required placeholder={user?.phone} onChange={(evt) => handleInput(evt)} disabled={isedit == true ? false : true} aria-label=""></input>
                     </div>
                     <div className="grid gap-4">
-                        {/* <button className="bg-brand-500 px-4 py-2 text-neutral-50 text-md rounded-md " onClick={() =>{setIsEdit(true)}}>Edit</button> */}
-                        <button className="bg-brand-500 hover:bg-brand-500 focus:bg-brand-500 px-4 py-2 text-neutral-50 text-md rounded-md" disabled={!isedit} onClick={() => { updateUser(); setIsEdit(false) }}>{isedit == true ? "Save" : "Saved"}</button>
+                        {/* <button className="bg-brand-500 px-4 py-2 text-neutral-50 text-base rounded-md " onClick={() =>{setIsEdit(true)}}>Edit</button> */}
+                        <button className="bg-brand-500 hover:bg-brand-500 focus:bg-brand-500 px-4 py-2 text-neutral-50 text-base rounded-md" disabled={!isedit} onClick={() => { updateUser(); setIsEdit(false) }}>{isedit == true ? "Save" : "Saved"}</button>
 
                     </div>
                 </div>

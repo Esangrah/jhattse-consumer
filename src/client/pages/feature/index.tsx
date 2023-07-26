@@ -74,7 +74,7 @@ const Home: React.FC = () => {
                 <link rel="shortcut icon" href="https://jhattse.com/consumer/circular-logo.png" />
             </Head>
 
-            <div className="nav w-full bg-black flex items-center justify-between sticky top-0 z-40 h-14 px-2">
+            <div className="nav w-full bg-neutral-900 flex items-center justify-between sticky top-0 z-40 h-14 px-2">
                 <div className="flex flex-row items-center">
                     <Link to="/" >
                         <Image
@@ -125,7 +125,7 @@ const Home: React.FC = () => {
                 <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-col h-100">
                     <div className="flex flex-col justify-between px-5 pt-2 gap-2">
                         <div>
-                            <div className="sm:text-md space-x-2 align-middle">
+                            <div className="sm:text-base space-x-2 align-middle">
                                 <span className="font-super font-semibold text-4xl sm:text-2xl">Jhattse</span>
                                 <span className="font-lightgray-100 text-2xl sm:text-xl">features for</span>
                                 <span className="text-brand-500 font-semibold text-2xl sm:text-xl">Users</span>
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                     </div>
                     <div className="flex flex-col justify-between px-5 pt-2 gap-2">
                         <div>
-                            <div className="sm:text-md space-x-2 align-middle">
+                            <div className="sm:text-base space-x-2 align-middle">
                                 <span className="font-super font-semibold text-4xl sm:text-2xl">Jhattse</span>
                                 <span className="font-lightgray-100 text-2xl sm:text-xl">features for</span>
                                 <span className="text-teal-600 font-semibold text-2xl sm:text-xl">Business</span>
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
                 </div>
             </div>
             <div className="flex flex-row sm:flex-col gap-2 p-4 justify-center">
-                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-gray-100 rounded-md shadow-lg hover:-translate-y-2">
+                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-neutral-100 rounded-md shadow-lg hover:-translate-y-2">
                     <div className="flex-row justify-center">
                         <div>
                             <h3 className="text-3xl font-bold">₹199</h3>
@@ -227,7 +227,7 @@ const Home: React.FC = () => {
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-gray-100 rounded-md shadow-lg hover:-translate-y-2">
+                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-neutral-100 rounded-md shadow-lg hover:-translate-y-2">
                     <div className="flex-row justify-center ">
                         <div className="absolute top-0 px-3 py-1 text-sm tracking-tighter text-yellow-500 uppercase -translate-y-1/2 rounded-full right-6 bg-primary-600">
                             Most popular
@@ -253,7 +253,7 @@ const Home: React.FC = () => {
                         </a>
                     </div>
                 </div>
-                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-gray-100 rounded-md shadow-lg hover:-translate-y-2">
+                <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-neutral-100 rounded-md shadow-lg hover:-translate-y-2">
                     <div className="flex-row justify-center ">
                         <div>
                             <h3 className="text-3xl font-bold">₹1799</h3>
@@ -298,13 +298,13 @@ const Home: React.FC = () => {
                                     <div className="col-span-11">
                                         <div className="col-span-5 sm:col-span-11">
                                             <label htmlFor="email" className="block text-base font-medium text-teal-800">Email</label>
-                                            <input type="email" name="email" id="email" autoComplete="email" placeholder="Enter email" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-gray-100 sm:text-base"
+                                            <input type="email" name="email" id="email" autoComplete="email" placeholder="Enter email" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 sm:text-base"
                                                 onChange={(e) => { setEmail(e.target.value); }} />
                                         </div>
                                         <div className="col-span-1 sm:col-span-11 text-center flex flex-col justify-end sm:hidden"><span className="text-teal-600 font-semibold">or</span></div>
                                         <div className="col-span-5 sm:col-span-11">
                                             <label htmlFor="phone" className="block text-base font-medium text-teal-800">Phone</label>
-                                            <input type="phone" name="phone" id="phone" autoComplete="htmlFor" placeholder="Enter phone" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-gray-100 sm:text-base"
+                                            <input type="phone" name="phone" id="phone" autoComplete="htmlFor" placeholder="Enter phone" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 sm:text-base"
                                                 onChange={(e) => { setPhone(e.target.value); }} />
                                         </div>
                                         <div className="col-span-11 text-right flex flex-col justify-end mt-4">

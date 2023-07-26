@@ -37,7 +37,7 @@ export const TrendingProductCard: React.FC<Props> = ({ product }) => {
                 </div>
                 <div className="col-span-2 leading-tight">
                     <div className="font-bold font-simple overflow-hidden">
-                        <p className="font-medium truncate text-ellipsis text-lg sm:text-md  text-custom_black pt-2">{product.name}</p>
+                        <p className="font-medium truncate text-ellipsis text-lg sm:text-base  text-custom_black pt-2">{product.name}</p>
                         {
                             product?.stats != null && product?.stats != undefined ?
                                 <div className="py-2">

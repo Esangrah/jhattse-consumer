@@ -38,7 +38,7 @@ export const CartItemCard = ({ cartItem, showStore }: Props) => {
             </div>
             <div className="col-span-2">
                 <Link to={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
-                    <p className="text-neutral-900 font-semibold text-md line-clamp-2">{cartItem.product.name}</p>
+                    <p className="text-neutral-900 font-semibold text-base line-clamp-2">{cartItem.product.name}</p>
                 </Link>
                 {showStore && <p className="text-slate-500">Sold by <Link to={`/store/${cartItem.inventory.store.id}`}><span className="text-sky-500">{cartItem.inventory.store.name}</span></Link></p>}
                 <div>

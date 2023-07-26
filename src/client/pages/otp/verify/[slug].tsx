@@ -88,7 +88,7 @@ const Verification = () => {
 
     return (
         <div className="grid grid-flow-col grid-cols-6 place-content-center sm:place-content-start min-h-screen bg-neutral-50">
-            <div className="grid gap-4 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 sm:col-start-1 sm:col-span-6 sm:rounded-none rounded-lg  border sm:border-white border-black bg-neutral-50 p-2 ">
+            <div className="grid gap-4 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 sm:col-start-1 sm:col-span-6 sm:rounded-none rounded-lg  border sm:borderneutral-50 border-neutral-900 bg-neutral-50 p-2 ">
                 <div className="flex gap-2 px-2 py-4">
                     <button className="flex text-neutral-900 text-lg font-semibold items-center" onClick={() => { history.back() }}><BiArrowBack /></button>
                     <span className="text-neutral-900 font-semibold">Verify your mobile number</span>
@@ -107,7 +107,7 @@ const Verification = () => {
                             return (
                                 <input
                                     type="text"
-                                    className="flex justify-center border border-black rounded-md p-2 w-10"
+                                    className="flex justify-center border border-neutral-900 rounded-md p-2 w-10"
                                     name="otp"
                                     onChange={(e) => handleChange(e.target, index)}
                                     maxLength={1}

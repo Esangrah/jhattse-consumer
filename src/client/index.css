@@ -4,6 +4,8 @@
 
 @import "tailwindcss/utilities";
 
+@import "styles/global.scss";
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

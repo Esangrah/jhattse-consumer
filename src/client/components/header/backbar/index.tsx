@@ -32,7 +32,7 @@ export const BackBar: React.FC<Props> = ({ homeLink }) => {
         >
           <p className="text-sky-600 sm:hidden">Back</p>
           <p className="text-sky-600 mt-1">
-            <RiArrowGoBackFill className="sm:text-md" />
+            <RiArrowGoBackFill className="sm:text-base" />
           </p>
         </span>
       </div>

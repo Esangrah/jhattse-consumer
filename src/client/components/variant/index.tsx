@@ -131,7 +131,7 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                             </div>
                         </div>
                     </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-neutral-900"></div>
                 </>
             ) : null}
         </div>

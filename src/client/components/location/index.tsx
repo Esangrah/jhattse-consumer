@@ -59,7 +59,7 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-neutral-50 outline-none focus:outline-none">
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                                    <h3 className="text-md font-semibold text-neutral-700">
+                                    <h3 className="text-base font-semibold text-neutral-700">
                                         Please Enter Your Location
                                     </h3>
                                     <span
@@ -91,14 +91,14 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                                 {/*footer*/}
                                 <div className="flex items-center justify-end gap-2 p-2 border-t border-solid border-slate-200 rounded-b">
                                     <button
-                                        className="flex flex-row gap-2 items-center bg-neutral-50 text-neutral-900 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 border border-gray-300 sm:text-xs sm:px-2 sm:gap-1"
+                                        className="flex flex-row gap-2 items-center bg-neutral-50 text-neutral-900 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 border border-neutral-300 sm:text-xs sm:px-2 sm:gap-1"
                                         type="button"
                                         onClick={handleUseLocation}
                                     >
                                         <BiCurrentLocation /> Detect my location
                                     </button>
                                     <button
-                                        className="bg-black text-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-gray-300 sm:text-xs sm:px-2"
+                                        className="bg-neutral-900 text-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300 sm:text-xs sm:px-2"
                                         type="button"
                                         onClick={() => addLocation()}
                                     >
@@ -108,7 +108,7 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-neutral-900"></div>
                 </>
             ) : null}
         </div>

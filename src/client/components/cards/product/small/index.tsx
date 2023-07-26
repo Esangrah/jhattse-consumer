@@ -35,7 +35,7 @@ export const SmallProductCard = ({ product }: Props) => {
                 <div className="flex flex-col gap-4 justify-start col-span-2">
                     <div className="flex flex-col gap-2 leading-tight">
                         <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}>
-                            <div className="font-medium truncate text-ellipsis text-base sm:text-md">{trimToLength((variant?.id !== undefined ? getCombinedName(product, variant?.id) : product?.name), 40)}</div>
+                            <div className="font-medium truncate text-ellipsis text-base sm:text-base">{trimToLength((variant?.id !== undefined ? getCombinedName(product, variant?.id) : product?.name), 40)}</div>
                         </Link>
                         {product?.stats?.rating_overall ?
                             <div>

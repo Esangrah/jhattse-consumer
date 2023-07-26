@@ -10,7 +10,7 @@ type Props = {
 
 export const MainCard = ({ element }: Props) => {
     return (
-        <div className="flex justify-center items-center p-2 bg-black rounded-2xl">
+        <div className="flex justify-center items-center p-2 bg-neutral-900 rounded-2xl">
             <Link to={element.url}>
                 <div className="h-24 flex items-center text-center">
                     {element.image && <Image

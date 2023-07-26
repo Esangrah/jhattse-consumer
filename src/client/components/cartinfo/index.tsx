@@ -96,13 +96,6 @@ export const CartInfo: React.FC = () => {
                                     </div>
                                     {tableInfo?.table === null || tableInfo?.table === undefined &&
                                         <div className="flex flex-row gap-8 py-2 items-center">
-                                            {/* <p className={`${cartItem.deliverable ? "text-green-500" : "text-cyan-500"} text-sm font-semibold w-24`}>{cartItem.deliverable ? "Delivery" : "Pickup"}{!(cartItem.inventory?.store?.is_delivery && cartItem.inventory?.store?.is_pickup) && " Only"}</p>
-                                        
-                                        {cartItem.inventory?.store?.is_delivery && cartItem.inventory?.store?.is_pickup ?
-                                            <button className="text-sky-500 font-semibold text-sm" onClick={() => { toggleDeliveryMode(cartItem) }}>CHANGE</button>
-                                            :
-                                            <></>
-                                            } */}
                                             {cartItem.inventory?.store?.is_delivery && cartItem.inventory?.store?.is_pickup ? <>
                                                 <div className="flex gap-2">
                                                     <input type="radio" value="PICKUP" className="cursor-pointer" onChange={() => {

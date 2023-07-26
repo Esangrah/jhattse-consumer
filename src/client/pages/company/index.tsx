@@ -89,7 +89,7 @@ function company() {
         </p>
         <CarouselContainer>
           <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="rounded-xl bg-black">
+            <div className="rounded-xl bg-neutral-900">
               <Image
                 src={"/company/jhattsebusiness.png"}
                 width="200"
@@ -100,7 +100,7 @@ function company() {
             </div>
           </SwiperSlide>
           <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="rounded-xl bg-black">
+            <div className="rounded-xl bg-neutral-900">
               <Image
                 src={"/company/jhattse.png"}
                 width="200"
@@ -211,7 +211,7 @@ function company() {
           </SwiperSlide>
         </CarouselContainer>
       </div>
-      <div className="flex flex-row justify-between p-10 sm:px-5 sm:py-5 bg-black sm:flex-col">
+      <div className="flex flex-row justify-between p-10 sm:px-5 sm:py-5 bg-neutral-900 sm:flex-col">
         <Image
           src={"/company/bottomimage.png"}
           width="200"

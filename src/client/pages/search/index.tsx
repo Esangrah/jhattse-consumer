@@ -96,7 +96,7 @@ const SearchPage: React.FC = () => {
                 onClick={() => {
                   setStoreType("All");
                 }}
-                className="border-2 border-solid border-red-500 text-error-500 bg-turnery hover:bg-red-500 hover:text-neutral-50 focus:bg-red-500 focus:text-neutral-50"
+                className="border-2 border-solid border-error-500 text-error-500 bg-turnery hover:bg-error-500 hover:text-neutral-50 focus:bg-error-500 focus:text-neutral-50"
               >
                 All
               </button>
@@ -104,7 +104,7 @@ const SearchPage: React.FC = () => {
                 onClick={() => {
                   setStoreType("Local");
                 }}
-                className="border-2 border-solid border-red-500 text-error-500 bg-turnery hover:bg-red-500 hover:text-neutral-50 focus:bg-red-500 focus:text-neutral-50"
+                className="border-2 border-solid border-error-500 text-error-500 bg-turnery hover:bg-error-500 hover:text-neutral-50 focus:bg-error-500 focus:text-neutral-50"
               >
                 Local
               </button>
@@ -112,7 +112,7 @@ const SearchPage: React.FC = () => {
                 onClick={() => {
                   setStoreType("Online");
                 }}
-                className="border-2 border-solid border-red-500 text-error-500 bg-turnery hover:bg-red-500 hover:text-neutral-50 focus:bg-red-500 focus:text-neutral-50"
+                className="border-2 border-solid border-error-500 text-error-500 bg-turnery hover:bg-error-500 hover:text-neutral-50 focus:bg-error-500 focus:text-neutral-50"
               >
                 Online
               </button>

@@ -66,7 +66,7 @@ export const StoreTiming = ({ storeTimings }: Props) => {
             </div>
             {
                 storeTimingShow &&
-                <div className="absolute left-14 z-10 w-56 p-2 origin-top-left rounded-md bg-neutral-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                <div className="absolute left-14 z-10 w-56 p-2 origin-top-left rounded-md bg-neutral-50 shadow-lg ring-1 ring-neutral-900 ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
                     {
                         weekDays?.map((storeTime: any, index) => {
                             let filteredWeekTime: TStoreTiming[] = storeTimings.filter((storeTiming) => storeTiming.day_of_week === index);
