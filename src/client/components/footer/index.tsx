@@ -13,15 +13,15 @@ export const Footer = () => {
                 <div className="flex flex-col justify-start gap-2">
                     <div className="text-amber-300 font-bold text-lg"><Link to="/">Jhattse</Link></div>
                     <div className="text-amber-300 font-semibold text-sm select-none">by Esangrah Technologies</div>
-                    <div className="textneutral-50 font-semibold select-none">Follow Us</div>
+                    <div className="text-neutral-50 font-semibold select-none">Follow Us</div>
                     <div className="flex flex-row items-center gap-2">
-                        <div className="text-sm hover:font-semibold select-none textneutral-50"><Link to={'https://twitter.com/jhattse'}><AiOutlineTwitter /></Link></div>
-                        <div className="text-sm hover:font-semibold select-none textneutral-50"><Link to={'https://www.facebook.com/profile.php?id=100088066437195'}><GrFacebookOption /></Link></div>
-                        <div className="text-sm hover:font-semibold select-none textneutral-50"><Link to={'https://www.instagram.com/jhattse/'}><AiOutlineInstagram /></Link></div>
-                        <div className="text-sm hover:font-semibold select-none textneutral-50"><Link to={`https://www.google.com/maps/place/ESANGRAH+TECHNOLOGIES+PRIVATE+LIMITED/@30.2977277,78.0679105,17z/data=!3m1!4b1!4m6!3m5!1s0x390929a02dbc9563:0x483f9a088c2712a1!8m2!3d30.2977231!4d78.0700992!16s%2Fg%2F11sjgmr_fg`}><FaMapMarkerAlt /></Link></div>
+                        <div className="text-sm hover:font-semibold select-none text-neutral-50"><Link to={'https://twitter.com/jhattse'}><AiOutlineTwitter /></Link></div>
+                        <div className="text-sm hover:font-semibold select-none text-neutral-50"><Link to={'https://www.facebook.com/profile.php?id=100088066437195'}><GrFacebookOption /></Link></div>
+                        <div className="text-sm hover:font-semibold select-none text-neutral-50"><Link to={'https://www.instagram.com/jhattse/'}><AiOutlineInstagram /></Link></div>
+                        <div className="text-sm hover:font-semibold select-none text-neutral-50"><Link to={`https://www.google.com/maps/place/ESANGRAH+TECHNOLOGIES+PRIVATE+LIMITED/@30.2977277,78.0679105,17z/data=!3m1!4b1!4m6!3m5!1s0x390929a02dbc9563:0x483f9a088c2712a1!8m2!3d30.2977231!4d78.0700992!16s%2Fg%2F11sjgmr_fg`}><FaMapMarkerAlt /></Link></div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-end gap-10 textneutral-50">
+                <div className="flex flex-row justify-end gap-10 text-neutral-50">
                     <div className="flex flex-col gap-1">
                         <div className="text-lg font-semibold select-none">USEFUL LINKS</div>
                         <div className="text-sm hover:font-semibold select-none"><Link to="https://business.jhattse.com/signup?type=business">Partner with Us</Link></div>
@@ -37,7 +37,7 @@ export const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="textneutral-50 text-center text-xs h-1/4 w-full flex flex-col justify-end">{`@Copyright ${new Date().getFullYear()} Esangrah Technologies Pvt Ltd`}</div>
+            <div className="text-neutral-50 text-center text-xs h-1/4 w-full flex flex-col justify-end">{`@Copyright ${new Date().getFullYear()} Esangrah Technologies Pvt Ltd`}</div>
         </div>
     );
 };
