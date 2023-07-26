@@ -74,7 +74,7 @@ const Home: React.FC<Props> = ({
                         <CarouselContainer>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link to="https://jhattse.com/category/1/grocery-gourmet-foods">
+                                    <Link to="/category/1/grocery-gourmet-foods">
                                         <Image
                                             loader={staticImageLoader}
                                             width="500"
@@ -88,7 +88,7 @@ const Home: React.FC<Props> = ({
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link to="https://jhattse.com/category/2819/food">
+                                    <Link to="/category/2819/food">
                                         <Image
                                             loader={staticImageLoader}
                                             src="public/consumer/food_banner.png"
@@ -102,7 +102,7 @@ const Home: React.FC<Props> = ({
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link to="https://jhattse.com/store">
+                                    <Link to="/store">
                                         <Image
                                             loader={staticImageLoader}
                                             width="500"
