@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { Star } from "@components/star"
 import { TProduct } from "@components/types";
 import { getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
@@ -26,7 +26,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                     </span>
                     {externalLink?.length > 0 &&
                         <div className="flex gap-1 items-center">
-                            <Link href={externalLink} >
+                            <Link to={externalLink} >
                                 <Image
                                     loader={sanityIoImageLoader}
                                     src={product?.inventories[0]?.store?.logo || "https://cdn.jhattse.com/public/assets/noimage.png"}
@@ -69,7 +69,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
             <div className="grid grid-cols-3 p-2 gap-4 sm:items-center">
                 <div className="col-span-1">
                     <div className="relative flex justify-center max-h-44">
-                        <Link href={`/product/${product?.id}/${getSafeUrl(product?.name)}`}>
+                        <Link to={`/product/${product?.id}/${getSafeUrl(product?.name)}`}>
                             <Image
                                 loader={sanityIoImageLoader}
                                 src={getImageObject(product?.images)?.url}

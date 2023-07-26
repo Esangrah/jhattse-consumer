@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { BackBar, Title } from "@components";
 import { passwordReset } from "@api/authentication";
 import { TPasswordReset } from "@components/types";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const [state, setState] = useState<TPasswordReset>();
     const [valid, setValid] = useState<Boolean>();
     const navigate = useNavigate();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location);
 
     useEffect(() => {
-        if (router.query?.token?.length > 0) {
-            let token = router.query?.token as string;
+        if (queryParams?.get("token")?.length > 0) {
+            let token = queryParams?.get("token");
             setState({ ...state, token: token })
         }
-    }, [router.isReady, router.query])
+    }, [location])
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, [evt.target.name]: evt.target.value });

@@ -1,15 +1,13 @@
-import { GetServerSideProps } from 'next';
 import Head from 'react-helmet';
 import { Image } from "@renderer/image";
-import { Link } from '@renderer/Link';
+import { Link, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-import { Container, Header, Section } from "@components";
+import { Container, Header, Navbar, Section } from "@components";
 import { TImage, TInventory, TProduct, TVariant } from "@components/types";
 import { getDetailProduct, getSimilarProducts } from '@api/product'
 import { RichCard } from "@components/cards";
 import { Star } from '@components/star';
 import { getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
-import dynamic from 'next/dynamic';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { Footer } from '@components/footer';
 import { CarouselContainer } from '@components/container/carousel';
@@ -24,34 +22,26 @@ interface Props {
     initialProduct?: TProduct
 }
 
-export const getServerSideProps: GetServerSideProps<{ initialProduct: TProduct }> = async (context) => {
-    const { slug } = context.params;
-    const res = getDetailProduct(parseInt(slug[0] as string));
-    const initialProduct: TProduct = await res;
+// export const getServerSideProps: GetServerSideProps<{ initialProduct: TProduct }> = async (context) => {
+//     const { slug } = context.params;
+//     const res = getDetailProduct(parseInt(slug[0] as string));
+//     const initialProduct: TProduct = await res;
 
-    return {
-        props: {
-            initialProduct,
-        },
-    }
-}
-
-const AddToCart = dynamic(() => import("../../src/components/addtocart").then((mod) => mod.AddToCart), {
-    ssr: false,
-})
-
-const Navbar = dynamic(() => import("../../src/components/navbar").then((mod) => mod.Navbar), {
-    ssr: false,
-})
+//     return {
+//         props: {
+//             initialProduct,
+//         },
+//     }
+// }
 
 const ProductDetail: React.FC = ({ initialProduct }: Props) => {
     const [mainImage, setMainImage] = useState<TImage>();
     const [product, setProduct] = useState<TProduct>(initialProduct);
     const [similarProducts, setSimilarProducts] = useState<TProduct[]>();
-    const [selectedInventory, setselectedInventory] = useState<TInventory>(initialProduct.inventories.length > 0 ? initialProduct?.inventories[0] : null)
+    const [selectedInventory, setselectedInventory] = useState<TInventory>(initialProduct?.inventories?.length > 0 ? initialProduct?.inventories[0] : null)
     const [variant, setVariant] = useState<TVariant>((selectedInventory?.is_available && selectedInventory?.variant) ? selectedInventory?.variant : product?.variants?.filter((variant) => inventoryByVariantId(variant, product)[0]?.is_available == true)[0]);
     const location = useLocation()
-    const queryParams = new URLSearchParams(location.search);
+    const params = useParams();
     let content = null
 
     const onClickVariant = (value: TVariant) => {
@@ -60,7 +50,7 @@ const ProductDetail: React.FC = ({ initialProduct }: Props) => {
     }
 
     useEffect(() => {
-        let id = queryParams.get("slug");
+        let id = params.id;
         if (id == product?.id.toString()) {
             return
         }
@@ -154,7 +144,7 @@ const ProductDetail: React.FC = ({ initialProduct }: Props) => {
                                 </div>
                                 {product?.brand &&
                                 <div className="text-ellipsis text-left break-words line-clamp-2 md:line-clamp-none leading-tight pb-5 sm:pb-3 max-w-2xl sm:max-w-full">
-                                    <span className="text-neutral-500 text-xl lg:text-lg sm:text-base font-bold">Brand:</span>&nbsp;<Link href={`/brand/${product?.brand?.id}/${getSafeUrl(product?.brand?.name)}`} ><span className="text-brand-500 text-xl lg:text-lg sm:text-base font-bold">{product?.brand?.name}</span></Link>
+                                    <span className="text-neutral-500 text-xl lg:text-lg sm:text-base font-bold">Brand:</span>&nbsp;<Link to={`/brand/${product?.brand?.id}/${getSafeUrl(product?.brand?.name)}`} ><span className="text-brand-500 text-xl lg:text-lg sm:text-base font-bold">{product?.brand?.name}</span></Link>
                                 </div>
                                 }
                                 <div className="flex flex-row gap-2 items-center pb-5 sm:pb-3 sm:text-xs sm:py-2">
@@ -168,7 +158,7 @@ const ProductDetail: React.FC = ({ initialProduct }: Props) => {
                                     selectedInventory?.store?.id > 0 ?
                                         <p className="text-neutral-500 font-bold text-md sm:text-sm leading-tight pb-5 sm:pb-3 h-8">
                                             Sold By: {" "}
-                                            <Link href={`/store/${selectedInventory?.store?.id}/${getSafeUrl(selectedInventory?.store?.name)}`}><span className="font-bold text-brand">{selectedInventory?.store?.name}</span></Link>
+                                            <Link to={`/store/${selectedInventory?.store?.id}/${getSafeUrl(selectedInventory?.store?.name)}`}><span className="font-bold text-brand">{selectedInventory?.store?.name}</span></Link>
                                         </p>
                                         :
                                         <p className="text-error-300 font-bold text-md sm:text-sm leading-tight pb-5">Unavailable</p>

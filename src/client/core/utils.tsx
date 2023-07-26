@@ -1,12 +1,10 @@
 import { refresh } from '@api/authentication';
 import { TData, TImage, TOption, TOrderItem } from '@components/types';
-import { ImageLoaderProps } from 'next/image';
-import router from 'next/router';
 import { useNavigate } from 'react-router-dom';
-
-navigate = useNavigate();
+import { ImageLoaderProps } from '@components/types';
 
 export const requestLogin = (next: string) => {
+    navigate = useNavigate();
     localStorage.removeItem("token");
     refresh().then((res) => {
         localStorage.setItem("token", res.access_token);
@@ -17,16 +15,16 @@ export const requestLogin = (next: string) => {
     navigate(`/login?next=${next}`);
 }
 
-export const sanityIoImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-    if (src.startsWith("http")) {
+export const sanityIoImageLoader = (src: string, width: string | number, quality?: number) => {
+    if (src?.startsWith("http")) {
         return `https://cdn.jhattse.com/resize?width=${width}&url=${src}&quality=${quality || 75}&type=webp`
     } else {
         return `https://cdn.jhattse.com/resize?width=${width}&file=${src}&quality=${quality || 75}&type=webp`
     }
 }
 
-export const staticImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-    if (src.startsWith("http")) {
+export const staticImageLoader = (src: string, width: string | number, quality?: number) => {
+    if (src?.startsWith("http")) {
         return `https://cdn.jhattse.com/${src}`
     } else {
         return `https://cdn.jhattse.com/${src}`

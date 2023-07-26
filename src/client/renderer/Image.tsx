@@ -1,7 +1,11 @@
-import { usePageContext } from './usePageContext'
+import { usePageContext } from './usePageContext';
 
-export function Image(props: { width?: string; height?: string; src?: string; srcset?: string; alt: string; classes?: string}) {
-  const pageContext = usePageContext()
-  
-  return <image {...props} className={classes} />
+export function Image(props: { width?: string; height?: string; srcset?: string; alt: string; className?: string, quality?: number; src?: string; loader?: Function }) {
+    const pageContext = usePageContext()
+    let src = props.src;
+    if (typeof props.loader === "function") {
+        src = props.loader(src, props.width, props.quality)
+    }
+
+    return <img {...props} src={src} className={props.className} />
 }

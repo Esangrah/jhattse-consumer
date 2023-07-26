@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import { Link } from '@renderer/Link';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi'
 import { TOtp, TIdentity } from '@components/types';
@@ -97,7 +97,7 @@ const Verification = () => {
                     <div className="grid gap-2">
                         <span className="flex justify-center text-neutral-900 font-semibold">We have sent an OTP to</span>
                         <span className="flex justify-center text-neutral-900 font-bold text-xl">+91{user?.phone}</span>
-                        <div className="text-neutral-400">Not yours? <Link href={''} className="text-brand-500 font-semibold">Change Mobile Number</Link></div>
+                        <div className="text-neutral-400">Not yours? <Link to={''} className="text-brand-500 font-semibold">Change Mobile Number</Link></div>
                     </div>
                 </div>
                 <div className="grid gap-4 justify-center p-6">

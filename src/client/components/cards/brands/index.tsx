@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TBrand } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from "@core/utils";
 
@@ -15,7 +15,7 @@ export const BrandCard: React.FC<Props> = ({ product }) => {
       className="bg-neutral-50 border-neutral-200 rounded-xl border shrink-0 w-40 pb-2 h-60"
     >
       <div className="flex h-44">
-        <Link href={`/brand/${product.id}/${getSafeUrl(product.name)}`}>
+        <Link to={`/brand/${product.id}/${getSafeUrl(product.name)}`}>
           <Image
             loader={sanityIoImageLoader}
             src={product.image || "assets/esangrah-profile.png"}

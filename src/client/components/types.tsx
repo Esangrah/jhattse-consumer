@@ -500,3 +500,11 @@ export interface TProductCategoryControl extends TProductCategory {
     pageNumber?: number;
     isLoadMore?: boolean;
 }
+
+
+export interface ImageLoaderProps {
+    src: string
+    width: number | string
+    height?: number | string
+    quality?: number
+}

@@ -5,7 +5,7 @@ import { AiFillPhone, AiOutlineHome, AiOutlineQrcode, AiOutlineShop } from 'reac
 import { MdOutlineLocationOn} from 'react-icons/md';
 import QRScanner from "@components/qr";
 
-import { Link } from "@renderer/Link";
+import { Link } from "react-router-dom";
 import { TStore } from "@components/types";
 import { getDistance } from 'geolib';
 import { getLocation } from "@core/geolocation";
@@ -136,12 +136,12 @@ export const Navbar: React.FC = () => {
             <div className="z-40 bg-neutral-50 fixed h-16 p-0 flex justify-center bottom-0 left-0 right-0 hidden sm:block">
                 <ul className="flex flex-row justify-between grow py-2 px-8">
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        <Link href="/" className="flex flex-col items-center">
+                        <Link to="/" className="flex flex-col items-center">
                             <AiOutlineHome size="1.8em" /><p className="text-[10px]">Home</p>
                         </Link>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        <Link href="/store" className="flex flex-col items-center">
+                        <Link to="/store" className="flex flex-col items-center">
                             <AiOutlineShop size="1.8em" /><p className="text-[10px]">Stores</p>
                         </Link>
                     </li>
@@ -151,7 +151,7 @@ export const Navbar: React.FC = () => {
                         </div>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        {/* <Link href="/account" className="flex flex-col items-center"> */}
+                        {/* <Link to="/account" className="flex flex-col items-center"> */}
                         <span onClick={() => setIsShowSidebar(!isShowSidebar)} className="flex flex-col items-center">
                             <RiAccountCircleLine size="1.8em" /><p className="text-[10px]">Account</p>
                         </span>

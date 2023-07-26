@@ -3,7 +3,7 @@ import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { getSafeUrl } from "@core/utils";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 
 import { getSearch } from "@api/graphql/search";
 import { useLocation } from "react-router-dom";
@@ -183,7 +183,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
                 defaultActiveFirstOption
                 popupClassName="p-1"
                 style={{ width: "100%", borderRadius: "2px" }}
-                dropdownMatchSelectWidth={true}
+                popupMatchSelectWidth={true}
                 options={Array.from(options === undefined ? [] : options.values())}
                 notFoundContent={options && options.size === 0 && "No results found"}
                 onSearch={handleSearch}

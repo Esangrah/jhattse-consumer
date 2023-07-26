@@ -1,6 +1,6 @@
 import Head from 'react-helmet';
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { Container, Header } from "@components";
 import ReferAndEarn from "@components/referAndEarn";
 

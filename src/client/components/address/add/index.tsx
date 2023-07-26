@@ -24,7 +24,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
     const [status, setStatus] = useState < string > ("");
     const [citySuggestions, setCitySuggestions] = useState < TOption[] > ([]);
     const [stateSuggestions, setStateSuggestions] = useState < TOption[] > ([]);
-    const location = useLocation();
+    const urlLocation = useLocation();
 
     const handleStateChange = (name: string, data: TData[], callback: Function) => {
         const handler = (value: string) => {
@@ -116,7 +116,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
             const result = addAddress(address);
             result.then((res) => { setMessage("Address submitted"); addressCallback(res); }).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(urlLocation.pathname);
                 }
             })
         }

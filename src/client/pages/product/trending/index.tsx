@@ -1,19 +1,8 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
 import Head from 'react-helmet'
-import { Footer } from '@components/footer'
+import { Header, Navbar } from '@components';
+import { TrendingProducts } from '@components/trending';
+import { Footer } from '@components/footer';
 
-const TrendingProducts = dynamic(() => import("src/components/trending").then((mod) => mod.TrendingProducts), {
-    ssr: false,
-})
-
-const Header = dynamic(() => import("src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-})
-
-const Navbar = dynamic(() => import("src/components/navbar").then((mod) => mod.Navbar), {
-    ssr: false,
-})
 
 const Trending = () => {
     return (

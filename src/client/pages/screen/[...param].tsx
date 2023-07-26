@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         } else if (queryParams?.includes("reset-successful")) {
             setState({ message: "Password reset. Loging with your new password", actionText: "Go to Login", next: "/login" });
         }
-    }, [router.isReady, router.query]);
+    }, [location]);
 
     return (
         <Container>

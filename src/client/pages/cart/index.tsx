@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic'
-import { Container } from "@components";
+import { Container, Header } from "@components";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import { cartState } from '@recoil/atoms';
-
-
-const Header = dynamic(() => import("../../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-});
-
-const CartInfo = dynamic(() => import("../../src/components/cartinfo").then((mod) => mod.CartInfo), {
-    ssr: false,
-});
-
-const CartDetails = dynamic(() => import("../../src/components/cartinfo/summary").then((mod) => mod.CartDetails), {
-    ssr: false,
-});
-
+import { CartInfo } from '@components/cartinfo';
+import { CartDetails } from '@components/cartinfo/summary';
 
 function Cart() {
     const [dineinOrTakeaway, setDineinOrTakeaway] = useState("DINEIN");

@@ -4,7 +4,7 @@ import { TOrder } from '@components/types';
 import { humanizeCurrency, trimToLength } from '@core/utils';
 import { getSafeUrl } from '@core/utils';
 import moment from 'moment';
-import { Link } from '@renderer/Link';
+import { Link } from 'react-router-dom';
 import React from 'react'
 import { MdCheckCircle } from 'react-icons/md';
 import { MdPayments } from 'react-icons/md';
@@ -26,7 +26,7 @@ export const OrderSummaryCard = ({ order }: Props) => {
         //         <div>
         //             <span className={`${order.delivery_mode == "Delivery" ? "bg-cyan-500" : "bg-success-500"} text-neutral-50 -ml-2 px-2 py-0.5 rounded-r-md font-semibold text-md`}>{order.delivery_mode}</span>
         //             <span className="text-neutral-400"> from </span>
-        //             <Link href={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><span className="text-sky-500 font-semibold text-md">{order.store.name}</span></Link>
+        //             <Link to={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><span className="text-sky-500 font-semibold text-md">{order.store.name}</span></Link>
         //         </div>
         //         <div className="flex flex-col w-32 text-right">
         //             <span className="text-yellow-600 font-semibold text-md">{order.status}</span>
@@ -46,7 +46,7 @@ export const OrderSummaryCard = ({ order }: Props) => {
         <div className="bg-neutral-50 flex flex-col divide-y rounded-md" data-order-id={order?.id}>
             <div className="p-4 flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                    <Link href={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><h2 className="text-lg font-semibold text-custom_black">{order.store.name}</h2></Link>
+                    <Link to={`/store/${order.store.id}/${getSafeUrl(order.store?.name)}`}><h2 className="text-lg font-semibold text-custom_black">{order.store.name}</h2></Link>
                     {
                         order.delivery_mode == "Delivery" ? <span className="bg-delivery rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
                             <span className="bg-storepickup rounded px-2 py-1 text-sm font-bold text-bannerText">PICKUP</span>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MdOutlineLocationOn} from 'react-icons/md';
 import { TCartItem } from '@components/types';
 import { CartItemCard } from '@components/cards/cartitem';
-import { Link } from '@renderer/Link';
+import { Link } from 'react-router-dom';
 import { getSafeUrl } from '@core/utils';
 import { InstructionForm } from '@components/instruction';
 
@@ -26,7 +26,7 @@ export const StoreCartContainer = ({ cartItems }: Props) => {
                     </div>
                     <div className="flex justify-start items-center bg-neutral-50 px-2 py-1 gap-2">
                         <span className="font-semibold text-sm text-slate-700">Sold by</span>
-                        <Link href={`/store/${cartItems[0].inventory.store.id}/${getSafeUrl(cartItems[0].inventory.store.name)}`}><span className="font-semibold text-sm text-sky-400">{cartItems[0].inventory.store.name}</span></Link>
+                        <Link to={`/store/${cartItems[0].inventory.store.id}/${getSafeUrl(cartItems[0].inventory.store.name)}`}><span className="font-semibold text-sm text-sky-400">{cartItems[0].inventory.store.name}</span></Link>
                     </div>
                 </div>
             }

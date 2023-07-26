@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TProduct } from "@components/types";
 import { getImageObject, getSafeUrl, sanityIoImageLoader } from '@core/utils';
 
@@ -13,7 +13,7 @@ export const SimpleCard: React.FC<Props> = ({ product }) => {
     return (
         <div key={product.id} className="bg-neutral-50 rounded-xl shrink-0 h-max w-52 sm:w-40 p-2">
             <div className="flex justify-center h-36 sm:h-32">
-                <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
+                <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}>
                     <Image
                         loader={sanityIoImageLoader}
                         priority ={true}

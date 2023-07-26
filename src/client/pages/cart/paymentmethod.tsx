@@ -8,7 +8,6 @@ import { Header } from "@components/header";
 import { CartDetails } from '@components/cartinfo/summary';
 import { TComponent, TCreateOrder, TIdentity, TOrder } from '@components/types';
 import NonLoggedUser from './nonloggeduser';
-import Script from 'next/script';
 import { message } from 'antd';
 import { getOrders } from "@api/order"
 import { useNavigate } from 'react-router-dom';
@@ -117,43 +116,45 @@ const paymentMethod = () => {
     return (
         userInfo === undefined || userInfo === null ? <NonLoggedUser setUserInfo={setUserInfo} /> :
             <div>
-                <Script src=" https://payments.open.money/layer" strategy='beforeInteractive' />
-                <Script strategy="afterInteractive">
-                    {`window.invokePayment = function invokePayment(res) {
-                        Layer.checkout({
-                            token: res["meta"]["session"],
-                            accesskey: res["meta"]["data"]["key"],
-                            theme: {
-                                logo: res["meta"]["data"]["image"],
-                                color: "#3d9080",
-                                error_color: "#ff2b2b"
-                            }
-                        },
-                            function (response) {
-                                if (response.status == "captured") {
-                                    response.payment_token_id
-                                    response.payment_id
-                                    console.log(response)
-                                    window.location.href = "/cart/payment/success";
-                                    localStorage.setItem("payment_id",response.payment_id)
-                                } 
-                                
-                                else if (response.status == "created") {
-
-                                } else if (response.status == "pending") {
-                                    window.location.href = "/cart/payment/pending";
-                                } else if (response.status == "failed") {
-                                    window.location.href = "/cart/payment/failed";
-                                } else if (response.status == "cancelled") {
-                                    window.location.href = "/cart/payment/cancelled";
+                <Head>
+                    <script src=" https://payments.open.money/layer" strategy='beforeInteractive' />
+                    <script strategy="afterInteractive">
+                        {`window.invokePayment = function invokePayment(res) {
+                            Layer.checkout({
+                                token: res["meta"]["session"],
+                                accesskey: res["meta"]["data"]["key"],
+                                theme: {
+                                    logo: res["meta"]["data"]["image"],
+                                    color: "#3d9080",
+                                    error_color: "#ff2b2b"
                                 }
                             },
-                            function (err) {
-                                //integration errors
-                            }
-                        );
-                    }`}
-                </Script>
+                                function (response) {
+                                    if (response.status == "captured") {
+                                        response.payment_token_id
+                                        response.payment_id
+                                        console.log(response)
+                                        window.location.href = "/cart/payment/success";
+                                        localStorage.setItem("payment_id",response.payment_id)
+                                    } 
+                                    
+                                    else if (response.status == "created") {
+
+                                    } else if (response.status == "pending") {
+                                        window.location.href = "/cart/payment/pending";
+                                    } else if (response.status == "failed") {
+                                        window.location.href = "/cart/payment/failed";
+                                    } else if (response.status == "cancelled") {
+                                        window.location.href = "/cart/payment/cancelled";
+                                    }
+                                },
+                                function (err) {
+                                    //integration errors
+                                }
+                            );
+                        }`}
+                    </script>
+                </Head>
                 <Container>
                     <Header />
                     <div className="px-20 sm:px-2 sm:hidden">

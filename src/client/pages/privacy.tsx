@@ -1,14 +1,9 @@
 import React from "react";
-import { Container } from "@components";
-import dynamic from "next/dynamic";
+import { Container, Header } from "@components";
 import { Footer } from "@components/footer";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import Head from 'react-helmet';
 
-
-const Header = dynamic(() => import("../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-})
 
 const Privacy: React.FC = () => {
     return (
@@ -124,7 +119,7 @@ const Privacy: React.FC = () => {
                 <p className="text-neutral-900">Esangrah Technologies Pvt. Ltd.</p>
                 <p className="text-neutral-900">Lane No 14C Indraprastha</p>
                 <p className="text-neutral-900">Dehradun, Uttarakhand 248005</p>
-                <p className="text-neutral-900"><Link href="mailto:support@esangrah.com">Email: support@esangrah.com</Link></p>
+                <p className="text-neutral-900"><Link to="mailto:support@esangrah.com">Email: support@esangrah.com</Link></p>
                 <p className="text-neutral-900">Time: Mon - Sat (9:00 - 18:00)</p>
             </div>
             <Footer />

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Header } from "@components";
 import { Footer } from "@components/footer";
-import { Link } from "../../renderer/Link";
+import { Link } from "@renderer/Link";
 import Head from "react-helmet";
 
 const Terms: React.FC = () => {
@@ -17,7 +17,7 @@ const Terms: React.FC = () => {
 
                 <p className="text-neutral-900">Welcome to Jhattse!</p>
                 <p className="text-neutral-900">These terms and conditions outline the rules and regulations for the use of Esangrah Technologies Pvt Ltd's Website,
-                    located at <Link href="https://jhattse.com">https://jhattse.com</Link>.</p>
+                    located at <Link to="https://jhattse.com">https://jhattse.com</Link>.</p>
                 <p className="text-neutral-900">By accessing this website we assume you accept these terms and conditions. Do not continue to use Jhattse if you do
                     not agree to take all of the terms and conditions stated on this page.</p>
                 <p className="text-neutral-900">For the purpose of these Terms of Use, wherever the context so requires "You" or "User" shall mean any natural or legal person who has agreed to become a buyer on the Platform by providing Registration Data while registering on the Platform as Registered User using the computer systems. Esangrah allows the User to surf the Platform or making purchases without registering on the Platform. The term "We", "Us", "Our" shall mean Esangrah Technologies Private Limited.</p>

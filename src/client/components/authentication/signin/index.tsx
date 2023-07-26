@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TIdentity } from "@components/types";
 import { login, getprofile, socialLogin } from "@api/authentication";
 import { isLoggedIn } from "@recoil/atoms";
@@ -90,7 +90,7 @@ export const SignIn: React.FC = () => {
                     <div className="col-span-6">
                         <div className="flex justify-center items-center">
                             <h1 className="text-xl font-bold mr-2">Login</h1>
-                            <Link href="/" >
+                            <Link to="/" >
                                 <Image
                                     priority={true}
                                     loader={staticImageLoader}
@@ -150,10 +150,10 @@ export const SignIn: React.FC = () => {
                 <div className="grid grid-cols-2 mt-4">
                     <div className="grid-colspan-1  text-sm text-left">
                         <p>
-                            <Link href="/account/forgot-password"><span className="font-medium text-sky-500">Forgot Password</span></Link></p>
+                            <Link to="/account/forgot-password"><span className="font-medium text-sky-500">Forgot Password</span></Link></p>
                     </div>
                     <div className="grid-colspan-1  text-sm text-right">
-                        <p>New User? <Link href="/signup"><span className="font-medium text-sky-500">Create Account</span></Link></p>
+                        <p>New User? <Link to="/signup"><span className="font-medium text-sky-500">Create Account</span></Link></p>
                     </div>
                 </div>
                 <div className="col-span-6 mt-2">

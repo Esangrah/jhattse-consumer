@@ -23,7 +23,7 @@ import {
     BreadcrumbLink,
 } from '@chakra-ui/react'
 import { Accordion } from '@chakra-ui/react'
-import { Link } from '@renderer/Link';
+import { Link, useParams } from 'react-router-dom';
 import { CategoryWidget } from '@components/widget/category';
 import IntersectionObserverWrapper from '@components/intersectionObserverWrapper';
 import { useLocation } from 'react-router-dom';
@@ -50,6 +50,7 @@ export const getServerSideProps: GetServerSideProps<{ initialStore: TStore }> = 
 
 const StoreDetail: React.FC = ({ initialStore }: Props) => {
     const location = useLocation();
+    const params = useParams()
     const queryParams = new URLSearchParams(location.search);
     const [store, setStore] = useState<TStore>(initialStore)
     const [searchQuery, setSearchQuery] = useState<string>(null)
@@ -144,13 +145,13 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
 
     // ******* Start useEffects *******
     useEffect(() => {
-        let id = queryParams.get("slug");
+        let id = params.id;
         if (id == store?.id?.toString()) {
             return
         }
         const res: Promise<TStore> = getStore(parseInt(id));
         res.then((store) => { setStore(store); });
-        if (queryParams?.get("source") && router?.query?.table_id) {
+        if (queryParams?.get("source") && queryParams?.get("table_id")) {
             localStorage.setItem("tableInfo", JSON.stringify({ source: queryParams?.get("source"), table: queryParams?.get("table"), table_id: queryParams?.get("table_id"), is_ac: queryParams?.get("is_ac") }));
         }
     }, [location])
@@ -278,7 +279,7 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
                                                             <AutoComplete
                                                                 popupClassName="p-1"
                                                                 style={{ width: "100%", borderRadius: "5px" }}
-                                                                dropdownMatchSelectWidth={true}
+                                                                popupMatchSelectWidth={true}
                                                                 options={productSuggestions}
                                                                 value={searchQuery}
                                                                 onSearch={handleProductSearch}
@@ -309,7 +310,7 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
                                                         <AutoComplete
                                                             popupClassName="p-1"
                                                             style={{ width: "100%", borderRadius: "5px" }}
-                                                            dropdownMatchSelectWidth={true}
+                                                            popupMatchSelectWidth={true}
                                                             options={productSuggestions}
                                                             value={searchQuery}
                                                             onSearch={handleProductSearch}
@@ -353,7 +354,7 @@ const StoreDetail: React.FC = ({ initialStore }: Props) => {
                                 <MenuList className='bg-neutral-50 p-2 mx-auto'>
                                     {
                                         productCategoriesList?.map((item, index) => {
-                                            return <MenuItem className='p-1 text-custom_gray font-medium leading-5 tracking-wide' onClick={() => handleCategoryButton(item, index)}><Link href={`#${item.name}`}>{item.name}</Link></MenuItem>
+                                            return <MenuItem className='p-1 text-custom_gray font-medium leading-5 tracking-wide' onClick={() => handleCategoryButton(item, index)}><Link to={`#${item.name}`}>{item.name}</Link></MenuItem>
                                         })
                                     }
                                 </MenuList>

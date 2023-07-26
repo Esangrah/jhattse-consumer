@@ -63,7 +63,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
     useEffect(() => {
         let id = queryParams?.get("slug");
         let token = queryParams?.get("token");
-        if (&& id == order?.id.toString()) {
+        if (id == order?.id.toString()) {
             return
         }
         const res: Promise<TOrder> = getOrderById(id as string, token as string);

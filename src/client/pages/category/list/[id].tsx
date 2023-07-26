@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from '@renderer/Link'
+import { Link } from 'react-router-dom'
 import { Header, Navbar } from "@components";
 import { TProductCategory } from '@components/types'
 import { getAllProductCategory } from '@api/product'
@@ -63,9 +63,9 @@ const TrendingCategory: React.FC = () => {
         <div className="bg-neutral-50">
             <Header />
             <div className="flex justify-center gap-4 pt-6 pb-4">
-                <Link href={`/category/list/trending`} className={`${kind == "trending" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>TRENDING</Link>
-                <Link href={`/category/list/bestseller`} className={`${kind == "bestseller" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>BESTSELLER</Link>
-                <Link href={`/category/list/popular`} className={`${kind == "popular" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>POPULAR</Link>
+                <Link to={`/category/list/trending`} className={`${kind == "trending" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>TRENDING</Link>
+                <Link to={`/category/list/bestseller`} className={`${kind == "bestseller" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>BESTSELLER</Link>
+                <Link to={`/category/list/popular`} className={`${kind == "popular" ? "text-neutral-900 border-black border-b-2" : "text-neutral-400 no-underline"} font-bold text-xs hover:text-neutral-900 hover:underline focus:underline focus:text-neutral-900`}>POPULAR</Link>
             </div>
             <ProductCategoryContainer categories={productCategories} />
 

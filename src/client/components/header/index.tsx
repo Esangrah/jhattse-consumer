@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Searchbar } from "@components";
 import { Image } from "@renderer/Image";
-import { Link } from "@renderer/Link";
+import { Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState, isLoggedIn } from "@recoil/atoms";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
@@ -22,8 +22,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import PopupComponent from "@components/popup";
 import { createClient, Provider } from "urql";
 import { HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
-import { MdOutlineLocation, MdOutlineAccountCircle } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { MdOutlineLocationOn, MdOutlineAccountCircle } from "react-icons/md";
 
 interface Props {
     homeLink?: string;
@@ -67,7 +66,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
 
                 <div className="flex flex-row items-center justify-items-stretch h-12">
                     <div className="flex justify-between items-center gap-4 sm:gap-2">
-                        <Link href={homeLink || "/"}>
+                        <Link to={homeLink || "/"}>
                             <Image
                                 priority={true}
                                 loader={staticImageLoader}
@@ -139,7 +138,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                     </MenuButton>
                                     <MenuList className="bg-neutral-50 py-2 px-4 rounded">
                                         <MenuItem className="text-neutral-700">
-                                            <Link href={"/account/"}>
+                                            <Link to={"/account/"}>
                                                 <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
                                                     <span>
                                                         <FaUserAlt className="text-base" />
@@ -149,7 +148,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                             </Link>
                                         </MenuItem>
                                         <MenuItem className="text-neutral-700">
-                                            <Link href={"/order/me"}>
+                                            <Link to={"/order/me"}>
                                                 <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
                                                     <span>
                                                         <MdShoppingBag className="text-base" />
@@ -159,7 +158,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                             </Link>
                                         </MenuItem>
                                         <MenuItem className="text-neutral-700">
-                                            <Link href={"/account/addresses"}>
+                                            <Link to={"/account/addresses"}>
                                                 <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
                                                     <span>
                                                         <MdPersonPinCircle className="text-base" />
@@ -169,7 +168,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                             </Link>
                                         </MenuItem>
                                         <MenuItem className="text-neutral-700">
-                                            <Link href={""}>
+                                            <Link to={""}>
                                                 <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
                                                     <span>
                                                         <AiTwotoneSetting className="text-base" />
@@ -179,7 +178,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                             </Link>
                                         </MenuItem>
                                         <MenuItem className="text-neutral-700">
-                                            <Link href={"/refer"}>
+                                            <Link to={"/refer"}>
                                                 <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
                                                     <span>
                                                         <MdPayments className="text-base" />
@@ -201,7 +200,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                     </MenuList>
                                 </Menu>
                             ) : (
-                                <Link href="/login">
+                                <Link to="/login">
                                     <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
                                         <HiOutlineUserCircle className="text-neutral-700" />{" "}
                                         <span className="text-base text-neutral-700">Login</span>
@@ -211,7 +210,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         </div>
                         <div className="flex items-center gap-2 relative py-2">
                             <>
-                                <Link href="/cart" className="z-30">
+                                <Link to="/cart" className="z-30">
                                     <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
                                         <FaShoppingCart className="text-neutral-700" />{" "}
                                         <span className="text-base sm:hidden text-neutral-700">

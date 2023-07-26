@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
 import { Image } from "@renderer/image";
-import { Link } from '@renderer/Link';
+import { Link, useParams } from 'react-router-dom';
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { ReviewCard } from '@components/cards';
 import { getStoreReviews, getMyStoreReview } from '@api/rating';
@@ -33,7 +33,7 @@ const StoreReview: React.FC = ({ initialStore }: Props) => {
     const [reviews, setReviews] = useState<TReview[]>([]);
     const [myReview, setMyReview] = useState<TReview>();
     const location = useLocation()
-    const queryParams = new URLSearchParams(location.search)
+    const params = useParams()
 
 
     const addReviewToList = (review: TReview) => {
@@ -48,7 +48,7 @@ const StoreReview: React.FC = ({ initialStore }: Props) => {
 
 
     useEffect(() => {
-        let id = queryParams?.get("id");
+        let id = params.id;
         if (id == store?.id.toString()) {
             return
         }
@@ -99,7 +99,7 @@ const StoreReview: React.FC = ({ initialStore }: Props) => {
                         <div className="flex gap-4 flex-row p-4 rounded-xl bg-yellow-200 xs:flex-wrap " >
                             <div className="flex-shrink-0">
                                 <div className="flex" >
-                                    <Link href={`/store/${store.id}/${getSafeUrl(store?.name)}`}>
+                                    <Link to={`/store/${store.id}/${getSafeUrl(store?.name)}`}>
                                         <Image
                                             loader={sanityIoImageLoader}
                                             priority ={true}
@@ -112,7 +112,7 @@ const StoreReview: React.FC = ({ initialStore }: Props) => {
                                 </div>
                             </div>
                             <div className="bg-yellow-200">
-                                <Link href={`/store/${store.id}/${getSafeUrl(store?.name)}`}><div className="font-bold text-lg mb-1 mb-1">{store.name}</div></Link>
+                                <Link to={`/store/${store.id}/${getSafeUrl(store?.name)}`}><div className="font-bold text-lg mb-1 mb-1">{store.name}</div></Link>
                                 <div className="opacity-75">
                                     <span className="text-neutral-900">{store?.category?.name}</span>
                                 </div>

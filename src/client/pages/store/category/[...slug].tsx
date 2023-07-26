@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GetServerSideProps } from "next";
-import dynamic from 'next/dynamic'
 import Head from 'react-helmet';
-import { Container, Title } from "@components";
+import { Container, Header, Navbar, Title } from "@components";
 import { SmallStoreCard } from "@components/cards";
 import { SearchContainer } from "@components/container"
 import { TStore, TStoreCategory } from "@components/types";
@@ -12,13 +11,6 @@ import { getSafeUrl } from "@core/utils";
 import { BiStore } from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 
-const Header = dynamic(() => import("../../../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-})
-
-const Navbar = dynamic(() => import("../../../src/components/navbar").then((mod) => mod.Navbar), {
-    ssr: false,
-})
 
 interface Props {
     initialStoreCategory?: TStoreCategory

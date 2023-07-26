@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import AddressPanel from '@components/address';
 import { BackBar, Title } from '@components';
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TCartItem } from '@components/types';
 import { useRecoilValue } from 'recoil';
 import { cartState } from '@recoil/atoms';
@@ -89,7 +89,7 @@ const OrderPage = () => {
             component = <AddressPanel isDone={(state: boolean) => { setScreenValid(1)(state); }} title="Select delivery address" />// <OrderSummary> </OrderSummary> // Sort the cart items bunch by stores and sort by deliverable show deliverable items on top
             break;
         default:
-            component = <div className="w-full h-screen flex flex-col justify-center items-center"><Link href={"upi://pay?pa=9935394958@upi&amp;pn=Pay to Jhatt&amp;cu=INR"}><button className="bg-success-500 justify-end sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-success-900 focus:bg-brand-900 whitespace-nowrap rounded-md">Make Payment</button></Link></div>
+            component = <div className="w-full h-screen flex flex-col justify-center items-center"><Link to={"upi://pay?pa=9935394958@upi&amp;pn=Pay to Jhatt&amp;cu=INR"}><button className="bg-success-500 justify-end sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-success-900 focus:bg-brand-900 whitespace-nowrap rounded-md">Make Payment</button></Link></div>
             break;
     }
     return (

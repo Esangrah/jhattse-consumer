@@ -1,10 +1,6 @@
-import { Container } from '@components/container'
-import dynamic from 'next/dynamic';
+import { Container, Header } from '@components'
 import Head from 'react-helmet'
 
-const Header = dynamic(() => import("../../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-});
 
 const Fallback = () => (
   <>

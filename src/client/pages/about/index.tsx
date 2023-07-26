@@ -1,12 +1,7 @@
 import Head from 'react-helmet';
 import React from "react";
-import { Container } from "@components";
-import dynamic from "next/dynamic";
+import { Container, Header } from "@components";
 import { Footer } from "@components/footer";
-
-const Header = dynamic(() => import("../../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-});
 
 
 const About: React.FC = () => {

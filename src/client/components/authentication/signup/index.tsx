@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TIdentity } from "@components/types";
 import { signup, socialSignup } from "@api/authentication";
 import { FcGoogle } from "react-icons/fc";
@@ -100,7 +100,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     <div className="col-span-6">
                         <div className="flex justify-center items-center">
                             <h1 className="text-xl font-bold mr-2">Register as <span className="capitalize">{type}</span></h1>
-                            <Link href="/">
+                            <Link to="/">
                                 <Image
                                     priority={true}
                                     loader={staticImageLoader}
@@ -188,7 +188,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     <button onClick={() => handleSignup()} className="block w-full inline-flex justify-center rounded-md border border-transparent bg-yellow-400 py-1 px-4 text-base font-medium text-gray shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2">Sign Up</button>
                 </div>
                 <div className=" mt-4 text-right">
-                    <p>Already have an Account? <Link href="/login"><span className="font-medium text-sky-500">Login</span></Link></p>
+                    <p>Already have an Account? <Link to="/login"><span className="font-medium text-sky-500">Login</span></Link></p>
                 </div>
             </div>
         </div>

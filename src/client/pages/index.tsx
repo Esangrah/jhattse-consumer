@@ -1,31 +1,17 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { Container, Section } from "@components";
 import { BrandCard, CategoryCard, RichCard } from "@components/cards";
 import { TBrand, TProduct, TProductCategory } from "@components/types";
 import { getPopularProducts, getProductCategories } from "@api/product";
 import Head from 'react-helmet';
 import { getProductBrands } from "@api/brand";
+import { Header, Navbar } from "@components";
 import { Footer } from "@components/footer";
 import { staticImageLoader } from "@core/utils";
 import { CarouselContainer } from "@components/container/carousel";
 import { SwiperSlide } from "swiper/react";
-
-const Header = dynamic(
-    () => import("../src/components/header").then((mod) => mod.Header),
-    {
-        ssr: false,
-    }
-);
-
-const Navbar = dynamic(
-    () => import("../src/components/navbar").then((mod) => mod.Navbar),
-    {
-        ssr: false,
-    }
-);
 
 type Props = {
     popularProducts: TProduct[];
@@ -88,7 +74,7 @@ const Home: React.FC<Props> = ({
                         <CarouselContainer>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link href="https://jhattse.com/category/1/grocery-gourmet-foods">
+                                    <Link to="https://jhattse.com/category/1/grocery-gourmet-foods">
                                         <Image
                                             loader={staticImageLoader}
                                             width="500"
@@ -102,7 +88,7 @@ const Home: React.FC<Props> = ({
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link href="https://jhattse.com/category/2819/food">
+                                    <Link to="https://jhattse.com/category/2819/food">
                                         <Image
                                             loader={staticImageLoader}
                                             src="public/consumer/food_banner.png"
@@ -116,7 +102,7 @@ const Home: React.FC<Props> = ({
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
                                 <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
-                                    <Link href="https://jhattse.com/store">
+                                    <Link to="https://jhattse.com/store">
                                         <Image
                                             loader={staticImageLoader}
                                             width="500"
@@ -131,7 +117,7 @@ const Home: React.FC<Props> = ({
                         </CarouselContainer>
                     </div>
                     <div className="rounded-xl md:flex-shrink-0 md:hidden">
-                        <Link href="https://business.jhattse.com/products">
+                        <Link to="https://business.jhattse.com/products">
                             <Image
                                 loader={staticImageLoader}
                                 className="h-full w-full object-contain"
@@ -146,7 +132,7 @@ const Home: React.FC<Props> = ({
                         </Link>
                     </div>
                     <div className="rounded-xl relative hidden md:flex h-[220px]">
-                        <Link href="https://business.jhattse.com/products">
+                        <Link to="https://business.jhattse.com/products">
                             <Image
                                 loader={staticImageLoader}
                                 className="h-full w-full object-contain"

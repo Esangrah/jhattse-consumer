@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from '@renderer/Link'
+import { Link } from 'react-router-dom'
 import { getDistance } from 'geolib'
 import { AiOutlineShareAlt } from 'react-icons/ai'
 import { MdLocationPin } from 'react-icons/md';
@@ -95,7 +95,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                     </div>
                     <div className="flex flex-row gap-2 items-center pb-1">
                         <p className="flex justify-between items-center text-ellipsis text-custom_black text-base font-medium sm:text-xs"><MdLocationPin className='mr-1' />{`${store?.address?.street_name}, ${store?.address?.city?.name}`}
-                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium sm:text-xs whitespace-nowrap items-center">
+                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link to={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium sm:text-xs whitespace-nowrap items-center">
                                 VIEW LOCATION
                             </Link>}</div>}
                         </p>
@@ -110,13 +110,13 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                         }
                         {store?.stats?.rating_count ?
                             <div>
-                                <Link href={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
+                                <Link to={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
                                     <span className="text-golden whitespace-nowrap font-semibold text-underline select-none">SEE REVIEWS</span>
                                 </Link>
                             </div>
                             :
                             <div>
-                                <Link href={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
+                                <Link to={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
                                     <span className="text-golden whitespace-nowrap font-semibold text-underline">ADD REVIEW</span>
                                 </Link>
                             </div>

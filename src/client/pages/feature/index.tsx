@@ -1,6 +1,6 @@
 import Head from 'react-helmet';
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import React, { useState } from "react";
 import { Container } from "@components";
 import { FeatureCard } from "@components/cards";
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
 
             <div className="nav w-full bg-black flex items-center justify-between sticky top-0 z-40 h-14 px-2">
                 <div className="flex flex-row items-center">
-                    <Link href="/" >
+                    <Link to="/" >
                         <Image
                             loader={sanityIoImageLoader}
                             src="/business/circular-logo.png"
@@ -86,18 +86,18 @@ const Home: React.FC = () => {
                             loading="eager"
                         />
                     </Link>
-                    <Link href="/" >
+                    <Link to="/" >
                         <span className="mx-2 font-super font-mono text-3xl grow select-none">Jhattse</span>
                     </Link>
                 </div>
                 <div>
                     <span className="nav-bottons">
-                        <Link href="#launch-window"><button className="nav-button whitespace-nowrap text-lg font-semibold sm:text-sm py-1 px-2 mx-1" type="submit">
+                        <Link to="#launch-window"><button className="nav-button whitespace-nowrap text-lg font-semibold sm:text-sm py-1 px-2 mx-1" type="submit">
                             Contact Us
                         </button></Link>
                     </span>
                     <span className="nav-bottons">
-                        <Link href="#launch-window">
+                        <Link to="#launch-window">
                             <button className="nav-button whitespace-nowrap text-lg font-semibold sm:text-sm py-1 px-2 mx-1" type="submit">
                                 Join Waitlist
                             </button>
@@ -141,7 +141,7 @@ const Home: React.FC = () => {
                             </ul>
                         </div>
                         <div>
-                            <Link href="/signup?type=user">
+                            <Link to="/signup?type=user">
                                 <button className="btn-signup block w-2/3 mx-auto py-1 text-lg text-brand-500 rounded-full border-2 border-brand-400 hover:text-neutral-50 hover:bg-brand-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2">
                                     Sign Up
                                 </button>
@@ -166,7 +166,7 @@ const Home: React.FC = () => {
                             </ul>
                         </div>
                         <div>
-                            <Link href="/signup?type=business">
+                            <Link to="/signup?type=business">
                                 <button className="btn-signup block w-2/3 mx-auto py-1 text-lg text-teal-600 rounded-full border-2 border-teal-400 hover:text-neutral-50 hover:bg-teal-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2">
                                     Sign Up
                                 </button>

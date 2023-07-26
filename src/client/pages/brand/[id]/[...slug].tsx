@@ -1,10 +1,9 @@
 import { GetServerSideProps } from "next";
 import Head from 'react-helmet';
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
-import { Container, Header, Section } from "@components";
+import { Link, useParams} from "react-router-dom"
+import { Container, Header, Navbar, Section } from "@components";
 import { RichCard, SmallProductCard } from "@components/cards";
 import { SearchContainer } from "@components/container";
 import { Footer } from "@components/footer";
@@ -47,34 +46,28 @@ interface Props {
     initialProductList?: TProduct[];
 }
 
-export const getServerSideProps: GetServerSideProps<{
-    initialBrand: TBrand;
-    initialProductList: TProduct[];
-}> = async (context) => {
-    const { slug } = context.params;
-    const res = getBrand(parseInt(slug[0] as string));
-    const initialBrand: TBrand = await res;
-    const resProductList = getFeaturedProducts(
-        null,
-        null,
-        parseInt(slug[0] as string)
-    );
-    const initialProductList: TProduct[] = await resProductList;
+// export const getServerSideProps: GetServerSideProps<{
+//     initialBrand: TBrand;
+//     initialProductList: TProduct[];
+// }> = async (context) => {
+//     const { slug } = context.params;
+//     const res = getBrand(parseInt(slug[0] as string));
+//     const initialBrand: TBrand = await res;
+//     const resProductList = getFeaturedProducts(
+//         null,
+//         null,
+//         parseInt(slug[0] as string)
+//     );
+//     const initialProductList: TProduct[] = await resProductList;
 
-    return {
-        props: {
-            initialBrand: initialBrand,
-            initialProductList: initialProductList,
-        },
-    };
-};
+//     return {
+//         props: {
+//             initialBrand: initialBrand,
+//             initialProductList: initialProductList,
+//         },
+//     };
+// };
 
-const Navbar = dynamic(
-    () => import("../../src/components/navbar").then((mod) => mod.Navbar),
-    {
-        ssr: false,
-    }
-);
 
 const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
     const isLogin = useRecoilValue(isLoggedIn);
@@ -92,7 +85,7 @@ const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
     const [brandCategories, setBrandCategories] = useState<TProductCategory[]>();
     const pageSize = 20;
     const location = useLocation()
-    const queryParams = new URLSearchParams(location.search);
+    const params = useParams();
 
     const handleTabsChange = (index: number) => {
         setTabIndex(index);
@@ -125,12 +118,14 @@ const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
     };
 
     useEffect(() => {
-        getAllBestSeller(brand?.id);
-        getAllBrandCategories(brand?.id);
-    }, []);
+        if (brand?.id) {
+            getAllBestSeller(brand?.id);
+            getAllBrandCategories(brand?.id);
+        }
+    }, [brand]);
 
     useEffect(() => {
-        let id = queryParams?.get("slug");
+        let id = params.id;
         if (id == brand?.id.toString()) {
             return;
         }
@@ -148,9 +143,7 @@ const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
     }, [location]);
 
     useEffect(() => {
-        let id = (
-            queryParams?.get("slug")
-        ) as string;
+        let id = params.id;
         if (id?.length > 0 && id == brand?.id.toString()) {
             return;
         }
@@ -188,7 +181,7 @@ const BrandPage: React.FC = ({ initialBrand, initialProductList }: Props) => {
                 <link rel="canonical" href={`https://jhattse.com/brand/${brand?.id}/${getSafeUrl(brand?.name)}`} />
                 <meta property="og:title" content={`${brand?.name} products on Jhattse`} />
                 <meta name="og:description" content={`Get ${brand?.name} products from nearby local stores on Jhattse`} />
-                <meta name="og:image" content={`${brand.image}`} />
+                <meta name="og:image" content={`${brand?.image}`} />
                 <meta property="og:url" content={`https://jhattse.com/brand/${brand?.id}/${getSafeUrl( brand?.name)}`} />
             </Head>
             <Header />

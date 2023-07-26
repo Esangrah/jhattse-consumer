@@ -1,4 +1,4 @@
-import { Link } from "@renderer/Link"
+import { Link } from "react-router-dom"
 import { Header } from "@components"
 import { FaBox } from "react-icons/fa"
 import { GoLocation } from "react-icons/go"
@@ -63,14 +63,14 @@ const Account = () => {
                     <div className="h-4"></div>
                     <div className="bg-neutral-50 grid gap-4 p-4">
                         <div><p className="font-bold text-xl text-neutral-900">Orders</p></div>
-                        <Link href={'/order/me'}><div className="flex flex-flow-row gap-2 items-center"><span><FaBox /></span><p className="font-base text-md text-neutral-900">My Orders</p></div></Link>
+                        <Link to={'/order/me'}><div className="flex flex-flow-row gap-2 items-center"><span><FaBox /></span><p className="font-base text-md text-neutral-900">My Orders</p></div></Link>
                     </div>
                     <div className="h-4"></div>
                     <div className="grid gap-4 bg-neutral-50 p-4">
                         <div><p className="font-bold text-xl text-neutral-900">Account Settings</p></div>
-                        <Link href={'./account/profile'}><div className="flex flex-flow-row gap-2 items-center"><span><AiOutlineUser /></span><span>Edit Profile</span></div></Link>
-                        <Link href={'./account/addresses'}><div className="flex flex-flow-row gap-2 items-center"><span><GoLocation /></span><span>Saved Addresses</span></div></Link>
-                        <Link href={''}><div className="flex flex-flow-row gap-2 items-center"><span><IoMdNotificationsOutline /></span><span>Notification Settings</span></div></Link>
+                        <Link to={'./account/profile'}><div className="flex flex-flow-row gap-2 items-center"><span><AiOutlineUser /></span><span>Edit Profile</span></div></Link>
+                        <Link to={'./account/addresses'}><div className="flex flex-flow-row gap-2 items-center"><span><GoLocation /></span><span>Saved Addresses</span></div></Link>
+                        <Link to={''}><div className="flex flex-flow-row gap-2 items-center"><span><IoMdNotificationsOutline /></span><span>Notification Settings</span></div></Link>
                     </div>
                 </div>
                 {/* For Desktop */}

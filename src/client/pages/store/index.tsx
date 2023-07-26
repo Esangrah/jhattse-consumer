@@ -1,7 +1,6 @@
-import dynamic from 'next/dynamic';
 import Head from 'react-helmet';
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Title } from "@components";
+import { Container, Header, Navbar, Title } from "@components";
 import { SmallStoreCard } from "@components/cards";
 import { SearchContainer } from "@components/container"
 import { TCategory, TStore } from "@components/types";
@@ -12,13 +11,6 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
 import { BiStore } from 'react-icons/bi';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 
-const Header = dynamic(() => import("../../src/components/header").then((mod) => mod.Header), {
-    ssr: false,
-})
-
-const Navbar = dynamic(() => import("../../src/components/navbar").then((mod) => mod.Navbar), {
-    ssr: false,
-})
 
 const StoreList: React.FC = () => {
     const [stores, setStores] = useState<TStore[]>([]);

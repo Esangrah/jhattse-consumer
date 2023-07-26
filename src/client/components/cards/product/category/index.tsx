@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { TProductCategory } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { AiOutlineForward } from "react-icons/ai";
@@ -16,7 +16,7 @@ export const ProductCategoryCard = ({ element }: Props) => {
     return (
         <div className="flex flex-col w-full bg-neutral-50">
             <div className="flex grow justify-center min-h-32 w-full">
-                <Link href={`/category/${element?.id}/${getSafeUrl(element?.name)}`}>
+                <Link to={`/category/${element?.id}/${getSafeUrl(element?.name)}`}>
                     <Image
                         loader={sanityIoImageLoader}
                         src={element?.image || "assets/esangrah-profile.png"}
@@ -33,7 +33,7 @@ export const ProductCategoryCard = ({ element }: Props) => {
                     <p className="flex gap-1 text-neutral-500 text-sm">Total Products<span className="text-orange-800 font-semibold text-sm">{element?.total_products < 10 ? `${element?.total_products}` : `${Math.round(element?.total_products / 10) * 10}+`}</span></p>
                 </div>
                 <div className="bg-black text-neutral-50 w-full text-sm font-semibold py-1 flex flex-row whitespace-nowrap justify-center">
-                    <Link href={`/category/${element?.id}/${getSafeUrl(element?.name)}`} className="flex flex-row items-center">See Products <AiOutlineForward /></Link>
+                    <Link to={`/category/${element?.id}/${getSafeUrl(element?.name)}`} className="flex flex-row items-center">See Products <AiOutlineForward /></Link>
                 </div>
             </div>
         </div>

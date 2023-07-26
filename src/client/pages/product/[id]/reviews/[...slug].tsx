@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Head from 'react-helmet';
 import { Image } from "@renderer/image";
-import { Link } from '@renderer/Link';
+import { Link, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { BackBar, Container, Header, Navbar } from "@components";
 import { ReviewCard } from '@components/cards';
@@ -33,6 +33,7 @@ export const getServerSideProps: GetServerSideProps<{ initialProduct: TProduct }
 const ProductReview: React.FC = ({ initialProduct }: Props) => {
     const [product, setProduct] = useState<TProduct>(initialProduct)
     const location = useLocation();
+    const parmas = useParams();
     const queryParams = new URLSearchParams(location.search);
     let content = null
     const [reviews, setReviews] = useState<TReview[]>()
@@ -44,14 +45,14 @@ const ProductReview: React.FC = ({ initialProduct }: Props) => {
         const res: Promise<TProduct> = getDetailProduct(product.id);
         res.then((product) => setProduct(product));
         setMyReview(review);
-        reviewArray = reviewArray.filter(r => r.id != review.id)
-        reviewArray.unshift(review);
+        reviewArray = reviewArray?.filter(r => r.id != review.id)
+        reviewArray?.unshift(review);
         setReviews([...reviewArray]);
     }
 
 
     useEffect(() => {
-        let id = queryParams.get("id");
+        let id = parmas.id;
         if (id == product?.id.toString()) {
             return
         }
@@ -101,7 +102,7 @@ const ProductReview: React.FC = ({ initialProduct }: Props) => {
                                         {product.tag}
                                     </div>
                                     <div className="flex">
-                                        <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
+                                        <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}>
                                             <Image
                                                 loader={sanityIoImageLoader}
                                                 src={getImageObject(product.images)?.url}
@@ -114,7 +115,7 @@ const ProductReview: React.FC = ({ initialProduct }: Props) => {
                                     </div>
                                 </div>
                                 <div className="bg-neutral-100">
-                                    <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}><div className="font-bold text-lg sm:text-md text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
+                                    <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}><div className="font-bold text-lg sm:text-md text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
                                     <div className="text-neutral-700">
                                         Price ₹<span>{product.mrp}</span>
                                     </div>

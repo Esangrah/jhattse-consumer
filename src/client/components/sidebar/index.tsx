@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Link } from '@renderer/Link';
+import { Link } from 'react-router-dom';
 import { Image } from "@renderer/image";;
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedIn, profileState } from "@recoil/atoms/profile";
@@ -66,7 +66,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                         <div className="flex items-center bg-neutral-900 justify-between h-14 px-2 gap-2">
                             <div className="flex flex-row flex-grow justify-between items-center justify-items-stretch h-12">
                                 <div>
-                                    <Link href={homeLink || "/"}>
+                                    <Link to={homeLink || "/"}>
                                         <Image
                                             loader={staticImageLoader}
                                             src="public/consumer/small-jhattse.svg"
@@ -106,7 +106,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                                 </div>
                                             </div>
                                             <div className="flex text-xl items-center text-neutral-900">
-                                                <Link href={"/account/profile"}>
+                                                <Link to={"/account/profile"}>
                                                     <MdEdit />
                                                 </Link>
                                             </div>
@@ -116,16 +116,16 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                 </>
                                 :
                                 <div className="grid gap-4 grid-cols-2 p-4 bg-neutral-50 rounded-md">
-                                    <Link href="/login">
+                                    <Link to="/login">
                                         <button className="whitespace-nowrap border border-gray-900 text-xl text-neutral-900 w-full rounded-md bg-neutral-50 font-semibold p-1 font-semibold">Login</button>
                                     </Link>
-                                    <Link href="/signup">
+                                    <Link to="/signup">
                                         <button className="whitespace-nowrap border border-black text-xl text-neutral-50 w-full rounded-md bg-neutral-900 font-semibold p-1 font-semibold">Sign Up</button>
                                     </Link>
                                 </div>
                             }
-                            {/* <Link href={homeLink || "/"}><div className="text-base font-manrope bg-neutral-50 rounded-md font-semibold text-neutral-900 p-2">Home</div></Link> */}
-                            {(orderId !== null && orderId !== undefined) && <Link href={'/cart/vieworder'}>
+                            {/* <Link to={homeLink || "/"}><div className="text-base font-manrope bg-neutral-50 rounded-md font-semibold text-neutral-900 p-2">Home</div></Link> */}
+                            {(orderId !== null && orderId !== undefined) && <Link to={'/cart/vieworder'}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><FaClipboardList /></span>
@@ -136,7 +136,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     </span>
                                 </div>
                             </Link>}
-                            <Link href={'/cart'}>
+                            <Link to={'/cart'}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><FaShoppingCart /></span>
@@ -147,7 +147,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     </span>
                                 </div>
                             </Link>
-                            <Link href={'/order/me'}>
+                            <Link to={'/order/me'}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><MdShoppingBag /></span>
@@ -158,7 +158,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     </span>
                                 </div>
                             </Link>
-                            <Link href={'/account/addresses'}>
+                            <Link to={'/account/addresses'}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><MdPersonPinCircle /></span>
@@ -169,8 +169,8 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     </span>
                                 </div>
                             </Link>
-                            {/* <Link href={'/account'}><div className="text-base font-manrope bg-neutral-50 rounded-md font-semibold text-neutral-900 p-2">My Account</div></Link> */}
-                            <Link href={''}>
+                            {/* <Link to={'/account'}><div className="text-base font-manrope bg-neutral-50 rounded-md font-semibold text-neutral-900 p-2">My Account</div></Link> */}
+                            <Link to={''}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><AiTwotoneSetting /></span>
@@ -181,7 +181,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     </span>
                                 </div>
                             </Link>
-                            <Link href={'/refer'}>
+                            <Link to={'/refer'}>
                                 <div className="flex justify-between bg-neutral-50 rounded-md py-3 px-2">
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><MdPayments /></span>
@@ -217,9 +217,9 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                                 </div>
                                                 <AccordionPanel pb={4}>
                                                     <div className={`flex p-2 bg-neutral-50 flex-col ${isExpanded ? "rounded-b-md" : ""}`}>
-                                                        <Link href={'/about'}><div className="text-base font-semibold text-neutral-900">About Us</div></Link>
-                                                        <Link href={'/terms'}><div className="text-base font-semibold text-neutral-900">Terms of Use</div></Link>
-                                                        <Link href={'/privacy'}><div className="text-base font-semibold text-neutral-900">Privacy Policy</div></Link>
+                                                        <Link to={'/about'}><div className="text-base font-semibold text-neutral-900">About Us</div></Link>
+                                                        <Link to={'/terms'}><div className="text-base font-semibold text-neutral-900">Terms of Use</div></Link>
+                                                        <Link to={'/privacy'}><div className="text-base font-semibold text-neutral-900">Privacy Policy</div></Link>
                                                     </div>
                                                 </AccordionPanel>
                                             </>

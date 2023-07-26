@@ -1,5 +1,5 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Link} from "@renderer/Link"
+import { Link} from "react-router-dom"
 import { Image } from "@renderer/image";
 import { staticImageLoader } from "@core/utils";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export const BackBar: React.FC<Props> = ({ homeLink }) => {
   return (
     <div className="navbar w-full bg-neutral-100 flex flex-col sticky sm:relative top-0 z-40 h-16 sm:h-28 px-2 font-manrope">
       <div className="flex justify-start">
-        <Link href={homeLink || "/"}>
+        <Link to={homeLink || "/"}>
           <Image
             priority={true}
             loader={staticImageLoader}
