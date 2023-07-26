@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Image } from "@renderer/image";;
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedIn, profileState } from "@recoil/atoms/profile";
