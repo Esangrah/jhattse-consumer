@@ -104,7 +104,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                                 <Image
                                     priority={true}
                                     loader={staticImageLoader}
-                                    src="public/consumer/small-jhattse.svg"
+                                    src="public/jhattse-logo.svg"
                                     width="100"
                                     height="40"
                                     alt="Jhattse logo"

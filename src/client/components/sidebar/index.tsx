@@ -69,7 +69,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     <Link to={homeLink || "/"}>
                                         <Image
                                             loader={staticImageLoader}
-                                            src="public/consumer/small-jhattse.svg"
+                                            src="public/jhattse-logo.svg"
                                             width="100"
                                             height="40"
                                             alt="Jhattse logo"

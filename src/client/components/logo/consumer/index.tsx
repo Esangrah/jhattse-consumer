@@ -13,7 +13,7 @@ export const Logo = ({ homeLink }: Props) => {
                 priority={true}
                 data-test="icon"
                 loader={staticImageLoader}
-                src="public/consumer/small-jhattse.svg"
+                src="public/jhattse-logo.svg"
                 width="100"
                 height="40"
                 alt="Jhattse"
