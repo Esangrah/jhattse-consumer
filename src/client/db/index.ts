@@ -1,0 +1,1 @@
+export { customerTable, database, inventoryTable, orderTable, storeTable, onlineSyncTable } from "./database.config";

@@ -1,30 +1,91 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "alwaysStrict": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "checkJs": true,
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "jsx": "react-jsxdev",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "strict": true,
-    "outDir": "dist",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "target": "ES2017"
-  },
-  "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*"],
-  "ts-node": {
-    "transpileOnly": true,
     "compilerOptions": {
-      "module": "CommonJS"
+        "allowJs": true,
+        "alwaysStrict": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": [
+                "src/client/components/*"
+            ],
+            "@components": [
+                "src/client/components"
+            ],
+            "@core/*": [
+                "src/client/core/*"
+            ],
+            "@core": [
+                "src/client/core"
+            ],
+            "@db": [
+                "src/client/db"
+            ],
+            "@db/*": [
+                "src/client/db/*"
+            ],
+            "@public/*": [
+                "public/*"
+            ],
+            "@public": [
+                "public"
+            ],
+            "@renderer/*": [
+                "src/client/renderer/*"
+            ],
+            "@renderer": [
+                "src/client/renderer"
+            ],
+            "@styles/*": [
+                "src/client/styles/*"
+            ],
+            "@styles": [
+                "src/client/styles"
+            ],
+            "@recoil/*": [
+                "src/client/recoil/*"
+            ],
+            "@recoil": [
+                "src/client/recoil"
+            ],
+            "@api": [
+                "api"
+            ],
+            "@api/*": [
+                "api/*"
+            ]
+        },
+        "checkJs": true,
+        "declaration": true,
+        "declarationMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "jsx": "react-jsxdev",
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ],
+        "strict": true,
+        "outDir": "dist",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "target": "ES2017"
+    },
+    "include": [
+        "src/**/*",
+        "src/**/*",
+        "api/**/*",
+        "types/*",
+        "server.ts",
+        "node_modules/vite/types/*"
+    ],
+    "ts-node": {
+        "transpileOnly": true,
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
     }
-  }
 }

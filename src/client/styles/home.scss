@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+.nav-button {
+    border: 1px solid #D8AC0F;
+    color: #D8AC0F;
+    border-radius: 5px;
+}
+
+.nav-button:hover {
+    border: 2px solid #D8AC0F;
+}
+
+.main {
+    background-color: #FFFEFE;
+}
+
+.font-super {
+    color: #D8AC0F;
+}
+
+.infographic {
+    background-color: rgba(250, 183, 59, 0.1);
+}
+
+.card {
+    background-color: #FFFEFE;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+}
+
+p {
+    color: rgba(196, 196, 196, 1);
+}
+
+//lauching Section
+.launching-window {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    background-color: rgba(21, 153, 209, 0.25);
+    height: 100vh;
+
+}
