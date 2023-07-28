@@ -2,16 +2,16 @@ import { getprofile, updateProfile, uploadProfileImage } from '@api/authenticati
 import { TIdentity, TOtp } from '@components/types'
 import React, { useEffect, useState } from 'react'
 import { Image } from "@renderer/image";
-import { CgClose } from 'react-icons/cg'
-import { MdEdit, MdVerified } from 'react-icons/md'
+import { MdEdit, MdVerified, MdOutlineClose } from 'react-icons/md'
+import { FaCamera } from 'react-icons/fa'
 import { useRecoilState } from 'recoil'
 import { profileState } from '@recoil/atoms'
 import { requestLogin, sanityIoImageLoader } from '@core/utils'
-import { AiFillCamera } from 'react-icons/ai'
 import { verifyMobile } from '@api/verification'
 import { motion } from "framer-motion";
 import FileUploadPopup from '@components/popup/fileupload'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { navigate } from 'vite-plugin-ssr/client/router';
+import { usePageContext } from '@renderer/usePageContext';
 
 export const ProfileCard = () => {
     const [user, setUser] = useRecoilState<TIdentity>(profileState);
@@ -20,8 +20,8 @@ export const ProfileCard = () => {
     const [imageFile, setImageFile] = useState<File>(null);
     const [otp, setOtp] = useState<TOtp>();
     const [isLoading, setIsLoading] = useState(false);
-    const location = useLocation()
-    const navigate = useNavigate()
+    const pageContext = usePageContext()
+    
     const mobile = user?.phone;
 
     // Loader spinTransition
@@ -56,7 +56,7 @@ export const ProfileCard = () => {
             const result = verifyMobile(otp);
             result.then((res: TOtp) => { navigate(res.link) }).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
         }
@@ -105,12 +105,12 @@ export const ProfileCard = () => {
                                     className="rounded-full aspect-square"
                                 />
                             </div>}
-                        <div className="absolute right-0 bottom-2 flex h-6 items-center p-1 rounded-full bg-neutral-400"><AiFillCamera /></div>
+                        <div className="absolute right-0 bottom-2 flex h-6 items-center p-1 rounded-full bg-neutral-400"><FaCamera /></div>
                     </div>
                 </div>
                 <div className="flex items-center justify-end">
                     {isedit == true ?
-                        <div className="flex flex-flow-row gap-2 items-center text-sky-700 cursor-pointer" onClick={() => { setIsEdit(false) }}><span className="text-xl font-semibold">Cancel</span><span className="text-2xl font-semibold"><CgClose /></span></div>
+                        <div className="flex flex-flow-row gap-2 items-center text-sky-700 cursor-pointer" onClick={() => { setIsEdit(false) }}><span className="text-xl font-semibold">Cancel</span><span className="text-2xl font-semibold"><MdOutlineClose /></span></div>
                         :
                         <div className="flex flex-flow-row gap-2 items-center text-sky-600 cursor-pointer" onClick={() => { setIsEdit(true) }}><span className="text-xl font-semibold">Edit</span><span className="text-2xl font-semibold"><MdEdit /></span></div>
                     }

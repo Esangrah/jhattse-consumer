@@ -6,7 +6,7 @@ import { addressState, cartState, orderLastIds } from "@recoil/atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { BackBar } from "@components";
-import { useLocation } from "react-router-dom";
+import { usePageContext } from "@renderer/usePageContext";
 
 interface Props {
     title?: string
@@ -15,18 +15,18 @@ interface Props {
 
 export const OrderPanel: React.FC<Props> = ({ shallCreate, title }) => {
     let [currentOrder, setCurrentOrder] = useState < TCreateOrder > ();
-    const [orders, setOrders] = useState < TOrder[] > ();
+    const [orders, setOrders] = useState < TOrder[] > ([]);
     const [cart, setCart] = useRecoilState(cartState);
     const [lastOrderIds, setLastOrderIds] = useRecoilState(orderLastIds);
     const address = useRecoilValue(addressState);
-    const location = useLocation();
+    const pageContext = usePageContext();
 
     useEffect(() => {
         if (shallCreate && cart.size > 0) {
             console.log(cart);
             let components = Array < TComponent > ();
             Array.from(cart.values()).map((item) => {
-                let x = { inventory_id: item.inventory.id, quantity: item.quantity, is_delivery: item.deliverable };
+                let x = { inventory_id: item.inventory.id, quantity: item.quantity, is_delivery: item.deliverable } as TComponent;
                 components.push(x);
             })
             setCurrentOrder(
@@ -40,14 +40,14 @@ export const OrderPanel: React.FC<Props> = ({ shallCreate, title }) => {
             const res: Promise<TOrder[]> = createOrder(currentOrder);
             res.then((result) => { setOrders(result); setLastOrderIds(result.map((order) => order.id)); setCart(new Map()); }).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
         } else {
             const res: Promise<TOrder[]> = getOrders(null, lastOrderIds);
             res.then((result) => setOrders(result)).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
         }

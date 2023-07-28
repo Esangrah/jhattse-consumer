@@ -1,22 +1,27 @@
-export { render }
 // See https://vite-plugin-ssr.com/data-fetching
-export const passToClient = ['pageProps', 'urlPathname']
-
+export const passToClient = ['pageProps', 'urlPathname', 'routeParams']
 import ReactDOMServer from 'react-dom/server'
-import { PageShell } from './PageShell'
+import { PageShell } from '@renderer/PageShell'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
 import logoUrl from './logo.svg'
 import type { PageContextServer } from './types'
+import { RecoilRoot } from 'recoil'
 
-async function render(pageContext: PageContextServer) {
+export async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext
   // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
-  if (!Page) throw new Error('My render() hook expects pageContext.Page to be defined')
-  const pageHtml = ReactDOMServer.renderToString(
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
-  )
+  let pageHtml
+  if (Page) {
+      pageHtml = ReactDOMServer.renderToString(
+        <PageShell pageContext={pageContext}>
+            <RecoilRoot>
+                <Page {...pageProps} />
+            </RecoilRoot>
+        </PageShell>
+      )
+  } else {
+    pageHtml = '';
+  }
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext.exports
@@ -27,10 +32,25 @@ async function render(pageContext: PageContextServer) {
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
-        <link rel="icon" href="${logoUrl}" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="${desc}" />
-        <title>${title}</title>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.jhattse.com/public/consumer/ios/152.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jhattse.com/public/consumer/ios/180.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="https://cdn.jhattse.com/public/consumer/ios/167.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jhattse.com/public/consumer/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jhattse.com/public/consumer/favicon-16x16.png" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <meta name="theme-color" content="#000" />
+        <meta httpEquiv='content-language' content='en-US' />
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NQFW01JGJ" strategy="afterInteractive" />
+        <script id="google-analytics" strategy="afterInteractive">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6NQFW01JGJ');
+        </script>
       </head>
       <body>
         <div id="react-root">${dangerouslySkipEscape(pageHtml)}</div>

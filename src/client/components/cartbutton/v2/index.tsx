@@ -2,7 +2,7 @@ import React from "react";
 import { TInventory, TProduct } from "@components/types";
 import { useRecoilState } from "recoil";
 import { cartState } from "@recoil/atoms";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { variantState } from "@recoil/atoms/variant";
 
 type Props = {

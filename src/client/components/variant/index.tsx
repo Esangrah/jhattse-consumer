@@ -1,5 +1,3 @@
-import { AddToCart } from '@components/addtocart'
-import { CartButton } from '@components/cartbutton'
 import { CarouselContainer } from '@components/container/carousel'
 import { TInventory, TProduct, TVariant } from '@components/types'
 import { getImageObject, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils'
@@ -10,7 +8,7 @@ import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { SwiperSlide } from 'swiper/react'
 import { inventoryByVariantId } from './variantSelector'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { FaMinus, FaPlus } from 'react-icons/fa'
 
 interface Props {
     showModal?: boolean,
@@ -93,8 +91,8 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                                                     <div className={inventoryByVariantId(item, product)[0]?.is_available ? `bg-neutral-50 py-2 px-4 rounded-md cursor-pointer sm:w-full  ${item?.id == variant?.id ? 'border-2 border-brand-500' : ''}` : "bg-neutral-50 py-2 px-4 rounded-md sm:w-full opacity-75"} onClick={() => inventoryByVariantId(item, product)[0]?.is_available && onClickVariant(item)
                                                     }>
                                                         <div className="flex flex-col gap-2 ">
-                                                            <div className="flex justify-start gap-2 py-2 line-clamp-1 border-b">
-                                                                <h4 className="text-lg font-semibold text-custom_black text-sm">{trimToLength((item?.name || product?.name), 20)}</h4>
+                                                            <div className="flex justify-start gap-2 py-2 border-b">
+                                                                <h4 className="text-lg font-semibold text-custom_black text-sm line-clamp-1">{trimToLength((item?.name || product?.name), 20)}</h4>
                                                             </div>
                                                             <span className="text-xl py-1 font-bold text-custom_black sm:text-lg">{humanizeCurrency(inventoryByVariantId(item, product)[0]?.price || inventoryByVariantId(item, product)[0]?.mrp || item?.mrp || 0)}</span>
                                                             <p className={inventoryByVariantId(item, product)[0]?.is_available ? "font-bold text-sm text-success-400" : "font-bold text-sm text-error-400"}>{inventoryByVariantId(item, product)[0]?.is_available ? "In Stock" : "Out of stock"}</p>
@@ -111,12 +109,12 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                                         <div className={`grid grid-cols-3 font-bold rounded shadow justify-center items-center border-2 border-brand-500 text-brand-500 min-w-full sm:text-sm`}>
                                             <div className="col-span-1 flex justify-center items-center">
                                                 <button disabled={productQyt == 1} onClick={(event) => increase(-1)}>
-                                                    < AiOutlineMinus />
+                                                    <FaMinus />
                                                 </button>
                                             </div>
                                             <div className="col-span-1 justify-center items-center p-2 text-center"><span>{productQyt}</span></div>
                                             <div className="col-span-1 flex justify-center items-center h-full">
-                                                <button onClick={(event) => increase(1)}><AiOutlinePlus /></button>
+                                                <button onClick={(event) => increase(1)}><FaPlus /></button>
                                             </div>
                                         </div>
                                     </div>

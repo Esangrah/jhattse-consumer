@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { cartState } from '@recoil/atoms';
 import { Image } from "@renderer/image";;
-import { Link } from 'react-router-dom';
+import { Link } from '@renderer/Link';
 import { CartButton } from '@components/cartbutton';
-import { TCartItem, TProduct } from "@components/types";
-import { AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
+import { TCartItem } from "@components/types";
 import { Star } from '@components/star';
 import { getImageUrl, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdOutlineShoppingCart } from 'react-icons/md';
 import PopupComponent from '@components/popup';
 import { cartInventoryFilter, getCombinedName } from '@components/variant/variantSelector';
 
@@ -53,7 +52,7 @@ export const CartInfo: React.FC = () => {
                 {cartItems == null || cartItems?.length == 0
                     ? <div className="flex justify-center animate-pulse duration-1000 p-3 h-screen  w-full sm:w-full">
                         <div>
-                            <AiOutlineShoppingCart
+                            <MdOutlineShoppingCart
                                 className="h-52 w-full font-normal"
                             />
                             <div>
@@ -66,7 +65,7 @@ export const CartInfo: React.FC = () => {
                         <div key={cartItem.product.id} className="grid bg-neutral-50 w-full grid-cols-3 sm:w-full gap-2 p-2 rounded-lg">
                             <div className="relative flex col-span-1">
                                 <div className="flex justify-center items-center w-full">
-                                    <Link to={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
+                                    <Link href={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
                                         <Image
                                             loader={sanityIoImageLoader}
                                             src={getImageUrl(cartItem.product?.images)}
@@ -87,10 +86,10 @@ export const CartInfo: React.FC = () => {
                             </div>
                             <div className="flex flex-col justify-between col-span-2 gap-2">
                                 <div className="flex flex-col gap-1 leading-tight">
-                                    <Link to={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
+                                    <Link href={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
                                         <p className="text-custom_black font-medium text-base line-clamp-2 sm:text-sm">{getCombinedName(cartItem?.product, cartItem?.inventory?.variant_id) ? getCombinedName(cartItem?.product, cartItem?.inventory?.variant_id) : cartItem?.product?.name}</p>
                                     </Link>
-                                    <p className="text-custom_gray text-sm sm:hidden">Sold by: <Link to={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store.name}</span></Link></p>
+                                    <p className="text-custom_gray text-sm sm:hidden">Sold by: <Link href={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store.name}</span></Link></p>
                                     <div>
                                         <p><span className="text-neutral-900 font-bold text-lg sm:text-base pt-1">{humanizeCurrency(cartItem?.inventory?.price || cartItem.inventory?.mrp || cartItem.product.mrp)}</span></p>
                                     </div>

@@ -1,6 +1,7 @@
 module.exports = {
     important: true,
-    content: ["./index.html", "./src/client/**/*.tsx"],
+    mode: 'jit',
+    content: ["./index.html", "./src/client/**/*.tsx", "./src/pages/**/*.tsx"],
     theme: {
         extend: {
             colors: {

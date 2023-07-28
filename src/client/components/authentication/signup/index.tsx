@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { TIdentity } from "@components/types";
 import { signup, socialSignup } from "@api/authentication";
-import { FcGoogle } from "react-icons/fc";
+import { FaGoogle } from "react-icons/fa";
 import { useGoogleLogin } from "@react-oauth/google";
 import { sanityIoImageLoader, staticImageLoader } from "@core/utils";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 
 interface Props {
     type: string
@@ -16,7 +16,6 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
     const [message, setMessage] = useState("");
     const [isPasswordMatch, setIsPasswordMatch] = useState(false);
     const [state, setState] = useState<TIdentity>();
-    const navigate = useNavigate()
 
     const handleInput = async (evt: React.ChangeEvent<HTMLInputElement>) => {
         setState({ ...state, [evt.target.name]: evt.target.value });
@@ -100,7 +99,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     <div className="col-span-6">
                         <div className="flex justify-center items-center">
                             <h1 className="text-xl font-bold mr-2">Register as <span className="capitalize">{type}</span></h1>
-                            <Link to="/">
+                            <Link href="/">
                                 <Image
                                     priority={true}
                                     loader={staticImageLoader}
@@ -115,7 +114,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     </div>
                     <div className="col-span-6 my-2">
                         <button className="w-full flex items-center justify-center bg-neutral-50 p-1 gap-2 whitespace-nowrap border border-neutral-300 rounded-md font-bold" onClick={() => loginGoogle()}>
-                            <span className="text-neutral-700">Signup with Google </span><span><FcGoogle /></span>
+                            <span className="text-neutral-700">Signup with Google </span><span><FaGoogle /></span>
                         </button>
                     </div>
                     <div className="col-span-6">
@@ -188,7 +187,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                     <button onClick={() => handleSignup()} className="block w-full inline-flex justify-center rounded-md border border-transparent bg-yellow-400 py-1 px-4 text-base font-medium text-neutral shadow-sm hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2">Sign Up</button>
                 </div>
                 <div className=" mt-4 text-right">
-                    <p>Already have an Account? <Link to="/login"><span className="font-medium text-sky-500">Login</span></Link></p>
+                    <p>Already have an Account? <Link href="/login"><span className="font-medium text-sky-500">Login</span></Link></p>
                 </div>
             </div>
         </div>

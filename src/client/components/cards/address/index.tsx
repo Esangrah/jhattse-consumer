@@ -3,8 +3,7 @@ import PopupComponent from '@components/popup';
 import { TAddress } from '@components/types';
 import { requestLogin } from '@core/utils';
 import React, { useState } from 'react'
-import { AiOutlineDelete } from 'react-icons/ai';
-import { useLocation } from 'react-router-dom';
+import { usePageContext } from '@renderer/usePageContext';
 
 type Props = {
     address: TAddress,
@@ -17,7 +16,7 @@ type Props = {
 
 export const AddressCard: React.FC<Props> = ({ address, isChecked, open, selectAddress, removeCallback }) => {
     const [showModel, setShowModel] = useState(false);
-    const location = useLocation();
+    const pageContext = usePageContext()
 
     const handleRemoveAddress = async () => {
         setShowModel(true);
@@ -25,7 +24,7 @@ export const AddressCard: React.FC<Props> = ({ address, isChecked, open, selectA
             const result = removeAddress(address.id);
             result.then((address: TAddress) => { removeCallback(address) }).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
         }

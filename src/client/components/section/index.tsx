@@ -1,6 +1,6 @@
 import { Cards } from "@components/cards";
 import { TBrand, TProduct, TProductCategory } from "@components/types";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 
 type Props = {
     title?: string,
@@ -21,7 +21,7 @@ export const Section: React.FC<Props> = ({ element, intent, title, products, sty
         <div className={ `section select-none ${finalStyle}`}>
             {title && <div className="flex flex-row justify-between py-3">
                 <div className={headStyle === null || headStyle === undefined ? "text-xl py-1 px-4 font-semibold" : headStyle}>{title}</div>
-                {viewUrl && <div className="flex items-center text-sky-500 text-xs py-1 px-4 font-semibold"><Link to={viewUrl}>VIEW ALL</Link>
+                {viewUrl && <div className="flex items-center text-sky-500 text-xs py-1 px-4 font-semibold"><Link href={viewUrl}>VIEW ALL</Link>
                 </div>}
             </div>}
             <Cards isCarousel={isCarousel} products={products} element={element} intent={intent} />

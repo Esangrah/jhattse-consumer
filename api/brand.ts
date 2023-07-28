@@ -15,9 +15,8 @@ export const getBrand = async (id: number) => {
 }
 
 export const getBestSeller = async (id: number) => {
-    const res = await fetch(`${SERVER_HOST}/api/v1/products/popular/?brand_id=${id}`)
-    const products: TProduct[] = await res.json()
-    return products;
+    const res = await axios.get(`${SERVER_HOST}/api/v1/products/popular/?brand_id=${id}`)
+    return handleResponse(res);
 }
 
 export const getBrandCategories = async (brand_id: number, pageNumber: number = 0, pageSize: number = 20) => {

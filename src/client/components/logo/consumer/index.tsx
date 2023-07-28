@@ -1,5 +1,5 @@
 import { Image } from "@renderer/image";
-import { Link } from "react-router-dom";
+import { Link} from "@renderer/Link";
 import { staticImageLoader } from "@core/utils";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export const Logo = ({ homeLink }: Props) => {
     return (
-        <Link to={homeLink || "/"}>
+        <Link href={homeLink || "/"}>
             <Image
                 priority={true}
                 data-test="icon"

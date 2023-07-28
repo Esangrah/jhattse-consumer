@@ -2,10 +2,9 @@ import { addAddress, getAllStates, getCitiesOfState } from '@api/address';
 import { TAddress, TCities, TData, TGeoLocation, TOption, TStates } from '@components/types';
 import { getFilteredResults, requestLogin } from '@core/utils';
 import React, { useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai';
+import { MdMyLocation, MdOutlineClose } from 'react-icons/md';
 import { getLocation } from "@core/geolocation";
-import { BiCurrentLocation } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
+import { usePageContext } from "@renderer/usePageContext";
 import { Select } from "antd";
 
 
@@ -24,7 +23,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
     const [status, setStatus] = useState < string > ("");
     const [citySuggestions, setCitySuggestions] = useState < TOption[] > ([]);
     const [stateSuggestions, setStateSuggestions] = useState < TOption[] > ([]);
-    const urlLocation = useLocation();
+    const pageContext = usePageContext();
 
     const handleStateChange = (name: string, data: TData[], callback: Function) => {
         const handler = (value: string) => {
@@ -116,7 +115,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
             const result = addAddress(address);
             result.then((res) => { setMessage("Address submitted"); addressCallback(res); }).catch((e) => {
                 if (e.response?.status === 401) {
-                    requestLogin(urlLocation.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
         }
@@ -132,15 +131,15 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
         })
     };
     useEffect(() => {
-        setStateSuggestions(getFilteredResults(undefined, states));
-        setCitySuggestions(getFilteredResults(undefined, cities));
+        setStateSuggestions(getFilteredResults('', states));
+        setCitySuggestions(getFilteredResults('', cities));
     }, [states, cities])
 
 
     return (
         <div className="leading-loose">
             <div className="relative max-w-xl p-6 bg-neutral-50 rounded shadow-xl z-50">
-                <button onClick={handleClick} className="absolute top-5 right-5"><AiOutlineClose /></button>
+                <button onClick={handleClick} className="absolute top-5 right-5"><MdOutlineClose /></button>
                 <p className="text-neutral-800 font-medium text-lg">{isEdit ? "Edit Address" : "Add Address"}</p>
                 <div className="inline-block w-1/2 pr-1">
                     <label className=" block text-sm text-neutral-600 ">Select type</label>
@@ -152,7 +151,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
                 </div>
                 <div className="inline-block w-1/2 pr-1">
                     <div className="grid grid-flow-row">
-                        <button className="flex items-center bg-neutral-600 px-2 py-1 gap-1 border-md rounded-full text-neutral-50" onClick={location}><span className="items-center text-green-500"><BiCurrentLocation /></span><p className="items-center whitespace-nowrap p-1 sm:text-sm">Use my location </p></button>
+                        <button className="flex items-center bg-neutral-600 px-2 py-1 gap-1 border-md rounded-full text-neutral-50" onClick={location}><span className="items-center text-green-500"><MdMyLocation /></span><p className="items-center whitespace-nowrap p-1 sm:text-sm">Use my location </p></button>
                         <p dangerouslySetInnerHTML={{ __html: status }} />
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { Star } from "@components/star"
 import { TProduct } from "@components/types";
 import { getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
-import { AiTwotoneStar } from "react-icons/ai";
+import { FaStar } from "react-icons/fa";
 import { AddToCart } from "@components/addtocart";
 
 type Props = {
@@ -26,7 +26,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                     </span>
                     {externalLink?.length > 0 &&
                         <div className="flex gap-1 items-center">
-                            <Link to={externalLink} >
+                            <Link href={externalLink} >
                                 <Image
                                     loader={sanityIoImageLoader}
                                     src={product?.inventories[0]?.store?.logo || "https://cdn.jhattse.com/public/assets/noimage.png"}
@@ -48,12 +48,12 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                             <p className="font-bold text-custom_gray text-base pr-1">{storeRating?.toFixed(1)}</p>
                             {
                                 Array.from({ length: storeRating }).map((_, i) => (
-                                    <span className="text-custom_yellow"><AiTwotoneStar key={i} /></span>
+                                    <span className="text-custom_yellow"><FaStar key={i} /></span>
                                 ))
                             }
                             {
                                 Array.from({ length: 5 - storeRating }).map((_, i) => (
-                                    <span className="text-radioButtonBorder"><AiTwotoneStar key={i} /></span>
+                                    <span className="text-radioButtonBorder"><FaStar key={i} /></span>
                                 ))
                             }
                         </div>
@@ -69,7 +69,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
             <div className="grid grid-cols-3 p-2 gap-4 sm:items-center">
                 <div className="col-span-1">
                     <div className="relative flex justify-center max-h-44">
-                        <Link to={`/product/${product?.id}/${getSafeUrl(product?.name)}`}>
+                        <Link href={`/product/${product?.id}/${getSafeUrl(product?.name)}`}>
                             <Image
                                 loader={sanityIoImageLoader}
                                 src={getImageObject(product?.images)?.url}

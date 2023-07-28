@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Select } from "antd";
 import { getLocation } from "@core/geolocation";
-import { BiCurrentLocation } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
+import { MdMyLocation, MdOutlineClose } from "react-icons/md";
 import { getAutoSuggest } from "@api/autosuggest";
 
 interface Props {
@@ -66,7 +65,7 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                                         className="cursor-pointer"
                                         onClick={() => setShowModal(false)}
                                     >
-                                        <AiOutlineClose />
+                                        <MdOutlineClose />
                                     </span>
                                 </div>
 
@@ -95,7 +94,7 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                                         type="button"
                                         onClick={handleUseLocation}
                                     >
-                                        <BiCurrentLocation /> Detect my location
+                                        <MdMyLocation /> Detect my location
                                     </button>
                                     <button
                                         className="bg-neutral-900 text-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300 sm:text-xs sm:px-2"

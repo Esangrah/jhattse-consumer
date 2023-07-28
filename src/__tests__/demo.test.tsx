@@ -1,5 +1,5 @@
 import { render, renderHook, act } from "@testing-library/react";
-import { Footer } from "@components/Footer";
+import { Footer } from "@components/footer";
 import useCounter from "./testingHook";
 import { describe, test } from "vitest";
 describe("demo", () => {

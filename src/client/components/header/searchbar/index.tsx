@@ -1,12 +1,13 @@
 import { TSearch, TData } from "@components/types";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { MdSearch } from "react-icons/md";
 import { getSafeUrl } from "@core/utils";
-import { Link, useNavigate} from "react-router-dom"
+import { Link} from "@renderer/Link";
+import { navigate } from 'vite-plugin-ssr/client/router';
+import { usePageContext } from "@renderer/usePageContext";
 
 import { getSearch } from "@api/graphql/search";
-import { useLocation } from "react-router-dom";
 
 interface Props {
     mode?: string;
@@ -83,12 +84,11 @@ const initialOptions = new Map<string, any>([
 ]);
 
 export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
-    const navigator = useNavigate()
     const [query, setQuery] = useState<TSearch>();
     const [options, setOptions] = useState<Map<string, any>>();
     const [searchInput, setSearchInput] = useState("");
-    const location = useLocation()
-    const queryParmas = new URLSearchParams(location.search);
+    const pageContext = usePageContext();
+    const queryParmas = pageContext.urlParsed?.search;
     const updateOptions = (identifier: string, result: TData[]) => {
         return {
             ...initialOptions.get(identifier),
@@ -104,8 +104,8 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
     }, [searchInput]);
 
     useEffect(() => {
-        let q = queryParmas?.get("q") || "";
-        let intent = queryParmas?.get("intent")
+        let q = queryParmas?.q;
+        let intent = queryParmas?.intent;
 
         if (intent != undefined || mode != undefined) {
             let lookup = intent || mode;
@@ -118,7 +118,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
             ...query,
             descriptor: { ...query?.descriptor, q: q, intent: intent || "product" },
         });
-    }, [location]);
+    }, [pageContext.urlOriginal]);
 
     useEffect(() => {
         if (query?.descriptor?.q !== undefined && query?.descriptor?.q !== "") {
@@ -182,7 +182,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
     const handleSelect = async (element, option) => {
         console.log(element, option)
         if (option?.label?.props?.href != undefined) {
-            navigator(option?.label?.props?.href)
+            navigate(option?.label?.props?.href)
         }
     }
 
@@ -207,7 +207,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
                             : "Search Shop or Product"
                     }
                     className="text-neutral-700"
-                    prefix={<AiOutlineSearch className="font-bold" size="1.5em" />}
+                    prefix={<MdSearch className="font-bold" size="1.5em" />}
                 />
             </AutoComplete>
         </div>

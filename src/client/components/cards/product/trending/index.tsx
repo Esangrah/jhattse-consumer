@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { Star } from "@components/star"
 import { TProduct } from "@components/types";
 import { getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
@@ -23,7 +23,7 @@ export const TrendingProductCard: React.FC<Props> = ({ product }) => {
             <div className="grid grid-cols-3 p-2 gap-4">
                 <div className="col-span-1">
                     <div className="relative flex justify-center max-h-44">
-                        <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}>
+                        <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
                             <Image
                                 loader={sanityIoImageLoader}
                                 src={getImageObject(product.images)?.url}

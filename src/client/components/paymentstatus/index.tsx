@@ -7,7 +7,7 @@ import Head from 'react-helmet';
 import { Image } from "@renderer/image";;
 import React, { useEffect, useState } from 'react'
 import { variantNameFromOrderItem } from "@components/variant/variantSelector";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 
 
 
@@ -24,7 +24,7 @@ export const PaymentStatus: React.FC<Props> = ({ actionText, message, next, imag
     const [orderDetails, setOrderDetails] = useState<TOrder[]>([]);
     const payment_id = typeof window !== 'undefined' ? localStorage.getItem("payment_id") : null;
     const transaction_id = typeof window !== 'undefined' ? localStorage.getItem("transaction_id") : null
-    const navigate = useNavigate();
+    ;
 
     const getOrderPaymentStatus = async (id: string) => {
         getOrders([], [], id).then((result: TOrder[]) => {

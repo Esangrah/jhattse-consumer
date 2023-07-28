@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
 import { TAddReviews, TReview } from '@components/types'
-import { addReviews, addStoreReviews } from "@api/rating";
+import { addStoreReviews } from "@api/rating";
 import { requestLogin, sanityIoImageLoader } from "@core/utils";
 import Moment from "moment";
 import { Image } from "@renderer/image";
+import { usePageContext } from '@renderer/usePageContext';
 
 type Props = {
     store_id: number;
@@ -57,7 +57,7 @@ export const AddStoreReview: React.FC<Props> = ({ store_id, callback, review }) 
     const [message, setMessage] = useState("");
     const [updateMode, setUpdateMode] = useState(false);
     const [state, setState] = useState < TAddReviews > ({});
-    const location = useLocation();
+    const pageContext = usePageContext()
 
     const onMouseEnter = (index: number) => {
         setHoverRating(index);
@@ -92,7 +92,7 @@ export const AddStoreReview: React.FC<Props> = ({ store_id, callback, review }) 
             result.then((review) => { callback(review); setMessage("review submitted"); setUpdateMode(false) }).catch((e) => {
                 setMessage("Some error occurred.");
                 if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
+                    requestLogin(pageContext.urlOriginal);
                 }
             })
             console.log("comment is ", result);

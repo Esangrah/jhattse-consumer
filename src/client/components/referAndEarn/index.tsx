@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 
 const ReferAndEarn = () => {
     const [refLink, setRefLink] = useState(null);
     const [message, setMessage] = useState("");
-    const navigate = useNavigate()
+    
     useEffect(() => {
         const profile = localStorage.getItem("profile");
         if (profile != undefined) {

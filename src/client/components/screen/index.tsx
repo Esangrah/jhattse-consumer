@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 import { TScreenInfo } from "@components/types";
 
 interface Props extends TScreenInfo {
@@ -9,7 +9,7 @@ interface Props extends TScreenInfo {
 }
 
 export const Screen: React.FC<Props> = ({ actionText, message, next }: Props) => {
-  const navigate = useNavigate();
+  ;
   return (
     <div className="bg-neutral-50 p-4 flex flex-col justify-center grow h-full items-center">
       <div className="text-center">{message}</div>

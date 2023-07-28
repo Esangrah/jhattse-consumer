@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { message } from "antd";
-import { AiFillDelete } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 import { BsCheckSquare, BsCheckSquareFill } from "react-icons/bs";
 import { deleteStorePayment } from "@api/payment";
 import { TPaymentMethod } from "@components/types";
@@ -24,14 +24,16 @@ export const PaymentCard = ({ payment }: Props) => {
     }
 
     return (
-        isShown &&
+        isShown ?
         <div className="bg-neutral-50 p-2 w-full">
             <div className="grid grid-cols-5">
                 <div className="col-span-1 overflow-hidden"><span className="text-base sm:text-sm text-neutral-900 font-semibold">{payment.is_upi ? "UPI" : payment.bank_name}</span></div>
                 <div className="col-span-1 overflow-hidden"><span className="text-base sm:text-sm text-neutral-900">{payment.is_upi ? "UPI" : payment.ifsc}</span></div>
                 <div className="col-span-2 overflow-hidden px-2 text-right"><span className="text-base sm:text-sm text-neutral-900">{payment.is_upi ? payment.upi : payment.account_number}</span></div>
-                <div className="col-span-1 flex flex-row justify-between items-center"><span className="text-neutral-900">{payment.is_upi ? <BsCheckSquareFill /> : <BsCheckSquare />}</span><span className="text-neutral-900" onClick={() => handleDelete(payment)}><AiFillDelete>Delete</AiFillDelete></span></div>
+                <div className="col-span-1 flex flex-row justify-between items-center"><span className="text-neutral-900">{payment.is_upi ? <BsCheckSquareFill /> : <BsCheckSquare />}</span><span className="text-neutral-900" onClick={() => handleDelete(payment)}><MdDelete>Delete</MdDelete></span></div>
             </div>
         </div>
+        :
+        <></>
     )
 }

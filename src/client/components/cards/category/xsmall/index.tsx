@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { TProductCategory } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from "@core/utils";
 
@@ -14,7 +14,7 @@ export const SmallCategoryCard: React.FC<Props> = ({ product }) => {
         <div className="relative flex-shrink-0 w-28">
             <div className="p-2 w-full flex flex-col justify-end">
                 <div className="flex justify-center">
-                    <Link to={`/category/${product.id}/${getSafeUrl(product.name)}`}>
+                    <Link href={`/category/${product.id}/${getSafeUrl(product.name)}`}>
                         <Image
                             loader={sanityIoImageLoader}
                             src={product.image || "assets/esangrah-profile.png"}
@@ -25,7 +25,7 @@ export const SmallCategoryCard: React.FC<Props> = ({ product }) => {
                         />
                     </Link>
                 </div>
-                <Link to={`/category/${product.id}/${getSafeUrl(product.name)}`}>
+                <Link href={`/category/${product.id}/${getSafeUrl(product.name)}`}>
                     <div className="font-semibold font-simple overflow-hidden line-clamp-2 md:line-clamp-none">
                         <p className="text-neutral-900 text-xs text-ellipsis text-center">{product.name}</p>
                     </div>

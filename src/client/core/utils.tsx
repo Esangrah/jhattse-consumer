@@ -1,10 +1,8 @@
 import { refresh } from '@api/authentication';
 import { TData, TImage, TOption, TOrderItem } from '@components/types';
-import { useNavigate } from 'react-router-dom';
-import { ImageLoaderProps } from '@components/types';
+import { navigate } from 'vite-plugin-ssr/client/router';
 
-export const requestLogin = (next: string) => {
-    navigate = useNavigate();
+export const requestLogin = (next: string | undefined) => {
     localStorage.removeItem("token");
     refresh().then((res) => {
         localStorage.setItem("token", res.access_token);
@@ -12,7 +10,7 @@ export const requestLogin = (next: string) => {
         console.debug("Error while refresh request");
         console.debug(e);
     })
-    navigate(`/login?next=${next}`);
+    navigate(`/login?next=${next || '/'}`);
 }
 
 export const sanityIoImageLoader = (src: string, width: string | number, quality?: number) => {

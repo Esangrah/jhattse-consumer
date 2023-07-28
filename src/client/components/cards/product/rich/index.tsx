@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { Star } from "@components/star";
 import { TProduct } from "@components/types";
 import {
@@ -25,7 +25,7 @@ export const RichCard: React.FC<Props> = ({ product }) => {
       )}
       <div className="w-full h-full text-center flex flex-col">
         <div className="flex grow justify-center h-44 sm:h-28">
-          <Link to={`/product/${product.id}/${getSafeUrl(product.name)}`}>
+          <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
             <Image
               loader={sanityIoImageLoader}
               src={getImageObject(product.images)?.url}

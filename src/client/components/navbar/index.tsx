@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 import { motion } from "framer-motion";
-import { AiFillPhone, AiOutlineHome, AiOutlineQrcode, AiOutlineShop } from 'react-icons/ai';
-import { MdOutlineLocationOn} from 'react-icons/md';
+import { MdPhoneEnabled, MdOutlineHome, MdOutlineQrCodeScanner, MdOutlineLocationOn, MdOutlineAccountCircle} from 'react-icons/md';
+import { FaStoreAlt } from 'react-icons/fa';
 import QRScanner from "@components/qr";
 
-import { Link } from "react-router-dom";
+import { Link } from "@renderer/Link";
 import { TStore } from "@components/types";
 import { getDistance } from 'geolib';
 import { getLocation } from "@core/geolocation";
-import { BiQrScan } from "react-icons/bi";
-import { RiAccountCircleLine } from "react-icons/ri";
 import { Html5QrcodeError } from "html5-qrcode/esm/core";
 import { isLoggedIn } from "@recoil/atoms";
 import { useRecoilValue } from "recoil";
@@ -24,7 +22,7 @@ export const Navbar: React.FC = () => {
     const [localDistance, setLocalDistance] = useState<number>();
     const [nearestStore, setNearestStore] = useState<TStore>()
     const isLogin = useRecoilValue(isLoggedIn);
-    const navigate = useNavigate()
+    
 
     const onNewScanResult = (decodedText: string, decodedResult: any) => {
         // Handle the result here.
@@ -83,13 +81,13 @@ export const Navbar: React.FC = () => {
                                         <h3 className="text-neutral-50 font-bold text-2xl sm:text-xl line-clamp-2">{nearestStore?.name}</h3>
                                     </div>
                                     <div className="col-span-2 justify-self-end">
-                                        <p className="text-neutral-50 text-2xl"><AiOutlineQrcode /></p>
+                                        <p className="text-neutral-50 text-2xl"><MdOutlineQrCodeScanner /></p>
                                     </div>
                                 </div>
                                 <p className="text-neutral-50">{nearestStore?.category?.name}</p>
                                 <div className="flex flex-row gap-2 items-center">
                                     <p className="text-neutral-50">{nearestStore?.phone}</p>
-                                    <p className="text-sky-300 text-lg font-bold"><a href={`tel:${nearestStore?.phone}`}><AiFillPhone /></a></p>
+                                    <p className="text-sky-300 text-lg font-bold"><a href={`tel:${nearestStore?.phone}`}><MdPhoneEnabled /></a></p>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <p className="text-neutral-50">{nearestStore?.address.street_name}{", "}{nearestStore?.address.city.name}</p>
@@ -136,24 +134,24 @@ export const Navbar: React.FC = () => {
             <div className="z-40 bg-neutral-50 fixed h-16 p-0 flex justify-center bottom-0 left-0 right-0 hidden sm:block">
                 <ul className="flex flex-row justify-between grow py-2 px-8">
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        <Link to="/" className="flex flex-col items-center">
-                            <AiOutlineHome size="1.8em" /><p className="text-[10px]">Home</p>
+                        <Link href="/" className="flex flex-col items-center">
+                            <MdOutlineHome size="1.8em" /><p className="text-[10px]">Home</p>
                         </Link>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        <Link to="/store" className="flex flex-col items-center">
-                            <AiOutlineShop size="1.8em" /><p className="text-[10px]">Stores</p>
+                        <Link href="/store" className="flex flex-col items-center">
+                            <FaStoreAlt size="1.8em" /><p className="text-[10px]">Stores</p>
                         </Link>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
                         <div onClick={() => setQROpen(!isQROpen)} className="flex flex-col items-center">
-                            <BiQrScan size="1.8em" /><p className="text-[10px]">QR Scan</p>
+                            <MdOutlineQrCodeScanner size="1.8em" /><p className="text-[10px]">QR Scan</p>
                         </div>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
                         {/* <Link to="/account" className="flex flex-col items-center"> */}
                         <span onClick={() => setIsShowSidebar(!isShowSidebar)} className="flex flex-col items-center">
-                            <RiAccountCircleLine size="1.8em" /><p className="text-[10px]">Account</p>
+                            <MdOutlineAccountCircle size="1.8em" /><p className="text-[10px]">Account</p>
                         </span>
                     </li>
                 </ul>

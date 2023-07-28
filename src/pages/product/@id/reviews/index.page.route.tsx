@@ -1,0 +1,1 @@
+export default '/product/@id/reviews/@slug'

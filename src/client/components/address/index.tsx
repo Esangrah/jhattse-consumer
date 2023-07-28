@@ -7,8 +7,7 @@ import { getAddresses } from '@api/address';
 import { useRecoilState } from 'recoil';
 import { addressState } from '@recoil/atoms';
 import { requestLogin } from '@core/utils';
-import { useResolvedPath } from 'react-router-dom';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { FaPlus } from 'react-icons/fa';
 
 interface Props {
   title?: string
@@ -78,7 +77,7 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
               }
               <button onClick={handleAddClick}
                 className={`text-golden font-bold flex items-center gap-2 ${btnPlacedButtom && "sm:hidden"}`}>
-                <span><AiOutlinePlus /></span>
+                <span><FaPlus /></span>
                 <span>ADD NEW ADDRESS</span>
               </button>
 

@@ -1,19 +1,18 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { Image } from "@renderer/image";
 import { staticImageLoader } from "@core/utils";
-import { useNavigate } from "react-router-dom";
+import { navigate } from 'vite-plugin-ssr/client/router';
 
 interface Props {
   homeLink?: string;
 }
 
 export const BackBar: React.FC<Props> = ({ homeLink }) => {
-  const navigate = useNavigate();
   return (
     <div className="flex flex-row w-full bg-neutral-100 justify-between sticky sm:relative top-0 z-40 h-16 sm:h-28 p-2 font-manrope">
       <div className="flex justify-start">
-        <Link to={homeLink || "/"}>
+        <Link href={homeLink || "/"}>
           <Image
             priority={true}
             loader={staticImageLoader}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@renderer/Link'
 import { getDistance } from 'geolib'
-import { AiOutlineShareAlt } from 'react-icons/ai'
-import { MdLocationPin } from 'react-icons/md';
+import { MdLocationPin, MdShare } from 'react-icons/md';
 import { Star } from '@components/star'
 import { TStore } from '@components/types'
 import { getLocation } from '@core/geolocation'
@@ -95,7 +94,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                     </div>
                     <div className="flex flex-row gap-2 items-center pb-1">
                         <p className="flex justify-between items-center text-ellipsis text-custom_black text-base font-medium sm:text-xs"><MdLocationPin className='mr-1' />{`${store?.address?.street_name}, ${store?.address?.city?.name}`}
-                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link to={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium sm:text-xs whitespace-nowrap items-center">
+                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium sm:text-xs whitespace-nowrap items-center">
                                 VIEW LOCATION
                             </Link>}</div>}
                         </p>
@@ -110,13 +109,13 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                         }
                         {store?.stats?.rating_count ?
                             <div>
-                                <Link to={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
+                                <Link href={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
                                     <span className="text-golden whitespace-nowrap font-semibold text-underline select-none">SEE REVIEWS</span>
                                 </Link>
                             </div>
                             :
                             <div>
-                                <Link to={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
+                                <Link href={`/store/${store?.id}/reviews/${getSafeUrl(store?.name)}`}>
                                     <span className="text-golden whitespace-nowrap font-semibold text-underline">ADD REVIEW</span>
                                 </Link>
                             </div>
@@ -131,7 +130,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                             }}
                             onClick={() => console.log("shared successfully!")}
                         >
-                            <button className="flex gap-1 items-center justify-center text-golden font-bold text-base"><AiOutlineShareAlt /> <span className='sm:hidden'>SHARE</span></button>
+                            <button className="flex gap-1 items-center justify-center text-golden font-bold text-base"><MdShare /> <span className='sm:hidden'>SHARE</span></button>
                         </RWebShare>
                     </div>
                 </div>

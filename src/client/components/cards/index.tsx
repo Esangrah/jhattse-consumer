@@ -66,8 +66,5 @@ export const Cards = ({ element, products, intent, isCarousel }: Props) => {
                     cards
                 }
             </div>
-
-
-
     )
 }

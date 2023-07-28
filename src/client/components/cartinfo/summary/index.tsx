@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { cartDetailsState, cartState, isLoggedIn } from '@recoil/atoms';
 import { humanizeCurrency } from '@core/utils';
 import { TOrder } from '@components/types';
-import { useNavigate } from 'react-router-dom';
+import { navigate } from 'vite-plugin-ssr/client/router';
 
 type Props = {
     placeOrder?: string;
@@ -25,7 +25,6 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
     const retryDiscountedTotal = orderDetails?.reduce((prevTotal, current) => prevTotal + (current.payable), 0);
     const retryTotalTax = orderDetails?.reduce((prevTax, currentTax) => prevTax + (currentTax?.tax), 0)
     const retryTotal = retryDiscountedTotal + retryTotalTax;
-    const navigate = useNavigate()
 
 
 

@@ -1,0 +1,1 @@
+export default '/category/@id/@slug'

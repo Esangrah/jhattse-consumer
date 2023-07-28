@@ -2,7 +2,7 @@ import { getReviews } from "@api/rating"
 import { Star } from "@components/star"
 import { TReview, TProduct } from "@components/types"
 import { getColor, getSafeUrl } from "@core/utils"
-import { Link } from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { useEffect, useState } from "react"
 
 
@@ -57,13 +57,13 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
             </div>
             {product?.stats?.rating_count <= 3 ?
                 <div className="text-xs font-bold text-brand-500">
-                    <Link to={`/product/${product?.id}/reviews/${getSafeUrl(product?.name)}`}>
+                    <Link href={`/product/${product?.id}/reviews/${getSafeUrl(product?.name)}`}>
                         Add Product Review
                     </Link>
                 </div>
                 :
                 <div className="text-xs font-bold text-brand-500">
-                    <Link to={`/product/${product?.id}/reviews/${getSafeUrl(product?.name)}`}>
+                    <Link href={`/product/${product?.id}/reviews/${getSafeUrl(product?.name)}`}>
                         All {product?.stats?.rating_count} Reviews
                     </Link>
                 </div>

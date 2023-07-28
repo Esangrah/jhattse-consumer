@@ -2,7 +2,7 @@ import { CartButton } from "@components/cartbutton";
 import { CartButtonV2 } from "@components/cartbutton/v2";
 import { TCartItem, TInventory, TProduct } from "@components/types";
 import { cartState } from "@recoil/atoms/cart";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
@@ -29,7 +29,7 @@ export const AddToCart = ({ product, inventory, addToCartBag = true, btnStyle }:
             {localCart == undefined || localCart?.size == 0 || addToCartBag == false ?
                 <div></div>
                 :
-                <Link to="/cart">
+                <Link href="/cart">
                     <div className="flex bg-sky-100 py-2 flex-row text-sm rounded-xl px-3 hover:bg-sky-200">
                         {/* <p className="lg:hidden text-neutral-900 font-semibold py-1 mr-2 whitespace-nowrap select-none">CHECK BAG</p> */}
                         <div className="flex flex-row gap-2">

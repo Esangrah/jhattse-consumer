@@ -1,5 +1,5 @@
 import { Image } from "@renderer/image";;
-import { Link } from 'react-router-dom';
+import { Link } from '@renderer/Link';
 import { MdOutlineLocationOn} from "react-icons/md";
 import { TStore } from '@components/types';
 import { Star } from '@components/star';
@@ -19,7 +19,7 @@ export const SmallStoreCard = ({ store }: Props) => {
                 <div className="px-2 w-max rounded-r-lg mt-1">
                 </div>
                 <div className="flex justify-center relative" >
-                    <Link to={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
+                    <Link href={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
                         <Image
                             loader={sanityIoImageLoader}
                             src={store?.image || "assets/esangrah-profile.png"}
@@ -32,7 +32,7 @@ export const SmallStoreCard = ({ store }: Props) => {
                 </div>
             </div>
             <div className="col-span-2 leading-tight gap-1">
-                <Link to={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
+                <Link href={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
                     <div className="font-semibold text-base line-clamp-2 leading-tight">{store?.name}</div>
                 </Link>
                 {store?.category?.name !== undefined ?
@@ -53,7 +53,7 @@ export const SmallStoreCard = ({ store }: Props) => {
                     <div className="text-neutral-600"><MdOutlineLocationOn className="text-sm sm:text-xs" /></div><p className="text-sm sm:text-xs text-neutral-600">{store?.address?.street_name}, {store?.address?.city?.name}{(localDistance != undefined && localDistance < 10000) && <><span className="text-neutral-700"> | </span><span className="text-sm sm:text-xs text-neutral-600 font-semibold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : null)}</span></>}</p>
                 </div>
                 <div className="flex items-center text-sm sm:text-xs text-custom_golden font-bold underline-offset-4 py-1">
-                    <Link to={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank">
+                    <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank">
                         VIEW LOCATION
                     </Link>
                 </div>

@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Main from "./pages/Main";
 import { ContextWrapper } from "./Context";
 import {
     BrowserRouter as Router,

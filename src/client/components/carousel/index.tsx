@@ -15,7 +15,7 @@ export const Carousel: React.FC<Props> = ({ images }: Props) => {
                     <button
                         type="button"
                         data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to={`"${index}"`}
+                        data-bs-slide-href={`"${index}"`}
                         className="active"
                         aria-current="true"
                         aria-label={`"Slide ${index}"`}

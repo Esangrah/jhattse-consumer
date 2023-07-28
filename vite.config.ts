@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-// import ssr from 'vite-plugin-ssr/plugin';
+// import UnoCSS from 'unocss/vite'
+import ssr from 'vite-plugin-ssr/plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import Pages from 'vite-plugin-pages'
 
@@ -16,7 +17,7 @@ const test = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [Pages({dirs: 'src/client/pages', routeStyle:'next'}), react(), tsconfigPaths()],
+  plugins: [Pages({dirs: 'src/pages', routeStyle:'next'}), ssr(), react(), tsconfigPaths()],
   server: { port: 3000 },
   build: {
     minify: false,

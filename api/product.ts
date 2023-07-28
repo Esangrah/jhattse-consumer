@@ -1,5 +1,6 @@
 import { handleResponse, SERVER_HOST } from "@api";
 import { TInventory, TProduct, TProductCategory } from "@components/types";
+import fetch from 'cross-fetch';
 import axios from "axios";
 
 export const getProducts = async (name: string = null) => {
@@ -15,7 +16,7 @@ export const getPopularProducts = async (pageNumber: number = 0, pageSize: numbe
 }
 
 
-export const getFeaturedProducts = async (category: number = null, store: number = null, brand: number = null, pageNumber: number = 0, pageSize: number = 20) => {
+export const getFeaturedProducts = async (category: number = null, store?: number = null, brand: number = null, pageNumber: number = 0, pageSize: number = 20) => {
     let params = new URLSearchParams()
     if (category !== null) {
         params.append('category_id', category.toString());

@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { TInventory, TProduct } from '@components/types'
 import { useRecoilState } from 'recoil'
 import { cartState } from '@recoil/atoms'
-import { AiOutlinePlus, AiOutlineMinus, AiOutlineDelete } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { FaMinus, FaPlus } from "react-icons/fa";
+import { MdOutlineDelete } from "react-icons/md";
+import { Link } from '@renderer/Link';
 import { variantState } from '@recoil/atoms/variant';
 
 type Props = {
@@ -47,7 +48,7 @@ export const CartButton = ({ product, inventory, mode, btnSize, btnStyle, Isvari
         (productQuantity == 0 || productQuantity == undefined) ?
             (inventory?.external_link?.length > 0 ?
                 <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} justify-start items-center max-w-lg min-w-full`}>
-                    <Link to={inventory?.external_link} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-8 text-xl lg:text-lg sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded sm:w-full">BUY NOW</Link>
+                    <Link href={inventory?.external_link} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-8 text-xl lg:text-lg sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded sm:w-full">BUY NOW</Link>
                 </div>
                 :
                 <div className={`flex flex-row ${(productQuantity == 0 || productQuantity == undefined) ? "" : "divide-x rounded shadow"} justify-start items-center max-w-lg min-w-full`}>
@@ -57,12 +58,12 @@ export const CartButton = ({ product, inventory, mode, btnSize, btnStyle, Isvari
             <div className={`flex flex-row ${(productQuantity == 0 || productQuantity == undefined) ? "" : "font-bold rounded shadow"} p-2 text-xl lg:text-lg sm:text-sm justify-between items-center ${btnStyle ? btnStyle : "bg-brand-500 hover:opacity-80 focus:opacity-80 text-neutral-50"} min-w-full`}>
                 <div className="col-span-1 flex justify-center items-center">
                     <button onClick={(event) => increase(product, -1)}>
-                        {productQuantity == 1 ? <AiOutlineDelete /> : < AiOutlineMinus />}
+                        {productQuantity == 1 ? <MdOutlineDelete /> : <FaMinus />}
                     </button>
                 </div>
                 <div className="col-span-1 flex justify-center items-center px-2 text-center"><span>{productQuantity}</span></div>
                 <div className="col-span-1 flex justify-center items-center h-full">
-                    <button onClick={(event) => increase(product)}><AiOutlinePlus /></button>
+                    <button onClick={(event) => increase(product)}><FaPlus /></button>
                 </div>
             </div>
     )

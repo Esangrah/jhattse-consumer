@@ -5,8 +5,8 @@ import { isLoggedIn } from "@recoil/atoms";
 import { getMyStores } from "@api/store";
 import { getFilteredResults, requestLogin } from "@core/utils";
 import { RefObject, TOption, TStore } from "@components/types";
-import { Link} from "react-router-dom"
-import { useLocation } from "react-router-dom";
+import { Link} from "@renderer/Link"
+import { usePageContext } from "@renderer/usePageContext";
 
 interface Props {
     callback?: Function;
@@ -24,7 +24,7 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
     const [stores, setStores] = useState < TStore[] > ([]);
     const [selectedStore, setSelectedStore] = useState < TStore > ();
     const [options, setOptions] = useState < TOption[] > ([]);
-    const location = useLocation()
+    const pageContext = usePageContext();
     const isLogin = useRecoilValue(isLoggedIn);
 
     useImperativeHandle(ref, () => ({ fetchObjects }));
@@ -54,7 +54,7 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
         }).catch((e) => {
             console.log("Error: " + e.toString());
             if (e.response?.status === 401) {
-                requestLogin(location.pathname);
+                requestLogin(pageContext.urlOriginal);
             }
         })
     }
@@ -93,7 +93,7 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
                     {menu}
                     <Divider style={{ margin: '8px 0' }} />
                     <Space style={{ padding: '0 8px 4px' }}>
-                        <Link to="/business/account?form=true">
+                        <Link href="/business/account?form=true">
                             <button className="flex w-full" onClick={() => {
                                 // if (props.specialCallback != undefined) {
                                 //     props.specialCallback();

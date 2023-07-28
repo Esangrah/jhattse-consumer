@@ -1,5 +1,5 @@
 import { Image } from "@renderer/image";
-import { Link} from "react-router-dom"
+import { Link} from "@renderer/Link"
 import { TCard } from "@components/types";
 import { sanityIoImageLoader } from '@core/utils';
 
@@ -11,7 +11,7 @@ type Props = {
 export const MainCard = ({ element }: Props) => {
     return (
         <div className="flex justify-center items-center p-2 bg-neutral-900 rounded-2xl">
-            <Link to={element.url}>
+            <Link href={element.url}>
                 <div className="h-24 flex items-center text-center">
                     {element.image && <Image
                         loader={sanityIoImageLoader}
