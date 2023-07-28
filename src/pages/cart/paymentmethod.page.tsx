@@ -7,7 +7,7 @@ import { createOrder, retryOrder } from '@api/order';
 import { Header } from "@components/header";
 import { CartDetails } from '@components/cartinfo/summary';
 import { TComponent, TCreateOrder, TIdentity, TOrder } from '@components/types';
-import NonLoggedUser from './nonloggeduser';
+import { NonLoggedUser } from './nonloggeduser';
 import { message } from 'antd';
 import { getOrders } from "@api/order"
 import { navigate } from 'vite-plugin-ssr/client/router';

@@ -7,7 +7,7 @@ import { navigate } from 'vite-plugin-ssr/client/router';
 
 
 type Props = {
-    setUserInfo?: Function,
+    setUserInfo: Function,
 }
 
 export const NonLoggedUser = ({ setUserInfo }: Props) => {
