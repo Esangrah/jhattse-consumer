@@ -1,248 +1,221 @@
 import React, { useState } from "react";
-import { Image } from "@renderer/image";
-
+import { Image } from "@renderer/Image";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { CarouselContainer } from "@components/container/carousel";
-import { MdMenu } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { Link } from "react-router-dom";
+import Navbar from "@components/company/navbar";
+import { sanityIoImageLoader } from "@core/utils";
+import Footer from "@components/company/footer";
 function company() {
-  const [isCarousel, seIsCarousel] = useState(false);
   return (
-    <div className="container">
-      <div className="flex flex-row bg-neutral-50 justify-between px-20 py-5 w-screen sm:px-5 ">
-        <Image
-          priority={true}
-          src={"/company/headerimage.png"}
-          width="200"
-          height="200"
-          alt="Company Logo"
-          className="w-48 h-auto sm:w-20 h-auto"
-        />
-        <div className="self-center">
-          <MdMenu className="hidden sm:block xl:block" />
-        </div>
+    <div className="container font-manrope">
+      {/* Navber */}
+      <Navbar />
+      {/* Navber */}
 
-        <div className="flex flex-row justify-center items-center sm:hidden lg:hidden">
-          <p className="text-neutral-900 text-xl font-sans font-bold pr-20 lg:hidden sm:hidden">
-            CAREERS
-          </p>
-          <p className="text-neutral-900 text-xl font-sans font-bold pr-0 lg:hidden sm:hidden">
-            CONTACT US
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-row justify-between py-20 xl:flex-col sm:p-0 lg:flex-col">
-        <div className="px-10 sm:px-3">
-          <p className="text-7xl font-sans font-bold text-neutral-900 py-5 self-center sm:text-2xl lg:text-2xl w-50 sm:py-2   ">
-            We provide 360° solutions for
-          </p>
-          <p className="text-green-700 text-8xl font-sans	font-extrabold pb-10 sm:text-4xl sm:pb-5">
-            Businesses
-          </p>
-          <div className="sm:flex sm:flex-row pt-10 sm:mt-0 lg:flex">
-            <button className="w-60 p-4 text-neutral-50 font-sans text-xl font-extrabold rounded-lg border border-solid bg-green-700 mr-20 sm:mr-2 sm:text-sm sm:px-2 py-4 sm:w-30 my-2   ">
-              OUR PRODUCTS
-            </button>
-            <button className="w-60 p-4 text-green-700 font-sans text-xl font-extrabold rounded-lg border border-solid border-green-700 sm:text-sm sm:px-0 sm:py-0 sm:w-30 my-2">
-              ABOUT US
-            </button>
-          </div>
-        </div>
-        <Image
-          src={"/company/mainimage.png"}
-          width="729"
-          height="640"
-          alt="Company Logo"
-          className="sm:mt-5 lg:mt-20 pt-10 self-center "
-        />
-      </div>
-      <div className="grid xl:grid-cols-1 grid-cols-3 py-10 px-4">
-        <div className="py-2 sm:row-span-1 col-span-2">
-          <p className="text-4xl font-sans text-neutral-900 font-bold pb-20 sm:pb-5 sm:text-xl">
-            Who are We?
-          </p>
-          <div className="">
-            <p className="text-xl font-sans text-slate-400 font-medium w-120 mr-20 sm:w-full sm:text-sm">
-              Esangrah Technologies founded in early 2023 envision to create
-              ecosystem for the next India digital leap. We as organisation
-              strive to provide the best available tech to entrepreneur,
-              business and customers. We feel that these digital tools are
-              necessity to remove out any friction and challenges in the digital
-              adoption. Businesses can benefit from our best and low cost
-              product create multi touch points with customers and enhance and
-              manage their business in the digital era with ease.
+      {/* Hero Section */}
+      <div className="px-20 sm:px-2">
+        <div className="flex flex-row justify-between items-center sm:items-start xl:flex-col lg:flex-col">
+          <div className="flex flex-col justify-center h-full">
+            <p className="text-6xl font-extrabold text-darkGray py-5 sm:text-2xl lg:text-2xl  sm:py-2">
+              We provide 360° solutions for
             </p>
+            <p className="text-green-700 text-7xl font-extrabold pb-10 sm:text-4xl sm:pb-5">
+              Businesses
+            </p>
+            <div className="flex items-center gap-4 pt-10 sm:pt-4">
+              <Link to={"#product"} className="p-4 text-white flex items-center justify-center gap-2 text-xl font-extrabold rounded-lg border border-solid bg-green-700 sm:text-sm sm:p-2">
+                OUR PRODUCTS
+                <MdKeyboardArrowRight />
+              </Link>
+              <Link to={"/company/about"} className=" p-4 text-green-700 flex items-center justify-center gap-2 text-xl font-extrabold rounded-lg border border-solid border-green-700 sm:text-sm sm:p-2">
+                ABOUT US
+                <MdKeyboardArrowRight />
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="sm:row-span-1 col-span-1">
           <Image
-            src={"/company/secondimage.png"}
+            loader={sanityIoImageLoader}
+            src={"https://jhattse.com/api/v1/file/?key=esangrah/OP263XX2_mainimage.png"}
             width="729"
             height="640"
             alt="Company Logo"
-            className="sm:hidden lg:hidden w-full h-full"
+            className="sm:mt-5 lg:mt-20 pt-10 self-center "
           />
         </div>
-      </div>
-      <div className="py-10 px-4 sm:py-5">
-        <p className="text-neutral-900 text-4xl font-sans font-bold pb-5 sm:text-xl ">
-          Our Products
-        </p>
-        <CarouselContainer>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="rounded-xl bg-neutral-900">
-              <Image
-                src={"/company/jhattsebusiness.png"}
-                width="200"
-                height="200"
-                alt="Company Logo"
-                className="w-full h-40 sm:h-20 p-4"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="rounded-xl bg-neutral-900">
-              <Image
-                src={"/company/jhattse.png"}
-                width="200"
-                height="200"
-                alt="Company Logo"
-                className="w-full h-40 sm:h-20 p-4"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="p-4 flex justify-center h-40 sm:h-20 items-center rounded-xl bg-stone-600">
-              <p className="text-neutral-50 text-center text-5xl font-bold font-sans sm:text-sm">
-                Oval Coming Soon!
+        <div className="h-16 sm:h-4"></div>
+        <div className="grid xl:grid-cols-1 grid-cols-3 py-10">
+          <div className="py-2 sm:row-span-1 col-span-2">
+            <p className="text-4xl text-black font-bold pb-10 sm:pb-5 sm:text-xl">
+              Who are We?
+            </p>
+            <div className="flex flex-col gap-4 w-2/3 sm:w-full">
+              <p className="text-xl text-customGray font-medium mr-20 sm:w-full sm:text-sm">
+                Esangrah Technologies founded in early 2023 envision to create
+                ecosystem for the next India digital leap. We as organisation
+                strive to provide the best available tech to entrepreneur,
+                business and customers. We feel that these digital tools are
+                necessity to remove out any friction and challenges in the
+                digital adoption.
+              </p>
+              <p className="text-xl text-customGray font-medium mr-20 sm:w-full sm:text-sm">
+                Businesses can benefit from our best and low cost product create
+                multi touch points with customers and enhance and manage their
+                business in the digital era with ease.
               </p>
             </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div className="p-4 flex rounded-xl justify-center h-40 sm:h-20 items-center bg-stone-600">
-              <p className="text-neutral-50 text-center text-5xl font-bold font-sans sm:text-sm">
-                Coming Soon
-              </p>
-            </div>
-          </SwiperSlide>
-        </CarouselContainer>
-      </div>
-
-      <div className="py-5 px-4 sm:py-10">
-        <p className="text-neutral-900 text-4xl font-bold font-sans pb-5 sm:text-xl">
-          Our Team
-        </p>
-
-        <CarouselContainer>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div>
-              <Image
-                src={"/company/team.png"}
-                width="370"
-                height="432"
-                alt="Team members"
-                className="w-60 h-auto sm:w-40 h-auto"
-              />
-              <div className="p-2">
-                <p className="font-sans font-bold text-2xl text-neutral-900 sm:text-base">
-                  Name
-                </p>
-                <p className="font-sans font-medium text-2xl text-neutral-900 sm:text-base">
-                  Designation
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div>
-              <Image
-                src={"/company/team.png"}
-                width="370"
-                height="432"
-                alt="Team members"
-                className="w-60 h-auto sm:w-40 h-auto"
-              />
-              <div className="p-2">
-                <p className="font-sans font-bold text-2xl text-neutral-900 sm:text-base">
-                  Name
-                </p>
-                <p className="font-sans font-medium text-2xl text-neutral-900 sm:text-base">
-                  Designation
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div>
-              <Image
-                src={"/company/team.png"}
-                width="370"
-                height="432"
-                alt="Team members"
-                className="w-60 h-auto sm:w-40 h-auto"
-              />
-              <div className="p-2">
-                <p className="font-sans font-bold text-2xl text-neutral-900 sm:text-base">
-                  Name
-                </p>
-                <p className="font-sans font-medium text-2xl text-neutral-900 sm:text-base">
-                  Designation
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-            <div>
-              <Image
-                src={"/company/team.png"}
-                width="370"
-                height="432"
-                alt="Team members"
-                className="w-60 h-auto sm:w-40 h-auto"
-              />
-              <div className="p-2">
-                <p className="font-sans font-bold text-2xl text-neutral-900 sm:text-base">
-                  Name
-                </p>
-                <p className="font-sans font-medium text-2xl text-neutral-900 sm:text-base">
-                  Designation
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-        </CarouselContainer>
-      </div>
-      <div className="flex flex-row justify-between p-10 sm:px-5 sm:py-5 bg-neutral-900 sm:flex-col">
-        <Image
-          src={"/company/bottomimage.png"}
-          width="200"
-          height="250"
-          alt="Company Logo"
-          className="w-52 h-auto sm:w-40 h-auto"
-        />
-        <div className="flex flex-row pt-10 sm:flex-col">
-          <div className="justify-center items-center pr-20">
-            <p className="text-neutral-50 text-xl pb-10 font-sans font-medium">
-              USEFUL LINKS
-            </p>
-            <p className="text-neutral-50 text-lg font-sans font-medium">About Us</p>
-            <p className="text-neutral-50 text-lg font-sans font-medium">
-              Terms of Use
-            </p>
-            <p className="text-neutral-50 text-lg font-sans font-medium">
-              Privacy Policy
-            </p>
           </div>
-          <div className="justify-center items-center">
-            <p className="text-neutral-50 text-xl font-sans font-bold mb-10 sm:pt-10">
-              GET IN TOUCH
-            </p>
-            <p className="text-neutral-50 text-lg font-sans font-medium">
-              contact@esangrah.com
-            </p>
+          <div className="sm:row-span-1 col-span-1">
+            <Image
+              loader={sanityIoImageLoader}
+              src={"https://jhattse.com/api/v1/file/?key=esangrah/LTGK3TK3_secondimage.png"}
+              width="729"
+              height="640"
+              alt="Company Logo"
+              className="sm:hidden lg:hidden w-full h-full"
+            />
           </div>
         </div>
+        <div className="py-10 sm:py-5" id="product">
+          <p className="text-black text-4xl  font-bold pb-5 sm:text-xl ">
+            Our Products
+          </p>
+          <CarouselContainer>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <Link to={"https://business.jhattse.com/"} target="_blank"><div className="rounded-xl bg-black">
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/XLR8Q0FO_jhattsebusiness.png"}
+                  width="200"
+                  height="200"
+                  alt="Company Logo"
+                  className="w-full h-40 sm:h-20 p-4"
+                />
+              </div></Link>
+            </SwiperSlide>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <Link to={"https://jhattse.com/"} target="_blank"><div className="rounded-xl bg-black">
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/WLEIMT2A_jhattse.png"}
+                  width="200"
+                  height="200"
+                  alt="Company Logo"
+                  className="w-full h-40 sm:h-20 p-4"
+                />
+              </div>
+              </Link>
+            </SwiperSlide>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <Link to={"https://jhattse.com/"} target="_blank"><div className="p-4 flex justify-center h-40 sm:h-20 items-center rounded-xl bg-stone-600">
+                <p className="text-white text-center text-5xl font-bold sm:text-sm">
+                  Oval Coming Soon!
+                </p>
+              </div></Link>
+            </SwiperSlide>
+          </CarouselContainer>
+        </div>
+
+        <div className="py-5 sm:py-10">
+          <p className="text-black text-4xl font-bold  pb-5 sm:text-xl">
+            Our Team
+          </p>
+
+          <CarouselContainer>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <div>
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/ZCGLG5T9_team.png"}
+                  width="370"
+                  height="432"
+                  alt="Team members"
+                  className="w-60 h-auto sm:w-40"
+                />
+                <div className="py-2">
+                  <p className="font-bold text-2xl text-black sm:text-base">
+                    Name
+                  </p>
+                  <p className="font-medium text-2xl text-black sm:text-base">
+                    Designation
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <div>
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/ZCGLG5T9_team.png"}
+                  width="370"
+                  height="432"
+                  alt="Team members"
+                  className="w-60 h-auto sm:w-40"
+                />
+                <div className="py-2">
+                  <p className="font-bold text-2xl text-black sm:text-base">
+                    Name
+                  </p>
+                  <p className="font-medium text-2xl text-black sm:text-base">
+                    Designation
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <div>
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/ZCGLG5T9_team.png"}
+                  width="370"
+                  height="432"
+                  alt="Team members"
+                  className="w-60 h-auto sm:w-40"
+                />
+                <div className="py-2">
+                  <p className=" font-bold text-2xl text-black sm:text-base">
+                    Name
+                  </p>
+                  <p className=" font-medium text-2xl text-black sm:text-base">
+                    Designation
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+              <div>
+                <Image
+                  loader={sanityIoImageLoader}
+                  src={"https://jhattse.com/api/v1/file/?key=esangrah/ZCGLG5T9_team.png"}
+                  width="370"
+                  height="432"
+                  alt="Team members"
+                  className="w-60 h-auto sm:w-40"
+                />
+                <div className="py-2">
+                  <p className="font-bold text-2xl text-black sm:text-base">
+                    Name
+                  </p>
+                  <p className="font-medium text-2xl text-black sm:text-base">
+                    Designation
+                  </p>
+                </div>
+              </div>
+            </SwiperSlide>
+          </CarouselContainer>
+        </div>
       </div>
+      {/* Hero Section */}
+
+      {/* Footer */}
+
+      {/* footer */}
+      <Footer />
+      {/* Drop Down Menu */}
+
     </div>
+
   );
 }
 

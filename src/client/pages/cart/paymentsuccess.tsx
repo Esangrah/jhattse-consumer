@@ -8,9 +8,12 @@ import { Image } from "@renderer/image";;
 import { useEffect, useState } from 'react'
 import { MdCheckCircle } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { cartState } from '@recoil/atoms';
 
 const PaymentSuccess = () => {
     const orderId = typeof window !== "undefined" && localStorage.getItem("orderId");
+    const [cart, setCart] = useRecoilState(cartState);
     const [orderDetails, setOrderDetails] = useState<TOrder>();
     const navigate = useNavigate()
 
@@ -19,7 +22,10 @@ const PaymentSuccess = () => {
             setOrderDetails(res);
             console.log("payment", res);
         })
-
+        setCart((cart) => {
+            cart?.clear();
+            return new Map(cart);
+        });
     }, [])
 
 

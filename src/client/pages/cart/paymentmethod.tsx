@@ -6,6 +6,7 @@ import { cartState } from '@recoil/atoms';
 import { createOrder, retryOrder } from '@api/order';
 import { Header } from "@components/header";
 import { CartDetails } from '@components/cartinfo/summary';
+import Head from 'react-helmet';
 import { TComponent, TCreateOrder, TIdentity, TOrder } from '@components/types';
 import NonLoggedUser from './nonloggeduser';
 import { message } from 'antd';
@@ -104,10 +105,6 @@ const paymentMethod = () => {
                         window.invokePayment(res);
                     }
                 }
-                setCart((cart) => {
-                    cart?.clear();
-                    return new Map(cart);
-                });
             })
         }
 
