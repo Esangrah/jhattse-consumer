@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Header, Title } from '@components';
+import React from 'react'
+import { Container } from "@components/container";
+import { Header } from "@components/header";
 import { CartDetails } from '@components/cartinfo/summary';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import AddressPanel from '@components/address';
 import { cartState } from '@recoil/atoms';
 import { useRecoilValue } from 'recoil';
-import { Image } from "@renderer/Image";;
+import { Image } from "@renderer/image";;
 import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
 import { navigate } from 'vite-plugin-ssr/client/router';
 

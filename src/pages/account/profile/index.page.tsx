@@ -1,4 +1,5 @@
-import { BackBar, ProfileCard } from "@components";
+import { BackBar } from "@components/header/backbar";
+import { ProfileCard } from "@components/profile";
 
 
 export const Page = () =>  {

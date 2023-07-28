@@ -1,7 +1,10 @@
 import Head from 'react-helmet';
 import { Image } from "@renderer/image";
 import React, { useState, useEffect } from 'react'
-import { Container, Header, Navbar, Section } from "@components";
+import { Container } from "@components/container"
+import { Header } from "@components/header"
+import { Navbar } from "@components/navbar"
+import { Section } from "@components/section";
 import { TImage, TInventory, TProduct, TVariant } from "@components/types";
 import { getDetailProduct, getSimilarProducts } from '@api/product'
 import { RichCard } from "@components/cards";
@@ -38,8 +41,8 @@ export async function onBeforeRender(pageContext) {
 }
 
 export const Page: React.FC = ({ initialProduct }: Props) => {
-    const [mainImage, setMainImage] = useState<TImage>();
     const [product, setProduct] = useState<TProduct>(initialProduct);
+    const [mainImage, setMainImage] = useState<TImage>(initialProduct?.images?.length > 0 ? initialProduct?.images[0] : null);
     const [similarProducts, setSimilarProducts] = useState<TProduct[]>();
     const [selectedInventory, setselectedInventory] = useState<TInventory>(initialProduct?.inventories?.length > 0 ? initialProduct?.inventories[0] : null)
     const [variant, setVariant] = useState<TVariant>((selectedInventory?.is_available && selectedInventory?.variant) ? selectedInventory?.variant : product?.variants?.filter((variant) => inventoryByVariantId(variant, product)[0]?.is_available == true)[0]);

@@ -1,5 +1,6 @@
 import Head from 'react-helmet';
-import { Container, Header } from "@components";
+import { Container } from "@components/container"
+import { Header } from "@components/header"
 import ReferAndEarn from "@components/referAndEarn";
 
 export const Page: React.FC = () => {

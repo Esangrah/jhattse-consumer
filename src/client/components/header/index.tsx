@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Searchbar } from "@components";
+import { Searchbar } from "@components/header/searchbar";
 import { Image } from "@renderer/Image";
 import { Link } from "@renderer/Link";
 import { useRecoilState, useRecoilValue } from "recoil";

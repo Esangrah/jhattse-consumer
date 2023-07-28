@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import AddressPanel from '@components/address';
-import { BackBar, Title } from '@components';
+import { BackBar } from "@components/header/backbar"
+import { Title } from '@components/header/title';
 import { Link} from "@renderer/Link"
 import { TCartItem } from '@components/types';
 import { useRecoilValue } from 'recoil';

@@ -1,6 +1,9 @@
 import Head from 'react-helmet';
 import React, { useEffect, useRef, useState } from "react";
-import { Container, Header, Navbar, Title } from "@components";
+import { Container } from "@components/container"
+import { Header } from "@components/header"
+import { Navbar } from "@components/navbar";
+import { Title } from "@components/header/title";
 import { SmallStoreCard } from "@components/cards";
 import { SearchContainer } from "@components/container"
 import { TCategory, TStore } from "@components/types";

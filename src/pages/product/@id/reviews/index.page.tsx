@@ -1,6 +1,8 @@
 import Head from 'react-helmet';
 import React, { useState, useEffect } from 'react'
-import { Container, Header, Navbar } from "@components";
+import { Container } from "@components/container"
+import { Header } from "@components/header"
+import { Navbar } from "@components/navbar"
 import { ReviewCard } from '@components/cards';
 import { getReviews, getMyReview } from '@api/rating';
 import { getDetailProduct } from '@api/product';
@@ -9,7 +11,7 @@ import { AddReview } from '@components/addreview';
 import { TProduct, TReview } from "@components/types";
 import { getColor, getImageObject, getImageUrl, getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { Footer } from '@components/footer';
-import { Image } from "@renderer/Image";
+import { Image } from "@renderer/image";
 import { Link } from '@renderer/Link';
 import { usePageContext } from '@renderer/usePageContext';
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Header, Navbar, Screen } from "@components";
+import { Header } from "@components/header"
+import { Container } from "@components/container";
+import { Navbar } from "@components/navbar";
 import { TScreenInfo } from "@components/types";
 import { PaymentStatus } from "@components/paymentstatus";
 import { MdCheckCircle } from "react-icons/md";

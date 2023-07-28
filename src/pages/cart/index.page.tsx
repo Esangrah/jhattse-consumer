@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Container, Header } from "@components";
+import { Container } from "@components/container";
+import { Header } from "@components/header"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import { cartState } from '@recoil/atoms';

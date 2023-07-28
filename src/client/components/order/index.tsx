@@ -5,7 +5,7 @@ import { requestLogin } from "@core/utils";
 import { addressState, cartState, orderLastIds } from "@recoil/atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { BackBar } from "@components";
+import { BackBar } from "@components/header/backbar";
 import { usePageContext } from "@renderer/usePageContext";
 
 interface Props {

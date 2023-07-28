@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Image } from "@renderer/Image";
+import { Image } from "@renderer/image";
 import { Link } from '@renderer/Link'
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { ReviewCard } from '@components/cards';
 import { getStoreReviews, getMyStoreReview } from '@api/rating';
 import { ReviewContainer } from '@components/container';
 import { TReview, TStore } from "@components/types";
-import { BackBar, Container, Navbar } from "@components";
+import { Container } from "@components/container"
+import { Navbar } from "@components/navbar";
+import { BackBar } from "@components/header/backbar";
 import { getStore } from '@api/store';
 import { AddStoreReview } from '@components/addreview/store';
 import { usePageContext } from '@renderer/usePageContext';

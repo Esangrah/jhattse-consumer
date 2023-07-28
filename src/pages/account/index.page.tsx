@@ -1,5 +1,5 @@
 import { Link} from "@renderer/Link"
-import { Header } from "@components"
+import { Header } from "@components/header"
 import { FaBox } from "react-icons/fa"
 import { GoLocation } from "react-icons/go"
 import { IoMdNotificationsOutline } from "react-icons/io"
@@ -18,7 +18,7 @@ import ReferAndEarn from "@components/referAndEarn";
 import { navigate } from 'vite-plugin-ssr/client/router';
 import { usePageContext } from "@renderer/usePageContext"
 
-const Account = () => {
+export const Page = () => {
     const [profile, setProfile] = useState<TIdentity>();
     const isLogin = useRecoilValue(isLoggedIn)
     const [currentorders, setCurrentOrders] = useState<TOrder[]>();
@@ -158,4 +158,3 @@ const Account = () => {
         </div>
     )
 }
-export default Account;

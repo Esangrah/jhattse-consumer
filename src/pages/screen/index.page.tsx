@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Container, Header, Navbar, Screen } from "@components";
+import { Container } from "@components/container"
+import { Header } from "@components/header"
+import { Navbar } from "@components/navbar";
+import { Screen } from "@components/screen";
 import { TScreenInfo } from "@components/types";
 import { getBusinessUrl } from "@core/utils";
 import { usePageContext } from "@renderer/usePageContext";

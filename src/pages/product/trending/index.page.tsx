@@ -1,5 +1,6 @@
 import Head from 'react-helmet'
-import { Header, Navbar } from '@components';
+import { Header } from '@components/header';
+import { Navbar } from '@components/navbar';
 import { TrendingProducts } from '@components/trending';
 import { Footer } from '@components/footer';
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Head from 'react-helmet';
-import { Container, Header } from "@components";
+import { Container } from "@components/container";
+import { Header } from "@components/header";
 import { SignIn } from "@components/authentication/signin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 

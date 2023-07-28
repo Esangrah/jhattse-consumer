@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import { GetServerSideProps } from 'next';
-import qs from 'querystring';
 import { TOrder, TOrderItem } from '@components/types';
 import { getOrderById } from "api/order";
 import { MdPhoneEnabled, MdOutlineLocationOn } from 'react-icons/md';
@@ -16,7 +14,7 @@ interface Props {
 
 export async function onBeforeRender(pageContext) {
     const { id } = pageContext.routeParams;
-    const token = pageContext.urlParased.search?.token || qs.decode(pageContext.headers.cookie, '; ').access_token;
+    const token = pageContext.urlParased.search?.token || (pageContext.headers.cookie, '; ').access_token;
     const res = await getOrderById(id, token as string);
     const initialOrder: TOrder = res;
 

@@ -2,7 +2,7 @@ import Head from 'react-helmet';
 import { Image } from "@renderer/image";
 import { Link} from "@renderer/Link"
 import React, { useState } from "react";
-import { Container } from "@components";
+import { Container } from "@components/container";
 import { FeatureCard } from "@components/cards";
 import { sanityIoImageLoader } from "@core/utils";
 import fetch from 'cross-fetch';

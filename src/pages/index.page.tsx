@@ -1,13 +1,15 @@
 import React from "react";
 import { Image } from "@renderer/image";
 import { Link} from "@renderer/Link"
-import { Container, Section } from "@components";
+import { Container } from "@components/container"
+import { Section } from "@components/section";
 import { BrandCard, CategoryCard, RichCard } from "@components/cards";
 import { TBrand, TProduct, TProductCategory } from "@components/types";
 import { getPopularProducts, getProductCategories } from "@api/product";
 import Head from 'react-helmet';
 import { getProductBrands } from "@api/brand";
-import { Header, Navbar } from "@components";
+import { Header } from "@components/header"
+import { Navbar } from "@components/navbar";
 import { Footer } from "@components/footer";
 import { staticImageLoader } from "@core/utils";
 import { CarouselContainer } from "@components/container/carousel";

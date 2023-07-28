@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Container } from "@components";
+import { Container } from "@components/container";
 import { Header } from "@components/header"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { getOrders } from '@api/order';

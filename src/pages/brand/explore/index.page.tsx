@@ -1,4 +1,5 @@
-import { Header, Navbar } from "@components";
+import { Header } from "@components/header";
+import { Navbar } from "@components/navbar";
 import { Brands } from '@components/brands';
 
 export const Page = () => {

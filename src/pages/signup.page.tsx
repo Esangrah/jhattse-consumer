@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Header } from "@components";
+import { Container } from "@components/container";
+import { Header } from "@components/header";
 import { SignUp as SignUpForm } from "@components/authentication/signup";
 import { useRecoilValue } from "recoil";
 import { isLoggedIn } from '@recoil/atoms';

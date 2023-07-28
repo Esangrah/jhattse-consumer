@@ -1,5 +1,5 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { BackBar } from "@components";
+import { BackBar } from "@components/header/backbar";
 import AddressPanel from "@components/address";
 
 

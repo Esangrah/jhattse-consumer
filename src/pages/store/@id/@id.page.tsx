@@ -4,7 +4,7 @@ import { getProductCategoriesList, getStoreProducts } from '@api/product';
 import { getStore } from '@api/store';
 import { SmallProductCard, StoreTopCard } from '@components/cards';
 import { SearchContainer } from '@components/container';
-import { Header } from '@components';
+import { Header } from '@components/header';
 import { TProduct, TStore, TOption, TProductCategory, TProductCategoryControl, TData, TSearchResult } from '@components/types'
 import { getFilteredResults, getSafeUrl } from '@core/utils';
 import { getStoreTiming } from '@api/storetiming';

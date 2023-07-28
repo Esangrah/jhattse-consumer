@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BackBar, Title } from "@components";
+import { BackBar } from "@components/header/backbar";
+import { Title } from "@components/header/title";
 import { passwordReset } from "@api/authentication";
 import { TPasswordReset } from "@components/types";
 import { navigate } from 'vite-plugin-ssr/client/router';

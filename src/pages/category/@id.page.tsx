@@ -1,7 +1,9 @@
 import Head from 'react-helmet';
 import React, { useEffect, useState } from "react";
-import { Container, Header, Section } from "@components";
-import { Navbar } from "@components"
+import { Container } from "@components/container"
+import { Header } from "@components/header";
+import { Navbar } from "@components/navbar";
+import { Section } from "@components/section";
 import { ProductCardWithProvider, SmallCategoryCard } from "@components/cards";
 import { SearchContainer } from "@components/container"
 import { TProduct, TProductCategory } from "@components/types";

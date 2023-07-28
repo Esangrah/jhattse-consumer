@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Header } from "@components";
+import { Container } from "@components/container";
+import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import { Link} from "@renderer/Link"
 import Head from 'react-helmet';

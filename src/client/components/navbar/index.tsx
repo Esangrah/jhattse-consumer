@@ -12,7 +12,7 @@ import { getLocation } from "@core/geolocation";
 import { Html5QrcodeError } from "html5-qrcode/esm/core";
 import { isLoggedIn } from "@recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { Sidebar } from "..";
+import { Sidebar } from "@components/sidebar";
 
 export const Navbar: React.FC = () => {
     const [isQROpen, setQROpen] = useState(false);
