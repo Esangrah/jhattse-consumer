@@ -7,26 +7,9 @@ import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from
 import { Navbar } from '@components/navbar';
 import { getCombinedName } from '@components/variant/variantSelector';
 import { usePageContext } from '@renderer/usePageContext';
-import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
     initialOrder: TOrder
-}
-
-export async function onBeforeRender(pageContext: PageContextBuiltIn) {
-    const { id } = pageContext.routeParams;
-    const token = pageContext.urlParsed.search?.token || (pageContext.headers.cookie, '; ').access_token;
-    const res = await getOrderById(id, token as string);
-    const initialOrder: TOrder = res;
-
-
-    return {
-        pageContext: {
-            pageProps: {
-                initialOrder
-            }
-        }
-    }
 }
 
 

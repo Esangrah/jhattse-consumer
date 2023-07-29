@@ -1,14 +1,12 @@
 module.exports = {
     important: true,
-    mode: 'jit',
-    content: ["./index.html", "./src/client/**/*.tsx", "./src/pages/**/*.tsx"],
+    content: ["./index.html", "./src/client/**/*.tsx", "./src/client/**/*.ts", "./src/pages/**/*.tsx"],
     theme: {
         extend: {
             colors: {
                 primary: "#fecaca",
                 secondary: "#ea580c",
                 ternary: "#EFE4E4",
-                neutral: "#fafafa",
                 sober: "#ffffff",
                 quatary: "#D8AC0F",
                 common: "#48C479 ",
@@ -67,15 +65,6 @@ module.exports = {
                 banner: "#E1DFE0",
                 bannerText: "#212121",
                 storepickup: "#FFEBA1",
-                store_yellow: "#F8CE3A",
-                primary_yellow: "#fed340",
-                customize_red: "#F13107",
-                divider_color: "#BDBDBD",
-                facebookColor: "#1877F2",
-                instaColor: "#bc2a8d",
-                twitterColor: "#00acee",
-                custom_green: "#26C45D",
-                custom_drak_green: "#3D9C6B",
             },
             fontFamily: {
                 manrope: "Manrope",

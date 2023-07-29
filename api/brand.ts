@@ -1,5 +1,4 @@
 import { handleResponse, SERVER_HOST } from "@api";
-import { TBrand, TProduct } from "@components/types";
 import axios from "axios";
 
 export const getProductBrands = async (name: string, pageNumber: number = 0, pageSize: number = 10) => {

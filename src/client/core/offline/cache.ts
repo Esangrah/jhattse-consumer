@@ -149,7 +149,7 @@ module.exports = [
 //     }
 //   },
   {
-    urlPattern: ({ url }) => {
+    urlPattern: (url: URL) => {
       const isSameOrigin = self.origin === url.origin
       if (!isSameOrigin) return false
       const pathname = url.pathname

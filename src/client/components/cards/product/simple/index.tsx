@@ -16,7 +16,7 @@ export const SimpleCard: React.FC<Props> = ({ product }) => {
                 <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
                     <Image
                         loader={sanityIoImageLoader}
-                        priority ={true}
+                        priority={"true"}
                         className="w-full h-full object-cover"
                         src={getImageObject(product.images)?.url}
                         alt={getImageObject(product.images)?.description || product.name || ''}

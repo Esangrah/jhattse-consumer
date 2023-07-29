@@ -111,7 +111,7 @@ export const Page: React.FC<Props> = ({ initialReviews, initialStore }: Props) =
                                     <Link href={`/store/${store.id}/${getSafeUrl(store?.name)}`}>
                                         <Image
                                             loader={sanityIoImageLoader}
-                                            priority ={true}
+                                            priority={"true"}
                                             src={store.image || "assets/esangrah-profile.png"}
                                             alt={store.name}
                                             width="80"

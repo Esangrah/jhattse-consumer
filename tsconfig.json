@@ -67,7 +67,7 @@
             "ESNext"
         ],
         "strict": true,
-        "outDir": "dist",
+        "outDir": "dist/frontend",
         "module": "ESNext",
         "moduleResolution": "Node",
         "skipLibCheck": true,

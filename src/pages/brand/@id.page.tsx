@@ -317,14 +317,14 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                         <div className="w-full flex flex-col gap-2">
                                             <ReactMarkdown
                                                 className="text-neutral-900"
+                                                children={brand?.about || ''}
                                                 components={{
-                                                    p: ({ children }) => (
-                                                        <p className="text-custom_black">{children}</p>
-                                                    ),
+                                                    p: ({ children }) => <p className="text-custom_black" >{children}</p>,
+                                                    h1: ({ children }) => <h1 className="text-neutral-900 font-bold text-xl" >{children}</h1>,
+                                                    h2: ({ children }) => <h2 className="text-neutral-800 font-bold text-lg" >{children}</h2>,
+                                                    h3: ({ children }) => <h2 className="text-neutral-800 font-bold text-base" >{children}</h2>
                                                 }}
-                                            >
-                                                {brand?.about}
-                                            </ReactMarkdown>
+                                            />
                                         </div>
                                     </div>
                                 </div>
