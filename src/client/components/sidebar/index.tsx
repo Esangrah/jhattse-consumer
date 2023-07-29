@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link } from "@renderer/Link";
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedIn, profileState } from "@recoil/atoms/profile";
@@ -7,8 +7,8 @@ import { signout } from "@api/authentication";
 import PopupComponent from '@components/popup';
 import { sanityIoImageLoader, staticImageLoader } from '@core/utils';
 import { MdEdit } from 'react-icons/md';
-import { FaChevronRight, FaShoppingCart } from "react-icons/fa"
-import { MdPersonPinCircle, MdPayments, MdShoppingBag, MdMoreVert, MdLogout } from "react-icons/md"
+import { FaChevronRight, FaClipboardList, FaShoppingCart } from "react-icons/fa"
+import { MdPersonPinCircle, MdPayments, MdShoppingBag, MdMoreVert, MdNavigateNext, MdLogout } from "react-icons/md"
 import { MdSettings } from "react-icons/md"
 
 import {
@@ -47,8 +47,9 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
     }
 
     useEffect(() => {
-        setUserLoggedIn(localStorage.getItem('token')?.length > 0)
-
+        if ((typeof window !== "undefined" && localStorage.getItem('token') || '').length > 0) {
+            setUserLoggedIn(true);
+        }
     }, [pageContext.urlOriginal])
 
     return (
@@ -123,7 +124,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                     <div className="flex gap-2">
                                         <span className="flex items-center text-xl font-semibold text-neutral-900"><FaClipboardList /></span>
                                         <span className="flex items-center text-base font-semibold text-neutral-900"> Your Recent Order</span>
-]                                    </div>
+                                    </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
                                         <FaChevronRight />
                                     </span>
@@ -136,7 +137,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                         <span className="flex items-center text-base font-semibold text-neutral-900"> My Cart</span>
                                     </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
-                                        <GrFormNext />
+                                        <MdNavigateNext />
                                     </span>
                                 </div>
                             </Link>
@@ -147,7 +148,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                         <span className="flex items-center text-base font-semibold text-neutral-900"> My Orders</span>
                                     </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
-                                        <GrFormNext />
+                                        <MdNavigateNext />
                                     </span>
                                 </div>
                             </Link>
@@ -158,7 +159,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                         <span className="flex items-center text-base font-semibold text-neutral-900"> My Addresses</span>
                                     </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
-                                        <GrFormNext />
+                                        <MdNavigateNext />
                                     </span>
                                 </div>
                             </Link>
@@ -170,7 +171,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                         <span className="flex items-center text-base font-semibold text-neutral-900">Setting</span>
                                     </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
-                                        <GrFormNext />
+                                        <MdNavigateNext />
                                     </span>
                                 </div>
                             </Link>
@@ -181,7 +182,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
                                         <span className="flex items-center text-base font-semibold text-neutral-900">Refer and Earn</span>
                                     </div>
                                     <span className="flex items-center text-xl text-neutral-900 font-semibold">
-                                        <GrFormNext />
+                                        <MdNavigateNext />
                                     </span>
                                 </div>
                             </Link>

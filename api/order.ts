@@ -40,10 +40,10 @@ export const getOrders = async (status: OrderStatus[] = [], ids: string[] = [], 
     }
 }
 
-export const getOrderById = async (id: string, token: string = null) => {
+export const getOrderById = async (id: string, token: string = '') => {
     let axiosMethod = axios.get;
     const res = await axiosMethod(`${SERVER_HOST}/api/v1/orders/${id}`,
-        { headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token != null ? token : localStorage.getItem("token")}` } }
+        { headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token?.length > 0 ? token : localStorage.getItem("token")}` } }
     );
     return handleResponse(res);
 }

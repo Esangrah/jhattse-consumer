@@ -14,7 +14,7 @@ export const Page: React.FC = () => {
     const pageContext = usePageContext();
 
     useEffect(() => {
-        setUserType(JSON.parse(localStorage.getItem("profile"))?.is_business)
+        setUserType(JSON.parse(localStorage.getItem("profile") || '{}')?.is_business)
     }, [location])
 
     useEffect(() => {

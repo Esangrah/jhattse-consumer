@@ -1,4 +1,4 @@
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link";
 import { staticImageLoader } from "@core/utils";
 
@@ -10,7 +10,7 @@ export const Logo = ({ homeLink }: Props) => {
     return (
         <Link href={homeLink || "/"}>
             <Image
-                priority={true}
+                priority={"true"}
                 data-test="icon"
                 loader={staticImageLoader}
                 src="public/jhattse-logo.svg"

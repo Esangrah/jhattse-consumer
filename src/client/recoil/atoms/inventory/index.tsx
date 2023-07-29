@@ -5,6 +5,5 @@ import { atom } from "recoil";
 
 
 export const inventoryState = atom < TInventory > ({
-    key: Atoms.Inventory,
-    default: null,
+    key: Atoms.Inventory
 });

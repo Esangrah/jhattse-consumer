@@ -11,7 +11,7 @@ export function Page() {
     const [dineinOrTakeaway, setDineinOrTakeaway] = useState("DINEIN");
     const cart = useRecoilValue(cartState)
 
-    let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo")) : null;
+    let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo") || '{}') : null;
 
     const onDineinOrTakeaway = (value: string) => {
         setDineinOrTakeaway(value);

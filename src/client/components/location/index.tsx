@@ -3,6 +3,7 @@ import { Select } from "antd";
 import { getLocation } from "@core/geolocation";
 import { MdMyLocation, MdOutlineClose } from "react-icons/md";
 import { getAutoSuggest } from "@api/autosuggest";
+import { TData } from "@components/types";
 
 interface Props {
     showModal: boolean;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState<TData[]>([]);
     const [userLocation, setUserLocation] = useState("");
     const [locationCoords, setLocationCoords] = useState({});
 

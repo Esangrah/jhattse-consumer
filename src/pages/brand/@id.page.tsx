@@ -17,6 +17,7 @@ import {
 } from "@components/types";
 import { getFeaturedProducts } from "@api/product";
 import {
+    getLength,
     getSafeUrl,
     humanizeNumber,
     requestLogin,
@@ -41,21 +42,18 @@ import { message } from "antd";
 import { SocialIcon } from "react-social-icons";
 import { usePageContext } from "@renderer/usePageContext";
 import { Link } from '@renderer/Link';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialBrand?: TBrand;
-    initialProductList?: TProduct[];
+    initialBrand: TBrand;
+    initialProductList: TProduct[];
 }
 
-export const onBeforeRender = async (pageContext) => {
+export const onBeforeRender = async (pageContext: PageContextBuiltIn) => {
     const { id } = pageContext.routeParams;
     const res = await getBrand(parseInt(id));
     const initialBrand: TBrand = res;
-    const resProductList = await getFeaturedProducts(
-        null,
-        null,
-        parseInt(id)
-    );
+    const resProductList = await getFeaturedProducts(0, 0, parseInt(id));
     const initialProductList: TProduct[] = resProductList;
 
     return {
@@ -69,10 +67,10 @@ export const onBeforeRender = async (pageContext) => {
 };
 
 
-export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
+export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Props) => {
     const isLogin = useRecoilValue(isLoggedIn);
     const [userInfo, setUserInfo] = useState<TIdentity>(
-        typeof window !== "undefined" && JSON.parse(localStorage.getItem("profile"))
+        typeof window !== "undefined" && JSON.parse(localStorage.getItem("profile") || '{}')
     );
     const [feedback, setFeedback] = useState<TFeedback>();
     const [submitted, setSubmitted] = useState<boolean>(false);
@@ -81,8 +79,8 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
     const [pageNumber, setPageNumber] = useState(0);
     const [isLoadMore, setIsLoadMore] = useState(false);
     const [tabIndex, setTabIndex] = useState(0);
-    const [bestSellerProducts, setBestSellerProducts] = useState<TProduct[]>();
-    const [brandCategories, setBrandCategories] = useState<TProductCategory[]>();
+    const [bestSellerProducts, setBestSellerProducts] = useState<TProduct[]>([]);
+    const [brandCategories, setBrandCategories] = useState<TProductCategory[]>([]);
     const pageSize = 20;
     const pageContext = usePageContext();
 
@@ -91,13 +89,7 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
     };
 
     const getAllProducts = (id: any) => {
-        const resProducts: Promise<TProduct[]> = getFeaturedProducts(
-            parseInt(id),
-            null,
-            null,
-            pageNumber,
-            pageSize
-        );
+        const resProducts: Promise<TProduct[]> = getFeaturedProducts(parseInt(id), 0, 0, pageNumber, pageSize);
         resProducts.then((result) => {
             setIsLoadMore(result?.length == pageSize);
             setProducts([...products, ...result]);
@@ -125,7 +117,7 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
 
     useEffect(() => {
         let id = pageContext.routeParams?.id;
-        if (id == brand?.id.toString()) {
+        if (id === undefined || id == brand?.id.toString()) {
             return;
         }
         const res: Promise<TBrand> = getBrand(parseInt(id));
@@ -143,7 +135,7 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
 
     useEffect(() => {
         let id = pageContext.routeParams?.id;
-        if (id?.length > 0 && id == brand?.id.toString()) {
+        if (id != undefined && id?.length > 0 && id == brand?.id.toString()) {
             return;
         }
         getAllProducts(id);
@@ -154,21 +146,22 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
     };
 
     const submitFeedback = async () => {
-        if (feedback?.feedback?.length > 0) {
+        if (feedback?.feedback !== undefined && feedback?.feedback?.length > 0) {
+            addFeedback(feedback)
+                .then((res) => {
+                    message.success("Message Submitted");
+                    setSubmitted(true);
+                })
+                .catch((e: any) => {
+                    message.error(e?.response?.data?.detail || "Some Error Occured");
+                    if (e.response?.status === 401) {
+                        requestLogin(pageContext.urlOriginal);
+                    }
+                });
+        } else {
             message.error("Message shouldn't be empty.");
             return;
         }
-        addFeedback(feedback)
-            .then((res) => {
-                message.success("Message Submitted");
-                setSubmitted(true);
-            })
-            .catch((e: any) => {
-                message.error(e?.response?.data?.detail || "Some Error Occured");
-                if (e.response?.status === 401) {
-                    requestLogin(location.pathname);
-                }
-            });
     };
 
     return (
@@ -399,12 +392,12 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
                                             </p>
                                         </div>
                                         <div className="p-8 sm:p-2 flex flex-col gap-4">
-                                            {brand?.social_accounts.length !== 0 &&
+                                            {getLength(brand?.social_accounts) > 0 &&
                                                 brand?.social_accounts?.map((item) => {
                                                     return (
                                                         <span className="select-none">
                                                             <SocialIcon url={item?.link} />{" "}
-                                                            {`${humanizeNumber(item.followers)} ${item.followers < 2 ? "follower" : "followers"
+                                                            {`${humanizeNumber(item?.followers || 0)} ${item?.followers !== undefined && item?.followers < 2 ? "follower" : "followers"
                                                                 }`}
                                                         </span>
                                                     );
@@ -503,13 +496,13 @@ export const Page: React.FC = ({ initialBrand, initialProductList }: Props) => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-2 sm:grid grid-cols-2">
-                                    {brand?.social_accounts.length !== 0 &&
+                                    {getLength(brand?.social_accounts) > 0 &&
                                         brand?.social_accounts?.map((item: TSocialAccount) => {
                                             return (
                                                 <div className="flex gap-4 items-center">
                                                     <span className="select-none">
                                                         <SocialIcon url={item?.link} />{" "}
-                                                        {`${humanizeNumber(item.followers)}${item.followers < 2 ? " follower" : "+ followers"
+                                                        {`${humanizeNumber(item.followers || 0)}${item.followers !== undefined && item.followers < 2 ? " follower" : "+ followers"
                                                             }`}
                                                     </span>
                                                 </div>

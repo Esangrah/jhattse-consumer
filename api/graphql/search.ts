@@ -35,5 +35,5 @@ export const getSearchsuggest = async (search: TSearch) => {
       }
     `;
     const result = await client.query(query, {});
-    return handleResponse(null)(result);
+    return handleResponse('')(result);
 };

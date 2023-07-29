@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 const ReferAndEarn = () => {
-    const [refLink, setRefLink] = useState(null);
+    const [refLink, setRefLink] = useState<string>("");
     const [message, setMessage] = useState("");
     
     useEffect(() => {
-        const profile = localStorage.getItem("profile");
+        const profile = localStorage.getItem("profile") || '{}';
         if (profile != undefined) {
             setRefLink(`https://jhattse.com?ref_code=${JSON.parse(profile)?.referral_code}`)
         }

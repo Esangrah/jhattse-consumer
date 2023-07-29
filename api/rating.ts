@@ -10,10 +10,10 @@ export const getReviews = async (product_id: number, size: number = 10, ordering
 }
 
 export const getMyReview = async (product_id: number) => {
-    if (JSON.parse(localStorage.getItem("profile"))?.id == null) {
+    if (JSON.parse(localStorage.getItem("profile") || '{}')?.id == null) {
         return null
     }
-    const res = await axios.get(`${SERVER_HOST}/api/v1/productratings/?product_id=${product_id}&user_id=${JSON.parse(localStorage.getItem("profile"))?.id}`)
+    const res = await axios.get(`${SERVER_HOST}/api/v1/productratings/?product_id=${product_id}&user_id=${JSON.parse(localStorage.getItem("profile") || '{}')?.id}`)
     const reviews: TReview[] = handleResponse(res);
     return reviews.length > 0 ? reviews[0] : null;
 }
@@ -34,10 +34,10 @@ export const getStoreReviews = async (store_id: number) => {
 }
 
 export const getMyStoreReview = async (store_id: number) => {
-    if (JSON.parse(localStorage.getItem("profile"))?.id == null) {
+    if (JSON.parse(localStorage.getItem("profile") || '{}')?.id == null) {
         return null
     }
-    const res = await axios.get(`${SERVER_HOST}/api/v1/storeratings/?store_id=${store_id}&user_id=${JSON.parse(localStorage.getItem("profile"))?.id}`)
+    const res = await axios.get(`${SERVER_HOST}/api/v1/storeratings/?store_id=${store_id}&user_id=${JSON.parse(localStorage.getItem("profile") || '{}')?.id}`)
     const reviews: TReview[] = handleResponse(res);
     return reviews.length > 0 ? reviews[0] : null;
 }

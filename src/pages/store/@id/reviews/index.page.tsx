@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link } from '@renderer/Link'
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { ReviewCard } from '@components/cards';
@@ -12,26 +12,32 @@ import { BackBar } from "@components/header/backbar";
 import { getStore } from '@api/store';
 import { AddStoreReview } from '@components/addreview/store';
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialStore?: TStore
+    initialStore: TStore
+    initialReviews: TReview[]
 }
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
-    const res = getStore(parseInt(id as string));
+    const res = await getStore(parseInt(id as string));
     const initialStore: TStore = res;
+    const initialReviews = await getStoreReviews(parseInt(id));
 
     return {
-        props: {
-            initialStore,
-        },
+        pageContext: {
+            pageProps: {
+                initialStore,
+                initialReviews
+            },
+        }
     }
 }
 
-export const Page: React.FC = ({ initialStore }: Props) => {
+export const Page: React.FC<Props> = ({ initialReviews, initialStore }: Props) => {
     const [store, setStore] = useState<TStore>(initialStore);
-    const [reviews, setReviews] = useState<TReview[]>([]);
+    const [reviews, setReviews] = useState<TReview[]>(initialReviews);
     const [myReview, setMyReview] = useState<TReview>();
     const pageContext = usePageContext()
 
@@ -50,7 +56,7 @@ export const Page: React.FC = ({ initialStore }: Props) => {
     useEffect(() => {
         // TODO:
         let id = pageContext.urlParsed?.search.id;
-        if (id == store?.id.toString()) {
+        if (id === undefined || id == store?.id.toString()) {
             return
         }
         const res: Promise<TStore> = getStore(parseInt(id));
@@ -64,7 +70,9 @@ export const Page: React.FC = ({ initialStore }: Props) => {
                 setReviews(reviews);
             });
             getMyStoreReview(store.id).then((review) => {
-                setMyReview(review);
+                if (review !== null) {
+                    setMyReview(review);
+                }
             });
         }
     }, [store])

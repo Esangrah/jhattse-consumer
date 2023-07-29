@@ -37,19 +37,15 @@ export const Navbar: React.FC = () => {
     }
 
     useEffect(() => {
-        if (nearestStore?.address !== undefined && nearestStore?.address?.latitude !== null) {
+        if (nearestStore?.address !== undefined && nearestStore?.address?.latitude !== null || nearestStore?.address?.latitude !== undefined) {
             getLocation().then((userLocation) => {
-                let distance = getDistance({ 'latitude': userLocation?.latitude, 'longitude': userLocation?.longitude }, { 'latitude': nearestStore?.address?.latitude, 'longitude': nearestStore?.address?.longitude })
+                let distance = getDistance({ lat: userLocation?.latitude, lng: userLocation?.longitude }, { lat: nearestStore?.address?.latitude || 0, lng: nearestStore?.address?.longitude || 0 })
                 setIsShown(distance < 1000);
                 setLocalDistance(distance);
             })
         }
     }, [nearestStore?.address])
 
-    // useEffect(() => {
-    //     const res = getNearestStores(0, 1);
-    //     res.then((stores) => { if (stores?.length > 0) { setNearestStore(stores[0]) } })
-    // }, [router])
 
     return (
         <>{
@@ -90,7 +86,7 @@ export const Navbar: React.FC = () => {
                                     <p className="text-sky-300 text-lg font-bold"><a href={`tel:${nearestStore?.phone}`}><MdPhoneEnabled /></a></p>
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
-                                    <p className="text-neutral-50">{nearestStore?.address.street_name}{", "}{nearestStore?.address.city.name}</p>
+                                    <p className="text-neutral-50">{nearestStore?.address.street_name}{", "}{nearestStore?.address?.city?.name}</p>
                                     {(localDistance != undefined) && <p className="text-sky-300 text-base sm:text-sm font-bold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : (localDistance > 100 * 1000 ? "VIEW LOCATION" : (localDistance / 1000).toFixed(0).toString() + " km"))}</p>}
                                     <p className="text-sky-300 text-lg font-bold"><a href={`http://www.google.com/maps/place/${nearestStore?.address?.latitude},${nearestStore?.address?.longitude}`} target="_blank"><MdOutlineLocationOn/></a></p>
                                 </div>

@@ -3,8 +3,7 @@ export const passToClient = ['pageProps', 'urlPathname', 'routeParams']
 import ReactDOMServer from 'react-dom/server'
 import { PageShell } from '@renderer/PageShell'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
-import logoUrl from './logo.svg'
-import type { PageContextServer } from './types'
+import type { PageContextServer } from '@renderer/types'
 import { RecoilRoot } from 'recoil'
 
 export async function render(pageContext: PageContextServer) {

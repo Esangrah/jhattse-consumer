@@ -1,6 +1,6 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Link} from "@renderer/Link"
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { staticImageLoader } from "@core/utils";
 import { navigate } from 'vite-plugin-ssr/client/router';
 
@@ -14,7 +14,7 @@ export const BackBar: React.FC<Props> = ({ homeLink }) => {
       <div className="flex justify-start">
         <Link href={homeLink || "/"}>
           <Image
-            priority={true}
+            priority={"true"}
             loader={staticImageLoader}
             src="public/jhattse-logo.svg"
             width="100"

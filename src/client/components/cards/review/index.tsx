@@ -2,7 +2,7 @@ import { Star } from "@components/star";
 import { TReview } from "@components/types";
 import { getColor, sanityIoImageLoader } from "@core/utils";
 import Moment from "moment";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 
 
 type Props = {

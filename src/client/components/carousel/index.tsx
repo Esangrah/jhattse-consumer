@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { TImage } from "./../types";
 import { sanityIoImageLoader } from "@core/utils";
 

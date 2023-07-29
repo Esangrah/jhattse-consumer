@@ -11,7 +11,7 @@ import { navigate } from 'vite-plugin-ssr/client/router';
 import { AddressSmallCard, OrderInfoCard, StoreCartContainer } from '@components/cards';
 import { usePageContext } from '@renderer/usePageContext';
 
-const OrderPage = () => {
+export const Page = () => {
     const [stage, setStage] = useState < number > (1);
     const [screen, setScreen] = useState < Map < number, boolean>> (new Map([[2, true]]));
     const cart = useRecoilValue(cartState);
@@ -21,16 +21,14 @@ const OrderPage = () => {
         navigate('/account/addresses')
     }
 
-    // const cartItem = cartItems.map()
-
     useEffect(() => {
-        let id = pageContext.urlPathname.match(/#([a-z0-9]+)/gi)
-        if (id?.length > 0) {
-            setStage(parseInt(id.toString().substring(1)));
+        let id = pageContext.urlPathname.match(/#([0-9]+)/gi)
+        if (id !== null && id.length > 0) {
+            setStage(parseInt(id[0]));
         } else {
             setStage(1);
         }
-    }, [location])
+    }, [pageContext.urlOriginal])
 
     const onNext = () => {
         console.log(stage);
@@ -51,7 +49,7 @@ const OrderPage = () => {
 
     const groupBy = (arr: TCartItem[]) => {
         const groupedMap = arr.reduce(
-            (entryMap: Map<number, TCartItem[]>, e: TCartItem) => entryMap.set(e.inventory?.store_id, [...entryMap.get(e.inventory?.store_id) || [], e]),
+            (entryMap: Map<number, TCartItem[]>, e: TCartItem) => entryMap.set(e.inventory.store_id, [...entryMap.get(e.inventory?.store_id) || [], e]),
             new Map()
         );
         return groupedMap;
@@ -104,5 +102,3 @@ const OrderPage = () => {
         </div>
     )
 }
-
-export default OrderPage

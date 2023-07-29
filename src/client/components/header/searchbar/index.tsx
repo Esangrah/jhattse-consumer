@@ -1,4 +1,4 @@
-import { TSearch, TData } from "@components/types";
+import { TSearch, TData, TSearchDescriptor } from "@components/types";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
@@ -84,7 +84,7 @@ const initialOptions = new Map<string, any>([
 ]);
 
 export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
-    const [query, setQuery] = useState<TSearch>();
+    const [query, setQuery] = useState<TSearch>({ context: {}, descriptor: {} as TSearchDescriptor});
     const [options, setOptions] = useState<Map<string, any>>();
     const [searchInput, setSearchInput] = useState("");
     const pageContext = usePageContext();
@@ -107,17 +107,16 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
         let q = queryParmas?.q;
         let intent = queryParmas?.intent;
 
-        if (intent != undefined || mode != undefined) {
-            let lookup = intent || mode;
-
+        if (intent !== undefined || mode !== undefined) {
+            let lookup = intent || mode || "product";
             setOptions(new Map([[lookup, initialOptions.get(lookup)]]));
         } else {
             setOptions(initialOptions);
         }
         setQuery({
             ...query,
-            descriptor: { ...query?.descriptor, q: q, intent: intent || "product" },
-        });
+            descriptor: { ...query?.descriptor, q: q || "", intent: intent || "product" },
+        } as TSearch);
     }, [pageContext.urlOriginal]);
 
     useEffect(() => {
@@ -179,7 +178,7 @@ export const Searchbar: React.FC<Props> = ({ mode, callback, theme }) => {
         });
     };
 
-    const handleSelect = async (element, option) => {
+    const handleSelect = async (element: any, option: any) => {
         console.log(element, option)
         if (option?.label?.props?.href != undefined) {
             navigate(option?.label?.props?.href)

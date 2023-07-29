@@ -1,7 +1,7 @@
 import { getprofile, updateProfile, uploadProfileImage } from '@api/authentication'
 import { TIdentity, TOtp } from '@components/types'
 import React, { useEffect, useState } from 'react'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { MdEdit, MdVerified, MdOutlineClose } from 'react-icons/md'
 import { FaCamera } from 'react-icons/fa'
 import { useRecoilState } from 'recoil'
@@ -17,7 +17,7 @@ export const ProfileCard = () => {
     const [user, setUser] = useRecoilState<TIdentity>(profileState);
     const [isedit, setIsEdit] = useState(false);
     const [showModel, setShowModel] = useState(false);
-    const [imageFile, setImageFile] = useState<File>(null);
+    const [imageFile, setImageFile] = useState<File>();
     const [otp, setOtp] = useState<TOtp>();
     const [isLoading, setIsLoading] = useState(false);
     const pageContext = usePageContext()
@@ -52,9 +52,9 @@ export const ProfileCard = () => {
     }, [user])
 
     const handleVerify = () => {
-        if (user?.phone !== undefined) {
+        if (user?.phone !== undefined && otp?.otp !== undefined) {
             const result = verifyMobile(otp);
-            result.then((res: TOtp) => { navigate(res.link) }).catch((e) => {
+            result.then((res: TOtp) => { navigate(res.link || '#') }).catch((e) => {
                 if (e.response?.status === 401) {
                     requestLogin(pageContext.urlOriginal);
                 }
@@ -99,7 +99,7 @@ export const ProfileCard = () => {
                                 <Image
                                     loader={sanityIoImageLoader}
                                     src={user?.profile_image || "assets/esangrah-profile.png"}
-                                    alt={user?.first_name}
+                                    alt={user?.first_name || "Profile"}
                                     width="100"
                                     height="100"
                                     className="rounded-full aspect-square"

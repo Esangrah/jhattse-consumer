@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TIdentity } from "@components/types";
 import { login, getprofile, socialLogin } from "@api/authentication";
@@ -33,7 +33,7 @@ export const SignIn: React.FC = () => {
             res_profile.then((profile) => {
                 console.log(profile);
                 localStorage.setItem("profile", JSON.stringify(profile));
-                setUserType(JSON.parse(localStorage.getItem("profile"))?.is_business)
+                setUserType(JSON.parse(localStorage.getItem("profile") || '{}')?.is_business)
             })
         }).catch((result) => {
             console.log(result);
@@ -88,7 +88,7 @@ export const SignIn: React.FC = () => {
                             <h1 className="text-xl font-bold mr-2">Login</h1>
                             <Link href="/" >
                                 <Image
-                                    priority={true}
+                                    priority={"true"}
                                     loader={staticImageLoader}
                                     src="public/jhattse-logo.svg"
                                     width="100"

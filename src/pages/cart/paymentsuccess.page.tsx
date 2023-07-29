@@ -2,7 +2,7 @@ import { getOrderById } from '@api/order';
 import { Container } from '@components/container';
 import { Header } from '@components/header';
 import { TOrder } from '@components/types';
-import { sanityIoImageLoader } from '@core/utils';
+import { getLength, sanityIoImageLoader } from '@core/utils';
 import Head from 'react-helmet';
 import { Image } from "@renderer/Image";;
 import { useEffect, useState } from 'react'
@@ -15,7 +15,7 @@ export const Page = () => {
     
 
     useEffect(() => {
-        getOrderById(orderId).then((res) => {
+        getOrderById(orderId || '').then((res) => {
             setOrderDetails(res);
             console.log("payment", res);
         })
@@ -39,7 +39,7 @@ export const Page = () => {
                     <div className='sm:hidden flex flex-1 justify-center p-3'>
                         <Image
                             loader={sanityIoImageLoader}
-                            priority={true}
+                            priority={"true"}
                             className='object-cover h-full'
                             src='https://jhattse.com/public/assets/payment_successful.png'
                             alt={'payment_successful.png'}
@@ -58,9 +58,9 @@ export const Page = () => {
                                 <h2 className='text-2xl sm:text-lg font-bold text-custom_black sm:py-2'>{orderDetails?.payment_mode === "Cash" ? "Please pay at the counter" : "Payment Successful!"}</h2>
                                 <span>
                                     <p className="text-lg text-darkGray sm:text-sm">
-                                        {`Your order for ${orderDetails?.orderitems[0]?.inventory?.product?.name} 
-                                    ${orderDetails?.orderitems?.length > 1 ? "+" : ""} 
-                                    ${orderDetails?.orderitems?.length > 1 ? `${(orderDetails?.orderitems?.length - 1)} items` : ""}`}
+                                        {`Your order for ${(orderDetails?.orderitems || [])[0]?.inventory?.product?.name} 
+                                    ${getLength(orderDetails?.orderitems) > 1 ? "+" : ""} 
+                                    ${getLength(orderDetails?.orderitems) > 1 ? `${getLength(orderDetails?.orderitems) - 1} items` : ""}`}
                                     </p>
                                     <p className="text-lg text-darkGray sm:text-sm">has been placed</p>
                                 </span>

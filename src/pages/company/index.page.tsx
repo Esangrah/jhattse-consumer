@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 
 import { SwiperSlide } from "swiper/react";
 import { CarouselContainer } from "@components/container/carousel";
@@ -11,7 +11,7 @@ export function Page() {
     <div className="container">
       <div className="flex flex-row bg-neutral-50 justify-between px-20 py-5 w-screen sm:px-5 ">
         <Image
-          priority={true}
+          priority={"true"}
           src={"/company/headerimage.png"}
           width="200"
           height="200"

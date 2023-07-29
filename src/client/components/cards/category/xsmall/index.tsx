@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TProductCategory } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from "@core/utils";

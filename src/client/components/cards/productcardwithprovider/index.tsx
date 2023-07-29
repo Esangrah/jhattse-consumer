@@ -1,9 +1,9 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { Star } from "@components/star"
 import { TProduct } from "@components/types";
-import { getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
+import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
 import { FaStar } from "react-icons/fa";
 import { AddToCart } from "@components/addtocart";
 
@@ -13,26 +13,27 @@ type Props = {
 
 
 export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
-    let storeRating = product?.inventories?.length > 0 ? product?.inventories[0]?.store?.stats?.rating_overall : undefined;
-    let isFnB = product?.inventories?.length > 0 && product?.inventories[0]?.store?.category_id == 1;
-    let externalLink = product?.inventories?.length > 0 ? product?.inventories[0]?.external_link : "";
+    let firstInventory = getFirst(product?.inventories)
+    let storeRating = firstInventory?.store?.stats?.rating_overall;
+    let isFnB = firstInventory?.store?.category_id == 1;
+    let externalLink = firstInventory?.external_link || "";
     let isOnline = externalLink?.length > 0;
 
     return (
         <div className="flex flex-col bg-neutral-50 rounded-md p-4 sm:p-2 font-manrope">
             {isOnline &&
                 <div className="flex justify-between items-center p-2 border-b">
-                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{product?.inventories[0]?.store?.name}
+                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{firstInventory?.store?.name}
                     </span>
                     {externalLink?.length > 0 &&
                         <div className="flex gap-1 items-center">
                             <Link href={externalLink} >
                                 <Image
                                     loader={sanityIoImageLoader}
-                                    src={product?.inventories[0]?.store?.logo || "https://cdn.jhattse.com/public/assets/noimage.png"}
+                                    src={firstInventory?.store?.logo || "https://cdn.jhattse.com/public/assets/noimage.png"}
                                     width="100"
                                     height="40"
-                                    alt={product?.inventories[0]?.store?.name}
+                                    alt={firstInventory?.store?.name || ''}
                                 />
                             </Link>
                         </div>
@@ -41,9 +42,9 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
             }
             {isFnB &&
                 <div className="flex justify-between items-center p-2 border-b">
-                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{product?.inventories[0]?.store?.name}
+                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{firstInventory?.store?.name}
                     </span>
-                    {storeRating > 0 &&
+                    {storeRating !== undefined && storeRating > 0 &&
                         <div className="flex gap-1 items-center">
                             <p className="font-bold text-custom_gray text-base pr-1">{storeRating?.toFixed(1)}</p>
                             {
@@ -73,7 +74,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                             <Image
                                 loader={sanityIoImageLoader}
                                 src={getImageObject(product?.images)?.url}
-                                alt={getImageObject(product?.images)?.description || product?.name}
+                                alt={getImageObject(product?.images)?.description || product?.name || 'Product'}
                                 width="200"
                                 height="200"
                                 className="w-full h-full object-cover scale-100 hover:scale-105 focus:scale-105 ease-in duration-200 rounded-md"
@@ -103,7 +104,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                             </div>
                             {product?.inventories?.length != 0 ?
                                 <div className="flex flex-row gap-4 items-center pt-1 w-full">
-                                    <AddToCart addToCartBag={false} product={product}  inventory={product?.inventories?.length > 0 ? product?.inventories[0] : null}></AddToCart>
+                                    <AddToCart addToCartBag={false} product={product}  inventory={getFirst(product?.inventories)}></AddToCart>
                                 </div>
                                 :
                                 <></>
@@ -112,6 +113,6 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

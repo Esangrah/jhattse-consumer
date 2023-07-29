@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TIdentity } from "@components/types";
 import { signup, socialSignup } from "@api/authentication";
@@ -101,7 +101,7 @@ export const SignUp: React.FC<Props> = ({ type }: Props) => {
                             <h1 className="text-xl font-bold mr-2">Register as <span className="capitalize">{type}</span></h1>
                             <Link href="/">
                                 <Image
-                                    priority={true}
+                                    priority={"true"}
                                     loader={staticImageLoader}
                                     src="public/jhattse-logo.svg"
                                     width="100"

@@ -1,5 +1,5 @@
 import Head from 'react-helmet';
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import React, { useState, useEffect } from 'react'
 import { Container } from "@components/container"
 import { Header } from "@components/header"
@@ -9,7 +9,7 @@ import { TImage, TInventory, TProduct, TVariant } from "@components/types";
 import { getDetailProduct, getSimilarProducts } from '@api/product'
 import { RichCard } from "@components/cards";
 import { Star } from '@components/star';
-import { getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
+import { getFirst, getLength, getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { Footer } from '@components/footer';
 import { CarouselContainer } from '@components/container/carousel';
@@ -20,12 +20,13 @@ import { getCombinedName, inventoryByVariantId } from '@components/variant/varia
 import { RatingWidget } from '@components/widget/rating';
 import { usePageContext } from '@renderer/usePageContext';
 import { Link } from '@renderer/Link';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialProduct?: TProduct
+    initialProduct: TProduct
 }
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
     const res = await getDetailProduct(parseInt(id));
     const initialProduct: TProduct = res;
@@ -40,34 +41,30 @@ export async function onBeforeRender(pageContext) {
     }
 }
 
-export const Page: React.FC = ({ initialProduct }: Props) => {
+export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
     const [product, setProduct] = useState<TProduct>(initialProduct);
-    const [mainImage, setMainImage] = useState<TImage>(initialProduct?.images?.length > 0 ? initialProduct?.images[0] : null);
-    const [similarProducts, setSimilarProducts] = useState<TProduct[]>();
-    const [selectedInventory, setselectedInventory] = useState<TInventory>(initialProduct?.inventories?.length > 0 ? initialProduct?.inventories[0] : null)
-    const [variant, setVariant] = useState<TVariant>((selectedInventory?.is_available && selectedInventory?.variant) ? selectedInventory?.variant : product?.variants?.filter((variant) => inventoryByVariantId(variant, product)[0]?.is_available == true)[0]);
+    const [mainImage, setMainImage] = useState<TImage>(getFirst(initialProduct?.images));
+    const [similarProducts, setSimilarProducts] = useState<TProduct[]>([]);
+    const [selectedInventory, setselectedInventory] = useState<TInventory>(getFirst(initialProduct?.inventories))
+    const [variant, setVariant] = useState<TVariant>((selectedInventory?.is_available && selectedInventory?.variant !== undefined) ? selectedInventory?.variant : product?.variants?.find((variant) => getFirst(inventoryByVariantId(variant, product))?.is_available == true) as TVariant);
     const pageContext = usePageContext();
     let content = null
 
     const onClickVariant = (value: TVariant) => {
         setVariant(value);
-        setselectedInventory(inventoryByVariantId(value, product)[0])
+        setselectedInventory(getFirst(inventoryByVariantId(value, product)))
     }
 
     useEffect(() => {
         let id = pageContext.routeParams?.id;
-        if (id == product?.id.toString()) {
+        if (id === undefined || id == product?.id?.toString()) {
             return
         }
         const res: Promise<TProduct> = getDetailProduct(parseInt(id));
         res.then((product) => {
             setProduct(product);
-            if (product.inventories && product.inventories.length > 0) {
-                setselectedInventory(product.inventories[0])
-            }
-            if (product?.images?.length > 0) {
-                setMainImage(product?.images[0])
-            }
+            setselectedInventory(getFirst(product.inventories))
+            setMainImage(getFirst(product?.images))
         });
     }, [pageContext.urlOriginal])
 
@@ -101,7 +98,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                 <BreadcrumbLink href='/product/trending'>Product</BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbItem className='select-none font-normal text-ellipsis text-left break-words line-clamp-1' isCurrentPage>
-                                <BreadcrumbLink href={`/product/${product.id}/${getSafeUrl(product?.name)}`}>{trimToLength(product.name, 80)}</BreadcrumbLink>
+                                <BreadcrumbLink href={`/product/${product.id}/${getSafeUrl(product?.name || '')}`}>{trimToLength(product?.name, 80)}</BreadcrumbLink>
                                 <ol className="p-0 list-none"></ol>
                             </BreadcrumbItem>
                         </Breadcrumb>
@@ -119,7 +116,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                                     height="200"
                                                     className="flex items-center justify-center w-full h-full object-cover rounded-t-xl"
                                                     src={image?.url}
-                                                    alt={image?.description || product?.name}
+                                                    alt={image?.description || product?.name || 'product'}
                                                 />
                                             </div>
                                         </SwiperSlide>
@@ -133,9 +130,9 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                 <div className="flex justify-center bg-neutral-50 rounded item-center w-56 sm:w-full">
                                     <Image
                                         loader={sanityIoImageLoader}
-                                        priority={true}
+                                        priority={"true"}
                                         src={mainImage?.url || "assets/noimage.png"}
-                                        alt={mainImage?.description || product.name}
+                                        alt={mainImage?.description || product.name || 'product'}
                                         width="200"
                                         height="200"
                                     />
@@ -145,7 +142,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                         <div className="flex flex-col justify-between col-span-2 gap-8 text-manrope">
                             <div className="flex flex-col leading-tight">
                                 <div className="text-ellipsis text-left break-words leading-tight pb-2.5 max-w-2xl sm:max-w-full">
-                                    <h1 className="text-neutral-800 text-3xl lg:text-xl sm:text-lg font-extrabold line-clamp-2 md:line-clamp-none">{variant !== undefined && variant !== null ? getCombinedName(product, variant?.id) : product?.name}</h1>
+                                    <h1 className="text-neutral-800 text-3xl lg:text-xl sm:text-lg font-extrabold line-clamp-2 md:line-clamp-none">{getCombinedName(product, variant?.id || 0)}</h1>
                                 </div>
                                 {product?.brand &&
                                     <div className="text-ellipsis text-left break-words leading-tight pb-5 sm:pb-3 max-w-2xl sm:max-w-full">
@@ -160,7 +157,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                     }
                                 </div>
                                 {
-                                    selectedInventory?.store?.id > 0 ?
+                                    selectedInventory?.store !== undefined && selectedInventory?.store?.id > 0 ?
                                         <p className="text-neutral-500 font-bold text-base sm:text-sm leading-tight pb-3">
                                             Sold By: {" "}
                                             <Link href={`/store/${selectedInventory?.store?.id}/${getSafeUrl(selectedInventory?.store?.name)}`}><span className="font-bold text-brand">{selectedInventory?.store?.name}</span></Link>
@@ -170,12 +167,12 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                 }
 
 
-                                {product?.inventories?.length > 0 ?
+                                {getLength(product?.inventories) > 0 ?
                                     <div className="flex flex-row items-center gap-4 pb-6 text-base sm:text-sm">
-                                        <span className="text-neutral-800 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.price || product?.inventories?.filter((inventory) => inventory.variant_id == variant?.id)[0]?.price || selectedInventory?.mrp)}</span>
-                                        {(selectedInventory?.price !== null && selectedInventory?.mrp !== selectedInventory?.price) && <span className="line-through text-neutral-400 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.mrp || product?.inventories?.filter((inventory) => inventory.variant_id == variant?.id)[0]?.mrp)}</span>}
-                                        {selectedInventory?.price != null && selectedInventory?.price < product.mrp ?
-                                            <div className="text-green-500">({Math.trunc((product.mrp - selectedInventory.price) / product.mrp * 100)}% off)</div>
+                                        <span className="text-neutral-800 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.price || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.price || selectedInventory?.mrp || 0)}</span>
+                                        {(selectedInventory?.price !== null && selectedInventory?.mrp !== selectedInventory?.price) && <span className="line-through text-neutral-400 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.mrp || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.mrp || 0)}</span>}
+                                        {product.mrp !== undefined && selectedInventory?.price !== undefined && selectedInventory?.price < product.mrp ?
+                                            <div className="text-green-500">({Math.trunc((product.mrp - (selectedInventory?.price || 0)) / product.mrp * 100)}% off)</div>
                                             :
                                             <div></div>
                                         }
@@ -184,7 +181,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                     <></>
                                 }
 
-                                {selectedInventory?.store?.id > 0 ?
+                                {selectedInventory?.store?.id && selectedInventory?.store?.id > 0 ?
                                     <div className="flex flex-row gap-4 items-center align-bottom w-44 sm:w-full pb-12">
                                         <CartButton mode={""} Isvariant={false} product={product} variantId={variant?.id} inventory={selectedInventory}></CartButton>
                                     </div>
@@ -194,20 +191,20 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
 
                                 {/* Bottom Section Start */}
                                 <div className="flex flex-col w-full">
-                                    {product.inventories?.length > 0 && product?.variants?.length > 1 ?
+                                    {getLength(product.inventories) > 0 && getLength(product?.variants) > 1 ?
                                         <div>
                                             <h3 className="font-bold text-lg py-2">Variants</h3>
                                             <CarouselContainer>
-                                                {product?.variants?.length > 0 && product?.variants?.map((item, index: number) => {
+                                                {getLength(product?.variants) > 0 && product?.variants?.map((item, index: number) => {
                                                     return <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>
-                                                        <div className={inventoryByVariantId(item, product)[0]?.is_available ? `bg-neutral-50 rounded-md cursor-pointer sm:w-full border ${item?.id == variant?.id ? 'border-brand-500' : 'border-neutral-300'}` : "cursor-pointer border border-neutral-300 rounded-md sm:w-full opacity-75"} onClick={() => onClickVariant(item)}>
+                                                        <div className={getFirst(inventoryByVariantId(item, product))?.is_available ? `bg-neutral-50 rounded-md cursor-pointer sm:w-full border ${item?.id == variant?.id ? 'border-brand-500' : 'border-neutral-300'}` : "cursor-pointer border border-neutral-300 rounded-md sm:w-full opacity-75"} onClick={() => onClickVariant(item)}>
                                                             <div className="flex flex-col gap-2 ">
                                                                 <div className="flex justify-start gap-2 py-4 px-5 border-b">
                                                                     <h4 className="text-lg lg:text-base font-semibold text-neutral-700 line-clamp-1">{trimToLength((item?.name || product?.name), 20)}</h4>
                                                                 </div>
                                                                 <div className="pb-4 px-5 h-14">
-                                                                    <span className="text-xl lg:text-lg font-extrabold text-neutral-800">{humanizeCurrency(product?.inventories?.filter((inventory) => inventory.variant_id == item.id)[0]?.price || product?.inventories?.filter((inventory) => inventory.variant_id == item.id)[0]?.mrp) || "Unavailable"}</span>
-                                                                    <p className={inventoryByVariantId(item, product)[0]?.is_available ? "font-bold text-xs text-success-500" : "font-bold text-xs text-error-400"}>{inventoryByVariantId(item, product)[0]?.is_available ? "In Stock" : "Out of stock"}</p>
+                                                                    <span className="text-xl lg:text-lg font-extrabold text-neutral-800">{humanizeCurrency(product?.inventories?.find((inventory) => inventory.variant_id == item.id)?.price || product?.inventories?.find((inventory) => inventory.variant_id == item.id)?.mrp) || "Unavailable"}</span>
+                                                                    <p className={getFirst(inventoryByVariantId(item, product))?.is_available ? "font-bold text-xs text-success-500" : "font-bold text-xs text-error-400"}>{getFirst(inventoryByVariantId(item, product))?.is_available ? "In Stock" : "Out of stock"}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -218,17 +215,17 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                         :
                                         <></>}
                                     <div className="h-6 sm:h-4"></div>
-                                    {product.inventories?.length > 0 ?
+                                    {getLength(inventoryByVariantId(variant, product)) > 0 ?
                                         <div className="sm:hidden">
                                             <h3 className="font-bold text-lg py-2">Offers and Pricing</h3>
                                             <CarouselContainer>
-                                                {(product.inventories && inventoryByVariantId(variant, product)).map((inventory: TInventory, index: number) => {
+                                                {inventoryByVariantId(variant, product).map((inventory: TInventory, index: number) => {
                                                     return (
                                                         <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>
                                                             <div key={inventory.id} className={`bg-neutral-50 p-2 rounded-md cursor-pointer w-60 sm:w-full border-2 ${selectedInventory?.id == inventory.id ? 'border-brand-500' : 'border-neutral-300'}`} onClick={() => { setselectedInventory(inventory) }}>
                                                                 <div className="flex flex-col gap-2 ">
                                                                     <div className="flex justify-start font-bold gap-2 line-clamp-1">
-                                                                        {inventory.store.name}
+                                                                        {inventory?.store?.name}
                                                                     </div>
                                                                     {inventory.store?.stats?.rating_overall ?
                                                                         <Star rating={inventory.store?.stats?.rating_overall} />
@@ -254,10 +251,10 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                     }
 
                                     {/* For Mobile Device Start */}
-                                    {inventoryByVariantId(variant, product)?.length > 0 ?
+                                    {getLength(inventoryByVariantId(variant, product)) > 0 ?
                                         <div className="hidden sm:block">
                                             <h3 className="font-bold text-lg py-2">Offers and Pricing</h3>
-                                            {(product.inventories && inventoryByVariantId(variant, product)).map((inventory: TInventory) => {
+                                            {inventoryByVariantId(variant, product).map((inventory: TInventory) => {
                                                 return (
                                                     <div className='flex flex-row gap-2 item-center'>
                                                         <div className="radio flex flex-row items-center w-full gap-2">
@@ -274,7 +271,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                                             <div key={inventory.id} className={`bg-neutral-50 p-2 rounded-md mt-1 mb-2 w-full ${selectedInventory?.id == inventory.id ? 'border-2 border-brand-500' : ''}`} onClick={() => { setselectedInventory(inventory) }}>
                                                                 <div className="flex flex-row gap-2 items-center justify-between">
                                                                     <div className="flex justify-start items-center gap-2 text-xs">
-                                                                        {inventory.store.name}
+                                                                        {inventory?.store?.name}
                                                                         {product?.stats?.rating_overall ?
                                                                             <Star rating={product?.stats?.rating_overall} />
                                                                             :
@@ -282,7 +279,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                                                         }
                                                                     </div>
                                                                     <div className="flex flex-row justify-between text-sm">
-                                                                        <div className="flex justify-start font-bold font-neutral-700">{humanizeCurrency(inventory?.price || inventory?.mrp || product?.mrp)}</div>
+                                                                        <div className="flex justify-start font-bold font-neutral-700">{humanizeCurrency(inventory?.price || inventory?.mrp || product?.mrp || 0)}</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -295,7 +292,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                         <></>
                                     }
                                     <div className="h-6 sm:h-4"></div>
-                                    {product?.stats?.rating_count > 0 && <RatingWidget product={product}></RatingWidget>}
+                                    {product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 && <RatingWidget product={product}></RatingWidget>}
                                 </div>
                                 {/* Bottom Section End */}
 

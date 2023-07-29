@@ -1,9 +1,9 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { Star } from "@components/star"
 import { TProduct } from "@components/types";
-import { getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
+import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
 import { CartButtonV2 } from "@components/cartbutton/v2";
 
 type Props = {
@@ -27,7 +27,7 @@ export const TrendingProductCard: React.FC<Props> = ({ product }) => {
                             <Image
                                 loader={sanityIoImageLoader}
                                 src={getImageObject(product.images)?.url}
-                                alt={getImageObject(product.images)?.description || product.name}
+                                alt={getImageObject(product.images)?.description || product.name || ''}
                                 width="200"
                                 height="200"
                                 className="w-full h-full object-cover scale-100 hover:scale-105 focus:scale-105 ease-in duration-200"
@@ -57,7 +57,7 @@ export const TrendingProductCard: React.FC<Props> = ({ product }) => {
                             </div>
                             {product?.inventories?.length != 0 ?
                                 <div className="flex flex-row gap-4 items-center pt-1 w-full">
-                                    <CartButtonV2 product={product} inventory={product?.inventories[0]} mode={"trending"}></CartButtonV2>
+                                    <CartButtonV2 product={product} inventory={getFirst(product?.inventories)} mode={"trending"}></CartButtonV2>
                                 </div>
                                 :
                                 <></>

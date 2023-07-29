@@ -24,7 +24,7 @@ export const Page: React.FC = () => {
     }
 
     const getAllProductsOfCategory = (extend: boolean = true) => {
-        const res: Promise<TProductCategory[]> = getAllProductCategory(null, pageNumber, pageSize);
+        const res: Promise<TProductCategory[]> = getAllProductCategory("", pageNumber, pageSize);
         res.then((result) => {
             setIsLoadMore(result.length == pageSize);
             if (extend) {

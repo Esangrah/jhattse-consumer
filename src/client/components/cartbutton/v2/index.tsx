@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { cartState } from "@recoil/atoms";
 import { Link} from "@renderer/Link"
 import { variantState } from "@recoil/atoms/variant";
+import { getLength } from "@core/utils";
 
 type Props = {
   product: TProduct;
@@ -24,7 +25,7 @@ export const CartButtonV2 = ({
   const [Variant, setVariant] = useRecoilState(variantState);
 
   const onClickAdd = (product: TProduct) => {
-    if (product?.variants.length !== 0 && typeof window !== "undefined") {
+    if (getLength(product?.variants) > 0 && typeof window !== "undefined") {
       setVariant({
         Isvariant: true,
         product: product,
@@ -33,7 +34,7 @@ export const CartButtonV2 = ({
       });
     }
   };
-  return inventory?.external_link?.length > 0 ? (
+  return inventory?.external_link !== undefined && inventory?.external_link?.length > 0 ? (
     <div
       className={`flex justify-center items-center max-w-lg min-w-full`}
     >

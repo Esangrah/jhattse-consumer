@@ -35,7 +35,7 @@ export const CategoryWidget = ({ index, isLoading, getNextResults, handleAccordi
                     setPageNumber={getNextResults}
                     isLoading={isLoading}
                     isLoadMore={productCategoryItem?.isLoadMore}
-                    searchresults={productCategoryItem?.products}
+                    searchresults={productCategoryItem?.products || []}
                     element={SmallProductCard}
                     isStorePage={true}
                 />

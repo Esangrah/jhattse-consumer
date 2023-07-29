@@ -4,9 +4,9 @@ import { TStore } from "@components/types";
 import { getLocation } from "@core/geolocation";
 import { getMyStoresOffline, getStoreOffline } from "@core/offline/store";
 
-export const getNearestStores = async (category_id: number = null, pageNumber: number = 0, pageSize: number = 10) => {
+export const getNearestStores = async (category_id: number, pageNumber: number = 0, pageSize: number = 10) => {
     let location = await getLocation();
-    const res = await axios.get(`${SERVER_HOST}/api/v1/stores/?${category_id === null ? "" : `category_id=${category_id}&`}skip=${pageNumber * pageSize}&limit=${pageSize}&lat=${location.latitude}&lon=${location.longitude}`,
+    const res = await axios.get(`${SERVER_HOST}/api/v1/stores/?${category_id > 0 ? `category_id=${category_id}&` : "" }skip=${pageNumber * pageSize}&limit=${pageSize}&lat=${location.latitude}&lon=${location.longitude}`,
         { headers: HEADERS });
     const result: TStore[] = handleResponse(res);
     return result
@@ -36,7 +36,7 @@ export const getStore = async (id: number) => {
 
 export const getMyStores = async () => {
     if (typeof (navigator) === "undefined" || navigator.onLine) {
-        const res = await axios.get(`${SERVER_HOST}/api/v1/stores/?user_id=${JSON.parse(localStorage.getItem("profile"))?.id}`, {
+        const res = await axios.get(`${SERVER_HOST}/api/v1/stores/?user_id=${JSON.parse(localStorage.getItem("profile") || '{}')?.id}`, {
             headers: HEADERS
         })
         const result: TStore[] = handleResponse(res);

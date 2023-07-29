@@ -38,7 +38,7 @@ const INTENT: Map<string, number> = new Map([["product", 0], ["category", 1]]);
 export const Cards = ({ element, products, intent, isCarousel }: Props) => {
     let RepeatElement = element == undefined || element == null ? SimpleCard : element;
     let cards;
-    switch (INTENT.has(intent) ? INTENT.get(intent) : 0) {
+    switch (INTENT.has(intent || '') ? INTENT.get(intent || '') : 0) {
         case 1:
             cards = products && (products as TProductCategory[])?.map((category: TProductCategory) => (
                 <RepeatElement product={category} key={category.id}></RepeatElement>

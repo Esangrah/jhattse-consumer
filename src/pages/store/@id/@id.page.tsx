@@ -26,13 +26,14 @@ import { Link } from '@renderer/Link';
 import { CategoryWidget } from '@components/widget/category';
 import IntersectionObserverWrapper from '@components/intersectionObserverWrapper';
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 
 interface Props {
-    initialStore?: TStore
+    initialStore: TStore
 }
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
     const res = await getStore(parseInt(id));
     const initialStore: TStore = res;
@@ -46,14 +47,14 @@ export async function onBeforeRender(pageContext) {
     }
 }
 
-export const Page: React.FC = ({ initialStore }: Props) => {
+export const Page: React.FC<Props> = ({ initialStore }: Props) => {
     const pageContext = usePageContext()
     const [store, setStore] = useState<TStore>(initialStore)
-    const [searchQuery, setSearchQuery] = useState<string>(null)
+    const [searchQuery, setSearchQuery] = useState<string>('')
     const [storeTimings, setStoreTimings] = useState([]);
     const [productSuggestions, setProdcutSuggestions] = useState<TOption[]>([]);
     const [productCategoriesList, setProductCategoriesList] = useState<TProductCategoryControl[]>([]);
-    const [selectedProductCategory, setSelectedProductCategory] = useState<TProductCategoryControl>(null);
+    const [selectedProductCategory, setSelectedProductCategory] = useState<TProductCategoryControl>();
     const [isLoading, setIsLoading] = useState(false);
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [accordionIndexes, setAccordionIndexes] = useState<number[]>([]);
@@ -72,16 +73,16 @@ export const Page: React.FC = ({ initialStore }: Props) => {
         } else {
             categoryProduct = productCategoriesList[index]
             if (categoryProduct.isLoadMore) {
-                categoryProduct.products = [...categoryProduct.products, ...products];
+                categoryProduct.products = [...(categoryProduct.products || []), ...products];
                 categoryProduct.isLoadMore = !allFetched;
-                categoryProduct.pageNumber = categoryProduct.pageNumber + 1;
+                categoryProduct.pageNumber = (categoryProduct.pageNumber || 0) + 1;
             }
         }
         setProductCategoriesList([...productCategoriesList])
     }
 
     // Get All Products
-    const getResults = (store_id: number, name: string, category_id: number = null, extend: boolean = true) => {
+    const getResults = (store_id: number, name: string, category_id: number = 0, extend: boolean = true) => {
         let index = productCategoriesList.findIndex((r => r.id == category_id));
         let categoryProduct = null;
         if (index === -1) {
@@ -142,7 +143,7 @@ export const Page: React.FC = ({ initialStore }: Props) => {
     // ******* Start useEffects *******
     useEffect(() => {
         let id = pageContext.routeParams?.id;
-        if (id == store?.id?.toString()) {
+        if (id === undefined || id == store?.id?.toString()) {
             return
         }
         const res: Promise<TStore> = getStore(parseInt(id));
@@ -156,7 +157,7 @@ export const Page: React.FC = ({ initialStore }: Props) => {
         if (store != undefined) {
             getAllStoreTiming(store?.id)
             if (selectedProductCategory?.id !== undefined) {
-                getResults(store?.id, null, selectedProductCategory?.id);
+                getResults(store?.id, "", selectedProductCategory?.id);
             }
         }
     }, [store])
@@ -168,7 +169,7 @@ export const Page: React.FC = ({ initialStore }: Props) => {
     };
 
     useEffect(() => {
-        getStoreProducts(null, store?.id, searchQuery, 0, 10).then((result: TProduct[]) => {
+        getStoreProducts(0, store?.id, searchQuery, 0, 10).then((result: TProduct[]) => {
             setProdcutSuggestions(getFilteredResults(searchQuery, result as TData[]));
             setSearchResult(result)
         })
@@ -313,13 +314,13 @@ export const Page: React.FC = ({ initialStore }: Props) => {
                                                             onSelect={(value, option) => setSearchQuery(option?.label)}
                                                             autoFocus
                                                         >
-                                                            <Input size="large" placeholder="Search in Store" prefix={<AiOutlineSearch className='font-bold' size="1.5em" />} autoFocus />
+                                                            <Input size="large" placeholder="Search in Store" prefix={<MdSearch className='font-bold' size="1.5em" />} autoFocus />
                                                         </AutoComplete>
                                                     </div>
                                                 </div>
                                             </div>
                                             <SearchContainer
-                                                searchresults={SearchResult}
+                                                searchresults={SearchResult || []}
                                                 element={SmallProductCard}
                                                 isLoadMore={false}
                                             />
@@ -332,7 +333,7 @@ export const Page: React.FC = ({ initialStore }: Props) => {
                         <Accordion defaultIndex={[0]} index={accordionIndexes} allowMultiple>
                             {
                                 productCategoriesList?.map((item, index) => {
-                                    return <CategoryWidget getNextResults={(page: number) => { getResults(store.id, searchQuery, item.id, item?.pageNumber != 0) }} handleAccordionButton={handleAccordionButton} handleAccordionItem={() => setSelectedProductCategory(item)} index={index} isLoading={isLoading && selectedProductCategory.id == item.id} productCategoryItem={item} />
+                                    return <CategoryWidget getNextResults={(page: number) => { getResults(store.id, searchQuery, item.id, item?.pageNumber != 0) }} handleAccordionButton={handleAccordionButton} handleAccordionItem={() => setSelectedProductCategory(item)} index={index} isLoading={isLoading && selectedProductCategory?.id == item.id} productCategoryItem={item} />
                                 })
                             }
                         </Accordion>

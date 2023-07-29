@@ -2,9 +2,9 @@
 import { TScreenInfo } from "@components/types";
 import { getOrders, getPaymentStatus } from '@api/order';
 import { TOrder } from '@components/types';
-import { sanityIoImageLoader } from '@core/utils';
+import { getFirst, getLength, sanityIoImageLoader } from '@core/utils';
 import Head from 'react-helmet';
-import { Image } from "@renderer/image";;
+import { Image } from "@renderer/Image";;
 import React, { useEffect, useState } from 'react'
 import { variantNameFromOrderItem } from "@components/variant/variantSelector";
 import { navigate } from 'vite-plugin-ssr/client/router';
@@ -34,12 +34,14 @@ export const PaymentStatus: React.FC<Props> = ({ actionText, message, next, imag
     }
 
     useEffect(() => {
-        if (payment_id != null) {
+        if (payment_id !== null) {
             getPaymentStatus(payment_id).then((result: TOrder) => {
-                getOrderPaymentStatus(result?.id)
-                localStorage.setItem("transaction_id", result?.id)
+                if (result?.id !== undefined && result?.id?.length > 0) {
+                    getOrderPaymentStatus(result?.id)
+                    localStorage.setItem("transaction_id", result?.id)
+                }
             })
-        } else {
+        } else if (transaction_id !== null) {
             getOrderPaymentStatus(transaction_id)
         }
     }, [payment_id])
@@ -54,7 +56,7 @@ export const PaymentStatus: React.FC<Props> = ({ actionText, message, next, imag
                     <div className='sm:hidden flex flex-1 justify-center p-3'>
                         <Image
                             loader={sanityIoImageLoader}
-                            priority={true}
+                            priority={"true"}
                             className='object-cover h-full'
                             src={image_url}
                             alt={'payment_successful.png'}
@@ -74,9 +76,9 @@ export const PaymentStatus: React.FC<Props> = ({ actionText, message, next, imag
                                 <span>
 
                                     <p className="text-lg text-darkGray sm:text-sm">
-                                        {`Your order for ${variantNameFromOrderItem(orderDetails) ? variantNameFromOrderItem(orderDetails) : orderDetails[0]?.orderitems[0]?.inventory?.product?.name} 
-                                            ${orderDetails[0]?.orderitems?.length > 1 ? "+" : ""} 
-                                            ${orderDetails[0]?.orderitems?.length > 1 ? (orderDetails[0]?.orderitems?.length - 1) + "items" : ""}`}
+                                        {`Your order for ${getLength(orderDetails[0]?.orderitems) > 0 && variantNameFromOrderItem(getFirst(orderDetails[0]?.orderitems))} 
+                                            ${getLength(orderDetails[0]?.orderitems) > 1 ? "+" : ""} 
+                                            ${getLength(orderDetails[0]?.orderitems) > 1 ? (getLength(orderDetails[0]?.orderitems) - 1).toString() + "items" : ""}`}
                                     </p>
                                     <p className="text-lg text-darkGray sm:text-sm">{order_info}</p>
 

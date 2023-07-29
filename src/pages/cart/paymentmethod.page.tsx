@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import Head from 'react-helmet';
 import { Container } from "@components/container";
 import { Header } from "@components/header";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input } from '@chakra-ui/react';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useRecoilState } from 'recoil';
 import { cartState } from '@recoil/atoms';
 import { createOrder, retryOrder } from '@api/order';
 import { CartDetails } from '@components/cartinfo/summary';
-import { TComponent, TCreateOrder, TIdentity, TOrder } from '@components/types';
+import { TComponent, TCreateOrder, TCreateOrderRetry, TIdentity, TOrder } from '@components/types';
 import { NonLoggedUser } from './nonloggeduser';
 import { message } from 'antd';
 import { getOrders } from "@api/order"
@@ -14,13 +15,12 @@ import { navigate } from 'vite-plugin-ssr/client/router';
 
 
 export const Page = () => {
-    const [paymentMethod, setPaymentMethod] = useState(null);
+    const [paymentMethod, setPaymentMethod] = useState<string>();
     const [cart, setCart] = useRecoilState(cartState);
-    const [userInfo, setUserInfo] = useState<TIdentity>(typeof window !== "undefined" && JSON.parse(localStorage.getItem("profile")));
-    const [transactionId, setTransactionId] = useState<TOrder>()
+    const [userInfo, setUserInfo] = useState<TIdentity>(typeof window !== "undefined" && JSON.parse(localStorage.getItem("profile") || '{}'));
+    const [transactionId, setTransactionId] = useState<TCreateOrderRetry>()
     const tsxnId = typeof window !== 'undefined' ? localStorage.getItem("transaction_id") : null;
     const [orderDetails, setOrderDetails] = useState<TOrder[]>([]);
-    
 
     useEffect(() => {
         if (tsxnId != undefined) {
@@ -33,31 +33,33 @@ export const Page = () => {
 
     useEffect(() => {
         if (tsxnId != undefined) {
-            setTransactionId({ ...transactionId, transaction_id: tsxnId })
+            setTransactionId({ ...transactionId, transaction_id: tsxnId } as TCreateOrderRetry)
         }
     }, [tsxnId])
 
 
     const repeatOrder = () => {
-        if (paymentMethod == undefined || paymentMethod == null) {
+        if (paymentMethod == undefined || paymentMethod?.length === 0) {
             message.error("Please select a Payment method")
         }
-        retryOrder(transactionId).then((res) => {
-            localStorage.setItem("transaction_id", res?.transaction?.id);
-            if (typeof window !== "undefined" && typeof window.invokePayment === "function") {
-                let tableInfo = JSON.parse(localStorage.getItem("tableInfo"));
-                if (paymentMethod == "Cash" && tableInfo != undefined) {
-                    navigate("/cart/paymentsuccess")
-                    localStorage.removeItem("tableInfo");
+        if (transactionId !== undefined) {
+            retryOrder(transactionId).then((res) => {
+                localStorage.setItem("transaction_id", res?.transaction?.id);
+                if (typeof window !== "undefined" && typeof window.invokePayment === "function") {
+                    let tableInfo = JSON.parse(localStorage.getItem("tableInfo") || '{}');
+                    if (paymentMethod == "Cash" && tableInfo != undefined) {
+                        navigate("/cart/paymentsuccess")
+                        localStorage.removeItem("tableInfo");
+                    }
+                    if (paymentMethod == "Cash") {
+                        navigate("/cart/payment/success")
+                    }
+                    else {
+                        window.invokePayment(res);
+                    }
                 }
-                if (paymentMethod == "Cash") {
-                    navigate("/cart/payment/success")
-                }
-                else {
-                    window.invokePayment(res);
-                }
-            }
-        })
+            })
+        }
     }
 
 
@@ -69,14 +71,18 @@ export const Page = () => {
             orderComponents.push(
                 {
                     quantity: value?.quantity,
-                    inventory_id: value?.inventory?.id,
+                    inventory_id: value?.inventory?.id || 0,
                     is_delivery: value?.deliverable
                 }
             )
         })
         if (orderComponents.length !== 0 && typeof window !== "undefined") {
-            let tableInfo = JSON.parse(localStorage.getItem("tableInfo"));
-            let address = JSON.parse(localStorage.getItem("Address"));
+            let tableInfo = JSON.parse(localStorage.getItem("tableInfo") || '{}');
+            let address = JSON.parse(localStorage.getItem("Address") || '{}');
+            if (paymentMethod == undefined || paymentMethod == null) {
+                message.error("Please select a Payment method")
+                return
+            }
             let currentOrder: TCreateOrder = {
                 components: orderComponents,
                 address_id: address !== null && address !== undefined ? address?.id : null,
@@ -84,9 +90,6 @@ export const Page = () => {
                 currency: "INR",
                 user: userInfo,
                 info: tableInfo
-            }
-            if (paymentMethod == undefined || paymentMethod == null) {
-                message.error("Please select a Payment method")
             }
             createOrder(currentOrder).then((res) => {
                 localStorage.setItem("orderId", res?.transaction?.orders?.length > 0 ? res?.transaction?.orders[0].id : "");
@@ -117,8 +120,8 @@ export const Page = () => {
         userInfo === undefined || userInfo === null ? <NonLoggedUser setUserInfo={setUserInfo} /> :
             <div>
                 <Head>
-                    <script src=" https://payments.open.money/layer" strategy='beforeInteractive' />
-                    <script strategy="afterInteractive">
+                    <script src=" https://payments.open.money/layer" />
+                    <script>
                         {`window.invokePayment = function invokePayment(res) {
                             Layer.checkout({
                                 token: res["meta"]["session"],

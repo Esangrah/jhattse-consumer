@@ -3,7 +3,7 @@ import { Link } from '@renderer/Link'
 import { getDistance } from 'geolib'
 import { MdLocationPin, MdShare } from 'react-icons/md';
 import { Star } from '@components/star'
-import { TStore } from '@components/types'
+import { TStore, TStoreImage } from '@components/types'
 import { getLocation } from '@core/geolocation'
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils'
 import { RWebShare } from 'react-web-share'
@@ -11,7 +11,7 @@ import { StoreTiming } from '@components/storetiming'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { CarouselContainer } from '@components/container/carousel'
 import { SwiperSlide } from 'swiper/react'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { getStoreImages } from '@api/store'
 
 
@@ -22,7 +22,7 @@ interface Props {
 
 export const StoreTopCard = ({ store, storeTimings }: Props) => {
     const [localDistance, setLocalDistance] = useState<number>();
-    const [storeImages, setStoreImages] = useState([])
+    const [storeImages, setStoreImages] = useState<TStoreImage[]>([])
 
     useEffect(() => {
         if (store?.id !== undefined) {
@@ -36,7 +36,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
         if (store?.address !== undefined && store?.address?.latitude !== null) {
             getLocation().then((userLocation) => {
                 console.log(userLocation);
-                let distance = getDistance({ 'latitude': userLocation?.latitude, 'longitude': userLocation?.longitude }, { 'latitude': store?.address?.latitude, 'longitude': store?.address?.longitude })
+                let distance = getDistance({ lat: userLocation?.latitude, lng: userLocation?.longitude }, { lat: store?.address?.latitude || 0, lng: store?.address?.longitude || 0 })
                 setLocalDistance(distance);
             });
         }
@@ -52,7 +52,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                             src={store?.image || "https://jhattse.com/assets/noimage.png"}
                             className="rounded-sm w-auto h-60"
                             alt={store?.name}
-                            priority={true}
+                            priority={"true"}
                             width="200"
                             height="200"
                             loading="eager"
@@ -68,7 +68,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                                     src={storeImage?.url || "https://cdn.jhattse.com/public/assets/noimage.png"}
                                     className="rounded-sm w-auto h-60"
                                     alt={store?.name}
-                                    priority={true}
+                                    priority={"true"}
                                     width="200"
                                     height="200"
                                     loading="eager"

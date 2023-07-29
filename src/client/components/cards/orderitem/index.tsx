@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { TOrderItem } from '@components/types';
 import { getImageObject, sanityIoImageLoader } from '@core/utils';
 
@@ -18,8 +18,8 @@ export const OrderItemCard = ({ orderItem }: Props) => {
             <div className="flex grow col-span-1 justify-start max-h-20 sm:max-h-16" >
                 <Image
                     loader={sanityIoImageLoader}
-                    src={getImageObject(orderItem.inventory.product?.images)?.url}
-                    alt={getImageObject(orderItem.inventory.product?.images)?.description || orderItem.inventory.product.name}                        
+                    src={getImageObject(orderItem?.inventory?.product?.images)?.url}
+                    alt={getImageObject(orderItem?.inventory?.product?.images)?.description || orderItem?.inventory?.product?.name || 'Product'}                        
                     width="100"
                     height="100"
                     className="w-full h-full object-contain"
@@ -27,7 +27,7 @@ export const OrderItemCard = ({ orderItem }: Props) => {
             </div>
             <div className="grid col-span-4 grid-row">
                 <div className="flex flex-row gap-1">
-                    <span className="font-semibold text-sm sm:line-clamp-2 lg:line-clamp-2">{orderItem.inventory.product.name}</span>
+                    <span className="font-semibold text-sm sm:line-clamp-2 lg:line-clamp-2">{orderItem?.inventory?.product?.name}</span>
                     <span className="text-neutral-400 text-sm ">{" x "}</span>
                     <span className="text-green-400 text-sm font-bold whitespace-nowrap">{orderItem.quantity}</span>
                 </div>

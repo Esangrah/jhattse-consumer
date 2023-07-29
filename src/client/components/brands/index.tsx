@@ -18,7 +18,7 @@ export const Brands = () => {
     }
 
     useEffect(() => {
-        const res: Promise<TBrand[]> = getProductBrands(null, pageNumber, pageSize);
+        const res: Promise<TBrand[]> = getProductBrands('', pageNumber, pageSize);
         res.then((result) => {
             setIsLoadMore(result.length == pageSize)
             setBrands([...brands, ...result])

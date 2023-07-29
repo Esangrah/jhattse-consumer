@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const login = async (loginInfo: TIdentity) => {
     let axiosMethod = axios.post
-    const res = await axiosMethod(`${SERVER_HOST}/api/v1/token?username_source=${loginInfo.email?.length > 0 ? "email" : "phone"}`,
+    const res = await axiosMethod(`${SERVER_HOST}/api/v1/token?username_source=${loginInfo.email !== undefined && loginInfo.email?.length > 0 ? "email" : "phone"}`,
         new URLSearchParams({ "username": loginInfo.email || loginInfo.phone || "", "password": loginInfo.password || "" }).toString(),
         {
             headers: { "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" },

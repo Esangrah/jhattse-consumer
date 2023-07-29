@@ -11,15 +11,16 @@ import { AddReview } from '@components/addreview';
 import { TProduct, TReview } from "@components/types";
 import { getColor, getImageObject, getImageUrl, getSafeUrl, sanityIoImageLoader } from '@core/utils';
 import { Footer } from '@components/footer';
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link } from '@renderer/Link';
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialProduct?: TProduct
+    initialProduct: TProduct
 }
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
     const res = await getDetailProduct(parseInt(id as string));
     const initialProduct: TProduct = res;
@@ -33,11 +34,11 @@ export async function onBeforeRender(pageContext) {
     }
 }
 
-export const Page: React.FC = ({ initialProduct }: Props) => {
+export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
     const [product, setProduct] = useState<TProduct>(initialProduct)
     const pageContext = usePageContext()
     let content = null
-    const [reviews, setReviews] = useState<TReview[]>()
+    const [reviews, setReviews] = useState<TReview[]>([])
     const [myReview, setMyReview] = useState<TReview>()
 
 
@@ -55,7 +56,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
     useEffect(() => {
         // TODO:
         let id = pageContext.routeParams?.id;
-        if (id == product?.id.toString()) {
+        if (id === undefined && id == product?.id?.toString()) {
             return
         }
         const res: Promise<TProduct> = getDetailProduct(id);
@@ -69,9 +70,11 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
             res.then((review) => {
                 setReviews(review);
             });
-            const result: Promise<TReview> = getMyReview(product.id);
+            const result: Promise<TReview | null> = getMyReview(product.id);
             result.then((review) => {
-                setMyReview(review);
+                if (review !== null) {
+                    setMyReview(review);
+                }
             });
         }
     }, [product?.id])
@@ -89,7 +92,7 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                     <link rel="canonical" href={`https://jhattse.com/product/${product.id}/reviews/${getSafeUrl(product?.name)}`} />
                     <meta property="og:title" content={`${product?.name} reviews on Jhattse`} />
                     <meta name="og:description" content={`Read ${product?.name} reviews on Jhattse`} />
-                    <meta name="og:image" content={`${getImageUrl(product.images)}`} />
+                    <meta name="og:image" content={`${getImageUrl(product.images || [])}`} />
                     <meta property="og:url" content={`https://jhattse.com/product/${product.id}/reviews/${getSafeUrl(product?.name)}`} />
                 </Head>
                 <div className="flex justify-center">
@@ -97,27 +100,27 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                 </div>
                 <div className="flex flex-col px-20 sm:px-3">
                     <div className="sm:grid-rows lg:grid-rows">
-                        <div className=" bg-neutral-50 p-2">
+                        <div className="bg-neutral-50 p-2">
                             <div className="flex gap-4 flex-row p-4 rounded-xl bg-neutral-100 xs:flex-wrap" >
                                 <div className="flex-shrink-0">
-                                    <div className="px-2 w-max rounded-r-lg mt-1  bg-brand-500">
+                                    <div className="px-2 w-max rounded-r-lg mt-1 bg-brand-500">
                                         {product.tag}
                                     </div>
                                     <div className="flex">
-                                        <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
+                                        <Link href={`/product/${product.id}/${getSafeUrl(product.name || '')}`}>
                                             <Image
                                                 loader={sanityIoImageLoader}
                                                 src={getImageObject(product.images)?.url}
-                                                alt={getImageObject(product.images)?.description || product.name}
-                                                width="100"
-                                                height="100"
+                                                alt={getImageObject(product.images)?.description || product.name || 'Product Image'}
+                                                width="200"
+                                                height="200"
                                                 className="rounded-md"
                                             />
                                         </Link>
                                     </div>
                                 </div>
                                 <div className="bg-neutral-100">
-                                    <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}><div className="font-bold text-lg sm:text-base text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
+                                    <Link href={`/product/${product.id}/${getSafeUrl(product.name || '')}`}><div className="font-bold text-lg sm:text-base text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
                                     <div className="text-neutral-700">
                                         Price ₹<span>{product.mrp}</span>
                                     </div>
@@ -146,10 +149,10 @@ export const Page: React.FC = ({ initialProduct }: Props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
+                            <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
                         </div>
                     </div>
-                    <AddReview product_id={product.id} callback={addReviewToList} review={myReview} />
+                    <AddReview product_id={product.id as number} callback={addReviewToList} review={myReview} />
                     <div className="h-4"></div>
                     <ReviewContainer reviews={reviews} element={ReviewCard} />
                     <div className="h-4"></div>

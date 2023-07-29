@@ -11,7 +11,7 @@ export const verifyMobile = async (otp: TOtp) => {
     return handleResponse(res);
 }
 
-export const verifyMobileOtp = async (id: number, otp: TOtp) => {
+export const verifyMobileOtp = async (id: string, otp: TOtp) => {
     let axiosMethod = axios.post;
     const res = await axiosMethod(`${SERVER_HOST}/api/v1/otp/verify/${id}`,
         JSON.stringify(otp),

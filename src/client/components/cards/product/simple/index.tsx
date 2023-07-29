@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TProduct } from "@components/types";
 import { getImageObject, getSafeUrl, sanityIoImageLoader } from '@core/utils';
@@ -19,7 +19,7 @@ export const SimpleCard: React.FC<Props> = ({ product }) => {
                         priority ={true}
                         className="w-full h-full object-cover"
                         src={getImageObject(product.images)?.url}
-                        alt={getImageObject(product.images)?.description || product.name}
+                        alt={getImageObject(product.images)?.description || product.name || ''}
                         width="150"
                         height="150"
                         loading="eager"

@@ -6,9 +6,11 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import AddressPanel from '@components/address';
 import { cartState } from '@recoil/atoms';
 import { useRecoilValue } from 'recoil';
-import { Image } from "@renderer/image";;
+import { Image } from "@renderer/Image";;
 import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
 import { navigate } from 'vite-plugin-ssr/client/router';
+import { getCombinedName } from '@components/variant/variantSelector';
+import { TProduct } from '@components/types';
 
 interface Props {
     title?: string
@@ -57,16 +59,15 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
                                     <div className='flex gap-2 items-center'>
                                         <Image
                                             loader={sanityIoImageLoader}
-                                            src={getImageUrl(item.product?.images)}
-                                            alt={item?.product?.name}
+                                            src={getImageUrl(item.product?.images || [])}
+                                            alt={item?.product?.name || 'product'}
                                             height="50"
                                             width="50"
                                             className="rounded-sm"
                                         />
                                         <div >
-                                            <h4 className="text-base font-medium text-custom_black">{getCombinedName(item?.product, item?.inventory?.variant_id) ? trimToLength(getCombinedName(item?.product, item?.inventory?.variant_id), 20) :
-                                                trimToLength(item?.product?.name, 20)}</h4>
-                                            <p className="text-base font-bold text-custom_black">{humanizeCurrency(item?.inventory?.price || item?.product.mrp)}</p>
+                                            <h4 className="text-base font-medium text-custom_black">{trimToLength(getCombinedName(item?.product as TProduct, item?.inventory?.variant_id), 20)}</h4>
+                                            <p className="text-base font-bold text-custom_black">{humanizeCurrency(item?.inventory?.price || item?.product?.mrp as number)}</p>
                                         </div>
                                     </div>
                                     <div className="pt-1" style={{ alignSelf: "flex-start" }}>

@@ -3,13 +3,13 @@ import { TAddReviews, TReview } from '@components/types'
 import { addReviews } from "@api/rating";
 import { requestLogin, sanityIoImageLoader } from "@core/utils";
 import Moment from "moment";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { usePageContext } from '@renderer/usePageContext';
 
 type Props = {
     product_id: number;
     callback: Function;
-    review: TReview;
+    review?: TReview;
 };
 
 function StarIcon(props: any) {
@@ -124,6 +124,7 @@ export const AddReview: React.FC<Props> = ({ product_id, callback, review }) => 
                                             onMouseEnter={onMouseEnter}
                                             onMouseLeave={onMouseLeave}
                                             onSaveRating={onSaveRating}
+                                            key={index}
                                         />
                                     )
                                 })}

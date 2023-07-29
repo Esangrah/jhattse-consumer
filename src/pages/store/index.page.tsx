@@ -6,7 +6,7 @@ import { Navbar } from "@components/navbar";
 import { Title } from "@components/header/title";
 import { SmallStoreCard } from "@components/cards";
 import { SearchContainer } from "@components/container"
-import { TCategory, TStore } from "@components/types";
+import { TStore, TStoreCategory } from "@components/types";
 import { getNearestStores } from "@api/store";
 import { getStoreCategories } from "@api/storecategory";
 import gsap from "gsap";
@@ -17,11 +17,11 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 
 export const Page: React.FC = () => {
     const [stores, setStores] = useState<TStore[]>([]);
-    const [categories, setCategories] = useState<TCategory[]>([]);
-    let scrl = useRef(null);
-    const [categoryId, setCategoryId] = useState<number>(null);
+    const [categories, setCategories] = useState<TStoreCategory[]>([]);
+    let scrl = useRef<HTMLDivElement>(null);
+    const [categoryId, setCategoryId] = useState<number>(0);
     const [scrollX, setscrollX] = useState(0);
-    const [scrolEnd, setscrolEnd] = useState(false);
+    const [scrollEnd, setscrollEnd] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
     const [isLoadMore, setIsLoadMore] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -29,17 +29,20 @@ export const Page: React.FC = () => {
 
     //Slide click
     const slide = (shift: number) => {
-        scrl.current.scrollLeft += shift;
-        setscrollX(scrollX + shift);
+        if (scrl.current !== null) {
+            scrl.current.scrollLeft += shift;
+            setscrollX(scrollX + shift);
+            if (
+                Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+                scrl.current.offsetWidth
+            ) {
+                setscrollEnd(true);
+            } else {
+                setscrollEnd(false);
+            }
 
-        if (
-            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
-            scrl.current.offsetWidth
-        ) {
-            setscrolEnd(true);
-        } else {
-            setscrolEnd(false);
         }
+
     };
 
 
@@ -53,14 +56,17 @@ export const Page: React.FC = () => {
     };
 
     const scrollCheck = () => {
-        setscrollX(scrl.current.scrollLeft);
+        if (scrl.current !== null) {
+            setscrollX(scrl.current.scrollLeft);
+        }
+
         if (
-            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+            scrl.current !== null && Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
             scrl.current.offsetWidth
         ) {
-            setscrolEnd(true);
+            setscrollEnd(true);
         } else {
-            setscrolEnd(false);
+            setscrollEnd(false);
         }
     };
 
@@ -79,7 +85,7 @@ export const Page: React.FC = () => {
     }
 
     useEffect(() => {
-        const result: Promise<TCategory[]> = getStoreCategories();
+        const result: Promise<TStoreCategory[]> = getStoreCategories();
         result.then((categories) => setCategories(categories));
     }, [])
 
@@ -139,16 +145,16 @@ export const Page: React.FC = () => {
                     )}
                     <div ref={scrl} onScroll={scrollCheck} className="flex flex-row overflow-x-scroll no-scrollbar gap-2">
                         <div className="shrink-0 ">
-                            <button className={`text-neutral-900 font-semibold p-1 text-xs bg-neutral-50 hover:bg-neutral-900 hover:text-neutral-50 focus:bg-neutral-900 focus:text-neutral-50 rounded-sm ${categoryId == null && "bg-neutral-900 text-neutral-50"}`} onClick={() => { handleCategory(null); }}>All</button>
+                            <button className={`text-neutral-900 font-semibold p-1 text-xs bg-neutral-50 hover:bg-neutral-900 hover:text-neutral-50 focus:bg-neutral-900 focus:text-neutral-50 rounded-sm ${categoryId == 0 && "bg-neutral-900 text-neutral-50"}`} onClick={() => { handleCategory(0); }}>All</button>
                         </div>
 
-                        {categories && categories.map((category: TCategory) =>
+                        {categories && categories.map((category: TStoreCategory) =>
                             <div key={category?.id} className="shrink-0 ">
                                 <button className="text-neutral-900 font-semibold p-1 text-xs bg-neutral-50 hover:bg-neutral-900 hover:text-neutral-50 focus:bg-neutral-900 focus:text-neutral-50 rounded-sm" onClick={() => { handleCategory(category?.id) }}>{category?.name}</button>
                             </div>
                         )}
                     </div>
-                    {!scrolEnd && (
+                    {!scrollEnd && (
                         <button
                             className="next text-neutral-900 font-semibold p-1 text-xs bg-neutral-50 hover:bg-neutral-100 focus:bg-neutral-100 rounded-full"
                             onClick={() => slide(+200)}

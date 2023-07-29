@@ -29,12 +29,12 @@ const spinTransition = {
 export const Page: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const pageContext = usePageContext()
-    const [searchresult, setSearchResult] = useState<TSearchResult[]>();
+    const [searchresult, setSearchResult] = useState<TSearchResult[]>([]);
     const [storeType, setStoreType] = useState("All");
-    const [filteredResult, setFilteredResults] = useState<TSearchResult[]>();
+    const [filteredResult, setFilteredResults] = useState<TSearchResult[]>([]);
 
     let q = pageContext.urlParsed?.search?.q;
-    let intent = pageContext.urlParsed?.search?.intent;
+    let intent = pageContext.urlParsed?.search?.intent || '';
 
     useEffect(() => {
         if (storeType == "All") {

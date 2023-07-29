@@ -4,7 +4,7 @@ interface Props {
   showModal: boolean,
   setShowModal: Function,
   message?: string,
-  ActionFun?: Function,
+  ActionFun: Function,
   btnName?: string,
   closeBtnName?: string,
 }

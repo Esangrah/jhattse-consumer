@@ -1,4 +1,4 @@
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TProductCategory } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
@@ -29,7 +29,7 @@ export const ProductCategoryCard = ({ element }: Props) => {
             <div className="leading-tight grid gap-1">
                 <div className="font-simple text-left overflow-hidden">
                     <p className="text-sm text-neutral-900 text-ellipsis font-bold break-words line-clamp-1 md:line-clamp-none leading-tight">{element?.name}</p>
-                    <p className="flex gap-1 text-neutral-500 text-sm">Total Products<span className="text-brand-900 font-semibold text-sm">{element?.total_products < 10 ? `${element?.total_products}` : `${Math.round(element?.total_products / 10) * 10}+`}</span></p>
+                    <p className="flex gap-1 text-neutral-500 text-sm">Total Products<span className="text-brand-900 font-semibold text-sm">{element?.total_products !== undefined ? (element?.total_products < 10 ? `${element?.total_products}` : `${Math.round(element?.total_products / 10) * 10}+`): "No Products"}</span></p>
                 </div>
                 <div className="bg-neutral-900 text-neutral-50 w-full text-sm font-semibold py-1 flex flex-row whitespace-nowrap justify-center">
                     <Link href={`/category/${element?.id}/${getSafeUrl(element?.name)}`} className="flex flex-row items-center">See Products <FaChevronRight /></Link>

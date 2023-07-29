@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { TOrder, TOrderItem } from '@components/types';
+import { TOrder, TOrderItem, TProduct } from '@components/types';
 import { getOrderById } from "api/order";
 import { MdPhoneEnabled, MdOutlineLocationOn } from 'react-icons/md';
 import Moment from "moment";
@@ -7,14 +7,15 @@ import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from
 import { Navbar } from '@components/navbar';
 import { getCombinedName } from '@components/variant/variantSelector';
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialOrder?: TOrder
+    initialOrder: TOrder
 }
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
-    const token = pageContext.urlParased.search?.token || (pageContext.headers.cookie, '; ').access_token;
+    const token = pageContext.urlParsed.search?.token || (pageContext.headers.cookie, '; ').access_token;
     const res = await getOrderById(id, token as string);
     const initialOrder: TOrder = res;
 
@@ -29,21 +30,21 @@ export async function onBeforeRender(pageContext) {
 }
 
 
-const OrderDetail: React.FC = ({ initialOrder }: Props) => {
+export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
     const [order, setOrder] = useState<TOrder>(initialOrder);
     const pageContext = usePageContext();
     let content = null;
     let mode = pageContext.urlParsed?.search?.mode;
 
-    const discountedTotal = order?.orderitems.reduce((prevTotal, current) => prevTotal + (current.price * current.quantity), 0);
-    const total = order?.orderitems.reduce((prevTotal, current) => prevTotal + (current.mrp * current.quantity), 0);
+    const discountedTotal = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.price || 0) * (current.quantity || 0)), 0): 0;
+    const total = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.mrp || 0) * (current.quantity || 0)), 0): 0;
     const savings = total - discountedTotal;
     // const totalTax = order?.orderitems?.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? ((currentTax.price * currentTax.inventory.tax_rate) / 100 * currentTax.quantity) : ((currentTax.inventory.tax_rate * (currentTax.price / (1 + (currentTax.inventory.tax_rate) / 100))) / 100 * currentTax.quantity)), 0)
     // const grandTotal = order?.orderitems?.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? ((((currentTax.price * currentTax.inventory.tax_rate) / 100) + currentTax?.price) * currentTax.quantity) : (currentTax?.price * currentTax.quantity)), 0)
-    const grandTotal = order?.orderitems?.reduce((prev, current) => prev + (current?.inventory?.tax_exclusive ? (current?.total_cost) : (current?.total_payable)), 0)
+    const grandTotal = order?.orderitems?.reduce((prev, current: TOrderItem) => prev + (current?.inventory !== undefined && current.inventory?.tax_exclusive === true ? (current?.total_cost || 0) : (current?.total_payable || 0)), 0)
 
-    const taxGroup = groupBy(order?.orderitems, (oi) => {
-        return oi.inventory.tax_rate
+    const taxGroup = groupBy(order?.orderitems || [], (oi) => {
+        return oi.inventory?.tax_rate
     })
     const taxCalculate = Object.entries(taxGroup).map((element) => {
         let tax = parseFloat(element[0]);
@@ -55,13 +56,13 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
             "amount": calculateCost(orderItems)
         }
     })
-    const roundOff = Math.round(order?.payable) - order?.payable;
+    const roundOff = Math.round(order?.payable || 0) - (order?.payable || 0);
 
     useEffect(() => {
         // TODO:
         let id = pageContext.urlParsed?.search.slug;
         let token = pageContext.urlParsed?.search.token;
-        if (id == order?.id.toString()) {
+        if (id === order?.id) {
             return
         }
         const res: Promise<TOrder> = getOrderById(id as string, token as string);
@@ -126,7 +127,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                         mode == "Delivery" ?
 
                                             <div className="flex gap-1 justify-end text-sky-500 items-start print:hidden">
-                                                <a href={`tel:${order?.user?.phone}`} className="flex items-center bg-sky-500 text-neutral-50 px-2 rounded-full leading-tight select-none"><span className="text-sm print:hidden">Call </span><AiFillPhone /></a>
+                                                <a href={`tel:${order?.user?.phone}`} className="flex items-center bg-sky-500 text-neutral-50 px-2 rounded-full leading-tight select-none"><span className="text-sm print:hidden">Call </span><MdPhoneEnabled /></a>
                                             </div>
                                             :
                                             <div className="flex justify-end text-neutral-900 items-start print:hidden whitespace-nowrap">
@@ -141,7 +142,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                             {[order?.address?.house_number, order?.address?.street_name, order?.address?.locality, order?.address?.city?.name, order?.address?.state?.name, order?.address?.pincode].filter((x) => x != undefined).join(", ")}
                                         </div>
                                         <div className="flex gap-1 justify-end text-sky-500 items-start print:hidden">
-                                            <a href={`http://www.google.com/maps/place/${order?.address?.latitude},${order?.address?.longitude}`} className="flex items-center bg-green-700 text-neutral-50 px-2 rounded-full leading-tight whitespace-nowrap select-none" target="_blank"><span className="text-sm print:hidden">Location </span><IoLocationOutline /></a>
+                                            <a href={`http://www.google.com/maps/place/${order?.address?.latitude},${order?.address?.longitude}`} className="flex items-center bg-green-700 text-neutral-50 px-2 rounded-full leading-tight whitespace-nowrap select-none" target="_blank"><span className="text-sm print:hidden">Location </span><MdOutlineLocationOn /></a>
                                         </div>
                                     </div> :
                                     <></>
@@ -172,7 +173,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                 return (
                                     <div className="grid grid-cols-6 border-b border-neutral-900 border-dashed w-full items-start p-1" data-orderitem-id={orderItem.id}>
                                         <div className="grid col-span-2">
-                                            <div className="flex text-neutral-900 line-clamp-2 text-xs overflow-hidden">{trimToLength((getCombinedName(orderItem?.inventory?.product, orderItem?.inventory?.variant_id) || orderItem?.inventory?.product?.name), 20)}</div>
+                                            <div className="flex text-neutral-900 line-clamp-2 text-xs overflow-hidden">{trimToLength(getCombinedName(orderItem?.inventory?.product as TProduct, orderItem?.inventory?.variant_id), 20)}</div>
                                             <div className="flex text-neutral-900 text-xs overflow-hidden">{orderItem?.inventory?.product?.gtin}</div>
                                         </div>
                                         <div className="col-span-2 text-neutral-900 flex justify-center text-xs">{orderItem?.quantity} </div>
@@ -243,7 +244,7 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
                                 </div>}
                                 <div className="flex flex-row justify-between">
                                     <span className="text-neutral-900 font-semibold text-sm">Grand Total</span>
-                                    <span className="text-sm text-neutral-900 font-semibold">₹{Math.round(order?.payable).toFixed(2)}</span>
+                                    <span className="text-sm text-neutral-900 font-semibold">₹{Math.round(order?.payable || 0).toFixed(2)}</span>
                                 </div>
                             </div>
                             <div className="grid border-b border-neutral-900 border-dashed w-full items-start p-1">
@@ -259,5 +260,3 @@ const OrderDetail: React.FC = ({ initialOrder }: Props) => {
         <div>{content}</div>
     )
 }
-
-export default OrderDetail

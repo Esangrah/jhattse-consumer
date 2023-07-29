@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Container } from "@components/container";
 import { Header } from "@components/header";
 import { SignUp as SignUpForm } from "@components/authentication/signup";

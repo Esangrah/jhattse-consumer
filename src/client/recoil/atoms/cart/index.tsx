@@ -33,7 +33,7 @@ export const cartDetailsState = selector({
         const cart = get(internalCartState);
         console.log(cart);
         var storePayments = Array.from(cart?.keys()).map((key: string) => {
-            return { store: cart.get(key).inventory?.store?.name, discountedValue: (cart.get(key).inventory?.price || cart.get(key).inventory?.mrp || cart.get(key).product?.mrp) * cart.get(key).quantity, mrpValue: cart.get(key).product?.mrp * cart.get(key).quantity };
+            return { store: cart.get(key)?.inventory?.store?.name, discountedValue: (cart.get(key)?.inventory?.price || cart.get(key)?.inventory?.mrp || cart.get(key)?.product?.mrp || 0) * (cart.get(key)?.quantity || 0), mrpValue: (cart.get(key)?.product?.mrp || 0) * (cart.get(key)?.quantity || 0) };
         });
         var sortedStorePayments = storePayments.sort((a, b) => b.discountedValue - a.discountedValue);
         var sortedStores = sortedStorePayments.map((key) => { return key.store });

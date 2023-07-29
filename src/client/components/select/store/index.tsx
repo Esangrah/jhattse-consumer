@@ -46,9 +46,9 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
             if (selectedStore == undefined && props.noDefault !== true) {
                 setSelectedStore(result[0]);
             } else {
-                let store = result.filter((store) => store.id === selectedStore.id);
-                if (store.length > 0) {
-                    setSelectedStore(store[0]);
+                let store = result.find((store) => store.id === selectedStore?.id);
+                if (store !== undefined) {
+                    setSelectedStore(store);
                 }
             }
         }).catch((e) => {
@@ -66,7 +66,7 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
     }, [selectedStore])
 
     useEffect(() => {
-        setOptions(getFilteredResults(undefined, stores));
+        setOptions(getFilteredResults('', stores));
     }, [stores])
 
 
@@ -95,10 +95,7 @@ export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<
                     <Space style={{ padding: '0 8px 4px' }}>
                         <Link href="/business/account?form=true">
                             <button className="flex w-full" onClick={() => {
-                                // if (props.specialCallback != undefined) {
-                                //     props.specialCallback();
-                                // }
-                                setSelectedStore(null)
+                                setSelectedStore(undefined)
                             }}>
                                 + Add a new store
                             </button>

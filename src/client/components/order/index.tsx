@@ -38,13 +38,13 @@ export const OrderPanel: React.FC<Props> = ({ shallCreate, title }) => {
                 },
             )
             const res: Promise<TOrder[]> = createOrder(currentOrder);
-            res.then((result) => { setOrders(result); setLastOrderIds(result.map((order) => order.id)); setCart(new Map()); }).catch((e) => {
+            res.then((result) => { setOrders(result); setLastOrderIds(result.map((order) => order.id as string)); setCart(new Map()); }).catch((e) => {
                 if (e.response?.status === 401) {
                     requestLogin(pageContext.urlOriginal);
                 }
             })
         } else {
-            const res: Promise<TOrder[]> = getOrders(null, lastOrderIds);
+            const res: Promise<TOrder[]> = getOrders([], lastOrderIds);
             res.then((result) => setOrders(result)).catch((e) => {
                 if (e.response?.status === 401) {
                     requestLogin(pageContext.urlOriginal);

@@ -1,5 +1,11 @@
 import { OrderStatus, WSMessageType } from "./contants";
 
+declare global {
+    interface Window {
+        invokePayment:any;
+    }
+}
+
 export type TCategory = {
     name: string;
     image: string;
@@ -15,6 +21,15 @@ export type TImage = {
     id: number;
     file: string[];
 };
+
+export type TStoreImage = {
+    url: string
+    description?: string 
+    priority: number
+    store_id: number 
+    id: number
+}
+
 export type TStat = {
     order_count: number;
     sales_count: number;
@@ -27,7 +42,7 @@ export type TInventory = {
     cost_price?: number;
     quantity?: number;
     is_live?: boolean;
-    store_id?: number;
+    store_id: number;
     added_on?: number;
     id?: number;
     is_available?: boolean;
@@ -154,17 +169,17 @@ export interface TCity extends TState { }
 
 export type TAddress = {
     distance?: number;
-    street_name: string;
-    locality: string;
-    city_id: number;
-    state_id: number;
-    latitude: number;
-    longitude: number;
+    street_name?: string;
+    locality?: string;
+    city_id?: number;
+    state_id?: number;
+    latitude?: number;
+    longitude?: number;
     city?: TCity;
     state?: TState;
-    house_number: string;
-    pincode: string;
-    type: string;
+    house_number?: string;
+    pincode?: string;
+    type?: string;
     is_default?: boolean;
     id?: number;
     user_id?: number;
@@ -267,7 +282,7 @@ export interface TOrder {
     store_id?: number;
     address_id?: number;
     delivery_mode?: string;
-    payment_mode?: string;
+    payment_mode: string;
     id?: string;
     bill_id?: string;
     short_id?: number;
@@ -313,10 +328,15 @@ export interface TOrderPayment {
     user?: TIdentity;
 }
 
+export type TCreateOrderRetry = {
+    transaction_id?: string;
+    payment_mode: string;
+};
+
 export type TCreateOrder = {
     id?: string;
     components: TComponent[];
-    address_id: number;
+    address_id?: number | null;
     payment_mode: string;
     currency: string;
     user?: TIdentity;

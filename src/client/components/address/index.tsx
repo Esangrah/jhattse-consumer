@@ -8,10 +8,11 @@ import { useRecoilState } from 'recoil';
 import { addressState } from '@recoil/atoms';
 import { requestLogin } from '@core/utils';
 import { FaPlus } from 'react-icons/fa';
+import { usePageContext } from '@renderer/usePageContext';
 
 interface Props {
   title?: string
-  isDone?: Function
+  isDone: Function
   heading?: string
   btnPlacedButtom?: boolean
   customStyle?: string
@@ -22,6 +23,7 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
   const [isShown, setIsShown] = useState(false)
   const [selectAddress, setSelectedAddress] = useRecoilState<TAddress>(addressState)
   const [isEdit, setIsEdit] = useState(true)
+  const pageContext = usePageContext()
 
   const addAddressToList = (address: TAddress) => {
     let addressArray = savedAddress.filter((a) => a.id != address?.id)
@@ -50,11 +52,11 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
     const res: Promise<TAddress[]> = getAddresses();
     res.then((savedAddress) => setSavedAddress(savedAddress)).catch((e) => {
       if (e.response?.status === 401) {
-        requestLogin(router.asPath);
+        requestLogin(pageContext.urlOriginal);
       }
     })
     console.log("my address", savedAddress)
-  }, [])
+  }, [pageContext.urlOriginal])
 
   useEffect(() => {
     if (selectAddress !== null && selectAddress !== undefined && isShown === false) {
@@ -89,7 +91,7 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
           </div>}
         {isShown &&
           <div className="w-full justify-center">
-            <Addaddress addressCallback={(address: TAddress) => addAddressToList(address)} close={() => { toggle(false) }} initialAddress={isEdit ? selectAddress : null} isEdit={isEdit} />
+            <Addaddress addressCallback={(address: TAddress) => addAddressToList(address)} close={() => { toggle(false) }} initialAddress={isEdit ? selectAddress : undefined} isEdit={isEdit} />
           </div>}
       </div>
       <div className={`hidden ${btnPlacedButtom && "sm:block"} items-center align-bottom w-full sm:fixed bottom-10 z-40 sm:py-4 sm:px-4`}>

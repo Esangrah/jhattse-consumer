@@ -16,7 +16,7 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
     const [reviews, setReviews] = useState<TReview[]>([]);
 
     useEffect(() => {
-        if (product?.id > 0) {
+        if (product?.id !== undefined && product?.id > 0) {
             getReviews(product?.id, 3).then((res: TReview[]) => {
                 setReviews(res)
             })
@@ -45,7 +45,7 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
+                    <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
                 </div>
             </div>
             <div className="flex flex-col gap-4 divide-y">
@@ -55,7 +55,7 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
                     </div>
                 })}
             </div>
-            {product?.stats?.rating_count <= 3 ?
+            {product?.stats?.rating_count !== undefined && product?.stats?.rating_count <= 3 ?
                 <div className="text-xs font-bold text-brand-500">
                     <Link href={`/product/${product?.id}/reviews/${getSafeUrl(product?.name)}`}>
                         Add Product Review

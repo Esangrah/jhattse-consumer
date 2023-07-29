@@ -21,8 +21,8 @@ import { usePageContext } from "@renderer/usePageContext"
 export const Page = () => {
     const [profile, setProfile] = useState<TIdentity>();
     const isLogin = useRecoilValue(isLoggedIn)
-    const [currentorders, setCurrentOrders] = useState<TOrder[]>();
-    const [pastorders, setPastOrders] = useState<TOrder[]>();
+    const [currentorders, setCurrentOrders] = useState<TOrder[]>([]);
+    const [pastorders, setPastOrders] = useState<TOrder[]>([]);
     const [active, setActive] = useState("myorders");
     const pageContext = usePageContext();
 
@@ -30,7 +30,7 @@ export const Page = () => {
         if (!isLogin) {
             navigate("/");
         } else {
-            setProfile(JSON.parse(localStorage.getItem("profile")))
+            setProfile(JSON.parse(localStorage.getItem("profile") || '{}'))
         }
     }, [])
 

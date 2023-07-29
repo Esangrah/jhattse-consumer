@@ -1,5 +1,5 @@
 import { handleResponse, SERVER_HOST } from "@api";
-import { TAddAddress, TAddress } from "@components/types";
+import { TAddress } from "@components/types";
 import fetch from 'cross-fetch';
 import axios from "axios";
 
@@ -16,13 +16,13 @@ export const getAllStates = async () => {
     return handleResponse(res);
 }
 
-export const getCitiesOfState = async (name: string = null, stateId: number) => {
-    const res = await axios.get(`${SERVER_HOST}/api/v1/cities?${name != null && name?.length > 0 ? `name=${name}&` : ""}state_id=${stateId}`)
+export const getCitiesOfState = async (name: string, stateId: number) => {
+    const res = await axios.get(`${SERVER_HOST}/api/v1/cities?${name?.length > 0 ? `name=${name}&` : ""}${stateId > 0 ? `state_id=${stateId}` : ""}`)
     return handleResponse(res);
 }
 
 export const getAddresses = async () => {
-    const res = await axios.get(`${SERVER_HOST}/api/v1/addresses/?user_id=${JSON.parse(localStorage.getItem("profile"))?.id}`,
+    const res = await axios.get(`${SERVER_HOST}/api/v1/addresses/?user_id=${JSON.parse(localStorage.getItem("profile") || '{}')?.id}`,
         { headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` } })
     return handleResponse(res);
 

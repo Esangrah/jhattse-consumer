@@ -23,12 +23,12 @@ async function render(pageContext: PageContextClient) {
   // SPA
   if (container?.innerHTML === '' || !pageContext.isHydration) {
     if (!root) {
-      root = createRoot(container)
+      root = createRoot(container as Element)
     }
     root.render(page)
     // SSR
   } else {
-    root = hydrateRoot(container, page)
+    root = hydrateRoot(container as Element, page)
   }
 }
 

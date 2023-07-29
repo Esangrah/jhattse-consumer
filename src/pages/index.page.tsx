@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { Container } from "@components/container"
 import { Section } from "@components/section";
@@ -27,10 +27,10 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     // `.page.server.js` files always run in Node.js; we could use SQL/ORM queries here.
     const popularProducts: TProduct[] = await getPopularProducts();
     const productCategories: TProductCategory[] = await getProductCategories(
-        null,
+        0,
         true
     );
-    const popularBrands: TBrand[] = await getProductBrands();
+    const popularBrands: TBrand[] = await getProductBrands('');
     return {
         pageContext: {
             pageProps: {
@@ -131,7 +131,7 @@ export const Page: React.FC<Props> = ({
                                 src="public/consumer/business_banner.png"
                                 width="1544"
                                 height="268"
-                                priority={true}
+                                priority={"true"}
                                 alt="Start selling on Jhattse"
                                 loading="eager"
                                 quality={100}
@@ -146,7 +146,7 @@ export const Page: React.FC<Props> = ({
                                 src="public/consumer/business_banner_mobile.png"
                                 width="368"
                                 height="220"
-                                priority={true}
+                                priority={"true"}
                                 alt="Start selling on Jhattse"
                                 quality={100}
                             />

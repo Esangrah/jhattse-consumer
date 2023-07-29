@@ -43,7 +43,9 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
     };
 
     useEffect(() => {
-        setUserLoggedIn(localStorage.getItem("token")?.length > 0);
+        if ((typeof window !== "undefined" && localStorage.getItem('token') || '').length > 0) {
+            setUserLoggedIn(true);
+        }
     }, []);
 
     return (
@@ -61,7 +63,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                     <div className="flex justify-between items-center gap-4 sm:gap-2">
                         <Link href={homeLink || "/"}>
                             <Image
-                                priority={true}
+                                priority={"true"}
                                 loader={staticImageLoader}
                                 src="public/jhattse-logo.svg"
                                 width="100"
@@ -83,12 +85,12 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 </p>
                                 <Suspense>
                                     {typeof window !== "undefined" &&
-                                        JSON.parse(localStorage.getItem("location"))?.Location
+                                        JSON.parse(localStorage.getItem("location") || '{}')?.Location
                                             ?.name ? (
                                         <span>
                                             <p className="text-sm font-bold text-neutral-700">
                                                 {
-                                                    JSON.parse(localStorage.getItem("location"))
+                                                    JSON.parse(localStorage.getItem("location") || '{}')
                                                         ?.Location?.name
                                                 }
                                             </p>
@@ -236,12 +238,12 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                             <p className="text-xs font-medium text-neutral-700">
                                 Deliver to
                             </p>
-                            {typeof window !== "undefined" && JSON.parse(localStorage.getItem("location"))?.Location?.name ?
+                            {typeof window !== "undefined" && JSON.parse(localStorage.getItem("location") || '{}')?.Location?.name ?
                                 (
                                     <span>
                                         <p className="text-sm font-bold text-custom_black">
                                             {
-                                                JSON.parse(localStorage.getItem("location"))?.Location?.name
+                                                JSON.parse(localStorage.getItem("location") || '{}')?.Location?.name
                                             }
                                         </p>
                                     </span>

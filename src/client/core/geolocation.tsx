@@ -39,7 +39,7 @@ export const getLocation = async () : Promise<TGeoLocation> => {
     console.log(location);
     if ("code" in location) {
         geoError(location);
-        return JSON.parse(localStorage.getItem("geoposition"));
+        return JSON.parse(localStorage.getItem("geoposition") || '{}');
     }
     return geoSuccess(location);
 }

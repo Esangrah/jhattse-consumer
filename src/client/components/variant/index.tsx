@@ -1,9 +1,9 @@
 import { CarouselContainer } from '@components/container/carousel'
 import { TInventory, TProduct, TVariant } from '@components/types'
-import { getImageObject, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils'
+import { getFirst, getImageObject, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils'
 import { cartState } from '@recoil/atoms'
 import { variantState } from '@recoil/atoms/variant'
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { SwiperSlide } from 'swiper/react'
@@ -11,7 +11,7 @@ import { inventoryByVariantId } from './variantSelector'
 import { FaMinus, FaPlus } from 'react-icons/fa'
 
 interface Props {
-    showModal?: boolean,
+    showModal: boolean,
     setShowModal?: Function,
     product: TProduct,
     btnName?: string,
@@ -19,11 +19,11 @@ interface Props {
     quantity?: number
 }
 
-const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName }) => {
-    const [variant, setVariant] = useState<TVariant>(product?.variants?.filter((variant) => inventoryByVariantId(variant, product)[0]?.is_available == true)[0]);
+const Variant: React.FC<Props> = ({ showModal, product }) => {
+    const [variant, setVariant] = useState<TVariant>(product?.variants?.find((variant) => getFirst(inventoryByVariantId(variant, product))?.is_available == true) as TVariant);
     const [Isvariant, setIsVariant] = useRecoilState(variantState);
     const [cart, setCart] = useRecoilState(cartState);
-    const variantId = inventoryByVariantId(variant, product)[0]?.variant_id;
+    const variantId = getFirst(inventoryByVariantId(variant, product))?.variant_id;
     const [productQyt, setProductQyt] = useState(variantId != undefined && cart.get(variantId.toString())?.quantity || 1)
 
     const onClickVariant = (value: TVariant) => {
@@ -43,7 +43,7 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
 
                 }
             } else {
-                cart.set(inventory?.variant_id?.toString(), { product: product, quantity: productQyt, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
+                cart.set(inventory?.variant_id?.toString() || '', { product: product, quantity: productQyt, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
             }
             return new Map(cart);
         }
@@ -72,11 +72,11 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-neutral-100 outline-none focus:outline-none">
                                 {/*body*/}
                                 <div className="relative px-4 py-4 sm:px-2 flex-auto">
-                                    <div className={`flex gap-2 items-center pb-4 ${product?.name.length < 40 ? "w-96" : "w-full"} sm:w-full`}>
+                                    <div className={`flex gap-2 items-center pb-4 ${product?.name !== undefined && product?.name?.length < 40 ? "w-96" : "w-full"} sm:w-full`}>
                                         <Image
                                             loader={sanityIoImageLoader}
                                             src={getImageObject(product.images)?.url || "https://jhattse.com/assets/noimage.png"}
-                                            alt={product?.name}
+                                            alt={product?.name || ''}
                                             width="50"
                                             height="50"
                                             className="rounded"
@@ -88,14 +88,14 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                                         <CarouselContainer>
                                             {product?.variants?.length !== 0 && product?.variants?.map((item, index: number) => {
                                                 return <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>
-                                                    <div className={inventoryByVariantId(item, product)[0]?.is_available ? `bg-neutral-50 py-2 px-4 rounded-md cursor-pointer sm:w-full  ${item?.id == variant?.id ? 'border-2 border-brand-500' : ''}` : "bg-neutral-50 py-2 px-4 rounded-md sm:w-full opacity-75"} onClick={() => inventoryByVariantId(item, product)[0]?.is_available && onClickVariant(item)
+                                                    <div className={getFirst(inventoryByVariantId(item, product))?.is_available ? `bg-neutral-50 py-2 px-4 rounded-md cursor-pointer sm:w-full  ${item?.id == variant?.id ? 'border-2 border-brand-500' : ''}` : "bg-neutral-50 py-2 px-4 rounded-md sm:w-full opacity-75"} onClick={() => getFirst(inventoryByVariantId(item, product))?.is_available && onClickVariant(item)
                                                     }>
                                                         <div className="flex flex-col gap-2 ">
                                                             <div className="flex justify-start gap-2 py-2 border-b">
                                                                 <h4 className="text-lg font-semibold text-custom_black text-sm line-clamp-1">{trimToLength((item?.name || product?.name), 20)}</h4>
                                                             </div>
-                                                            <span className="text-xl py-1 font-bold text-custom_black sm:text-lg">{humanizeCurrency(inventoryByVariantId(item, product)[0]?.price || inventoryByVariantId(item, product)[0]?.mrp || item?.mrp || 0)}</span>
-                                                            <p className={inventoryByVariantId(item, product)[0]?.is_available ? "font-bold text-sm text-success-400" : "font-bold text-sm text-error-400"}>{inventoryByVariantId(item, product)[0]?.is_available ? "In Stock" : "Out of stock"}</p>
+                                                            <span className="text-xl py-1 font-bold text-custom_black sm:text-lg">{humanizeCurrency(getFirst(inventoryByVariantId(item, product))?.price || getFirst(inventoryByVariantId(item, product))?.mrp || item?.mrp || 0)}</span>
+                                                            <p className={getFirst(inventoryByVariantId(item, product))?.is_available ? "font-bold text-sm text-success-400" : "font-bold text-sm text-error-400"}>{getFirst(inventoryByVariantId(item, product))?.is_available ? "In Stock" : "Out of stock"}</p>
                                                         </div>
                                                     </div>
                                                 </SwiperSlide>
@@ -121,9 +121,9 @@ const Variant: React.FC<Props> = ({ showModal, setShowModal, product, btnName })
                                     <button
                                         className="flex-1 uppercase text-sm p-2 border-2 border-brand-500 text-neutral-50 bg-brand-500 rounded font-bold"
                                         type="button"
-                                        onClick={() => onAddToCart(product, inventoryByVariantId(variant, product)[0], productQyt)}
+                                        onClick={() => onAddToCart(product, getFirst(inventoryByVariantId(variant, product)) as TInventory, productQyt)}
                                     >
-                                        {`ADD TO CART | ${humanizeCurrency((inventoryByVariantId(variant, product)[0]?.price || inventoryByVariantId(variant, product)[0]?.mrp || variant?.mrp || 0) * productQyt || 0)}`}
+                                        {`ADD TO CART | ${humanizeCurrency((getFirst(inventoryByVariantId(variant, product))?.price || getFirst(inventoryByVariantId(variant, product))?.mrp || variant?.mrp || 0) * productQyt || 0)}`}
                                     </button>
                                 </div>
                             </div>

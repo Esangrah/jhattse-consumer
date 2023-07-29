@@ -11,10 +11,10 @@ import Countdown from 'react-countdown';
 import { navigate } from 'vite-plugin-ssr/client/router';
 import { usePageContext } from '@renderer/usePageContext';
 
-const Verification = () => {
+export const Page = () => {
     const [code, setcode] = useState(new Array(6).fill(""));
     const [otp, setOtp] = useState < TOtp > ();
-    const [id, setId] = useState(null);
+    const [id, setId] = useState<string>('');
     const [user, setUser] = useRecoilState < TIdentity > (profileState);
     const [message, setMessage] = useState("");
     const [resend, setResend] = useState(true);
@@ -24,7 +24,7 @@ const Verification = () => {
     useEffect(() => {
         // TODO:
         let id = pageContext.routeParams?.id;
-        setId(id);
+        setId(id || '');
     }, [location])
 
     const handleChange = (element: any, index: number) => {
@@ -41,12 +41,14 @@ const Verification = () => {
 
     const handleProceed = () => {
         console.log("otp", otp)
-        const result = verifyMobileOtp(id, otp);
-        result.then((res: TOtp) => { res.success == "true" ? updateUser() : setMessage(res.msg) }).catch((e) => {
-            if (e.response?.status === 401) {
-                requestLogin(pageContext.urlOriginal);
-            }
-        })
+        if (otp?.otp != undefined) {
+            const result = verifyMobileOtp(id, otp);
+            result.then((res: TOtp) => { res.success == "true" ? updateUser() : setMessage(res.msg || '') }).catch((e) => {
+                if (e.response?.status === 401) {
+                    requestLogin(pageContext.urlOriginal);
+                }
+            })
+        }
     }
 
 
@@ -74,9 +76,13 @@ const Verification = () => {
     }, [user])
 
     const resendOtp = () => {
-        if (user?.phone !== undefined) {
+        if (user?.phone !== undefined && sendOtp?.key !== undefined) {
             const result = verifyMobile(sendOtp);
-            result.then((res: TOtp) => { navigate(res.link) }).catch((e) => {
+            result.then((res: TOtp) => { 
+                if (res.link != undefined) {
+                    navigate(res.link)
+                }
+            }).catch((e) => {
                 if (e.response?.status === 401) {
                     requestLogin(pageContext.urlOriginal);
                 }
@@ -110,11 +116,6 @@ const Verification = () => {
                                     onChange={(e) => handleChange(e.target, index)}
                                     maxLength={1}
                                     key={index}
-                                    // style={
-                                    //     data
-                                    //         ? { borderBottom: "3px solid #7dbf2a" }
-                                    //         : { borderBottom: "3px solid grey" }
-                                    // }
                                     value={data}
                                     onFocus={(e) => e.target.select}
                                     autoFocus={index === 0} // add this line
@@ -145,5 +146,3 @@ const Verification = () => {
         </div>
     )
 }
-
-export default Verification;

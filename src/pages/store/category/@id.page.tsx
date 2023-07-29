@@ -12,14 +12,15 @@ import { getStoreCategory } from "@api/storecategory";
 import { getSafeUrl } from "@core/utils";
 import { MdStorefront } from "react-icons/md";
 import { usePageContext } from "@renderer/usePageContext";
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 
 interface Props {
-    initialStoreCategory?: TStoreCategory
+    initialStoreCategory: TStoreCategory
 }
 
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
     const initialStoreCategory: TStoreCategory = await getStoreCategory(parseInt(id));
 
@@ -33,7 +34,7 @@ export async function onBeforeRender(pageContext) {
 }
 
 
-const StoreList: React.FC = ({ initialStoreCategory }: Props) => {
+const StoreList: React.FC<Props> = ({ initialStoreCategory }: Props) => {
     const [stores, setStores] = useState<TStore[]>([]);
     const [storeCategory, setStoreCategory] = useState<TStoreCategory>(initialStoreCategory);
     const [pageNumber, setPageNumber] = useState(0);
@@ -45,7 +46,7 @@ const StoreList: React.FC = ({ initialStoreCategory }: Props) => {
     useEffect(() => {
         // TODO:
         let id = pageContext.routeParams?.id;
-        if (id == storeCategory?.id.toString()) {
+        if (id === undefined || id == storeCategory?.id.toString()) {
             return
         }
         const res: Promise<TStoreCategory> = getStoreCategory(parseInt(id));

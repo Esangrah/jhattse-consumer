@@ -2,9 +2,9 @@ import { handleResponse, SERVER_HOST } from "@api";
 import { TBrand, TProduct } from "@components/types";
 import axios from "axios";
 
-export const getProductBrands = async (name: string = null, pageNumber: number = 0, pageSize: number = 10) => {
+export const getProductBrands = async (name: string, pageNumber: number = 0, pageSize: number = 10) => {
     let axiosMethod = axios.get;
-    const res = await axiosMethod(`${SERVER_HOST}/api/v1/brands/?${name == null ? "" : `name=${name}`}&skip=${pageNumber * pageSize}&limit=${pageSize}`,)
+    const res = await axiosMethod(`${SERVER_HOST}/api/v1/brands/?${name?.length == 0 ? "" : `name=${name}`}&skip=${pageNumber * pageSize}&limit=${pageSize}`,)
     return handleResponse(res);
 }
 

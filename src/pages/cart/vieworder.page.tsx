@@ -4,8 +4,8 @@ import { Header } from "@components/header"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { getOrders } from '@api/order';
 import { TOrder } from '@components/types';
-import { sanityIoImageLoader, humanizeCurrency, trimToLength } from '@core/utils';
-import { Image } from "@renderer/image";;
+import { sanityIoImageLoader, humanizeCurrency, trimToLength, getFirst } from '@core/utils';
+import { Image } from "@renderer/Image";;
 import moment from 'moment';
 import { variantNameFromOrderItem } from '@components/variant/variantSelector';
 import { navigate } from 'vite-plugin-ssr/client/router';
@@ -19,12 +19,12 @@ const formatTime = (dateString: string) => {
 
 export const Page = () => {
     const [orderDetails, setOrderDetails] = useState<TOrder[]>([]);
-    const transaction_id = typeof window !== 'undefined' ? localStorage.getItem("transaction_id") : null
+    const transaction_id = typeof window !== 'undefined' ? localStorage.getItem("transaction_id") : null;
     
 
     useEffect(() => {
 
-        { transaction_id != undefined } {
+        if (transaction_id !== null) {
             const result: Promise<TOrder[]> = getOrders([], [], transaction_id);
             result.then((res: TOrder[]) => {
                 setOrderDetails(res);
@@ -66,7 +66,7 @@ export const Page = () => {
                                     </div>
                                     <div className='h-4'></div>
                                     <div>
-                                        <p className='text-sm text-customGray font-semibold'>{formatTime(order?.added_on)}</p>
+                                        <p className='text-sm text-customGray font-semibold'>{order?.added_on !== undefined && formatTime(order?.added_on)}</p>
                                     </div>
                                     <div className="h-10"></div>
                                     <h2 className="font-bold text-base sm:text-sm text-custom_black pb-4">Order Details</h2>
@@ -79,16 +79,14 @@ export const Page = () => {
                                                         <div className='flex gap-2 items-center text-bannerText font-medium'>
                                                             <Image
                                                                 loader={sanityIoImageLoader}
-                                                                src={orderItem?.inventory?.product?.images[0]?.url || "https://jhattse.com/assets/noimage.png"}
-                                                                alt={orderItem?.inventory?.product?.name}
+                                                                src={getFirst(orderItem?.inventory?.product?.images)?.url || "https://jhattse.com/assets/noimage.png"}
+                                                                alt={orderItem?.inventory?.product?.name || 'order item'}
                                                                 width="50"
                                                                 height="50"
                                                                 className="rounded-sm"
                                                             />
                                                             <div className='flex items-center gap-2'>
-                                                                <p className="text-ellipsis text-left break-words line-clamp-1 sm:text-sm text-bannerText">{variantNameFromOrderItem(orderDetails) ? trimToLength(variantNameFromOrderItem(orderDetails), 20)
-                                                                    : trimToLength(orderItem?.inventory?.product?.name, 20)
-                                                                }</p>
+                                                                <p className="text-ellipsis text-left break-words line-clamp-1 sm:text-sm text-bannerText">{trimToLength(variantNameFromOrderItem(getFirst(orderDetails)), 20)}</p>
                                                                 <span>{` x ${orderItem?.quantity}`}</span>
                                                             </div>
                                                         </div>
@@ -104,16 +102,16 @@ export const Page = () => {
                                                 <span><p className='text-sm text-bannerText font-medium'>Order Total</p></span>
                                                 <span><p className='text-sm text-custom_black font-medium'>{humanizeCurrency(order?.cost)}</p></span>
                                             </div>
-                                            {order?.tax > 0 &&
+                                            {order?.tax !== undefined && order?.tax > 0 &&
                                                 <div className='flex items-center justify-between py-2'>
                                                     <span><p className='text-sm text-bannerText font-medium'>GST</p></span>
                                                     <span><p className='text-sm text-custom_black font-medium'>{order?.tax?.toFixed(2)}</p></span>
                                                 </div>
                                             }
-                                            {order?.service_charge > 0 &&
+                                            {order?.service_charge !== undefined && order?.service_charge > 0 &&
                                                 <div className='flex items-center justify-between py-2'>
                                                     <span><p className='text-sm text-bannerText font-medium'>Service Charge</p></span>
-                                                    <span><p className='text-sm text-custom_black font-medium'>{order?.service_charge}</p></span>
+                                                    <span><p className='text-sm text-custom_black font-medium'>{order?.service_charge?.toFixed(2)}</p></span>
                                                 </div>
                                             }
                                         </div>

@@ -16,7 +16,7 @@ type Props = {
 export const Section: React.FC<Props> = ({ element, intent, title, products, style, headStyle, viewUrl, isCarousel }) => {
     let finalStyle = style == undefined || style == "" ? "pb-4 bg-ternary" : style;
     return (
-        products?.length > 0 &&
+        products?.length > 0 ?
         // <div className={`section select-none ${finalStyle}`}>
         <div className={ `section select-none ${finalStyle}`}>
             {title && <div className="flex flex-row justify-between py-3">
@@ -26,5 +26,7 @@ export const Section: React.FC<Props> = ({ element, intent, title, products, sty
             </div>}
             <Cards isCarousel={isCarousel} products={products} element={element} intent={intent} />
         </div>
+        :
+        <></>
     )
 }

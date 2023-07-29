@@ -3,7 +3,7 @@ import { MdOutlineLocationOn} from 'react-icons/md';
 import { TCartItem } from '@components/types';
 import { CartItemCard } from '@components/cards/cartitem';
 import { Link } from '@renderer/Link';
-import { getSafeUrl } from '@core/utils';
+import { getFirst, getLength, getSafeUrl } from '@core/utils';
 import { InstructionForm } from '@components/instruction';
 
 interface Props {
@@ -12,27 +12,29 @@ interface Props {
 
 export const StoreCartContainer = ({ cartItems }: Props) => {
     const [instruction, setInstruction] = useState(false);
+    const firstCartItem = getFirst(cartItems);
     return (
-        (cartItems?.length > 0) ?
+        (
+        getLength(cartItems) > 0) ?
         <div className="divide-y divide-solid">
             {!cartItems[0].deliverable &&
                 <div className="">
                     <div className="flex justify-between bg-teal-500 px-2 py-1 rounded-t-lg">
                         <span className="font-semibold text-base text-neutral-50">Pickup From</span>
                         <div className="flex font-semibold text-base text-neutral-50">
-                            <span>{cartItems[0].inventory?.store?.address?.street_name}</span>
-                            <p className="text-neutral-50 text-lg font-bold mt-1"><a href={`http://www.google.com/maps/place/${cartItems[0].inventory.store.address.latitude},${cartItems[0].inventory.store.address.longitude}`} target="_blank"><MdOutlineLocationOn/></a></p>
+                            <span>{firstCartItem?.inventory?.store?.address?.street_name}</span>
+                            <p className="text-neutral-50 text-lg font-bold mt-1"><a href={`http://www.google.com/maps/place/${firstCartItem?.inventory?.store?.address?.latitude},${firstCartItem?.inventory?.store?.address?.longitude}`} target="_blank"><MdOutlineLocationOn/></a></p>
                         </div>
                     </div>
                     <div className="flex justify-start items-center bg-neutral-50 px-2 py-1 gap-2">
                         <span className="font-semibold text-sm text-slate-700">Sold by</span>
-                        <Link href={`/store/${cartItems[0].inventory.store.id}/${getSafeUrl(cartItems[0].inventory.store.name)}`}><span className="font-semibold text-sm text-sky-400">{cartItems[0].inventory.store.name}</span></Link>
+                        <Link href={`/store/${firstCartItem?.inventory?.store?.id}/${getSafeUrl(getFirst(cartItems)?.inventory?.store?.name)}`}><span className="font-semibold text-sm text-sky-400">{firstCartItem?.inventory?.store?.name}</span></Link>
                     </div>
                 </div>
             }
             <div className="divide-y-2 divide-solid">
                 {cartItems?.map((cartItem: TCartItem) => (
-                    <div key={cartItem.product.id} className="shadow-sm">
+                    <div key={cartItem?.product?.id} className="shadow-sm">
                         <CartItemCard cartItem={cartItem} showStore={false} />
                     </div>
                 ))}

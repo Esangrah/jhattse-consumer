@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { cartState } from '@recoil/atoms';
-import { Image } from "@renderer/image";;
+import { Image } from "@renderer/Image";;
 import { Link } from '@renderer/Link';
 import { CartButton } from '@components/cartbutton';
-import { TCartItem } from "@components/types";
+import { TCartItem, TProduct } from "@components/types";
 import { Star } from '@components/star';
 import { getImageUrl, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
 import { MdDelete, MdOutlineShoppingCart } from 'react-icons/md';
@@ -14,35 +14,38 @@ import { cartInventoryFilter, getCombinedName } from '@components/variant/varian
 
 export const CartInfo: React.FC = () => {
     const [cart, setCart] = useRecoilState(cartState);
-    const [cartItems, setCartItems] = useState<TCartItem[]>(null);
+    const [cartItems, setCartItems] = useState<TCartItem[]>([]);
     const [removeCartItemId, setRemoveCartItemId] = useState<TCartItem>()
     const [showModel, setShowModel] = useState(false)
 
-    let tableInfo = typeof window !== "undefined" && JSON.parse(localStorage.getItem("tableInfo"));
+    let tableInfo = typeof window !== "undefined" && JSON.parse(localStorage.getItem("tableInfo") || '{}');
 
     useEffect(() => {
         setCartItems(Array.from(cart?.values()));
     }, [cart])
 
-    const removeFromCart = (cartItem: TCartItem) => {
-        let variantId = cartInventoryFilter(cartItem)?.id?.toString();
-        setCart((cart) => {
-            cart.delete(variantId);
-            return new Map(cart);
-        });
+    const removeFromCart = (cartItem: TCartItem | undefined) => {
+        let variantId = cartInventoryFilter(cartItem)?.id || 0;
+        if (variantId !== undefined) {
+            setCart((cart) => {
+                cart.delete(variantId.toString());
+                return new Map(cart);
+            });
+        }
     }
 
 
     const toggleDeliveryMode = (cartItem: TCartItem) => {
-        let variantId = cartInventoryFilter(cartItem)?.id?.toString();
-        setCart((cart) => {
-            if (cart.has(variantId)) {
-                let newMode = !cart.get(variantId).deliverable;
-                cart.set(variantId, { product: cartItem.product, quantity: cartItem.quantity, inventory: cartItem.inventory, deliverable: newMode })
-            }
-            return new Map(cart);
+        let variantId = cartInventoryFilter(cartItem)?.id || 0;
+        if (variantId !== undefined) {
+            setCart((cart) => {
+                if (cart.has(variantId?.toString())) {
+                    let newMode = !cart.get(variantId?.toString())?.deliverable;
+                    cart.set(variantId?.toString(), { product: cartItem.product, quantity: cartItem.quantity, inventory: cartItem.inventory, deliverable: newMode })
+                }
+                return new Map(cart);
+            })
         }
-        )
     };
 
     return (
@@ -62,14 +65,14 @@ export const CartInfo: React.FC = () => {
                         </div>
                     </div>
                     : cartItems?.map((cartItem) => (
-                        <div key={cartItem.product.id} className="grid bg-neutral-50 w-full grid-cols-3 sm:w-full gap-2 p-2 rounded-lg">
+                        <div key={cartItem?.product?.id} className="grid bg-neutral-50 w-full grid-cols-3 sm:w-full gap-2 p-2 rounded-lg">
                             <div className="relative flex col-span-1">
                                 <div className="flex justify-center items-center w-full">
-                                    <Link href={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
+                                    <Link href={`/product/${cartItem?.product?.id}/${getSafeUrl(cartItem?.product?.name)}`}>
                                         <Image
                                             loader={sanityIoImageLoader}
-                                            src={getImageUrl(cartItem.product?.images)}
-                                            alt={cartItem.product.name}
+                                            src={getImageUrl(cartItem?.product?.images || [])}
+                                            alt={cartItem?.product?.name || ''}
                                             width="150"
                                             height="150"
                                             className="w-full object-cover max-h-44"
@@ -86,12 +89,12 @@ export const CartInfo: React.FC = () => {
                             </div>
                             <div className="flex flex-col justify-between col-span-2 gap-2">
                                 <div className="flex flex-col gap-1 leading-tight">
-                                    <Link href={`/product/${cartItem.product.id}/${getSafeUrl(cartItem.product.name)}`}>
-                                        <p className="text-custom_black font-medium text-base line-clamp-2 sm:text-sm">{getCombinedName(cartItem?.product, cartItem?.inventory?.variant_id) ? getCombinedName(cartItem?.product, cartItem?.inventory?.variant_id) : cartItem?.product?.name}</p>
+                                    <Link href={`/product/${cartItem?.product?.id}/${getSafeUrl(cartItem?.product?.name)}`}>
+                                        <p className="text-custom_black font-medium text-base line-clamp-2 sm:text-sm">{getCombinedName(cartItem?.product as TProduct, cartItem?.inventory?.variant_id || 0)}</p>
                                     </Link>
-                                    <p className="text-custom_gray text-sm sm:hidden">Sold by: <Link href={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store.name}</span></Link></p>
+                                    <p className="text-custom_gray text-sm sm:hidden">Sold by: <Link href={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store?.name}</span></Link></p>
                                     <div>
-                                        <p><span className="text-neutral-900 font-bold text-lg sm:text-base pt-1">{humanizeCurrency(cartItem?.inventory?.price || cartItem.inventory?.mrp || cartItem.product.mrp)}</span></p>
+                                        <p><span className="text-neutral-900 font-bold text-lg sm:text-base pt-1">{humanizeCurrency(cartItem?.inventory?.price || cartItem.inventory?.mrp || cartItem?.product?.mrp)}</span></p>
                                     </div>
                                     {tableInfo?.table === null || tableInfo?.table === undefined &&
                                         <div className="flex flex-row gap-8 py-2 items-center">
@@ -134,7 +137,7 @@ export const CartInfo: React.FC = () => {
                                 </div>
                                 <div className="flex flex-col-2 justify-between pt-2">
                                     <div className="w-32">
-                                        <CartButton product={cartItem.product} Isvariant={false} inventory={cartItem.inventory} mode={''} />
+                                        <CartButton product={cartItem.product as TProduct} Isvariant={false} inventory={cartItem.inventory} mode={''} />
                                     </div>
                                     <div className="flex items-center"><button onClick={() => {
                                         setRemoveCartItemId(cartItem)

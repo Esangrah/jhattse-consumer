@@ -12,18 +12,19 @@ export const Page = () => {
     const pageContext = usePageContext();
 
     useEffect(() => {
-        if (pageContext.urlParsed?.search?.token?.length > 0) {
+        if (pageContext.urlParsed?.search?.token !== undefined && pageContext.urlParsed?.search?.token?.length > 0) {
             let token = pageContext.urlParsed?.search?.token;
-            setState({ ...state, token: token })
+            setState({ ...state, token: token } as TPasswordReset)
         }
     }, [pageContext.urlOriginal])
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        setState({ ...state, [evt.target.name]: evt.target.value });
+        if (evt.target.name !== undefined && evt.target.value !== undefined ) {
+            setState({ ...state, [evt.target.name]: evt.target.value } as TPasswordReset);
+        }
         let input = evt.target.value
         if (evt.target.name == "new_password") {
             setValid(input.length >= 8);
-            // input.match(/[a-z]/g) && input.match(/[A-Z]/g) && input.match(/[0-9]/g) && input.match(/[^a-zA-Z\d]/g) && 
         }
     }
     return (
@@ -42,7 +43,7 @@ export const Page = () => {
                         <p className="text-neutral-300 text-xs">Password should be atleast 8 characters</p>
                     </div>
                     <div className="">
-                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordReset(state).then((res) => navigate("/screen/reset-successful"))} disabled={!valid}>Update Password</button>
+                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordReset(state as TPasswordReset).then((res) => navigate("/screen/reset-successful"))} disabled={!valid}>Update Password</button>
                     </div>
                 </div>
             </div>

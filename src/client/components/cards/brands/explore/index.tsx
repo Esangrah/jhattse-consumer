@@ -1,4 +1,4 @@
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import { TBrand } from "@components/types";
 import { getSafeUrl, sanityIoImageLoader } from '@core/utils';

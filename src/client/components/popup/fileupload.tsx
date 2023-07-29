@@ -7,7 +7,7 @@ interface Props {
     ActionFun?: Function,
     btnName?: string,
     closeBtnName?: string,
-    setImageFile?: Function
+    setImageFile: Function
 }
 
 const FileUploadPopup: React.FC<Props> = ({ showModal, setShowModal, message, ActionFun, btnName, closeBtnName, setImageFile }) => {

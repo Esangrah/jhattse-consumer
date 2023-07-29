@@ -6,6 +6,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { Link } from '@renderer/Link';
 import { variantState } from '@recoil/atoms/variant';
+import { getLength } from '@core/utils';
 
 type Props = {
     product: TProduct;
@@ -23,21 +24,21 @@ export const CartButton = ({ product, inventory, mode, btnSize, btnStyle, Isvari
     const [Variant, setVariant] = useRecoilState(variantState);
 
     const increase = (product: TProduct, quantity: number = 1) => {
-        if (product?.variants.length !== 0 && typeof window !== 'undefined') {
+        if (getLength(product?.variants) > 0 && typeof window !== 'undefined') {
             setVariant({ Isvariant: Isvariant, product: product, showModal: showModal, quantity: productQuantity })
         }
         (inventory?.variant_id !== undefined && inventory?.variant_id !== null) && setCart((cart) => {
-            if (cart.has(inventory?.variant_id?.toString())) {
-                let newQuantity = cart.get(inventory?.variant_id?.toString()).quantity + quantity;
+            if (cart.has(inventory?.variant_id?.toString() || '')) {
+                let newQuantity = (cart.get(inventory?.variant_id?.toString() || '')?.quantity || 0) + quantity;
                 if (newQuantity == 0 || newQuantity == undefined) {
-                    cart.delete(inventory?.variant_id?.toString())
+                    cart.delete(inventory?.variant_id?.toString() || '')
                 }
                 else {
-                    cart.set(inventory?.variant_id?.toString(), { product: product, quantity: newQuantity, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
+                    cart.set(inventory?.variant_id?.toString() || '', { product: product, quantity: newQuantity, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
                 }
             }
             else {
-                cart.set(inventory?.variant_id?.toString(), { product: product, quantity: quantity, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
+                cart.set(inventory?.variant_id?.toString() || '', { product: product, quantity: quantity, inventory: inventory, deliverable: inventory?.store?.is_delivery || false })
             }
             return new Map(cart);
         }
@@ -46,7 +47,7 @@ export const CartButton = ({ product, inventory, mode, btnSize, btnStyle, Isvari
     const productQuantity = inventory?.variant_id != undefined ? cart.get(inventory?.variant_id?.toString())?.quantity : 0;
     return (
         (productQuantity == 0 || productQuantity == undefined) ?
-            (inventory?.external_link?.length > 0 ?
+            (inventory?.external_link !== undefined && inventory?.external_link?.length > 0 ?
                 <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} justify-center items-center max-w-lg min-w-full`}>
                     <Link href={inventory?.external_link} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-9 sm:px-2 text-lg sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded">BUY NOW</Link>
                 </div>

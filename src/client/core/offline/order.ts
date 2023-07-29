@@ -36,15 +36,17 @@ export const getOrderOverallOffline = async (store_id: number) => {
 }
 
 export const saveOrderItem = async (orderItem: TOrderItem) => {
-    const order: TOrder = await orderTable.where("id").equals(orderItem.order_id).first();
+    const order: TOrder = await orderTable.where("id").equals(orderItem?.order_id || '').first();
     const curIndex = order?.orderitems?.findIndex((oi) => oi.id === orderItem?.id);
-    order.orderitems[curIndex] = orderItem;
+    if (curIndex !== undefined && order.orderitems) {
+        order.orderitems[curIndex] = orderItem;
+    }
     await orderTable.put(order, order?.id);
     return orderItem;
 }
 
 export const saveOrderOffline = async (order: TOrder) => {
-    const _order: TOrder = await orderTable.where("id").equals(order?.id).first();
+    const _order: TOrder = await orderTable.where("id").equals(order?.id || '').first();
     await orderTable.put(order, _order?.id);
     return order;
 }
@@ -53,13 +55,13 @@ export const saveOrderOffline = async (order: TOrder) => {
 export const syncOrdersOnline = async () => {
     let orders: TOrder[] = await orderTable.toArray();
     orders.forEach(async (order: TOrder) => {
-        const existingSyncOrder = await onlineSyncTable.where("id").equals(order.id).first();
+        const existingSyncOrder = await onlineSyncTable.where("id").equals(order.id || '').first();
 
         if (existingSyncOrder == null) {
 
             let orderComponents = Array<TComponent>();
-            order.orderitems.map((item) => {
-                let x = { inventory_id: item.inventory.id, quantity: item.quantity, is_delivery: false };
+            order.orderitems?.map((item) => {
+                let x = { inventory_id: item?.inventory?.id, quantity: item.quantity, is_delivery: false } as TComponent;
                 orderComponents.push(x);
             })
             const _order: TCreateOrder = {
@@ -79,7 +81,9 @@ export const syncOrdersOnline = async () => {
                         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` }
                     }).then((res) => {
                         let o = handleResponse(res);
-                        confirmSync(_order.id, o);
+                        if (_order.id !== undefined) {
+                            confirmSync(_order?.id, o);
+                        }
                     });
             }
         }

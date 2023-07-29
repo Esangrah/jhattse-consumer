@@ -1,5 +1,5 @@
 import Head from 'react-helmet';
-import { Image } from "@renderer/image";
+import { Image } from "@renderer/Image";
 import { Link} from "@renderer/Link"
 import React, { useState } from "react";
 import { Container } from "@components/container";

@@ -10,15 +10,16 @@ import { TProduct, TProductCategory } from "@components/types";
 import { getFeaturedProducts, getProductCategory, getProductCategories } from "@api/product";
 import { getSafeUrl } from "@core/utils";
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
-    initialProductCategory?: TProductCategory
-    initialProductSubCategories?: TProductCategory[]
-    initialProductList?: TProduct[]
+    initialProductCategory: TProductCategory
+    initialProductSubCategories: TProductCategory[]
+    initialProductList: TProduct[]
 }
 
 
-export async function onBeforeRender(pageContext) {
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     const { id } = pageContext.routeParams;
     const res = await getProductCategory(parseInt(id));
     const initialProductCategory: TProductCategory = res;
@@ -41,7 +42,7 @@ export async function onBeforeRender(pageContext) {
 }
 
 
-export const Page: React.FC = ({ initialProductCategory, initialProductSubCategories, initialProductList }: Props) => {
+export const Page: React.FC<Props> = ({ initialProductCategory, initialProductSubCategories, initialProductList }: Props) => {
     const [productCategory, setProductCategory] = useState<TProductCategory>(initialProductCategory);
     const [subCategories, setSubCategories] = useState<TProductCategory[]>(initialProductSubCategories);
     const [products, setProducts] = useState<TProduct[]>(initialProductList);
@@ -53,8 +54,8 @@ export const Page: React.FC = ({ initialProductCategory, initialProductSubCatego
     const getAllFeaturedProducts = (extend: boolean = true) => {
         // TODO: 
         let id = pageContext.routeParams?.id;
-        if (id != undefined) {
-            const resProducts: Promise<TProduct[]> = getFeaturedProducts(parseInt(id), null, null, pageNumber, pageSize);
+        if (id !== undefined) {
+            const resProducts: Promise<TProduct[]> = getFeaturedProducts(parseInt(id), 0, 0, pageNumber, pageSize);
             resProducts.then((result) => {
                 setIsLoadMore(result.length == pageSize)
                 if (extend) {
@@ -68,7 +69,7 @@ export const Page: React.FC = ({ initialProductCategory, initialProductSubCatego
 
     useEffect(() => {
         let id = pageContext.routeParams?.id;
-        if (id == productCategory?.id.toString()) {
+        if (id === undefined || id == productCategory?.id.toString()) {
             return
         }
         const res: Promise<TProductCategory> = getProductCategory(parseInt(id));

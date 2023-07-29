@@ -11,14 +11,14 @@ import { Select } from "antd";
 type Props = {
     addressCallback: Function;
     close: Function;
-    initialAddress: TAddress;
+    initialAddress?: TAddress;
     isEdit: Boolean;
 }
 
 const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) => {
     const [address, setAddress] = useState < TAddress > ();
-    const [states, setStates] = useState < TStates[] > ();
-    const [cities, setCities] = useState < TCities[] > ();
+    const [states, setStates] = useState < TStates[] > ([]);
+    const [cities, setCities] = useState < TCities[] > ([]);
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState < string > ("");
     const [citySuggestions, setCitySuggestions] = useState < TOption[] > ([]);
@@ -85,7 +85,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
 
     useEffect(() => {
         if (address?.state_id != undefined) {
-            const res: Promise<TCities[]> = getCitiesOfState(null, address?.state_id);
+            const res: Promise<TCities[]> = getCitiesOfState('', address?.state_id);
             res.then((cities) => setCities(cities))
             console.log("city", cities)
         }
@@ -126,7 +126,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
         setStateSuggestions(getFilteredResults(value, states));
     };
     const handleCitySearch = (value: string) => {
-        getCitiesOfState(value, address?.state_id).then((result) => {
+        getCitiesOfState(value, address?.state_id || 0).then((result) => {
             setCitySuggestions(getFilteredResults(value, result));
         })
     };

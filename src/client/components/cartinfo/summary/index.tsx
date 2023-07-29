@@ -16,14 +16,13 @@ type Props = {
 
 export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actionFun, isHidden = false, isShowTaxes = false, orderDetails }: Props) => {
     const { discountedTotal, savings } = useRecoilValue(cartDetailsState);
-    const isLogin = useRecoilValue(isLoggedIn)
     const cart = useRecoilValue(cartState)
     const cartValues = Array.from(cart.values());
     const hasDeliveryItem = cartValues.some(item => item.deliverable);
-    const totalTax = cartValues.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? ((currentTax?.inventory?.price * currentTax.inventory?.tax_rate) / 100 * currentTax.quantity) : ((currentTax.inventory?.tax_rate * (currentTax?.inventory?.price / (1 + (currentTax.inventory?.tax_rate) / 100))) / 100 * currentTax.quantity)), 0)
-    let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo")) : null;
-    const retryDiscountedTotal = orderDetails?.reduce((prevTotal, current) => prevTotal + (current.payable), 0);
-    const retryTotalTax = orderDetails?.reduce((prevTax, currentTax) => prevTax + (currentTax?.tax), 0)
+    const totalTax = cartValues.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? (((currentTax?.inventory?.price || 0) * (currentTax.inventory?.tax_rate || 0)) / 100 * currentTax.quantity) : (((currentTax.inventory?.tax_rate || 0) * ((currentTax?.inventory?.price || 0) / (1 + (currentTax.inventory?.tax_rate || 0) / 100))) / 100 * currentTax.quantity)), 0)
+    let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo") || '{}') : null;
+    const retryDiscountedTotal = orderDetails !== undefined ? orderDetails?.reduce((prevTotal, current) => prevTotal + (current?.payable || 0), 0) : 0;
+    const retryTotalTax = orderDetails !== undefined ? orderDetails?.reduce((prevTax, currentTax) => prevTax + (currentTax?.tax || 0), 0): 0;
     const retryTotal = retryDiscountedTotal + retryTotalTax;
 
 

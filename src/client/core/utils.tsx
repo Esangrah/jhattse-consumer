@@ -33,7 +33,7 @@ export const getFilteredResults = (input: string, data: TData[]) => {
     if (data == undefined) {
         return new Array<TOption>();
     }
-    const inputValue = input != undefined ? input.trim().toLowerCase() : undefined;
+    const inputValue = input?.trim().toLowerCase();
     const inputLength = inputValue == undefined ? 0 : inputValue.length;
 
     const filteredResults = inputLength === 0 ? data : data.filter(store =>
@@ -53,7 +53,10 @@ export const getFilteredResults = (input: string, data: TData[]) => {
 };
 
 
-export const getSafeUrl = (name: string) => {
+export const getSafeUrl = (name: string | undefined) => {
+    if (name === undefined) {
+        return ''
+    }
     return (name || '').replace(/ +/g, '-').replace(/[.,\?:&\+\/%\|]+/g, '-').replace(/-+/g, '-').toLowerCase();
 }
 
@@ -61,7 +64,12 @@ export const range = (start: number, stop: number, step: number) =>
     Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step))
 
 export const checkLocalhost = () => { return typeof (window) !== "undefined" && window.location.hostname.includes("localhost") }
-export const humanizeCurrency = (x: number) => { return x?.toLocaleString("en-IN", { style: "currency", currency: "INR" }).split('.')[0] }
+export const humanizeCurrency = (x: number| undefined) => {
+    if (x === undefined) {
+        return ""
+    }
+    return x?.toLocaleString("en-IN", { style: "currency", currency: "INR" }).split('.')[0]
+}
 export const humanizeNumber = (x: number) => { return x?.toLocaleString('en-IN') }
 export const getBusinessUrl = (url: string) => {
     return checkLocalhost() ? url : `https://business.jhattse.com${url}`
@@ -71,8 +79,8 @@ export const getImageUrl = (productImages: TImage[]) => {
     return (productImages || [])?.length > 0 ? productImages[0].url : "assets/esangrah-profile.png";
 }
 
-export const getImageObject = (productImages: TImage[]) => {
-    return (productImages || [])?.length > 0 ? productImages[0] : { url: "assets/noimage.png", description: "No image available" };
+export const getImageObject = (productImages: TImage[] | undefined) => {
+    return productImages !== undefined && (productImages || [])?.length > 0 ? productImages[0] : { url: "assets/noimage.png", description: "No image available" };
 }
 
 export const calculateTax = (orderItems: TOrderItem[]) => {
@@ -92,11 +100,33 @@ export function groupBy<T>(arr: T[], fn: (item: T) => any) {
     }, {});
 }
 
-export const trimToLength = (name: string, charLength: number) => {
+export const trimToLength = (name: string | undefined, charLength: number) => {
+    if (name === undefined) {
+        return ''
+    }
     return name?.length > charLength ? `${name?.slice(0, charLength)}...` : name;
 }
 
 
-export const getColor = (rating: number) => {
-    return rating < 2 ? 1 : (rating < 4 ? 2 : ( rating < 4.5 ? 3 : 3))
+export const getColor = (rating?: number) => {
+    if (rating === undefined) {
+        return 1
+    }
+    return rating < 2 ? 1 : (rating < 4 ? 2 : (rating < 4.5 ? 3 : 3))
+}
+
+export const getLength = (iter: Array<any> | undefined | null) => {
+    if (iter === null || iter === undefined) {
+        return 0
+    } else {
+        return iter.length;
+    }
+}
+
+export function getFirst<Type>(iter: Type[] | undefined | null): Type {
+    if (iter === null || iter === undefined || iter.length === 0) {
+        return {} as Type
+    } else {
+        return iter[0];
+    }
 }

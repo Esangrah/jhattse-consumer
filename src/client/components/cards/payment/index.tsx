@@ -15,12 +15,14 @@ export const PaymentCard = ({ payment }: Props) => {
     const [isShown, setIsShown] = useState(true);
 
     const handleDelete = (payment: TPaymentMethod) => {
-        deleteStorePayment(payment.id).then((result) => {
-            setIsShown(false);
-            message.success("Deleted Payment method", 2);
-        }).catch(() => {
-            message.error("Error while deleting payment method", 2);
-        })
+        if(payment.id !== undefined) {
+            deleteStorePayment(payment.id).then((result) => {
+                setIsShown(false);
+                message.success("Deleted Payment method", 2);
+            }).catch(() => {
+                message.error("Error while deleting payment method", 2);
+            })
+        }
     }
 
     return (

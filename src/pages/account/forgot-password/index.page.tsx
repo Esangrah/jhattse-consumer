@@ -31,7 +31,7 @@ export const Page = () => {
                       invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" type="email" name="email" placeholder="Enter your email" onChange={handleChange} value={email} />
                     </div>
                     <div className="px-2 mt-1">
-                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordRecovery(email).then((result) => { navigate("/screen/forgot-password"); }).catch(() => setMessage("Email not found"))} disabled={!valid}>Send Mail</button>
+                        <button className={`text-base bg-neutral-900 text-neutral-50 font-semifold p-2 w-full rounded-full`} onClick={() => passwordRecovery(email || '').then((result) => { navigate("/screen/forgot-password"); }).catch(() => setMessage("Email not found"))} disabled={!valid}>Send Mail</button>
                         <p className="text-error-900">{message}</p>
                     </div>
                 </div>
