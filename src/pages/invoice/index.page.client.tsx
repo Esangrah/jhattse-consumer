@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 import { Page as PdfPage, Document, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import { TOrder, TOrderItem } from '@components/types';
 import moment from 'moment';
-import { getProductVariantName } from '@core/utils';
+import { getProductVariantName, groupBy } from '@core/utils';
 
 const styles10 = StyleSheet.create({
 
@@ -28,25 +28,98 @@ const InvoiceThankYouMsg = () => (
 
 const borderColor = '#000000'
 
-const styles9 = StyleSheet.create({
+const styles11 = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    left: {
+        width: '50%',
+        borderRightColor: borderColor,
+        borderRightWidth: 1,
+        flexDirection: "column"
+    },
+    right: {
+        width: '50%',
+        borderLeftColor: borderColor,
+        borderLeftWidth: 1,
+        flexDirection: "column"
+    },
     row: {
         flexDirection: 'row',
-        borderBottomColor: '#000000',
-        borderBottomWidth: 1,
         alignItems: 'center',
         height: 24,
         fontSize: 12,
         fontStyle: 'bold',
+        borderBottomColor: borderColor,
+        borderBottomWidth: 1,
+    },
+    bill_to: {
+        flexDirection: "row",
+        borderBottomColor: borderColor,
+        borderBottomWidth: 1
     },
     description: {
-        width: '85%',
-        textAlign: 'right',
-        borderRightColor: borderColor,
-        borderRightWidth: 1,
-        paddingRight: 8,
+        textAlign: 'left',
+        paddingLeft: 8,
     },
     total: {
-        width: '15%',
+        textAlign: 'right',
+        paddingRight: 8,
+    },
+});
+
+
+const InvoiceDetails = ({ invoice }) => (
+    <View style={styles11.container}>
+        <View style={styles11.left}>
+            <Text style={styles11.description}>GSTIN : {invoice?.store?.gstin}</Text>
+            <Text style={styles11.description}>State Name : { }</Text>
+            <Text style={styles11.description}>Contact : {invoice?.store?.phone}</Text>
+            <View style={styles11.row}>
+                <Text style={styles11.description}>Email : {invoice?.store?.email}</Text>
+            </View>
+
+        </View>
+        <View style={styles11.right}>
+            -
+        </View>
+    </View>
+);
+
+const styles9 = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
+    },
+    left: {
+        width: '60%',
+        borderRightColor: borderColor,
+        borderRightWidth: 1,
+    },
+    right: {
+        width: '40%',
+        borderLeftColor: borderColor,
+        borderLeftWidth: 1,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 24,
+        fontSize: 12,
+        fontStyle: 'bold',
+        borderBottomColor: borderColor,
+        borderBottomWidth: 1,
+    },
+    description: {
+        width: '70%',
+        textAlign: 'left',
+        fontStyle: 'bold',
+        paddingLeft: 8,
+    },
+    total: {
+        width: '10%',
         textAlign: 'right',
         paddingRight: 8,
     },
@@ -54,9 +127,36 @@ const styles9 = StyleSheet.create({
 
 
 const InvoiceTableFooter = ({ invoice }) => (
-    <View style={styles9.row}>
-        <Text style={styles9.description}>TOTAL</Text>
-        <Text style={styles9.total}>{invoice?.total_payable?.toFixed(2)}</Text>
+    <View style={styles9.container}>
+        <View style={styles9.left}>
+            -
+        </View>
+        <View style={styles9.right}>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>Total</Text>
+                <Text style={styles9.total}></Text>
+            </View>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>Taxable Amount</Text>
+                <Text style={styles9.total}></Text>
+            </View>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>CGST</Text>
+                <Text style={styles9.total}>{(invoice?.tax / 2)?.toFixed(2)}</Text>
+            </View>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>SGST</Text>
+                <Text style={styles9.total}>{(invoice?.tax / 2)?.toFixed(2)}</Text>
+            </View>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>Total Tax</Text>
+                <Text style={styles9.total}>{invoice?.tax?.toFixed(2)}</Text>
+            </View>
+            <View style={styles9.row}>
+                <Text style={styles9.description}>Grand Total</Text>
+                <Text style={styles9.total}>{Math.round(invoice?.payable).toFixed(2)}</Text>
+            </View>
+        </View>
     </View>
 )
 
@@ -241,6 +341,7 @@ const InvoiceTableHeader = () => (
     </View>
 );
 
+
 const tableRowsCount = 11;
 
 const styles5 = StyleSheet.create({
@@ -255,6 +356,7 @@ const styles5 = StyleSheet.create({
 
 const InvoiceItemsTable = ({ invoice }) => (
     <View style={styles5.tableContainer}>
+        <InvoiceDetails invoice={invoice} />
         <InvoiceTableHeader />
         <InvoiceTableRow items={invoice?.orderitems} />
         <InvoiceTableBlankSpace rowsCount={tableRowsCount - invoice.orderitems.length} />
@@ -316,15 +418,6 @@ const InvoiceNo = ({ invoice }) => (
         </View >
     </Fragment>
 );
-
-const InvoiceDetail = ({ order }) => {
-    <Fragment>
-        <View style={styles3.invoiceDateContainer}>
-            <Text style={styles3.invoiceDate}>{order?.bill_id}</Text>
-        </View>
-    </Fragment>
-}
-
 const styles2 = StyleSheet.create({
 
     titleContainer: {
@@ -367,13 +460,10 @@ const styles = StyleSheet.create({
     }
 });
 
-
-
 const Invoice = ({ order }: TOrder) => (
     <Document>
         <PdfPage size="A4" style={styles.page}>
-            <InvoiceTitle title='Invoice' />
-            <InvoiceDetail invoice={order} />
+            {/* <InvoiceTitle title='Invoice' /> */}
             {/* <InvoiceNo invoice={order} />
             <BillTo invoice={order} /> */}
             <InvoiceItemsTable invoice={order} />
@@ -429,6 +519,7 @@ const order: TOrder = {
     is_paid: true,
     payable: 1740,
     tax: 240,
+    taxable_amount: 1500,
     orderitems: [
         {
             "is_fulfilled": false,
@@ -575,6 +666,7 @@ const order: TOrder = {
         gstin: "05AAHCE4252A1Z7",
     }
 }
+
 
 export const Page: React.FC = () => {
     return (

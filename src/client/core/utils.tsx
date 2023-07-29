@@ -1,5 +1,5 @@
 import { refresh } from '@api/authentication';
-import { TData, TImage, TOption, TOrderItem } from '@components/types';
+import { TData, TImage, TOption, TOrder, TOrderItem } from '@components/types';
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 export const requestLogin = (next: string | undefined) => {
@@ -31,7 +31,7 @@ export const staticImageLoader = (src: string, width: string | number, quality?:
 
 export const getFilteredResults = (input: string, data: TData[]) => {
     if (data == undefined) {
-        return new Array<TOption>();
+        return new Array < TOption > ();
     }
     const inputValue = input?.trim().toLowerCase();
     const inputLength = inputValue == undefined ? 0 : inputValue.length;
@@ -92,7 +92,7 @@ export const calculateCost = (orderItems: TOrderItem[]) => {
 }
 
 export function groupBy<T>(arr: T[], fn: (item: T) => any) {
-    return arr.reduce<Record<string, T[]>>((prev, curr) => {
+    return arr.reduce < Record < string, T[] >> ((prev, curr) => {
         const groupKey = fn(curr);
         const group = prev[groupKey] || [];
         group.push(curr);
@@ -106,7 +106,6 @@ export const trimToLength = (name: string | undefined, charLength: number) => {
     }
     return name?.length > charLength ? `${name?.slice(0, charLength)}...` : name;
 }
-
 
 export const getColor = (rating?: number) => {
     if (rating === undefined) {
