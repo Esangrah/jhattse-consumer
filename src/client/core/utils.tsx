@@ -64,7 +64,7 @@ export const range = (start: number, stop: number, step: number) =>
     Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step))
 
 export const checkLocalhost = () => { return typeof (window) !== "undefined" && window.location.hostname.includes("localhost") }
-export const humanizeCurrency = (x: number| undefined) => {
+export const humanizeCurrency = (x: number | undefined) => {
     if (x === undefined) {
         return ""
     }
@@ -127,5 +127,13 @@ export function getFirst<Type>(iter: Type[] | undefined | null): Type {
         return {} as Type
     } else {
         return iter[0];
+    }
+}
+
+export const getProductVariantName = (product: string, variant: string) => {
+    if (variant?.length > 0) {
+        return product?.concat(", ", variant)
+    } else {
+        return product
     }
 }

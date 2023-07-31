@@ -1,7 +1,7 @@
 import { Header } from '@components/header'
 import { Container } from '@components/container'
 import React, { Fragment } from 'react';
-import { Page as PdfPage, Document, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import { Page as PdfPage, Document, Text, View, StyleSheet, PDFViewer, Image } from '@react-pdf/renderer';
 import { TOrder, TOrderItem } from '@components/types';
 import moment from 'moment';
 import { getProductVariantName, groupBy } from '@core/utils';
@@ -26,6 +26,60 @@ const InvoiceThankYouMsg = () => (
     </View>
 );
 
+const styles12 = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        marginTop: 12,
+        flexGrow: 1
+    },
+    description: {
+        width: '25%',
+        fontSize: 8,
+        textAlign: 'left',
+        textTransform: 'uppercase',
+    },
+    item_code: {
+        width: '50%',
+        fontSize: 8,
+        textAlign: 'center',
+        textTransform: 'uppercase',
+    },
+    qty: {
+        width: '25%',
+        fontSize: 8,
+        textAlign: 'left',
+        textTransform: 'uppercase',
+        flexWrap: 'wrap'
+    },
+    logo: {
+        width: 74,
+        height: 66,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    }
+
+});
+
+const InvoiceTop = ({ invoice }) => (
+    <View>
+        <View style={styles12.container}>
+            <Text style={styles12.description}>Original</Text>
+            <Text style={styles12.item_code}>Invoice</Text>
+            <Text style={styles12.qty}>E-invoice</Text>
+        </View>
+        <View style={styles12.container}>
+            <Image style={styles.logo} src={invoice?.store?.logo} />
+            <View style={{ width: '50%' }}>
+                <Text style={styles12.qty}>IRN: {invoice?.info?.gst_response?.IRN}</Text>
+                <Text style={styles12.qty}>Ack No.: {invoice?.info?.gst_response?.AckNo}</Text>
+            </View>
+            <Image style={styles.logo} src={invoice?.info?.gst_response?.qrcode} />
+        </View>
+    </View>
+);
+
+
+
 const borderColor = '#000000'
 
 const styles11 = StyleSheet.create({
@@ -41,8 +95,6 @@ const styles11 = StyleSheet.create({
     },
     right: {
         width: '50%',
-        borderLeftColor: borderColor,
-        borderLeftWidth: 1,
         flexDirection: "column"
     },
     row: {
@@ -50,41 +102,214 @@ const styles11 = StyleSheet.create({
         alignItems: 'center',
         height: 24,
         fontSize: 12,
-        fontStyle: 'bold',
         borderBottomColor: borderColor,
         borderBottomWidth: 1,
     },
-    bill_to: {
-        flexDirection: "row",
+    column: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        height: 24,
+        fontSize: 12,
         borderBottomColor: borderColor,
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
+    },
+    gstin: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    bill_to: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     description: {
         textAlign: 'left',
         paddingLeft: 8,
     },
-    total: {
+    phone: {
+        width: '75%',
         textAlign: 'right',
         paddingRight: 8,
     },
+    total: {
+        textAlign: 'right',
+        width: '15%',
+        paddingRight: 8,
+    },
+    city: {
+        width: '50%',
+        flexDirection: "row"
+    },
+    pincode: {
+        width: '50%',
+        flexDirection: "row"
+    }
 });
 
+const styles13 = StyleSheet.create({
+    nameRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 24,
+        fontSize: 12,
+        fontStyle: 'bold',
+    },
+    row: {
+        flexDirection: 'row',
+        borderBottomColor: borderColor,
+        borderBottomWidth: 1,
+        alignItems: 'center',
+        height: 24,
+        fontSize: 12,
+        fontStyle: 'bold',
+    },
+    name: {
+        width: '100%',
+        textAlign: 'center',
+
+    },
+    address: {
+        width: '100%',
+        textAlign: 'center',
+    },
+})
+const InvoiceHeader = ({ store }) => (
+    <View>
+        <View style={styles13.nameRow}>
+            <Text style={styles13.name}>{store?.name}</Text>
+        </View>
+        <View style={styles13.row}>
+            <Text style={styles13.address}>{[store?.address?.house_number, store?.address?.street_name, store?.address?.city?.name, store?.address?.state?.name, store?.address?.pincode].filter((x) => x != undefined).join(", ")}</Text>
+        </View>
+    </View>
+)
 
 const InvoiceDetails = ({ invoice }) => (
     <View style={styles11.container}>
         <View style={styles11.left}>
-            <Text style={styles11.description}>GSTIN : {invoice?.store?.gstin}</Text>
-            <Text style={styles11.description}>State Name : { }</Text>
-            <Text style={styles11.description}>Contact : {invoice?.store?.phone}</Text>
-            <View style={styles11.row}>
-                <Text style={styles11.description}>Email : {invoice?.store?.email}</Text>
+            <View>
+                <Text style={styles11.description}>GSTIN : {invoice?.store?.gstin}</Text>
+                <Text style={styles11.description}>State Name : { }</Text>
+                <Text style={styles11.description}>Contact : {invoice?.store?.phone}</Text>
+                <View style={styles11.row}>
+                    <Text style={styles11.description}>Email : {invoice?.store?.email}</Text>
+                </View>
             </View>
-
+            <View>
+                <Text style={styles11.description}>Consignee (Bill To)</Text>
+                <Text style={styles11.description}>{invoice?.user?.full_name}</Text>
+                <Text style={styles11.description}>{[invoice?.billing_address?.house_number, invoice?.billing_address?.street_name].filter((x) => x != "").join(", ")}</Text>
+                <Text style={styles11.description}>{invoice?.billing_address?.locality}</Text>
+                <Text style={styles11.description}>{invoice?.billing_address?.city?.name}</Text>
+                <View style={styles11.bill_to}>
+                    <Text style={styles11.phone}>Phone: </Text>
+                    <Text style={styles11.total}>{invoice?.user?.phone}</Text>
+                </View>
+                <View style={styles11.bill_to}>
+                    <View style={styles11.city}>
+                        <Text style={styles11.description}>City: </Text>
+                        <Text style={styles11.description}>{invoice?.billing_address?.city?.name}</Text>
+                    </View>
+                    <View style={styles11.pincode}>
+                        <Text style={styles11.description}>PinCode: </Text>
+                        <Text style={styles11.description}>{invoice?.billing_address?.pincode}</Text>
+                    </View>
+                </View>
+                <View style={styles11.gstin}>
+                    <Text style={styles11.description}>GSTIN: </Text>
+                    <Text style={styles11.description}>{invoice?.info?.gstin}</Text>
+                </View>
+                <View style={styles11.row}>
+                    <View style={styles11.city}>
+                        <Text style={styles11.description}>State Name: </Text>
+                        <Text style={styles11.description}>{invoice?.billing_address?.state?.name}</Text>
+                    </View>
+                    <View style={styles11.pincode}>
+                        <Text style={styles11.description}>State Code: </Text>
+                        <Text style={styles11.description}>{invoice?.billing_address?.state_id}</Text>
+                    </View>
+                </View>
+            </View>
+            <View>
+                <Text style={styles11.description}>Buyer (Ship To)</Text>
+                <Text style={styles11.description}>{invoice?.user?.full_name}</Text>
+                <Text style={styles11.description}>{[invoice?.shipping_address?.house_number, invoice?.shipping_address?.street_name].filter((x) => x != undefined).join(", ")}</Text>
+                <Text style={styles11.description}>{invoice?.shipping_address?.locality}</Text>
+                <Text style={styles11.description}>{invoice?.shipping_address?.city?.name}</Text>
+                <View style={styles11.bill_to}>
+                    <Text style={styles11.phone}>Phone: </Text>
+                    <Text style={styles11.total}>{invoice?.user?.phone}</Text>
+                </View>
+                <View style={styles11.bill_to}>
+                    <View style={styles11.city}>
+                        <Text style={styles11.description}>City: </Text>
+                        <Text style={styles11.description}>{invoice?.shipping_address?.city?.name}</Text>
+                    </View>
+                    <View style={styles11.pincode}>
+                        <Text style={styles11.description}>PinCode: </Text>
+                        <Text style={styles11.description}>{invoice?.shipping_address?.pincode}</Text>
+                    </View>
+                </View>
+                <View style={styles11.gstin}>
+                    <Text style={styles11.description}>GSTIN: </Text>
+                    <Text style={styles11.description}>{invoice?.info?.gstin}</Text>
+                </View>
+                <View style={styles11.bill_to}>
+                    <View style={styles11.city}>
+                        <Text style={styles11.description}>State Name: </Text>
+                        <Text style={styles11.description}>{invoice?.shipping_address?.state?.name}</Text>
+                    </View>
+                    <View style={styles11.pincode}>
+                        <Text style={styles11.description}>State Code: </Text>
+                        <Text style={styles11.description}>{invoice?.shipping_address?.state_id}</Text>
+                    </View>
+                </View>
+                <View style={styles11.row}>
+                    <Text style={styles11.description}>Place Of Supply: </Text>
+                    <Text style={styles11.description}>{invoice?.supply_address?.state?.name}</Text>
+                </View>
+            </View>
         </View>
         <View style={styles11.right}>
-            -
+            <View style={styles11.container}>
+                <View style={styles11.left}>
+                    <View>
+                        <Text style={styles11.description}>Invoice No.</Text>
+                        <View style={styles11.row}>
+                            <Text style={styles11.description}>{invoice?.short_id}</Text>
+                        </View>
+                    </View>
+                    <View>
+                        <Text style={styles11.description}>Delivery Note</Text>
+                        <View style={styles11.row}>
+                            <Text style={styles11.description}>-</Text>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={styles11.description}>Dated</Text>
+                        <View style={styles11.row}>
+                            <Text style={styles11.description}>{invoice?.short_id}</Text>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={styles11.description}>Destination</Text>
+                        <View style={styles11.row}>
+                            <Text style={styles11.description}>-</Text>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={styles11.description}>Buyer Order No.</Text>
+                        <View style={styles11.row}>
+                            <Text style={styles11.description}>-</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles11.right}></View>
+            </View>
         </View>
-    </View>
+    </View >
 );
 
 const styles9 = StyleSheet.create({
@@ -274,7 +499,7 @@ const styles7 = StyleSheet.create({
 const InvoiceTableRow = ({ items }: TOrderItem[]) => {
     const rows = items.map((item: TOrderItem) =>
         <View style={styles7.row}>
-            <Text style={styles7.description}>{getProductVariantName(item.inventory?.product?.name, item.inventory?.variant.name)}</Text>
+            <Text style={styles7.description}>{getProductVariantName(item?.inventory?.product?.name, item?.inventory?.variant?.name)}</Text>
             <Text style={styles7.item_code}>{item.inventory?.variant?.gtin}</Text>
             <Text style={styles7.qty}>{item.quantity}</Text>
             <Text style={styles7.rate}>{item.price}</Text>
@@ -342,7 +567,7 @@ const InvoiceTableHeader = () => (
 );
 
 
-const tableRowsCount = 11;
+const tableRowsCount = 5;
 
 const styles5 = StyleSheet.create({
     tableContainer: {
@@ -356,6 +581,7 @@ const styles5 = StyleSheet.create({
 
 const InvoiceItemsTable = ({ invoice }) => (
     <View style={styles5.tableContainer}>
+        <InvoiceHeader store={invoice?.store} />
         <InvoiceDetails invoice={invoice} />
         <InvoiceTableHeader />
         <InvoiceTableRow items={invoice?.orderitems} />
@@ -463,11 +689,11 @@ const styles = StyleSheet.create({
 const Invoice = ({ order }: TOrder) => (
     <Document>
         <PdfPage size="A4" style={styles.page}>
+            <InvoiceTop invoice={order} />
             {/* <InvoiceTitle title='Invoice' /> */}
             {/* <InvoiceNo invoice={order} />
             <BillTo invoice={order} /> */}
             <InvoiceItemsTable invoice={order} />
-            <InvoiceThankYouMsg />
         </PdfPage>
     </Document>
 );
@@ -664,6 +890,14 @@ const order: TOrder = {
         address: "Lane no. , Street, City, State, Pin code",
         ref_by: "Dr Kohli",
         gstin: "05AAHCE4252A1Z7",
+        gst: true,
+        template: "GST Enterprises",
+        gst_response: {
+            IRN: "712689cf5c398e40f843e8b49870b78661872ebc6673deb5fff7ab1170ea332e",
+            AckNo: "162314411521991",
+            AckAt: "2023-07-31T11:29:25",
+            qrcode: "data:image/webp;base64,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"
+        }
     }
 }
 
