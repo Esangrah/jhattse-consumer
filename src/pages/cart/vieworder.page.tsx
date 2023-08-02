@@ -28,6 +28,8 @@ export const Page = () => {
             const result: Promise<TOrder[]> = getOrders([], [], transaction_id);
             result.then((res: TOrder[]) => {
                 setOrderDetails(res);
+                console.log("order Itme", res);
+                
             })
         }
     }, [transaction_id])
@@ -86,7 +88,7 @@ export const Page = () => {
                                                                 className="rounded-sm"
                                                             />
                                                             <div className='flex items-center gap-2'>
-                                                                <p className="text-ellipsis text-left break-words line-clamp-1 lt-sm:text-sm text-bannerText">{trimToLength(variantNameFromOrderItem(getFirst(orderDetails)), 20)}</p>
+                                                                <p className="text-ellipsis text-left break-words line-clamp-1 lt-sm:text-sm text-bannerText">{trimToLength(variantNameFromOrderItem(orderItem), 20)}</p>
                                                                 <span>{` x ${orderItem?.quantity}`}</span>
                                                             </div>
                                                         </div>

@@ -72,15 +72,15 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 loading="eager"
                             />
                         </Link>
-                        <div className="flex gap-1 lt-sm:hidden">
+                        <div className="md:flex items-center gap-1 hidden">
                             <button
                                 onClick={() => setLocationPopupShow(true)}
-                                className="whitespace-nowrap text-neutral-50 text-4xl font-semibold px-2 font-semibold"
+                                className="whitespace-nowrap text-neutral-50 text-4xl font-semibold px-2"
                             >
                                 <MdOutlineLocationOn className="text-brand-500" />
                             </button>
-                            <div className=" flex lt-sm:flex-row items-center gap-2" onClick={() => setLocationPopupShow(true)}>
-                                <p className="text-xs font-medium text-neutral-700">
+                            <div className="flex flex-row md:flex-col cursor-pointer lt-sm:items-center gap-1" onClick={() => setLocationPopupShow(true)}>
+                                <p className="text-sm font-medium text-neutral-700">
                                     Deliver to
                                 </p>
                                 <Suspense>
@@ -88,7 +88,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                         JSON.parse(localStorage.getItem("location") || '{}')?.Location
                                             ?.name ? (
                                         <span>
-                                            <p className="text-sm font-bold text-neutral-700">
+                                            <p className="text-base font-bold text-neutral-700">
                                                 {
                                                     JSON.parse(localStorage.getItem("location") || '{}')
                                                         ?.Location?.name
@@ -97,7 +97,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                         </span>
                                     ) : (
                                         <span>
-                                            <p className="text-sm font-bold text-neutral-700">
+                                            <p className="text-base font-bold text-neutral-700">
                                                 Location Name
                                             </p>
                                         </span>
@@ -123,7 +123,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 {userLoggedIn ? (
                                     <Menu>
                                         <MenuButton
-                                            className="flex gap-1 items-center whitespace-nowrap text-neutral-700 text-lg font-semibold px-2 font-bold"
+                                            className="flex gap-1 items-center whitespace-nowrap text-neutral-700 text-lg px-2 font-bold"
                                             as={Button}
                                         >
                                             <div className="flex gap-1 items-center">
@@ -196,7 +196,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                     </Menu>
                                 ) : (
                                     <Link href="/login">
-                                        <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
+                                        <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg px-2 font-bold">
                                             <FaRegUserCircle className="text-neutral-700" />{" "}
                                             <span className="text-base text-neutral-700">Login</span>
                                         </button>
@@ -207,37 +207,37 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         <div className="flex items-center gap-2 relative py-2">
                             <Suspense>
                                 <Link href="/cart" className="z-30">
-                                    <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
+                                    <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg  px-2 font-bold">
                                         <FaShoppingCart className="text-neutral-700" />{" "}
                                         <span className="text-base lt-sm:hidden text-neutral-700">
                                             Cart
                                         </span>
                                     </button>
                                 </Link>
-                                <span className={`absolute top-0 -right-2 flex justify-center items-center text-xs text-neutral-50 bg-success-500 rounded-full h-5 w-5${cart?.size > 0 ? "": " hidden"}`}>
+                                <span className={cart?.size > 0 ? `absolute top-0 -right-2 flex justify-center items-center text-xs text-neutral-50 bg-success-500 rounded-full h-5 w-5` : 'hidden'}>
                                     {cart.size}
                                 </span>
                             </Suspense>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-center md:hidden block md:w-1/3 w-full">
+                <div className="flex flex-row justify-center md:hidden md:w-1/3 w-full">
                     <Searchbar />
                 </div>
             </div>
-            <div className="hidden bg-neutral-50 text-custom_black flex gap-2 py-2 lt-sm:flex">
+            <div className="md:hidden bg-neutral-50 text-custom_black flex flex-row gap-2 py-2">
                 <div className="flex">
                     <button
                         onClick={() => setLocationPopupShow(true)}
-                        className="whitespace-nowrap text-custom_black font-semibold px-2 font-semibold"
+                        className="whitespace-nowrap text-custom_black font-semibold px-2"
                     >
                         <MdOutlineLocationOn />
                     </button>
-                    <div className="cursor-pointer" onClick={() => setLocationPopupShow(true)}>
+                    <div className="cursor-pointer flex flex-row items-center gap-2" onClick={() => setLocationPopupShow(true)}>
+                        <p className="text-xs font-medium text-neutral-700">
+                            Deliver to
+                        </p>
                         <Suspense>
-                            <p className="text-xs font-medium text-neutral-700">
-                                Deliver to
-                            </p>
                             {typeof window !== "undefined" && JSON.parse(localStorage.getItem("location") || '{}')?.Location?.name ?
                                 (
                                     <span>
