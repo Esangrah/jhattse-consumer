@@ -44,8 +44,8 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
             //     <></>
             //     :
             <div className={`flex flex-col gap-2 w-full lt-sm:grow sticky top-5 ${isHidden ? "lt-sm:justify-end" : "lt-sm:justify-between"}`}>
-                <div className={`bg-neutral-50 px-3 py-4  lt-sm:w-full rounded-lg ${isHidden && "lt-sm:hidden"}`}>
-                    <div className="flex flex-col gap-2 justify-between">
+                <div className={`bg-neutral-100 border border-neutral-300 px-3 py-4 lt-sm:w-full rounded-lg ${isHidden && "lt-sm:hidden"}`}>
+                    <div className="flex flex-col gap-2 justify-between divide-y">
                         <span><p className="font-bold text-custom_black text-lg">Order Total</p></span>
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-row justify-between pt-2 gap-2">
@@ -61,14 +61,14 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
                                 <span className="text-base font-medium text-custom_black">{cart?.size == 0 ? humanizeCurrency(retryTotalTax) : humanizeCurrency(totalTax)}</span>
                             </div>}
                         </div>
-                        <div className="flex flex-row justify-between border-t pt-2 gap-2">
+                        <div className="flex flex-row justify-between pt-2 gap-2">
                             <span className="text-lg font-bold text-custom_gray">Total Amount</span>
                             <span className="text-lg font-bold text-custom_black">{cart?.size == 0 ? humanizeCurrency(retryTotal) : isShowTaxes ? humanizeCurrency(discountedTotal + totalTax) : humanizeCurrency(discountedTotal)}</span>
                         </div>
                     </div>
                 </div>
                 <div className='w-full pb-4  lt-sm:pt-10'>
-                    <button onClick={() => { actionFun ? actionFun() : goToOrderPage() }} className="bg-store_yellow border-yellow-300 font-bold lt-sm:text-sm text-neutral-900 lt-sm:px-1 px-2 py-2 rounded w-full" >{btnName ? btnName : "PLACE ORDER"}</button>
+                    <button onClick={() => { actionFun ? actionFun() : goToOrderPage() }} className="bg-brand-500 border-brand-500 font-bold lt-sm:text-sm text-neutral-50 lt-sm:px-1 px-2 py-2 rounded w-full" >{btnName ? btnName : "PLACE ORDER"}</button>
                 </div>
             </div>
         }

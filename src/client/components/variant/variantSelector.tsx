@@ -5,6 +5,8 @@ import { TCartItem, TInventory, TOrderItem, TProduct, TVariant } from "@componen
 
 export function VariantSelector() {
     const IsVariant = useRecoilValue(variantState);
+    console.log("varint select", IsVariant);
+    
     return IsVariant && IsVariant.Isvariant ? <Variant showModal={IsVariant.showModal} product={IsVariant.product} inventory={IsVariant?.inventory} quantity={IsVariant?.quantity} /> : null;
 }
 

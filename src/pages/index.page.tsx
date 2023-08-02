@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
+import { Link } from "@renderer/Link"
 import { Container } from "@components/container"
 import { Section } from "@components/section";
 import { BrandCard, CategoryCard, RichCard } from "@components/cards";
@@ -15,6 +15,7 @@ import { staticImageLoader } from "@core/utils";
 import { CarouselContainer } from "@components/container/carousel";
 import { SwiperSlide } from "swiper/react";
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
+import { VariantSelector } from "@components/variant/variantSelector";
 
 type Props = {
     popularProducts: TProduct[];

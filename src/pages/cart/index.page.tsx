@@ -11,6 +11,8 @@ export function Page() {
     const [dineinOrTakeaway, setDineinOrTakeaway] = useState("DINEIN");
     const cart = useRecoilValue(cartState)
 
+    const address = JSON.parse(localStorage?.getItem("Address") as string);
+
     let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo") || '{}') : null;
 
     const onDineinOrTakeaway = (value: string) => {
@@ -35,9 +37,14 @@ export function Page() {
                     </Breadcrumb>
                 </div>
                 <div className="h-4"></div>
-                <div className="lt-sm:hidden"><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-2">Cart</h1></div>
-                <div className="h-4 lt-sm:hidden"></div>
-                {(tableInfo?.table !== null && tableInfo?.table !== undefined) && <div className='hidden flex gap-10 items-center px-2 pb-4 lt-sm:flex'>
+                <div className="sm:hidden"><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-2">Cart</h1></div>
+                <div className="h-4 sm:hidden"></div>
+                {/* {
+                    address && <div>
+                        Address
+                    </div>
+                } */}
+                {(tableInfo?.table !== null && tableInfo?.table !== undefined) && <div className='hidden flex gap-10 items-center px-2 pb-4 sm:flex'>
                     <div className='flex gap-2 items-center'>
                         <input name="DineinAndTakeaway" type="radio" value="DINEIN" onChange={(e) => {
                             onDineinOrTakeaway(e.target.value)
@@ -53,7 +60,7 @@ export function Page() {
                     </div>
                 </div>}
 
-                <div className="flex flex-row grow justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-2 pb-2">
+                <div className="flex flex-row grow justify-between gap-8 sm:flex-col px-20 lt-sm:px-2 pb-2">
                     <CartInfo />
                     {cart?.size > 0 && <CartDetails btnName="PROCEED TO BUY" />}
                 </div>

@@ -8,17 +8,24 @@ import { Image } from "@renderer/Image";;
 import { useEffect, useState } from 'react'
 import { MdCheckCircle } from 'react-icons/md';
 import { navigate } from 'vite-plugin-ssr/client/router';
+import { cartState } from '@recoil/atoms';
+import { useRecoilState } from 'recoil';
 
 export const Page = () => {
     const orderId = typeof window !== "undefined" && localStorage.getItem("orderId");
     const [orderDetails, setOrderDetails] = useState<TOrder>();
-    
+    const [cart, setCart] = useRecoilState(cartState);
+
 
     useEffect(() => {
         getOrderById(orderId || '').then((res) => {
             setOrderDetails(res);
             console.log("payment", res);
         })
+        // setCart((cart) => {
+        //     cart?.clear();
+        //     return new Map(cart);
+        // });
 
     }, [])
 
@@ -52,7 +59,7 @@ export const Page = () => {
                             <div className='flex flex-col gap-8 lt-sm:gap-2 items-center text-center lt-sm:grow lt-sm:justify-center'>
                                 <div className='flex flex-col gap-2 items-center pb-8'>
                                     <p className='text-6xl text-green-500 '>
-                                        <MdCheckCircle />
+                                        <MdCheckCircle size={30} />
                                     </p>
                                 </div>
                                 <h2 className='text-2xl lt-sm:text-lg font-bold text-custom_black lt-sm:py-2'>{orderDetails?.payment_mode === "Cash" ? "Please pay at the counter" : "Payment Successful!"}</h2>

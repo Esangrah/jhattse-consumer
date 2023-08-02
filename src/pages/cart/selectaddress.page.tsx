@@ -46,16 +46,16 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
             <div className="h-4"></div>
             <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-4 lt-sm:text-base">Select Delivery Address</h1></div>
             <div className="h-4"></div>
-            <div className="flex flex-row grow h-full justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-0">
+            <div className="flex flex-row grow h-full justify-between gap-8 lt-sm:flex-col px-20 lt-sm:px-0">
                 <div className="flex flex-col gap-1 w-full">
                     <AddressPanel isDone={() => { }} />
                 </div>
                 <div className="lt-sm:sticky lt-sm:z-40 flex flex-col gap-4" style={{ bottom: "20px" }}>
-                    <div className="flex flex-col gap-2 lt-sm:hidden">
+                    <div className="flex flex-col gap-2 lt-sm:hidden px-4">
                         <h2 className="font-bold text-custom_black text-lg pb-1 pt-1">Order Summary</h2>
                         {
                             cartValues.map((item => {
-                                return <div className="bg-neutral-50 rounded-md text-custom_black p-2 flex gap-2  w-96 items-center justify-between">
+                                return <div className="bg-neutral-100 border border-neutral-300 rounded-lg text-custom_black p-2 flex gap-2  w-96 items-center justify-between">
                                     <div className='flex gap-2 items-center'>
                                         <Image
                                             loader={sanityIoImageLoader}

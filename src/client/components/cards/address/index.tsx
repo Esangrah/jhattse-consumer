@@ -4,6 +4,8 @@ import { TAddress } from '@components/types';
 import { requestLogin } from '@core/utils';
 import React, { useState } from 'react'
 import { usePageContext } from '@renderer/usePageContext';
+import { BiTrash } from 'react-icons/bi';
+import { FiEdit3 } from 'react-icons/fi';
 
 type Props = {
     address: TAddress,
@@ -35,26 +37,23 @@ export const AddressCard: React.FC<Props> = ({ address, isChecked, open, selectA
     }
 
     return (
-        <div className="bg-neutral-50 flex flex-col gap-2 rounded-lg font-manrope p-2 w-full cursor-pointer" onClick={() => { selectAddress(address) }}>
+        <div className="bg-neutral-100 border border-neutral-300 flex flex-col gap-2 rounded-lg font-manrope p-2 w-full cursor-pointer" onClick={() => { selectAddress(address) }}>
             <div className="flex gap-4 items-start p-2 py-4">
                 <div className="radio pt-1">
                     <label>
                         <input type="radio" value={address.id} checked={isChecked} />
                     </label>
                 </div>
-                <div>
+                <div className='flex flex-col gap-2'>
                     <h2 className="text-custom_black, font-semibold text-lg">{address.type && address.type.length > 0 ? address.type : "Home"}</h2>
                     <p className="text-custom_gray font-medium text-lg">{`${address?.house_number}, ${address?.street_name}`}, {address?.locality}, {`${address?.city?.name}, ${address?.state?.name}, ${address?.pincode}`}</p>
+                    <div className="flex items-center gap-4">
+                        <button className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-1 px-6 sm:px-2 text-lg sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded flex items-center gap-2" onClick={() => { open() }}><FiEdit3 className="text-neutral-50 text-lg" /> Edit</button>
+                        <button className="bg-neutral-50 hover:opacity-80 focus:opacity-80 py-1 px-6 sm:px-2 text-lg sm:text-sm text-center text-brand-500 font-bold whitespace-nowrap select-none rounded border border-brand-500 flex items-center gap-2" onClick={onRemoveAddress}><BiTrash className="text-brand-500 text-lg" /> Delete</button>
+                    </div>
                 </div>
             </div>
-            <div className="p-2 border-t flex divide-x">
-                <div className="flex-1 flex justify-center items-center">
-                    <button className="font-bold text-custom_golden text-base" onClick={() => { open() }}>EDIT</button>
-                </div>
-                <div className="flex-1 flex justify-center items-center" onClick={onRemoveAddress}>
-                    <button className="font-bold text-custom_golden text-base">DELETE</button>
-                </div>
-            </div>
+
             <PopupComponent
                 setShowModal={setShowModel}
                 showModal={showModel} message="Are you sure you want to remove this address?"

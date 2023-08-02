@@ -25,13 +25,17 @@ export const CartButtonV2 = ({
   const [Variant, setVariant] = useRecoilState(variantState);
 
   const onClickAdd = (product: TProduct) => {
+    console.log("add clicked");
     if (getLength(product?.variants) > 0 && typeof window !== "undefined") {
+      console.log("add clicked 2", getLength(product?.variants) > 0);
+      console.log("typeof window", typeof window !== "undefined");
       setVariant({
         Isvariant: true,
         product: product,
         showModal: true,
         quantity: 0,
       });
+      console.log("cartState", Variant);
     }
   };
   return inventory?.external_link !== undefined && inventory?.external_link?.length > 0 ? (

@@ -50,7 +50,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="navbar w-full bg-neutral-100 flex flex-col sticky lt-sm:relative top-0 z-40 h-16 lt-sm:h-28 px-2 font-manrope">
+            <div className="navbar w-full bg-neutral-100 flex flex-col justify-center sticky lt-sm:relative top-0 z-40 h-16 lt-sm:h-28 px-2 font-manrope">
                 {/* Confirm Popup */}
                 <PopupComponent
                     showModal={showModal}
