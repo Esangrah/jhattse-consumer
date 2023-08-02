@@ -177,8 +177,8 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                 <meta property="og:url" content={`https://jhattse.com/brand/${brand?.id}/${getSafeUrl( brand?.name)}`} />
             </Head>
             <Header />
-            <div className="px-20 sm:px-2 font-manrope">
-                <div className="sm:hidden h-20 flex items-center text-sm text-manrope">
+            <div className="px-20 lt-sm:px-2 font-manrope">
+                <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
                     <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                         <BreadcrumbItem>
                             <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -202,7 +202,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                     </Breadcrumb>
                 </div>
                 <div className="py-2">
-                    <h2 className="text-custom_black font-bold text-xl sm:text-base">
+                    <h2 className="text-custom_black font-bold text-xl lt-sm:text-base">
                         {brand?.name}
                     </h2>
                 </div>
@@ -215,7 +215,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                         width="600"
                         height="150"
                         quality={100}
-                        className="w-full h-full max-h-96 sm:max-h-40 object-cover rounded-2xl"
+                        className="w-full h-full max-h-96 lt-sm:max-h-40 object-cover rounded-2xl"
                     />
                 </div>
 
@@ -255,10 +255,10 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                         <TabPanels>
                             <TabPanel className="py-4">
                                 <div className="pt-4">
-                                    <h4 className="text-xl text-custom_black font-bold py-2 sm:text-base">
+                                    <h4 className="text-xl text-custom_black font-bold py-2 lt-sm:text-base">
                                         Our Categories
                                     </h4>
-                                    <div className="grid grid-cols-3 gap-4 sm:grid-cols-2 pt-2">
+                                    <div className="grid grid-cols-3 gap-4 lt-sm:grid-cols-2 pt-2">
                                         {brandCategories?.map((item) => {
                                             return (
                                                 <Link
@@ -286,18 +286,18 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                             );
                                         })}
                                     </div>
-                                    <div className="h-16 sm:h-8"></div>
+                                    <div className="h-16 lt-sm:h-8"></div>
                                     <Section
                                         title="Bestsellers"
                                         products={bestSellerProducts}
                                         element={RichCard}
                                         isCarousel={true}
                                         style="mt-2 pb-2"
-                                        headStyle="text-xl py-1 font-bold sm:text-base"
+                                        headStyle="text-xl py-1 font-bold lt-sm:text-base"
                                     />
-                                    <div className="h-16 sm:h-8"></div>
+                                    <div className="h-16 lt-sm:h-8"></div>
                                     <div className="flex flex-col py-2">
-                                        <h4 className="text-xl py-2 font-bold sm:text-base">
+                                        <h4 className="text-xl py-2 font-bold lt-sm:text-base">
                                             All Products
                                         </h4>
                                         <SearchContainer
@@ -331,67 +331,67 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                             </TabPanel>
                             <TabPanel className="py-4">
                                 <div className="pt-4">
-                                    <div className="grid grid-cols-4 gap-4 sm:grid-cols-2 py-2">
+                                    <div className="grid grid-cols-4 gap-4 lt-sm:grid-cols-2 py-2">
                                         {(brand?.info || {})?.products && (
-                                            <div className="bg-neutral-50 p-8 sm:p-2 rounded-lg flex flex-col gap-2">
-                                                <h4 className="text-neutral-900 font-bold text-2xl sm:text-xl">
+                                            <div className="bg-neutral-50 p-8 lt-sm:p-2 rounded-lg flex flex-col gap-2">
+                                                <h4 className="text-neutral-900 font-bold text-2xl lt-sm:text-xl">
                                                     {(brand?.info || {})?.products}
                                                 </h4>
-                                                <p className="text-neutral-900 font-medium text-lg sm:text-base">
+                                                <p className="text-neutral-900 font-medium text-lg lt-sm:text-base">
                                                     Listed Products
                                                 </p>
                                             </div>
                                         )}
                                         {(brand?.info || {})?.customers && (
-                                            <div className="bg-neutral-50 p-8 sm:p-2 rounded-lg flex flex-col gap-2">
-                                                <h4 className="text-neutral-900 font-bold text-2xl sm:text-xl">
+                                            <div className="bg-neutral-50 p-8 lt-sm:p-2 rounded-lg flex flex-col gap-2">
+                                                <h4 className="text-neutral-900 font-bold text-2xl lt-sm:text-xl">
                                                     {(brand?.info || {})?.customers}
                                                 </h4>
-                                                <p className="text-neutral-900 font-medium text-lg sm:text-base">
+                                                <p className="text-neutral-900 font-medium text-lg lt-sm:text-base">
                                                     Satisfied Customers
                                                 </p>
                                             </div>
                                         )}
                                         {(brand?.info || {})?.sales && (
-                                            <div className="bg-neutral-50 p-8 sm:p-2 rounded-lg flex flex-col gap-2">
-                                                <h4 className="text-neutral-900 font-bold text-2xl sm:text-xl">
+                                            <div className="bg-neutral-50 p-8 lt-sm:p-2 rounded-lg flex flex-col gap-2">
+                                                <h4 className="text-neutral-900 font-bold text-2xl lt-sm:text-xl">
                                                     {(brand?.info || {})?.sales}
                                                 </h4>
-                                                <p className="text-neutral-900 font-medium text-lg sm:text-base">
+                                                <p className="text-neutral-900 font-medium text-lg lt-sm:text-base">
                                                     Products Sold
                                                 </p>
                                             </div>
                                         )}
                                         {(brand?.info || {})?.established && (
-                                            <div className="bg-neutral-50 p-8 sm:p-2 rounded-lg flex flex-col gap-2">
-                                                <h4 className="text-neutral-900 font-bold text-2xl sm:text-xl">
+                                            <div className="bg-neutral-50 p-8 lt-sm:p-2 rounded-lg flex flex-col gap-2">
+                                                <h4 className="text-neutral-900 font-bold text-2xl lt-sm:text-xl">
                                                     {(brand?.info || {})?.established}
                                                 </h4>
-                                                <p className="text-neutral-900 font-medium text-lg sm:text-base">
+                                                <p className="text-neutral-900 font-medium text-lg lt-sm:text-base">
                                                     Established
                                                 </p>
                                             </div>
                                         )}
                                     </div>
                                     <div className="h-4"></div>
-                                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-1 py-2">
-                                        <div className="bg-neutral-50 p-8 sm:p-2 rounded-lg flex flex-col gap-2">
-                                            <h4 className="text-neutral-900 font-bold text-lg sm:text-sm">
+                                    <div className="grid grid-cols-2 gap-2 lt-sm:grid-cols-1 py-2">
+                                        <div className="bg-neutral-50 p-8 lt-sm:p-2 rounded-lg flex flex-col gap-2">
+                                            <h4 className="text-neutral-900 font-bold text-lg lt-sm:text-sm">
                                                 Interest Meter
                                             </h4>
                                             <p>
                                                 {(brand?.info || {})?.interest > 0 ? (
-                                                    <span className="text-4xl sm:text-2xl font-bold text-custom_cyan tracking-wider">
+                                                    <span className="text-4xl lt-sm:text-2xl font-bold text-custom_cyan tracking-wider">
                                                         {(brand?.info || {})?.interest}/100
                                                     </span>
                                                 ) : (
-                                                    <span className="text-4xl sm:text-2xl font-bold text-custom_cyan tracking-wider">
+                                                    <span className="text-4xl lt-sm:text-2xl font-bold text-custom_cyan tracking-wider">
                                                         Not Available Yet
                                                     </span>
                                                 )}
                                             </p>
                                         </div>
-                                        <div className="p-8 sm:p-2 flex flex-col gap-4">
+                                        <div className="p-8 lt-sm:p-2 flex flex-col gap-4">
                                             {getLength(brand?.social_accounts) > 0 &&
                                                 brand?.social_accounts?.map((item) => {
                                                     return (
@@ -413,13 +413,13 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
             </div>
             <div className="h-4"></div>
             {tabIndex == 1 && (
-                <div className="bg-storepickup p-8 px-20 sm:px-2">
+                <div className="bg-storepickup p-8 px-20 lt-sm:px-2">
                     {!submitted ? (
                         <>
                             <h2 className="font-bold text-lg text-neutral-900 select-none">
                                 Get In Touch
                             </h2>
-                            <div className="grid grid-cols-2 gap-8 justify-between sm:flex flex-col py-2">
+                            <div className="grid grid-cols-2 gap-8 justify-between lt-sm:flex flex-col py-2">
                                 <div className="flex flex-col gap-4">
                                     {!isLogin ? (
                                         <>
@@ -495,7 +495,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                         </button>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-2 sm:grid grid-cols-2">
+                                <div className="flex flex-col gap-2 lt-sm:grid grid-cols-2">
                                     {getLength(brand?.social_accounts) > 0 &&
                                         brand?.social_accounts?.map((item: TSocialAccount) => {
                                             return (

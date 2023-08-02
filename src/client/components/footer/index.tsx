@@ -7,7 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 export const Footer = () => {
     return (
         <div className="flex flex-col justify-center px-4 py-2 gap-4 w-full bg-neutral-900 font-manrope">
-            <div className="flex flex-row justify-between block sm:hidden">
+            <div className="flex flex-row justify-between block lt-sm:hidden">
                 <div className="flex flex-col justify-start gap-2">
                     <div className="text-amber-300 font-bold text-lg"><Link href="/">Jhattse</Link></div>
                     <div className="text-amber-300 font-semibold text-sm select-none">by Esangrah Technologies</div>

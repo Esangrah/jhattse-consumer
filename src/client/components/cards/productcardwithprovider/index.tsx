@@ -20,10 +20,10 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
     let isOnline = externalLink?.length > 0;
 
     return (
-        <div className="flex flex-col bg-neutral-50 rounded-md p-4 sm:p-2 font-manrope">
+        <div className="flex flex-col bg-neutral-50 rounded-md md:p-4 p-2 font-manrope">
             {isOnline &&
                 <div className="flex justify-between items-center p-2 border-b">
-                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{firstInventory?.store?.name}
+                    <span className="font-semibold text-lg text-custom_gray lt-sm:text-base">{firstInventory?.store?.name}
                     </span>
                     {externalLink?.length > 0 &&
                         <div className="flex gap-1 items-center">
@@ -42,7 +42,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
             }
             {isFnB &&
                 <div className="flex justify-between items-center p-2 border-b">
-                    <span className="font-semibold text-lg text-custom_gray sm:text-base">{firstInventory?.store?.name}
+                    <span className="font-semibold text-lg text-custom_gray lt-sm:text-base">{firstInventory?.store?.name}
                     </span>
                     {storeRating !== undefined && storeRating > 0 &&
                         <div className="flex gap-1 items-center">
@@ -67,7 +67,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                 </div>
             }
             <div className="h-2"></div>
-            <div className="grid grid-cols-3 p-2 gap-4 sm:items-center">
+            <div className="grid grid-cols-3 p-2 gap-4 lt-sm:items-center">
                 <div className="col-span-1">
                     <div className="relative flex justify-center max-h-44">
                         <Link href={`/product/${product?.id}/${getSafeUrl(product?.name)}`}>
@@ -84,7 +84,7 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                 </div>
                 <div className="col-span-2 leading-tight">
                     <div className="font-bold font-simple overflow-hidden">
-                        <p className="font-medium truncate text-ellipsis text-lg sm:text-base  text-custom_black pt-2">{product?.name}</p>
+                        <p className="font-medium truncate text-ellipsis text-lg lt-sm:text-base  text-custom_black pt-2">{product?.name}</p>
                         {
                             product?.stats != null && product?.stats != undefined && product?.stats?.rating_count > 0 ?
                                 <div className="py-2">
@@ -95,11 +95,11 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                                 </div>
                                 :
                                 <div className="py-2">
-                                    <div className="text-neutral-500 sm:text-sm">No Ratings</div>
+                                    <div className="text-neutral-500 lt-sm:text-sm">No Ratings</div>
                                 </div>
                         }
-                        <div className=" flex flex-col gap-4 justify-between py-0.5 sm:flex-row sm:items-center">
-                            <div className="text-neutral-800 font-bold text-lg sm:text-base">
+                        <div className=" flex flex-col gap-4 justify-between py-0.5 lt-sm:flex-row lt-sm:items-center">
+                            <div className="text-neutral-800 font-bold text-lg lt-sm:text-base">
                                 <span>{humanizeCurrency(product?.mrp)}</span>
                             </div>
                             {product?.inventories?.length != 0 ?

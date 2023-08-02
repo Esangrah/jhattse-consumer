@@ -80,8 +80,8 @@ export const SignIn: React.FC = () => {
     }, [userType])
 
     return (
-        <div className="w-full sm:h-full shadow sm:overflow-hidden sm:rounded-md">
-            <div className="bgneutral-50 p-6 sm:p-6">
+        <div className="w-full lt-sm:h-full shadow lt-sm:overflow-hidden lt-sm:rounded-md">
+            <div className="bgneutral-50 p-6 lt-sm:p-6">
                 <div className="grid grid-cols-6 gap-1">
                     <div className="col-span-6">
                         <div className="flex justify-center items-center">

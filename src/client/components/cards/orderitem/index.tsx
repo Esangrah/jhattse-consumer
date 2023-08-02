@@ -14,8 +14,8 @@ export const OrderItemCard = ({ orderItem }: Props) => {
 
 
     return (
-        <div className="grid grid-cols-6 sm:grid-cols-5 gap-2 bg-neutral-50" >
-            <div className="flex grow col-span-1 justify-start max-h-20 sm:max-h-16" >
+        <div className="grid grid-cols-6 lt-sm:grid-cols-5 gap-2 bg-neutral-50" >
+            <div className="flex grow col-span-1 justify-start max-h-20 lt-sm:max-h-16" >
                 <Image
                     loader={sanityIoImageLoader}
                     src={getImageObject(orderItem?.inventory?.product?.images)?.url}
@@ -27,7 +27,7 @@ export const OrderItemCard = ({ orderItem }: Props) => {
             </div>
             <div className="grid col-span-4 grid-row">
                 <div className="flex flex-row gap-1">
-                    <span className="font-semibold text-sm sm:line-clamp-2 lg:line-clamp-2">{orderItem?.inventory?.product?.name}</span>
+                    <span className="font-semibold text-sm lt-sm:line-clamp-2 lg:line-clamp-2">{orderItem?.inventory?.product?.name}</span>
                     <span className="text-neutral-400 text-sm ">{" x "}</span>
                     <span className="text-green-400 text-sm font-bold whitespace-nowrap">{orderItem.quantity}</span>
                 </div>

@@ -20,7 +20,7 @@ interface FProps extends Props {
 
 
 export const StoreSelect: React.FC<FProps> = forwardRef((props: Props, ref: Ref<RefObject>) => {
-    const _selectClass = props?.selectClass || "w-60 sm:w-36";
+    const _selectClass = props?.selectClass || "w-60 lt-sm:w-36";
     const [stores, setStores] = useState < TStore[] > ([]);
     const [selectedStore, setSelectedStore] = useState < TStore > ();
     const [options, setOptions] = useState < TOption[] > ([]);

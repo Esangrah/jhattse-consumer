@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
     return (
         <>{
             isShown &&
-            <div className="fixed -bottom-40 sm:visible w-full z-30 flex flex-col justify-center">
+            <div className="fixed -bottom-40 lt-sm:visible w-full z-30 flex flex-col justify-center">
                 <motion.div className="grid justify-items-stretch" drag="y"
                     dragConstraints={{
                         bottom: -40,
@@ -70,11 +70,11 @@ export const Navbar: React.FC = () => {
                         <div className="absolute bottom-0 justify-self-center bg-sky-100 w-8 h-4 rounded-tl-full rounded-tr-full"></div>
                     </div>
                     <div className="bg-neutral-800 w-full h-40 z-20 rounded-t-2xl">
-                        <div className="relative w-full sm:h-40 p-4">
+                        <div className="relative w-full lt-sm:h-40 p-4">
                             <div className="w-full rounded-t-2xl">
                                 <div className="grid grid-flow-col grid-cols-6">
                                     <div className="col-span-4">
-                                        <h3 className="text-neutral-50 font-bold text-2xl sm:text-xl line-clamp-2">{nearestStore?.name}</h3>
+                                        <h3 className="text-neutral-50 font-bold text-2xl lt-sm:text-xl line-clamp-2">{nearestStore?.name}</h3>
                                     </div>
                                     <div className="col-span-2 justify-self-end">
                                         <p className="text-neutral-50 text-2xl"><MdOutlineQrCodeScanner /></p>
@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
                                 </div>
                                 <div className="flex flex-row gap-2 items-center">
                                     <p className="text-neutral-50">{nearestStore?.address.street_name}{", "}{nearestStore?.address?.city?.name}</p>
-                                    {(localDistance != undefined) && <p className="text-sky-300 text-base sm:text-sm font-bold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : (localDistance > 100 * 1000 ? "VIEW LOCATION" : (localDistance / 1000).toFixed(0).toString() + " km"))}</p>}
+                                    {(localDistance != undefined) && <p className="text-sky-300 text-base lt-sm:text-sm font-bold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : (localDistance > 100 * 1000 ? "VIEW LOCATION" : (localDistance / 1000).toFixed(0).toString() + " km"))}</p>}
                                     <p className="text-sky-300 text-lg font-bold"><a href={`http://www.google.com/maps/place/${nearestStore?.address?.latitude},${nearestStore?.address?.longitude}`} target="_blank"><MdOutlineLocationOn/></a></p>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@ export const Navbar: React.FC = () => {
         }
             {
                 isQROpen &&
-                <div className="fixed -bottom-96 sm:visible w-full z-40 flex flex-col justify-center">
+                <div className="fixed -bottom-96 lt-sm:visible w-full z-40 flex flex-col justify-center">
                     <motion.div className="grid justify-items-stretch" drag="y"
                         dragConstraints={{
                             bottom: 0,
@@ -126,8 +126,8 @@ export const Navbar: React.FC = () => {
                     </motion.div>
                 </div>
             }
-            <div className="bg-neutral-50 h-10 sm:h-16"></div>
-            <div className="z-40 bg-neutral-50 fixed h-16 p-0 flex justify-center bottom-0 left-0 right-0 hidden sm:block">
+            <div className="bg-neutral-50 h-10 lt-sm:h-16"></div>
+            <div className="z-40 bg-neutral-50 fixed h-16 p-0 flex justify-center bottom-0 left-0 right-0 md:hidden block">
                 <ul className="flex flex-row justify-between grow py-2 px-8">
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
                         <Link href="/" className="flex flex-col items-center">

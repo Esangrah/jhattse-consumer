@@ -50,7 +50,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="navbar w-full bg-neutral-100 flex flex-col sticky sm:relative top-0 z-40 h-16 sm:h-28 px-2 font-manrope">
+            <div className="navbar w-full bg-neutral-100 flex flex-col sticky lt-sm:relative top-0 z-40 h-16 lt-sm:h-28 px-2 font-manrope">
                 {/* Confirm Popup */}
                 <PopupComponent
                     showModal={showModal}
@@ -60,7 +60,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                 />
 
                 <div className="flex flex-row items-center justify-items-stretch h-12">
-                    <div className="flex justify-between items-center gap-4 sm:gap-2">
+                    <div className="flex justify-between items-center gap-4 lt-sm:gap-2">
                         <Link href={homeLink || "/"}>
                             <Image
                                 priority={"true"}
@@ -72,14 +72,14 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 loading="eager"
                             />
                         </Link>
-                        <div className="flex gap-1 sm:hidden">
+                        <div className="flex gap-1 lt-sm:hidden">
                             <button
                                 onClick={() => setLocationPopupShow(true)}
                                 className="whitespace-nowrap text-neutral-50 text-4xl font-semibold px-2 font-semibold"
                             >
                                 <MdOutlineLocationOn className="text-brand-500" />
                             </button>
-                            <div className="cursor-pointer" onClick={() => setLocationPopupShow(true)}>
+                            <div className=" flex lt-sm:flex-row items-center gap-2" onClick={() => setLocationPopupShow(true)}>
                                 <p className="text-xs font-medium text-neutral-700">
                                     Deliver to
                                 </p>
@@ -108,7 +108,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         </div>
                     </div>
 
-                    <div className="m-auto w-2/5 md:w-1/2 visible sm:invisible">
+                    <div className="m-auto w-2/5 md:w-1/2 visible lt-sm:invisible">
                         <Searchbar />
                     </div>
 
@@ -117,8 +117,8 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         showModal={locationPopupShow}
                         setShowModal={setLocationPopupShow}
                     />
-                    <div className="flex flex-row items-center gap-2 pr-4 sm:pr-2">
-                        <div className="sm:hidden">
+                    <div className="flex flex-row items-center gap-2 pr-4 lt-sm:pr-2">
+                        <div className="lt-sm:hidden">
                             <Suspense>
                                 {userLoggedIn ? (
                                     <Menu>
@@ -209,7 +209,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 <Link href="/cart" className="z-30">
                                     <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
                                         <FaShoppingCart className="text-neutral-700" />{" "}
-                                        <span className="text-base sm:hidden text-neutral-700">
+                                        <span className="text-base lt-sm:hidden text-neutral-700">
                                             Cart
                                         </span>
                                     </button>
@@ -221,11 +221,11 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-center hidden sm:block w-1/3 sm:w-full">
+                <div className="flex flex-row justify-center md:hidden block md:w-1/3 w-full">
                     <Searchbar />
                 </div>
             </div>
-            <div className="hidden bg-neutral-50 text-custom_black flex gap-2 py-2 sm:flex">
+            <div className="hidden bg-neutral-50 text-custom_black flex gap-2 py-2 lt-sm:flex">
                 <div className="flex">
                     <button
                         onClick={() => setLocationPopupShow(true)}

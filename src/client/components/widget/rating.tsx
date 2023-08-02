@@ -25,10 +25,10 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
 
     return (
         <div className="flex flex-col gap-2">
-            <div><h3 className="text-lg sm:text-base text-neutral-700 font-bold">Reviews</h3></div>
+            <div><h3 className="text-lg lt-sm:text-base text-neutral-700 font-bold">Reviews</h3></div>
             <div className="flex flex-row divide-x">
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-4 text-5xl sm:text-3xl">
+                    <div className="flex flex-row gap-4 text-5xl lt-sm:text-3xl">
                         <div className={`font-extrabold ${getColor(product?.stats?.rating_overall) == 1 ? "text-error-500" : (getColor(product?.stats?.rating_overall) == 2 ? "text-primary_yellow" : "text-success-500")}`}>{product?.stats?.rating_overall?.toFixed(1)}</div>
                         <div className="flex flex-col items-center justify-center">
                             <div className="align-middle">
@@ -45,7 +45,7 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
+                    <div className="text-lg lt-sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
                 </div>
             </div>
             <div className="flex flex-col gap-4 divide-y">

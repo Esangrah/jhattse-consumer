@@ -93,13 +93,13 @@ const Home: React.FC = () => {
                 </div>
                 <div>
                     <span className="nav-bottons">
-                        <Link href="#launch-window"><button className="nav-button whitespace-nowrap text-lg font-semibold sm:text-sm py-1 px-2 mx-1" type="submit">
+                        <Link href="#launch-window"><button className="nav-button whitespace-nowrap text-lg font-semibold lt-sm:text-sm py-1 px-2 mx-1" type="submit">
                             Contact Us
                         </button></Link>
                     </span>
                     <span className="nav-bottons">
                         <Link href="#launch-window">
-                            <button className="nav-button whitespace-nowrap text-lg font-semibold sm:text-sm py-1 px-2 mx-1" type="submit">
+                            <button className="nav-button whitespace-nowrap text-lg font-semibold lt-sm:text-sm py-1 px-2 mx-1" type="submit">
                                 Join Waitlist
                             </button>
                         </Link>
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
             </div>
             <div className="main py-4">
                 <div className="col-span-2 text-center">
-                    <span className="relative inline-block align-middle h-20 w-20 sm:h-16 sm:w-16">
+                    <span className="relative inline-block align-middle h-20 w-20 lt-sm:h-16 lt-sm:w-16">
                         <Image
                             loader={sanityIoImageLoader}
                             className=""
@@ -120,18 +120,18 @@ const Home: React.FC = () => {
                         />
                     </span>
                     <div className="inline-block align-middle select-none">
-                        <span className="px-2 font-super font-mono text-6xl sm:text-2xl">Jhattse</span><span className="text-neutral-800 text-3xl sm:text-xl animate-pulse">Launching Soon!</span>
+                        <span className="px-2 font-super font-mono text-6xl lt-sm:text-2xl">Jhattse</span><span className="text-neutral-800 text-3xl lt-sm:text-xl animate-pulse">Launching Soon!</span>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-col h-100">
+                <div className="grid grid-cols-2 gap-3 lt-sm:flex lt-sm:flex-col h-100">
                     <div className="flex flex-col justify-between px-5 pt-2 gap-2">
                         <div>
-                            <div className="sm:text-base space-x-2 align-middle">
-                                <span className="font-super font-semibold text-4xl sm:text-2xl">Jhattse</span>
-                                <span className="font-lightgray-100 text-2xl sm:text-xl">features for</span>
-                                <span className="text-brand-500 font-semibold text-2xl sm:text-xl">Users</span>
+                            <div className="lt-sm:text-base space-x-2 align-middle">
+                                <span className="font-super font-semibold text-4xl lt-sm:text-2xl">Jhattse</span>
+                                <span className="font-lightgray-100 text-2xl lt-sm:text-xl">features for</span>
+                                <span className="text-brand-500 font-semibold text-2xl lt-sm:text-xl">Users</span>
                             </div>
-                            <ul className="text-brand-500 text-lg sm:text-base pt-2 pb-4 list-disc list-inside select-none">
+                            <ul className="text-brand-500 text-lg lt-sm:text-base pt-2 pb-4 list-disc list-inside select-none">
                                 <li>Discover products in local stores and online together</li>
                                 <li>Locate nearby store for essentials</li>
                                 <li>Access discounts from local stores</li>
@@ -151,12 +151,12 @@ const Home: React.FC = () => {
                     </div>
                     <div className="flex flex-col justify-between px-5 pt-2 gap-2">
                         <div>
-                            <div className="sm:text-base space-x-2 align-middle">
-                                <span className="font-super font-semibold text-4xl sm:text-2xl">Jhattse</span>
-                                <span className="font-lightgray-100 text-2xl sm:text-xl">features for</span>
-                                <span className="text-teal-600 font-semibold text-2xl sm:text-xl">Business</span>
+                            <div className="lt-sm:text-base space-x-2 align-middle">
+                                <span className="font-super font-semibold text-4xl lt-sm:text-2xl">Jhattse</span>
+                                <span className="font-lightgray-100 text-2xl lt-sm:text-xl">features for</span>
+                                <span className="text-teal-600 font-semibold text-2xl lt-sm:text-xl">Business</span>
                             </div>
-                            <ul className="text-teal-600 text-lg sm:text-base pt-2 pb-4 list-disc list-inside select-none">
+                            <ul className="text-teal-600 text-lg lt-sm:text-base pt-2 pb-4 list-disc list-inside select-none">
                                 <li>Free Registration and Demo</li>
                                 <li>Lowest setup charges and yearly charges</li>
                                 <li>Reach and retain customers with online listing</li>
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid gap-1 py-12 sm:py-6 grid-flow-col sm:grid-flow-row justify-center">
+            <div className="grid gap-1 py-12 lt-sm:py-6 grid-flow-col lt-sm:grid-flow-row justify-center">
                 <div>
                     <img className="h-48 w-full object-cover md:h-full md:w-48" src="/assets/receipt_img.png" alt="receipt"
                     />
@@ -193,8 +193,8 @@ const Home: React.FC = () => {
                 </div>
             </div>
             <div className="infographic">
-                <div className="text-4xl sm:text-2xl font-bold p-4 text-center">Perfect & Easy Store</div>
-                <div className="grid grid-flow-row-dense grid-cols-3 sm:grid-cols-1 gap-6 gap-x-24 px-12 sm:px-6 pb-12">
+                <div className="text-4xl lt-sm:text-2xl font-bold p-4 text-center">Perfect & Easy Store</div>
+                <div className="grid grid-flow-row-dense grid-cols-3 lt-sm:grid-cols-1 gap-6 gap-x-24 px-12 lt-sm:px-6 pb-12">
                     <FeatureCard title="Integrated Payments" url="/icons/cashless-payment.png" paragraphs={["Customers can pay bills directly through their apps or cash.", "Bills shared directly with customers."]} />
                     <FeatureCard title="Fast & Free Setup" url="/icons/settings.png" paragraphs={["Fast and Free software setup for business.", "Lowest yearly cost in the entire market. Tonnes of features for free."]} />
                     <FeatureCard title="Get more Customers" url="/icons/rating.png" paragraphs={["List products across cities and geography to wide audience.", "Setup customized and targetted offers and discounts with Jhattse."]} />
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
                     <FeatureCard title="Grow Business" url="/icons/financial-profit.png" paragraphs={["Setup automatic customer membership with Jhattse.", "Get free access of Loyal customers."]} />
                 </div>
             </div>
-            <div className="flex flex-row sm:flex-col gap-2 p-4 justify-center">
+            <div className="flex flex-row lt-sm:flex-col gap-2 p-4 justify-center">
                 <div className="flex flex-col justify-between p-8 gap-4 transition duration-100 ease-in-out bg-neutral-50 border border-neutral-100 rounded-md shadow-lg hover:-translate-y-2">
                     <div className="flex-row justify-center">
                         <div>
@@ -282,30 +282,30 @@ const Home: React.FC = () => {
             </div>
             <div className="launching-window text-center px-4" id="launch-window">
                 <div className="h-1/4 flex flex-col justify-end font-mono font-semibold select-none animate-pulse duration-1000"><span className="text-4xl font-super">Jhattse </span><span className="text-3xl text-teal-800">Launching Soon!</span></div>
-                <div className="w-1/2 md:w-full p-4 pb-0 mx-auto text-neutral-500 font-semibold text-2xl sm:text-xl select-none">Join our Waitlist and be <span className="font-super">Jhattse</span> early adoptors of next gen billing and customer engagement.</div>
-                <div className="w-1/2 md:w-full px-4 pb-0 mx-auto text-neutral-500 font-semibold text-2xl sm:text-xl select-none">Get exciting offers too.</div>
+                <div className="w-1/2 md:w-full p-4 pb-0 mx-auto text-neutral-500 font-semibold text-2xl lt-sm:text-xl select-none">Join our Waitlist and be <span className="font-super">Jhattse</span> early adoptors of next gen billing and customer engagement.</div>
+                <div className="w-1/2 md:w-full px-4 pb-0 mx-auto text-neutral-500 font-semibold text-2xl lt-sm:text-xl select-none">Get exciting offers too.</div>
                 <form onSubmit={handleSubmit}>
-                    <div className="overflow-hidden sm:rounded-md w-1/3 md:w-1/2 sm:w-full mx-auto">
-                        <div className="py-5 sm:p-5">
-                            <div className="grid grid-cols-1 gap-3 sm:gap-1 text-left">
+                    <div className="overflow-hidden lt-sm:rounded-md w-1/3 md:w-1/2 lt-sm:w-full mx-auto">
+                        <div className="py-5 lt-sm:p-5">
+                            <div className="grid grid-cols-1 gap-3 lt-sm:gap-1 text-left">
                                 {message.message != "" ?
                                     <div className="col-span-11">
                                         <div className={`col-span-11 text-center font-semibold text-lg ${message.success ? "text-green-600" : "text-error-900"}`}>{message.message}</div>
-                                        <div className="col-span-11 text-right flex flex-col justify-end sm:mt-4">
+                                        <div className="col-span-11 text-right flex flex-col justify-end lt-sm:mt-4">
                                             <button type="button" onClick={() => { setMessage(blankResponse) }} className="inline-flex block-sm justify-center rounded-md border border-transparent bg-teal-600 py-1 px-4 text-base font-medium text-neutral-50 shadow-sm hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Okay</button>
                                         </div>
                                     </div>
                                     :
                                     <div className="col-span-11">
-                                        <div className="col-span-5 sm:col-span-11">
+                                        <div className="col-span-5 lt-sm:col-span-11">
                                             <label htmlFor="email" className="block text-base font-medium text-teal-800">Email</label>
-                                            <input type="email" name="email" id="email" autoComplete="email" placeholder="Enter email" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 sm:text-base"
+                                            <input type="email" name="email" id="email" autoComplete="email" placeholder="Enter email" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 lt-sm:text-base"
                                                 onChange={(e) => { setEmail(e.target.value); }} />
                                         </div>
-                                        <div className="col-span-1 sm:col-span-11 text-center flex flex-col justify-end sm:hidden"><span className="text-teal-600 font-semibold">or</span></div>
-                                        <div className="col-span-5 sm:col-span-11">
+                                        <div className="col-span-1 lt-sm:col-span-11 text-center flex flex-col justify-end lt-sm:hidden"><span className="text-teal-600 font-semibold">or</span></div>
+                                        <div className="col-span-5 lt-sm:col-span-11">
                                             <label htmlFor="phone" className="block text-base font-medium text-teal-800">Phone</label>
-                                            <input type="phone" name="phone" id="phone" autoComplete="htmlFor" placeholder="Enter phone" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 sm:text-base"
+                                            <input type="phone" name="phone" id="phone" autoComplete="htmlFor" placeholder="Enter phone" className="p-1 px-2 mt-1 block w-full rounded-md focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 ring-1 ring-neutral-100 lt-sm:text-base"
                                                 onChange={(e) => { setPhone(e.target.value); }} />
                                         </div>
                                         <div className="col-span-11 text-right flex flex-col justify-end mt-4">

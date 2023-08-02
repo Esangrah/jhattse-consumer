@@ -98,10 +98,10 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                 <div className="flex justify-center">
                     <Header />
                 </div>
-                <div className="flex flex-col px-20 sm:px-3">
-                    <div className="sm:grid-rows lg:grid-rows">
+                <div className="flex flex-col px-20 lt-sm:px-3">
+                    <div className="lt-sm:grid-rows lg:grid-rows">
                         <div className="bg-neutral-50 p-2">
-                            <div className="flex gap-4 flex-row p-4 rounded-xl bg-neutral-100 xs:flex-wrap" >
+                            <div className="flex gap-4 flex-row p-4 rounded-xl bg-neutral-100 lt-sm:flex-wrap" >
                                 <div className="flex-shrink-0">
                                     <div className="px-2 w-max rounded-r-lg mt-1 bg-brand-500">
                                         {product.tag}
@@ -120,7 +120,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                     </div>
                                 </div>
                                 <div className="bg-neutral-100">
-                                    <Link href={`/product/${product.id}/${getSafeUrl(product.name || '')}`}><div className="font-bold text-lg sm:text-base text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
+                                    <Link href={`/product/${product.id}/${getSafeUrl(product.name || '')}`}><div className="font-bold text-lg lt-sm:text-base text-neutral-800 leading-tight py-1"><h1>{product.name}</h1></div></Link>
                                     <div className="text-neutral-700">
                                         Price ₹<span>{product.mrp}</span>
                                     </div>
@@ -132,7 +132,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                     <div className="h-4"></div>
                     <div className="flex flex-row divide-x p-2">
                         <div className="flex flex-col">
-                            <div className="flex flex-row gap-4 text-5xl sm:text-3xl">
+                            <div className="flex flex-row gap-4 text-5xl lt-sm:text-3xl">
                                 <div className={`text-lg font-extrabold ${getColor(product?.stats?.rating_overall) == 1 ? "text-error-500" : (getColor(product?.stats?.rating_overall) == 2 ? "text-primary_yellow" : "text-success-500")}`}>{product?.stats?.rating_overall?.toFixed(1)}</div>
                                 <div className="flex flex-col items-center justify-center">
                                     <div className="align-middle">
@@ -149,7 +149,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-lg sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
+                            <div className="text-lg lt-sm:text-sm text-neutral-600">{product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 ? `${product?.stats?.rating_count} Reviews` : 'No Reviews'}</div>
                         </div>
                     </div>
                     <AddReview product_id={product.id as number} callback={addReviewToList} review={myReview} />

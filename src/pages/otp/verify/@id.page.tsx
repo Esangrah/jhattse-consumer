@@ -91,8 +91,8 @@ export const Page = () => {
     }
 
     return (
-        <div className="grid grid-flow-col grid-cols-6 place-content-center sm:place-content-start min-h-screen bg-neutral-50">
-            <div className="grid gap-4 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 sm:col-start-1 sm:col-span-6 sm:rounded-none rounded-lg  border sm:borderneutral-50 border-neutral-900 bg-neutral-50 p-2 ">
+        <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start min-h-screen bg-neutral-50">
+            <div className="grid gap-4 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 lt-sm:col-start-1 lt-sm:col-span-6 lt-sm:rounded-none rounded-lg  border lt-sm:borderneutral-50 border-neutral-900 bg-neutral-50 p-2 ">
                 <div className="flex gap-2 px-2 py-4">
                     <button className="flex text-neutral-900 text-lg font-semibold items-center" onClick={() => { history.back() }}><MdArrowBack /></button>
                     <span className="text-neutral-900 font-semibold">Verify your mobile number</span>
@@ -126,7 +126,7 @@ export const Page = () => {
                     </div>
                     <div className="text-sm text-error-500">{message}</div>
                 </div>
-                <div className="flex h-32 sm:h-64"></div>
+                <div className="flex h-32 lt-sm:h-64"></div>
                 <div className="flex gap-2 justify-between p-2">
                     {
                         resend == true ?

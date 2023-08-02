@@ -28,7 +28,7 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
     return (
         <Container>
             <Header />
-            <div className="px-20 sm:px-2 sm:hidden">
+            <div className="px-20 lt-sm:px-2 lt-sm:hidden">
                 <div className="h-4"></div>
                 <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                     <BreadcrumbItem>
@@ -44,14 +44,14 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
                 </Breadcrumb>
             </div>
             <div className="h-4"></div>
-            <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 sm:px-4 sm:text-base">Select Delivery Address</h1></div>
+            <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-4 lt-sm:text-base">Select Delivery Address</h1></div>
             <div className="h-4"></div>
-            <div className="flex flex-row grow h-full justify-between gap-4 sm:flex-col px-20 sm:px-0">
+            <div className="flex flex-row grow h-full justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-0">
                 <div className="flex flex-col gap-1 w-full">
                     <AddressPanel isDone={() => { }} />
                 </div>
-                <div className="sm:sticky sm:z-40 flex flex-col gap-4" style={{ bottom: "20px" }}>
-                    <div className="flex flex-col gap-2 sm:hidden">
+                <div className="lt-sm:sticky lt-sm:z-40 flex flex-col gap-4" style={{ bottom: "20px" }}>
+                    <div className="flex flex-col gap-2 lt-sm:hidden">
                         <h2 className="font-bold text-custom_black text-lg pb-1 pt-1">Order Summary</h2>
                         {
                             cartValues.map((item => {

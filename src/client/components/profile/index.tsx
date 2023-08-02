@@ -83,8 +83,8 @@ export const ProfileCard = () => {
     }, [imageFile])
 
     return (
-        <div className="grid grid-flow-col grid-cols-6 place-content-center sm:place-content-start min-h-screen bg-neutral-50">
-            <div className="grid gap-2 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 sm:col-start-1 sm:col-span-6 sm:rounded-none rounded-lg  border bg-neutral-50 p-6 ">
+        <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start min-h-screen bg-neutral-50">
+            <div className="grid gap-2 col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 lt-sm:col-start-1 lt-sm:col-span-6 lt-sm:rounded-none rounded-lg  border bg-neutral-50 p-6 ">
                 <div className="flex justify-center p-4">
                     <div className="relative">
                         {isLoading ? <div className="flex h-44 w-full justify-center items-center">

@@ -62,7 +62,7 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
             <div className="">
                 <Navbar />
                 <div className="flex justify-center">
-                    <div className="grid gap-1 w-1/3 sm:w-full p-4 bg-neutral-50">
+                    <div className="grid gap-1 w-1/3 lt-sm:w-full p-4 bg-neutral-50">
                         <div className="flex justify-center text-neutral-900 font-semibold text-base leading-tight">Invoice/ Bill</div>
                         <div className="grid pb-1 border-neutral-900 border-b border-dashed gap-1">
                             <div className="flex flex-col gap-1 pb-1 border-b border-neutral-900 border-dashed">

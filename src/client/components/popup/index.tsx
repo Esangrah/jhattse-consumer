@@ -27,7 +27,7 @@ const PopupComponent: React.FC<Props> = ({ showModal, setShowModal, message, Act
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-neutral-50 outline-none focus:outline-none">
                 {/*body*/}
                 <div className="relative px-6 py-6 flex-auto">
-                  <p className="text-neutral-700 sm:text-base text-lg leading-relaxed">
+                  <p className="text-neutral-700 lt-sm:text-base text-lg leading-relaxed">
                     {message}
                   </p>
                 </div>

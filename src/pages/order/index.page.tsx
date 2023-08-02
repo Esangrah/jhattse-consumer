@@ -64,7 +64,7 @@ export const Page = () => {
             component =
                 <div>
                     <Title title="Order Summary" />
-                    <div className="grid gap-2 py-2 px-2 sm:px-0 w-1/2 sm:w-full" >
+                    <div className="grid gap-2 py-2 px-2 lt-sm:px-0 w-1/2 lt-sm:w-full" >
                         {deliveryItems.length > 0 && <div>
                             <div className="flex justify-between bg-success-900 px-2 py-1 rounded-t-lg">
                                 <span className="font-semibold text-base text-neutral-50">Deliver To</span>
@@ -88,7 +88,7 @@ export const Page = () => {
             component = <AddressPanel isDone={(state: boolean) => { setScreenValid(1)(state); }} title="Select delivery address" />// <OrderSummary> </OrderSummary> // Sort the cart items bunch by stores and sort by deliverable show deliverable items on top
             break;
         default:
-            component = <div className="w-full h-screen flex flex-col justify-center items-center"><Link href={"upi://pay?pa=9935394958@upi&amp;pn=Pay to Jhatt&amp;cu=INR"}><button className="bg-success-500 justify-end sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-success-900 focus:bg-brand-900 whitespace-nowrap rounded-md">Make Payment</button></Link></div>
+            component = <div className="w-full h-screen flex flex-col justify-center items-center"><Link href={"upi://pay?pa=9935394958@upi&amp;pn=Pay to Jhatt&amp;cu=INR"}><button className="bg-success-500 justify-end lt-sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-success-900 focus:bg-brand-900 whitespace-nowrap rounded-md">Make Payment</button></Link></div>
             break;
     }
     return (
@@ -96,8 +96,8 @@ export const Page = () => {
             <BackBar />
             {component}
             <div className="h-20"></div>
-            <div className="bg-neutral-50 fixed bottom-0 justify-center w-1/2 sm:w-full p-4">
-                <button onClick={() => onNext()} className={`w-full bg-brand-500 justify-end sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-brand-500 focus:bg-brand-500 whitespace-nowrap rounded-md ${screen.get(stage) === true ? "" : "cursor-not-allowed"}`} disabled={screen.get(stage) !== true}>Proceed to pay</button>
+            <div className="bg-neutral-50 fixed bottom-0 justify-center w-1/2 lt-sm:w-full p-4">
+                <button onClick={() => onNext()} className={`w-full bg-brand-500 justify-end lt-sm:text-sm text-neutral-50 font-semibold p-2 hover:bg-brand-500 focus:bg-brand-500 whitespace-nowrap rounded-md ${screen.get(stage) === true ? "" : "cursor-not-allowed"}`} disabled={screen.get(stage) !== true}>Proceed to pay</button>
             </div>
         </div>
     )

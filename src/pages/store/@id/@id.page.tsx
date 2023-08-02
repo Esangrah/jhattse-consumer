@@ -214,8 +214,8 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                     <meta property="og:url" content={`https://jhattse.com/store/${store.id}/${getSafeUrl(store?.name)}`} />
                 </Head>
                 <Header />
-                <div className="sm:px-0 px-10">
-                    <div className="sm:hidden h-20 flex items-center text-sm text-manrope">
+                <div className="lt-sm:px-0 px-10">
+                    <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
                         <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                             <BreadcrumbItem>
                                 <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -231,14 +231,14 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
 
                     </div>
                     <StoreTopCard storeTimings={storeTimings} store={store} />
-                    <div className="sm:h-4 h-6"></div>
+                    <div className="lt-sm:h-4 h-6"></div>
 
                     {/* Categories */}
-                    <div className="sm:hidden flex gap-2 p-2 divide-x">
+                    <div className="lt-sm:hidden flex gap-2 p-2 divide-x">
                         <div className="flex flex-1 flex-col gap-2 w-4/5 pr-6">
                             <div className='w-full sticky top-8 flex flex-col gap-2'>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className='sm:hidden'>
+                                    <div className='lt-sm:hidden'>
                                         <h2 className='font-bold text-base leading-6'>
                                             Products
                                         </h2>
@@ -270,9 +270,9 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                                                 }}
                                             >
                                                 <div className="flex flex-row justify-between items-center">
-                                                    <h2 className="flex justify-start sm:text-sm text-base gap-1 text-bold p-2 text-custom_black font-semibold">{item.name}</h2>
+                                                    <h2 className="flex justify-start lt-sm:text-sm text-base gap-1 text-bold p-2 text-custom_black font-semibold">{item.name}</h2>
                                                     {index === 0 &&
-                                                        <div className="sm:hidden flex justify-center w-2/5">
+                                                        <div className="lt-sm:hidden flex justify-center w-2/5">
                                                             <AutoComplete
                                                                 popupClassName="p-1"
                                                                 style={{ width: "100%", borderRadius: "5px" }}
@@ -302,8 +302,8 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                                         <div>
                                             <div className="snap-y flex flex-col w-full">
                                                 <div className="flex flex-row justify-between items-center">
-                                                    <h2 className="flex justify-start sm:text-sm text-base gap-1 text-bold p-2 text-custom_black font-bold">Search Results...</h2>
-                                                    <div className="sm:hidden flex justify-center w-2/5">
+                                                    <h2 className="flex justify-start lt-sm:text-sm text-base gap-1 text-bold p-2 text-custom_black font-bold">Search Results...</h2>
+                                                    <div className="lt-sm:hidden flex justify-center w-2/5">
                                                         <AutoComplete
                                                             popupClassName="p-1"
                                                             style={{ width: "100%", borderRadius: "5px" }}
@@ -329,7 +329,7 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden sm:block flex flex-col items-center gap-2 w-full p-2">
+                    <div className="hidden lt-sm:block flex flex-col items-center gap-2 w-full p-2">
                         <Accordion defaultIndex={[0]} index={accordionIndexes} allowMultiple>
                             {
                                 productCategoriesList?.map((item, index) => {
@@ -339,7 +339,7 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                         </Accordion>
                     </div>
                     <div className="h-16"></div>
-                    <div className='hidden sm:block fixed bottom-10 left-1/3 z-20'>
+                    <div className='hidden lt-sm:block fixed bottom-10 left-1/3 z-20'>
                         <Menu
                             onClose={() => setIsCategoryOpen(false)}
                             onOpen={() => setIsCategoryOpen(true)}
@@ -359,7 +359,7 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                         </Menu>
                     </div>
                 </div>
-                <div className='sm:hidden'>
+                <div className='lt-sm:hidden'>
                     <Footer />
                 </div>
 

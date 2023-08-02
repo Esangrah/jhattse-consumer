@@ -104,7 +104,7 @@ export const Page: React.FC<Props> = ({ initialProductCategory, initialProductSu
                 <meta property="og:url" content={`https://jhattse.com/category/${productCategory?.id}/${getSafeUrl(productCategory?.name)}`} />
             </Head>
             <Header />
-            <div className="px-20 sm:px-4">
+            <div className="px-20 lt-sm:px-4">
                 <div className="divide-y-2 divide-solid">
                     <div className="py-2 grid grid-flow-col">
                         <div className="flex items-center justify-start">

@@ -40,7 +40,7 @@ const FileUploadPopup: React.FC<Props> = ({ showModal, setShowModal, message, Ac
                             {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-neutral-50 outline-none focus:outline-none">
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-neutral-300 rounded-t ">
-                                    <p className="text-neutral-700 sm:text-lg text-xl font-semibold leading-relaxed">
+                                    <p className="text-neutral-700 lt-sm:text-lg text-xl font-semibold leading-relaxed">
                                         Please select a new image
                                     </p>
                                 </div>

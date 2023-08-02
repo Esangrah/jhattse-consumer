@@ -79,33 +79,33 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                 }
             </CarouselContainer>
             <div className="h-2"></div>
-            <div className="sm:flex-col relative w-full flex flex-row justify-between font-manrope" data-store-id={store?.id} >
+            <div className="lt-sm:flex-col relative w-full flex flex-row justify-between font-manrope" data-store-id={store?.id} >
                 <div className="p-2 pb-1 w-full flex flex-col gap-1.5 leading-tight">
-                    <h3 className="text-custom_black font-bold text-xl sm:text-base">{store?.name}</h3>
-                    <p className="text-custom_black font-normal sm:text-sm">{store?.category?.name}</p>
+                    <h3 className="text-custom_black font-bold text-xl lt-sm:text-base">{store?.name}</h3>
+                    <p className="text-custom_black font-normal lt-sm:text-sm">{store?.category?.name}</p>
                     <div className="flex flex-row gap-2 py-1">
-                        {store?.is_pickup && <button className="bg-storepickup hover:opacity-80 px-2 py-1 text-sm sm:text-xs text-custom_black font-semibold rounded-sm" >PICKUP</button>}
-                        {store?.is_delivery && <button className="bg-delivery hover:opacity-80 px-2 py-1 text-sm sm:text-xs text-custom_black font-semibold rounded-sm" >DELIVERY</button>}
+                        {store?.is_pickup && <button className="bg-storepickup hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >PICKUP</button>}
+                        {store?.is_delivery && <button className="bg-delivery hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >DELIVERY</button>}
                     </div>
                     <StoreTiming storeTimings={storeTimings} />
                     <div className="flex flex-row gap-2 items-center">
-                        <p className="text-custom_black font-medium text-base sm:text-xs"><a href={`tel:${store?.phone}`}><FaPhoneAlt /></a></p>
-                        <p className="text-custom_black font-medium text-base sm:text-xs">{store?.phone}</p>
+                        <p className="text-custom_black font-medium text-base lt-sm:text-xs"><a href={`tel:${store?.phone}`}><FaPhoneAlt /></a></p>
+                        <p className="text-custom_black font-medium text-base lt-sm:text-xs">{store?.phone}</p>
                     </div>
                     <div className="flex flex-row gap-2 items-center pb-1">
-                        <p className="flex justify-between items-center text-ellipsis text-custom_black text-base font-medium sm:text-xs"><MdLocationPin className='mr-1' />{`${store?.address?.street_name}, ${store?.address?.city?.name}`}
-                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium sm:text-xs whitespace-nowrap items-center">
+                        <p className="flex justify-between items-center text-ellipsis text-custom_black text-base font-medium lt-sm:text-xs"><MdLocationPin className='mr-1' />{`${store?.address?.street_name}, ${store?.address?.city?.name}`}
+                            {(localDistance != undefined && localDistance < 100 * 1000) && <div className="inline-flex whitespace-nowrap px-1 gap-1">({localDistance < 1000 ? localDistance.toFixed(0).toString() + " m away" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km away" : (localDistance > 100 * 1000 ? null : (localDistance / 1000).toFixed(0).toString() + " km away"))}) {store?.address?.latitude != undefined && <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank" className="inline-flex text-golden text-base font-medium lt-sm:text-xs whitespace-nowrap items-center">
                                 VIEW LOCATION
                             </Link>}</div>}
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between text-right py-1 px-2 font-manrope text-xs">
-                    <div className="flex flex-col sm:flex-row gap-2 items-end sm:items-center tracking-wide">
+                <div className="flex flex-col lt-sm:flex-row justify-between text-right py-1 px-2 font-manrope text-xs">
+                    <div className="flex flex-col lt-sm:flex-row gap-2 items-end lt-sm:items-center tracking-wide">
                         {store?.stats?.rating_overall ?
                             <Star rating={store?.stats?.rating_overall} />
                             :
-                            <div className="grid grid-row grid-flow-col text-custom_gray sm:grid-flow-row">No Reviews</div>
+                            <div className="grid grid-row grid-flow-col text-custom_gray lt-sm:grid-flow-row">No Reviews</div>
                         }
                         {store?.stats?.rating_count ?
                             <div>
@@ -121,7 +121,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                             </div>
                         }
                     </div>
-                    <div className="flex items-center justify-end sm:justify-start">
+                    <div className="flex items-center justify-end lt-sm:justify-start">
                         <RWebShare
                             data={{
                                 text: `${store?.name} is on Jhattse`,
@@ -130,7 +130,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                             }}
                             onClick={() => console.log("shared successfully!")}
                         >
-                            <button className="flex gap-1 items-center justify-center text-golden font-bold text-base"><MdShare /> <span className='sm:hidden'>SHARE</span></button>
+                            <button className="flex gap-1 items-center justify-center text-golden font-bold text-base"><MdShare /> <span className='lt-sm:hidden'>SHARE</span></button>
                         </RWebShare>
                     </div>
                 </div>

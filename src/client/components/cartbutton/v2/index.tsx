@@ -40,7 +40,7 @@ export const CartButtonV2 = ({
     >
       <Link
         href={inventory?.external_link}
-        className="bg-brand-500 py-2 px-9 sm:px-2 text-lg sm:text-sm text-center text-neutral-50 font-bold sm:w-full whitespace-nowrap select-none rounded"
+        className="bg-brand-500 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-bold lt-sm:w-full whitespace-nowrap select-none rounded"
       >
         BUY NOW
       </Link>
@@ -51,7 +51,7 @@ export const CartButtonV2 = ({
     >
       <button
         onClick={() => onClickAdd(product)}
-        className="bg-brand-500 py-2 px-9 sm:px-2 text-lg sm:text-sm text-center text-neutral-50 font-bold sm:w-full whitespace-nowrap select-none rounded"
+        className="bg-brand-500 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-bold lt-sm:w-full whitespace-nowrap select-none rounded"
       >
         ADD
       </button>

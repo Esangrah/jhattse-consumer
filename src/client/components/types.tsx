@@ -280,7 +280,6 @@ export type TCities = {
 export interface TOrder {
     status?: OrderStatus;
     store_id?: number;
-    address_id?: number;
     delivery_mode?: string;
     payment_mode: string;
     id?: string;
@@ -292,7 +291,6 @@ export interface TOrder {
     tax?: number;
     payable?: number;
     store?: TStore;
-    address?: TAddress;
     orderitems?: TOrderItem[];
     added_on?: string;
     updated_on?: string;
@@ -301,6 +299,12 @@ export interface TOrder {
     link?: string;
     info?: TOrderInfo;
     transaction_id?: string;
+    address_id?: number;
+    address?: TAddress;
+    billing_address_id?: number;
+    billing_address?: TAddress;
+    shipping_address_id?: number;
+    shipping_address?: TAddress;
 }
 
 export type TOrderItem = {

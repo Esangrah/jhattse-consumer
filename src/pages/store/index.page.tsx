@@ -118,8 +118,8 @@ export const Page: React.FC = () => {
                 <meta property="og:url" content={`https://jhattse.com/store`} />
             </Head>
             <Header />
-            <div className="px-20 sm:px-2">
-                <div className="sm:hidden h-20 flex items-center text-sm text-manrope">
+            <div className="px-20 lt-sm:px-2">
+                <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
                     <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                         <BreadcrumbItem>
                             <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -130,7 +130,7 @@ export const Page: React.FC = () => {
                         </BreadcrumbItem>
                     </Breadcrumb>
                 </div>
-                <Title title="Stores near you" customStyle="text-lg font-bold select-none text-bannerText sm:pt-2" />
+                <Title title="Stores near you" customStyle="text-lg font-bold select-none text-bannerText lt-sm:pt-2" />
                 <div className="h-4"></div>
                 <div className="flex flex-row gap-2">
                     {scrollX !== 0 && (
@@ -165,28 +165,26 @@ export const Page: React.FC = () => {
                         </button>
                     )}
                 </div>
-                <div className="flex py-2">
-                    <SearchContainer
-                        searchresults={stores}
-                        element={SmallStoreCard}
-                        noResult={
-                            <div className="flex justify-center p-3 h-full  w-full sm:w-full">
+                <SearchContainer
+                    searchresults={stores}
+                    element={SmallStoreCard}
+                    noResult={
+                        <div className="flex justify-center p-3 h-full  w-full lt-sm:w-full">
+                            <div>
+                                <MdStorefront
+                                    className="h-52 w-full font-normal"
+                                />
                                 <div>
-                                    <MdStorefront
-                                        className="h-52 w-full font-normal"
-                                    />
-                                    <div>
-                                        <h3 className="flex justify-center text-2xl">Result not found</h3>
-                                        {/* <p className="flex justify-center text-2xl text-neutral-900">Looks like you have not added anything to your cart.</p> */}
-                                    </div>
+                                    <h3 className="flex justify-center text-2xl">Result not found</h3>
+                                    {/* <p className="flex justify-center text-2xl text-neutral-900">Looks like you have not added anything to your cart.</p> */}
                                 </div>
                             </div>
-                        }
-                        isLoading={isLoading}
-                        isLoadMore={isLoadMore}
-                        pageNumber={pageNumber}
-                        setPageNumber={setPageNumber} />
-                </div>
+                        </div>
+                    }
+                    isLoading={isLoading}
+                    isLoadMore={isLoadMore}
+                    pageNumber={pageNumber}
+                    setPageNumber={setPageNumber} />
             </div>
             <Navbar />
         </Container>

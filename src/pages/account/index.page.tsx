@@ -55,8 +55,8 @@ export const Page = () => {
     return (
         <div>
             <Header />
-            <div className="px-20 sm:px-0 font-manrope">
-                <div className="hidden sm:block">
+            <div className="px-20 lt-sm:px-0 font-manrope">
+                <div className="hidden lt-sm:block">
                     <div className="bg-brand-500 p-2">
                         <p className="font-bold text-xl text-neutral-50">Hey! {profile?.full_name}</p>
                     </div>
@@ -74,7 +74,7 @@ export const Page = () => {
                     </div>
                 </div>
                 {/* For Desktop */}
-                <div className="sm:hidden h-20 flex items-center text-sm text-manrope">
+                <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
                     <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                         <BreadcrumbItem>
                             <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -85,13 +85,13 @@ export const Page = () => {
                         </BreadcrumbItem>
                     </Breadcrumb>
                 </div>
-                <div className="sm:hidden">
+                <div className="lt-sm:hidden">
                     <div className="bg-neutral-50 p-4 flex justify-between items-center rounded-md">
                         <div className="flex flex-col gap-1">
                             <h2 className="font-bold text-xl text-custom_black">{profile?.full_name}</h2>
                             <p className="text-base font-semibold text-custom_gray">{profile?.phone}</p>
                         </div>
-                        <a href="/account/profile" className="bg-store_yellow hover:opacity-80 focus:opacity-80 p-2 sm:text-sm text-center text-neutral-900 font-bold whitespace-nowrap select-none rounded">EDIT PROFILE</a>
+                        <a href="/account/profile" className="bg-store_yellow hover:opacity-80 focus:opacity-80 p-2 lt-sm:text-sm text-center text-neutral-900 font-bold whitespace-nowrap select-none rounded">EDIT PROFILE</a>
                     </div>
                     <div className="h-6"></div>
                     <div className="grid grid-cols-3 gap-8 divide-x">
@@ -112,11 +112,11 @@ export const Page = () => {
                             </span>
                         </div>
                         <div className="col-span-2 pl-6">
-                            {active === "myaddresses" && <AddressPanel customStyle="grid grid-cols-2 sm:grid-cols-1 gap-4 rounded-xl" isDone={() => { }} heading="My Addresses" />}
+                            {active === "myaddresses" && <AddressPanel customStyle="grid grid-cols-2 lt-sm:grid-cols-1 gap-4 rounded-xl" isDone={() => { }} heading="My Addresses" />}
 
-                            {active === "myorders" && <div className="grid gap-6 py-2 px-2 sm:px-0">
+                            {active === "myorders" && <div className="grid gap-6 py-2 px-2 lt-sm:px-0">
                                 {currentorders?.length == 0 && pastorders?.length == 0 ?
-                                    <div className="flex justify-center animate-pulse duration-1000 p-3 h-full  w-full sm:w-full">
+                                    <div className="flex justify-center animate-pulse duration-1000 p-3 h-full  w-full lt-sm:w-full">
                                         <div>
                                             <FaBox
                                                 className="h-52 w-full font-normal"

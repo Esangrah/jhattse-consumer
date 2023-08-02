@@ -56,7 +56,7 @@ export const Sidebar: React.FC<Props> = ({ homeLink, isShowSidebar }) => {
         <div>
             {showSidebar ? (
                 <div>
-                    <div className={`top-0 left-0 w-72 md:w-1/2 sm:w-full bg-neutral-100 overflow-auto ${showSidebar ? "transition duartion-0" : "transition duartion-0"} text-neutral-50 fixed h-full z-40 ease-in-out`}>
+                    <div className={`top-0 left-0 w-72 md:w-1/2 lt-sm:w-full bg-neutral-100 overflow-auto ${showSidebar ? "transition duartion-0" : "transition duartion-0"} text-neutral-50 fixed h-full z-40 ease-in-out`}>
                         <div className="flex items-center bg-neutral-900 justify-between h-14 px-2 gap-2">
                             <div className="flex flex-row flex-grow justify-between items-center justify-items-stretch h-12">
                                 <div>

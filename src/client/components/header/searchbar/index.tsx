@@ -16,7 +16,7 @@ interface Props {
 }
 
 const renderTitle = (title: string, identifier: string) => (
-    <span className="font-semibold font-md sm:font-sm">
+    <span className="font-semibold font-md lt-sm:font-sm">
         {title}
         <a
             className="text-sky-500"
@@ -46,7 +46,7 @@ const renderItem = (title: string, id: any, category: string) => ({
             }
         >
             <div className="flex">
-                <span className="text-sm sm:text-xs">{title}</span>
+                <span className="text-sm lt-sm:text-xs">{title}</span>
             </div>
         </Link>
     ),

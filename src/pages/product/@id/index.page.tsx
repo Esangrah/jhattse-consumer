@@ -88,8 +88,8 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                     <meta property="og:url" content={`https://jhattse.com/product/${product.id}/${getSafeUrl(product?.name)}`} />
                 </Head>
                 <Header />
-                <div className="flex flex-col text-manrope gap-2 px-20 sm:px-4">
-                    <div className="flex flex-col justify-center px-0 sm:hidden h-20">
+                <div className="flex flex-col text-manrope gap-2 px-20 lt-sm:px-4">
+                    <div className="flex flex-col justify-center px-0 lt-sm:hidden h-20">
                         <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                             <BreadcrumbItem>
                                 <BreadcrumbLink href='/'>Home</BreadcrumbLink>
@@ -103,9 +103,9 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                             </BreadcrumbItem>
                         </Breadcrumb>
                     </div>
-                    <div className="flex flex-row item-center gap-4 sm:gap-2 sm:py-4 sm:flex-col font-manrope">
-                        <div className="flex flex-row sm:flex-col-reverse gap-3 max-h-60 sticky sm:relative top-0">
-                            <div className="2xl:flex flex-col sm:flex-row gap-3 sm:hidden overflow-x-scroll no-scrollbar">
+                    <div className="flex flex-row item-center gap-4 lt-sm:gap-2 lt-sm:py-4 lt-sm:flex-col font-manrope">
+                        <div className="flex flex-row lt-sm:flex-col-reverse gap-3 max-h-60 sticky lt-sm:relative top-0">
+                            <div className="2xl:flex flex-col lt-sm:flex-row gap-3 lt-sm:hidden overflow-x-scroll no-scrollbar">
                                 <CarouselContainer direction="vertical">
                                     {product?.images?.map((image) => {
                                         return <SwiperSlide style={{ width: "auto", height: "auto" }} className="min-w-0" onClick={(e) => setMainImage(image)}>
@@ -127,7 +127,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                 {product?.tag != undefined && product?.tag?.length > 0 && <div className="px-2 w-max rounded-r-lg mt-1 bg-brand-500">
                                     {product.tag}
                                 </div>}
-                                <div className="flex justify-center bg-neutral-50 rounded item-center w-56 sm:w-full">
+                                <div className="flex justify-center bg-neutral-50 rounded item-center w-56 lt-sm:w-full">
                                     <Image
                                         loader={sanityIoImageLoader}
                                         priority={"true"}
@@ -141,36 +141,36 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                         </div>
                         <div className="flex flex-col justify-between col-span-2 gap-8 text-manrope">
                             <div className="flex flex-col leading-tight">
-                                <div className="text-ellipsis text-left break-words leading-tight pb-2.5 max-w-2xl sm:max-w-full">
-                                    <h1 className="text-neutral-800 text-3xl lg:text-xl sm:text-lg font-extrabold line-clamp-2 md:line-clamp-none">{getCombinedName(product, variant?.id || 0)}</h1>
+                                <div className="text-ellipsis text-left break-words leading-tight pb-2.5 max-w-2xl lt-sm:max-w-full">
+                                    <h1 className="text-neutral-800 lg:text-3xl md:text-xl text-lg font-extrabold line-clamp-2 md:line-clamp-none">{getCombinedName(product, variant?.id || 0)}</h1>
                                 </div>
                                 {product?.brand &&
-                                    <div className="text-ellipsis text-left break-words leading-tight pb-5 sm:pb-3 max-w-2xl sm:max-w-full">
-                                        <span className="text-neutral-500 text-xl lg:text-lg sm:text-base font-bold line-clamp-2 md:line-clamp-none">Brand:</span>&nbsp;<Link href={`/brand/${product?.brand?.id}/${getSafeUrl(product?.brand?.name)}`} ><span className="text-brand-500 text-xl lg:text-lg sm:text-base font-bold">{product?.brand?.name}</span></Link>
+                                    <div className="flex flex-row text-ellipsis text-left break-words leading-tight pb-5 lt-sm:pb-3 max-w-2xl lt-sm:max-w-full">
+                                        <span className="text-neutral-500 lg:text-xl md:text-lg text-base font-bold line-clamp-2 md:line-clamp-none">Brand:</span>&nbsp;<Link href={`/brand/${product?.brand?.id}/${getSafeUrl(product?.brand?.name)}`} ><span className="text-brand-500 lg:text-xl md:text-lg text-base font-bold">{product?.brand?.name}</span></Link>
                                     </div>
                                 }
-                                <div className="flex flex-row gap-2 items-center pb-5 sm:pb-3 sm:text-xs sm:py-2">
+                                <div className="flex flex-row gap-2 items-center pb-5 lt-sm:pb-3 lt-sm:text-xs lt-sm:py-2">
                                     {product?.stats?.rating_overall ?
                                         <Star rating={product?.stats?.rating_overall} />
                                         :
-                                        <div className="grid grid-row grid-flow-col text-custom_gray sm:grid-flow-row">No Reviews</div>
+                                        <div className="grid grid-row grid-flow-col text-custom_gray lt-sm:grid-flow-row">No Reviews</div>
                                     }
                                 </div>
                                 {
                                     selectedInventory?.store !== undefined && selectedInventory?.store?.id > 0 ?
-                                        <p className="text-neutral-500 font-bold text-base sm:text-sm leading-tight pb-3">
+                                        <p className="text-neutral-500 font-bold text-base lt-sm:text-sm leading-tight pb-3">
                                             Sold By: {" "}
                                             <Link href={`/store/${selectedInventory?.store?.id}/${getSafeUrl(selectedInventory?.store?.name)}`}><span className="font-bold text-brand">{selectedInventory?.store?.name}</span></Link>
                                         </p>
                                         :
-                                        <p className="text-error-300 font-bold text-base sm:text-sm leading-tight pb-5">Unavailable</p>
+                                        <p className="text-error-300 font-bold text-base lt-sm:text-sm leading-tight pb-5">Unavailable</p>
                                 }
 
 
                                 {getLength(product?.inventories) > 0 ?
-                                    <div className="flex flex-row items-center gap-4 pb-6 text-base sm:text-sm">
-                                        <span className="text-neutral-800 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.price || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.price || selectedInventory?.mrp || 0)}</span>
-                                        {(selectedInventory?.price !== null && selectedInventory?.mrp !== selectedInventory?.price) && <span className="line-through text-neutral-400 font-extrabold text-3xl lg:text-xl sm:text-lg">{humanizeCurrency(selectedInventory?.mrp || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.mrp || 0)}</span>}
+                                    <div className="flex flex-row items-center gap-4 pb-6 text-base lt-sm:text-sm">
+                                        <span className="text-neutral-800 font-extrabold text-3xl lg:text-xl lt-sm:text-lg">{humanizeCurrency(selectedInventory?.price || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.price || selectedInventory?.mrp || 0)}</span>
+                                        {(selectedInventory?.price !== null && selectedInventory?.mrp !== selectedInventory?.price) && <span className="line-through text-neutral-400 font-extrabold text-3xl lg:text-xl lt-sm:text-lg">{humanizeCurrency(selectedInventory?.mrp || product?.inventories?.find((inventory) => inventory.variant_id == variant?.id)?.mrp || 0)}</span>}
                                         {product.mrp !== undefined && selectedInventory?.price !== undefined && selectedInventory?.price < product.mrp ?
                                             <div className="text-green-500">({Math.trunc((product.mrp - (selectedInventory?.price || 0)) / product.mrp * 100)}% off)</div>
                                             :
@@ -182,7 +182,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                 }
 
                                 {selectedInventory?.store?.id && selectedInventory?.store?.id > 0 ?
-                                    <div className="flex flex-row gap-4 items-center align-bottom w-44 sm:w-full pb-12">
+                                    <div className="flex flex-row gap-4 items-center align-bottom w-44 lt-sm:w-full pb-12">
                                         <CartButton mode={""} Isvariant={false} product={product} variantId={variant?.id} inventory={selectedInventory}></CartButton>
                                     </div>
                                     :
@@ -197,7 +197,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                             <CarouselContainer>
                                                 {getLength(product?.variants) > 0 && product?.variants?.map((item, index: number) => {
                                                     return <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>
-                                                        <div className={getFirst(inventoryByVariantId(item, product))?.is_available ? `bg-neutral-50 rounded-md cursor-pointer sm:w-full border ${item?.id == variant?.id ? 'border-brand-500' : 'border-neutral-300'}` : "cursor-pointer border border-neutral-300 rounded-md sm:w-full opacity-75"} onClick={() => onClickVariant(item)}>
+                                                        <div className={getFirst(inventoryByVariantId(item, product))?.is_available ? `bg-neutral-50 rounded-md cursor-pointer lt-sm:w-full border ${item?.id == variant?.id ? 'border-brand-500' : 'border-neutral-300'}` : "cursor-pointer border border-neutral-300 rounded-md lt-sm:w-full opacity-75"} onClick={() => onClickVariant(item)}>
                                                             <div className="flex flex-col gap-2 ">
                                                                 <div className="flex justify-start gap-2 py-4 px-5 border-b">
                                                                     <h4 className="text-lg lg:text-base font-semibold text-neutral-700 line-clamp-1">{trimToLength((item?.name || product?.name), 20)}</h4>
@@ -214,15 +214,15 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                         </div>
                                         :
                                         <></>}
-                                    <div className="h-6 sm:h-4"></div>
+                                    <div className="h-6 lt-sm:h-4"></div>
                                     {getLength(inventoryByVariantId(variant, product)) > 0 ?
-                                        <div className="sm:hidden">
+                                        <div className="lt-sm:hidden">
                                             <h3 className="font-bold text-lg py-2">Offers and Pricing</h3>
                                             <CarouselContainer>
                                                 {inventoryByVariantId(variant, product).map((inventory: TInventory, index: number) => {
                                                     return (
                                                         <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>
-                                                            <div key={inventory.id} className={`bg-neutral-50 p-2 rounded-md cursor-pointer w-60 sm:w-full border-2 ${selectedInventory?.id == inventory.id ? 'border-brand-500' : 'border-neutral-300'}`} onClick={() => { setselectedInventory(inventory) }}>
+                                                            <div key={inventory.id} className={`bg-neutral-50 p-2 rounded-md cursor-pointer w-60 lt-sm:w-full border-2 ${selectedInventory?.id == inventory.id ? 'border-brand-500' : 'border-neutral-300'}`} onClick={() => { setselectedInventory(inventory) }}>
                                                                 <div className="flex flex-col gap-2 ">
                                                                     <div className="flex justify-start font-bold gap-2 line-clamp-1">
                                                                         {inventory?.store?.name}
@@ -230,7 +230,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                                                     {inventory.store?.stats?.rating_overall ?
                                                                         <Star rating={inventory.store?.stats?.rating_overall} />
                                                                         :
-                                                                        <div className="grid grid-row grid-flow-col text-custom_gray sm:grid-flow-row">No Reviews</div>
+                                                                        <div className="grid grid-row grid-flow-col text-custom_gray lt-sm:grid-flow-row">No Reviews</div>
                                                                     }
                                                                     <div className="flex flex-row justify-between">
                                                                         <div className="flex justify-start font-extrabold">{humanizeCurrency(inventory?.price || inventory?.mrp || product?.mrp)}</div>
@@ -252,7 +252,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
 
                                     {/* For Mobile Device Start */}
                                     {getLength(inventoryByVariantId(variant, product)) > 0 ?
-                                        <div className="hidden sm:block">
+                                        <div className="hidden lt-sm:block">
                                             <h3 className="font-bold text-lg py-2">Offers and Pricing</h3>
                                             {inventoryByVariantId(variant, product).map((inventory: TInventory) => {
                                                 return (
@@ -275,7 +275,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                                                         {product?.stats?.rating_overall ?
                                                                             <Star rating={product?.stats?.rating_overall} />
                                                                             :
-                                                                            <div className="grid grid-row grid-flow-col text-custom_gray sm:grid-flow-row">No Reviews</div>
+                                                                            <div className="grid grid-row grid-flow-col text-custom_gray lt-sm:grid-flow-row">No Reviews</div>
                                                                         }
                                                                     </div>
                                                                     <div className="flex flex-row justify-between text-sm">
@@ -291,7 +291,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                         :
                                         <></>
                                     }
-                                    <div className="h-6 sm:h-4"></div>
+                                    <div className="h-6 lt-sm:h-4"></div>
                                     {product?.stats?.rating_count !== undefined && product?.stats?.rating_count > 0 && <RatingWidget product={product}></RatingWidget>}
                                 </div>
                                 {/* Bottom Section End */}
@@ -300,9 +300,9 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                         </div>
                     </div>
                     {/* For Mobile Device End */}
-                    <div className="h-10 sm:h-4"></div>
+                    <div className="h-10 lt-sm:h-4"></div>
                     <Section title="Similar Products" products={similarProducts} element={RichCard} isCarousel={true} style="pb-2 text-netural-800 px-3" headStyle="text-xl py-1 font-bold" />
-                    <div className="h-10 sm:h-4"></div>
+                    <div className="h-10 lt-sm:h-4"></div>
                 </div>
             </Container>
     } else {

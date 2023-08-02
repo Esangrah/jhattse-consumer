@@ -92,7 +92,7 @@ export const Page: React.FC<Props> = ({ initialReviews, initialStore }: Props) =
                 <meta name="og:image" content={`${store?.image}`} />
                 <meta property="og:url" content={`https://jhattse.com/store/${store.id}/reviews/${getSafeUrl(store?.name)}`} />
                 <BackBar />
-                <div className="sm:grid-rows lg:grid-rows">
+                <div className="lt-sm:grid-rows lg:grid-rows">
                     <div className="grid grid-row grid-flow-col w-full bg-yellow-400 p-2 font-bold text-lg">
                         {store?.stats?.rating_overall ?
                             <div className="flex gap-1">
@@ -105,7 +105,7 @@ export const Page: React.FC<Props> = ({ initialReviews, initialStore }: Props) =
                         }
                     </div>
                     <div className=" bg-yellow-400 p-2">
-                        <div className="flex gap-4 flex-row p-4 rounded-xl bg-yellow-200 xs:flex-wrap " >
+                        <div className="flex gap-4 flex-row p-4 rounded-xl bg-yellow-200 lt-sm:flex-wrap " >
                             <div className="flex-shrink-0">
                                 <div className="flex" >
                                     <Link href={`/store/${store.id}/${getSafeUrl(store?.name)}`}>

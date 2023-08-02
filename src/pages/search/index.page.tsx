@@ -75,17 +75,17 @@ export const Page: React.FC = () => {
     return (
         <div className="h-screen">
             <BackBar />
-            <div className="px-20 sm:px-0">
+            <div className="px-20 lt-sm:px-0">
                 <div className="p-2">
                     <div className="flex justify-center">
                         <Searchbar />
                     </div>
                     <div className="grid grid-cols-2 py-2">
-                        <h3 className="flex justify-start sm:text-sm gap-1 text-bold inline mt-2">
+                        <h3 className="flex justify-start lt-sm:text-sm gap-1 text-bold inline mt-2">
                             Showing results for
                             <span className="font-semibold text-neutral-900 inline">{q}</span>
                         </h3>
-                        <h3 className="flex justify-end sm:text-sm text-bold mt-2 ">
+                        <h3 className="flex justify-end lt-sm:text-sm text-bold mt-2 ">
                             <span className="font-semibold text-neutral-900">Total:</span>{" "}
                             {filteredResult?.length}
                         </h3>

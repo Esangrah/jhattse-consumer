@@ -70,7 +70,7 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
     <>
       {/* <BackBar /> */}
       {/* <Title title={title} /> */}
-      <div className="flex flex-col justify-center w-full font-manrope sm:px-4">
+      <div className="flex flex-col justify-center w-full font-manrope lt-sm:px-4">
         {!isShown &&
           <div className="w-full justify-center">
             <div className="flex items-center justify-between py-2">
@@ -78,7 +78,7 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
                 heading ? <h2 className="font-bold text-custom_black text-xl">{heading}</h2> : null
               }
               <button onClick={handleAddClick}
-                className={`text-golden font-bold flex items-center gap-2 ${btnPlacedButtom && "sm:hidden"}`}>
+                className={`text-golden font-bold flex items-center gap-2 ${btnPlacedButtom && "lt-sm:hidden"}`}>
                 <span><FaPlus /></span>
                 <span>ADD NEW ADDRESS</span>
               </button>
@@ -94,9 +94,9 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
             <Addaddress addressCallback={(address: TAddress) => addAddressToList(address)} close={() => { toggle(false) }} initialAddress={isEdit ? selectAddress : undefined} isEdit={isEdit} />
           </div>}
       </div>
-      <div className={`hidden ${btnPlacedButtom && "sm:block"} items-center align-bottom w-full sm:fixed bottom-10 z-40 sm:py-4 sm:px-4`}>
+      <div className={`hidden ${btnPlacedButtom && "lt-sm:block"} items-center align-bottom w-full lt-sm:fixed bottom-10 z-40 lt-sm:py-4 lt-sm:px-4`}>
         <button onClick={handleAddClick}
-          className="text-golden font-bold flex items-center gap-2 sm:w-full sm:bg-store_yellow sm:border-yellow-300 sm:text-custom_black sm:rounded-sm sm:text-sm p-2 sm:justify-center">
+          className="text-golden font-bold flex items-center gap-2 lt-sm:w-full lt-sm:bg-store_yellow lt-sm:border-yellow-300 lt-sm:text-custom_black lt-sm:rounded-sm lt-sm:text-sm p-2 lt-sm:justify-center">
           <span>ADD NEW ADDRESS</span>
         </button>
       </div>

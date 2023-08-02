@@ -36,9 +36,9 @@ export const Page = () => {
     return (
         <>
             <BackBar />
-            <div className="grid gap-6 py-2 px-20 sm:px-4">
+            <div className="grid gap-6 py-2 px-20 lt-sm:px-4">
                 {currentorders?.length == 0 && pastorders?.length == 0 ?
-                    <div className="flex justify-center animate-pulse duration-1000 p-3 h-full  w-full sm:w-full">
+                    <div className="flex justify-center animate-pulse duration-1000 p-3 h-full  w-full lt-sm:w-full">
                         <div>
                             <FaBox
                                 className="h-52 w-full font-normal"

@@ -85,7 +85,7 @@ const StoreList: React.FC<Props> = ({ initialStoreCategory }: Props) => {
                         isLoadMore={isLoadMore}
                         isLoading={isLoading}
                         pageNumber={pageNumber} 
-                        noResult={<div className="flex justify-center p-3 h-full  w-full sm:w-full">
+                        noResult={<div className="flex justify-center p-3 h-full  w-full lt-sm:w-full">
                         <div>
                             <MdStorefront
                                 className="h-52 w-full font-normal"

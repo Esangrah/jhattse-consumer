@@ -37,14 +37,14 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
 
     }
 
-    return <div className="flex flex-col relative sm:grow w-96 sm:w-full font-manrope">
+    return <div className="flex flex-col relative lt-sm:grow w-96 lt-sm:w-full font-manrope">
 
         {
             // cart?.size == 0 ?
             //     <></>
             //     :
-            <div className={`flex flex-col gap-2 w-full sm:grow sticky top-5 ${isHidden ? "sm:justify-end" : "sm:justify-between"}`}>
-                <div className={`bg-neutral-50 px-3 py-4  sm:w-full rounded-lg ${isHidden && "sm:hidden"}`}>
+            <div className={`flex flex-col gap-2 w-full lt-sm:grow sticky top-5 ${isHidden ? "lt-sm:justify-end" : "lt-sm:justify-between"}`}>
+                <div className={`bg-neutral-50 px-3 py-4  lt-sm:w-full rounded-lg ${isHidden && "lt-sm:hidden"}`}>
                     <div className="flex flex-col gap-2 justify-between">
                         <span><p className="font-bold text-custom_black text-lg">Order Total</p></span>
                         <div className="flex flex-col gap-2">
@@ -67,8 +67,8 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
                         </div>
                     </div>
                 </div>
-                <div className='w-full pb-4  sm:pt-10'>
-                    <button onClick={() => { actionFun ? actionFun() : goToOrderPage() }} className="bg-store_yellow border-yellow-300 font-bold sm:text-sm text-neutral-900 sm:px-1 px-2 py-2 rounded w-full" >{btnName ? btnName : "PLACE ORDER"}</button>
+                <div className='w-full pb-4  lt-sm:pt-10'>
+                    <button onClick={() => { actionFun ? actionFun() : goToOrderPage() }} className="bg-store_yellow border-yellow-300 font-bold lt-sm:text-sm text-neutral-900 lt-sm:px-1 px-2 py-2 rounded w-full" >{btnName ? btnName : "PLACE ORDER"}</button>
                 </div>
             </div>
         }

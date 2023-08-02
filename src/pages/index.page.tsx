@@ -75,12 +75,12 @@ export const Page: React.FC<Props> = ({
                 <Header />
             </div>
             <div className="h-6"></div>
-            <div className="px-20 sm:px-3">
+            <div className="px-20 lt-sm:px-3">
                 <div className="flex flex-col justify-center gap-4 pb-4 w-full">
                     <div className="section select-none bg-neutral-50 pb-2 text-neutral-900">
                         <CarouselContainer>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-                                <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
+                                <div className="shrink-0 w-[500px] lt-sm:w-[300px] h-[270px] lt-sm:h-[162px]">
                                     <Link href="/category/1/grocery-gourmet-foods">
                                         <Image
                                             loader={staticImageLoader}
@@ -94,7 +94,7 @@ export const Page: React.FC<Props> = ({
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-                                <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
+                                <div className="shrink-0 w-[500px] lt-sm:w-[300px] h-[270px] lt-sm:h-[162px]">
                                     <Link href="/category/2819/food">
                                         <Image
                                             loader={staticImageLoader}
@@ -108,7 +108,7 @@ export const Page: React.FC<Props> = ({
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide style={{ width: "auto" }} className="min-w-0">
-                                <div className="shrink-0 w-[500px] sm:w-[300px] h-[270px] sm:h-[162px]">
+                                <div className="shrink-0 w-[500px] lt-sm:w-[300px] h-[270px] lt-sm:h-[162px]">
                                     <Link href="/store">
                                         <Image
                                             loader={staticImageLoader}

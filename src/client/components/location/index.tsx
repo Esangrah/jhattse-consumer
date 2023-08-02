@@ -91,14 +91,14 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                                 {/*footer*/}
                                 <div className="flex items-center justify-end gap-2 p-2 border-t border-solid border-slate-200 rounded-b">
                                     <button
-                                        className="flex flex-row gap-2 items-center bg-neutral-50 text-neutral-900 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 border border-neutral-300 sm:text-xs sm:px-2 sm:gap-1"
+                                        className="flex flex-row gap-2 items-center bg-neutral-50 text-neutral-900 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150 border border-neutral-300 lt-sm:text-xs lt-sm:px-2 lt-sm:gap-1"
                                         type="button"
                                         onClick={handleUseLocation}
                                     >
                                         <MdMyLocation /> Detect my location
                                     </button>
                                     <button
-                                        className="bg-neutral-900 text-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300 sm:text-xs sm:px-2"
+                                        className="bg-neutral-900 text-neutral-50 font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150 border border-neutral-300 lt-sm:text-xs lt-sm:px-2"
                                         type="button"
                                         onClick={() => addLocation()}
                                     >

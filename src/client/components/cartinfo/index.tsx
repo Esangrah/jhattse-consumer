@@ -49,11 +49,11 @@ export const CartInfo: React.FC = () => {
     };
 
     return (
-        <div className="font-manrope w-3/4 sm:w-full">
+        <div className="font-manrope w-3/4 lt-sm:w-full">
             {/* <Title title="Your Bag/Shopping List" /> */}
             <div className="grid grid-flow-row gap-4 font-manrope">
                 {cartItems == null || cartItems?.length == 0
-                    ? <div className="flex justify-center animate-pulse duration-1000 p-3 h-screen  w-full sm:w-full">
+                    ? <div className="flex justify-center animate-pulse duration-1000 p-3 h-screen  w-full lt-sm:w-full">
                         <div>
                             <MdOutlineShoppingCart
                                 className="h-52 w-full font-normal"
@@ -65,7 +65,7 @@ export const CartInfo: React.FC = () => {
                         </div>
                     </div>
                     : cartItems?.map((cartItem) => (
-                        <div key={cartItem?.product?.id} className="grid bg-neutral-50 w-full grid-cols-3 sm:w-full gap-2 p-2 rounded-lg">
+                        <div key={cartItem?.product?.id} className="grid bg-neutral-50 w-full grid-cols-3 lt-sm:w-full gap-2 p-2 rounded-lg">
                             <div className="relative flex col-span-1">
                                 <div className="flex justify-center items-center w-full">
                                     <Link href={`/product/${cartItem?.product?.id}/${getSafeUrl(cartItem?.product?.name)}`}>
@@ -90,11 +90,11 @@ export const CartInfo: React.FC = () => {
                             <div className="flex flex-col justify-between col-span-2 gap-2">
                                 <div className="flex flex-col gap-1 leading-tight">
                                     <Link href={`/product/${cartItem?.product?.id}/${getSafeUrl(cartItem?.product?.name)}`}>
-                                        <p className="text-custom_black font-medium text-base line-clamp-2 sm:text-sm">{getCombinedName(cartItem?.product as TProduct, cartItem?.inventory?.variant_id || 0)}</p>
+                                        <p className="text-custom_black font-medium text-base line-clamp-2 lt-sm:text-sm">{getCombinedName(cartItem?.product as TProduct, cartItem?.inventory?.variant_id || 0)}</p>
                                     </Link>
-                                    <p className="text-custom_gray text-sm sm:hidden">Sold by: <Link href={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store?.name}</span></Link></p>
+                                    <p className="text-custom_gray text-sm lt-sm:hidden">Sold by: <Link href={`/store/${cartItem.inventory?.store?.id}/${getSafeUrl(cartItem.inventory?.store?.name)}`}><span className="text-custom_gray">{cartItem.inventory?.store?.name}</span></Link></p>
                                     <div>
-                                        <p><span className="text-neutral-900 font-bold text-lg sm:text-base pt-1">{humanizeCurrency(cartItem?.inventory?.price || cartItem.inventory?.mrp || cartItem?.product?.mrp)}</span></p>
+                                        <p><span className="text-neutral-900 font-bold text-lg lt-sm:text-base pt-1">{humanizeCurrency(cartItem?.inventory?.price || cartItem.inventory?.mrp || cartItem?.product?.mrp)}</span></p>
                                     </div>
                                     {tableInfo?.table === null || tableInfo?.table === undefined &&
                                         <div className="flex flex-row gap-8 py-2 items-center">
@@ -142,7 +142,7 @@ export const CartInfo: React.FC = () => {
                                     <div className="flex items-center"><button onClick={() => {
                                         setRemoveCartItemId(cartItem)
                                         setShowModel(true)
-                                    }} className="mx-3 text-custom_gray sm:px-1 px-3 py-2 rounded-md"><MdDelete className="text-custom_gray text-lg" /></button></div>
+                                    }} className="mx-3 text-custom_gray lt-sm:px-1 px-3 py-2 rounded-md"><MdDelete className="text-custom_gray text-lg" /></button></div>
                                 </div>
                             </div>
                         </div>

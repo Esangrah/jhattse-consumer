@@ -160,7 +160,7 @@ export const Page = () => {
                 </Head>
                 <Container>
                     <Header />
-                    <div className="px-20 sm:px-2 sm:hidden">
+                    <div className="px-20 lt-sm:px-2 lt-sm:hidden">
                         <div className="h-4"></div>
                         <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                             <BreadcrumbItem>
@@ -176,9 +176,9 @@ export const Page = () => {
                         </Breadcrumb>
                     </div>
                     <div className="h-4"></div>
-                    <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 sm:px-2 sm:text-base">Select Payment Method</h1></div>
+                    <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-2 lt-sm:text-base">Select Payment Method</h1></div>
                     <div className="h-4"></div>
-                    <div className="flex flex-row grow h-full justify-between gap-4 sm:flex-col px-20 sm:px-2">
+                    <div className="flex flex-row grow h-full justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-2">
                         <div className="flex flex-col gap-1 w-full">
                             <div className="flex flex-col bg-neutral-50  gap-2 p-2 divide-y rounded-lg px-2">
                                 <div className="flex flex-col gap-2 py-4">
@@ -195,7 +195,7 @@ export const Page = () => {
 
                                     {/* {paymentMethod === "upi" &&
                                         <div className="flex gap-2">
-                                            <Input className='bg-neutral-100 rounded p-2 w-1/3 sm:w-full' />
+                                            <Input className='bg-neutral-100 rounded p-2 w-1/3 lt-sm:w-full' />
                                             <button className='bg-store_yellow rounded border-yellow-300 p-2 font-bold w-28'>SAVE</button>
                                         </div>
                                     } */}

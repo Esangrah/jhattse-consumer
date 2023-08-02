@@ -151,7 +151,7 @@ const Addaddress = ({ addressCallback, close, initialAddress, isEdit }: Props) =
                 </div>
                 <div className="inline-block w-1/2 pr-1">
                     <div className="grid grid-flow-row">
-                        <button className="flex items-center bg-neutral-600 px-2 py-1 gap-1 border-md rounded-full text-neutral-50" onClick={location}><span className="items-center text-green-500"><MdMyLocation /></span><p className="items-center whitespace-nowrap p-1 sm:text-sm">Use my location </p></button>
+                        <button className="flex items-center bg-neutral-600 px-2 py-1 gap-1 border-md rounded-full text-neutral-50" onClick={location}><span className="items-center text-green-500"><MdMyLocation /></span><p className="items-center whitespace-nowrap p-1 lt-sm:text-sm">Use my location </p></button>
                         <p dangerouslySetInnerHTML={{ __html: status }} />
                     </div>
                 </div>

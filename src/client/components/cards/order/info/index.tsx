@@ -8,7 +8,7 @@ export const OrderInfoCard = () => {
     const { discountedTotal, savings, sortedStores } = useRecoilValue(cartDetailsState);
 
     return (
-        <div className="bg-neutral-50 p-3 sm:w-full">
+        <div className="bg-neutral-50 p-3 lt-sm:w-full">
             <div className="flex justify-between">
                 <div className="">
                     <div><p className="text-neutral-500">Total: ₹ <span className="text-neutral-900 text-lg font-bold">{discountedTotal}</span></p></div>

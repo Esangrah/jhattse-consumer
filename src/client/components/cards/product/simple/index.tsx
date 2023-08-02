@@ -11,8 +11,8 @@ type Props = {
 
 export const SimpleCard: React.FC<Props> = ({ product }) => {
     return (
-        <div key={product.id} className="bg-neutral-50 rounded-xl shrink-0 h-max w-52 sm:w-40 p-2">
-            <div className="flex justify-center h-36 sm:h-32">
+        <div key={product.id} className="bg-neutral-50 rounded-xl shrink-0 h-max w-52 lt-sm:w-40 p-2">
+            <div className="flex justify-center h-36 lt-sm:h-32">
                 <Link href={`/product/${product.id}/${getSafeUrl(product.name)}`}>
                     <Image
                         loader={sanityIoImageLoader}

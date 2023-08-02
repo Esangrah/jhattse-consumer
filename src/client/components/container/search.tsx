@@ -47,7 +47,7 @@ export const SearchContainer: React.FC<Props> = ({ element, noResult = <span>Res
     return (
         <div className={(isLoading == false && searchresults?.length == 0) ? "flex flex-col w-full" : "flex flex-col"}>
             <>
-                <div className={`flex flex grid grid-cols-2 lg:grid-cols-1 gap-4 py-2 sm:px-0 rounded-xl ${isStorePage&& "divide-y"}`}>
+                <div className={`grid md:grid-cols-2 grid-cols-1 gap-4 md:py-2 px-0 rounded-xl ${isStorePage && "divide-y"}`}>
                     {searchresults && searchresults?.map((searchresult: TSearchResult, index: number) => {
                         if (RepeatElement == SmallStoreCard) {
                             return (<RepeatElement store={searchresult as TStore} key={searchresult?.id}></RepeatElement>)
