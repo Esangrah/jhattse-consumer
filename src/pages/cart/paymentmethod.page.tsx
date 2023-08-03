@@ -48,7 +48,7 @@ export const Page = () => {
                 if (typeof window !== "undefined" && typeof window.invokePayment === "function") {
                     let tableInfo = JSON.parse(localStorage.getItem("tableInfo") || '{}');
                     if (paymentMethod == "Cash" && tableInfo != undefined) {
-                        navigate("/cart/paymentsuccess")
+                        navigate("/cart/payment/success")
                         localStorage.removeItem("tableInfo");
                     }
                     if (paymentMethod == "Cash") {

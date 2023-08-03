@@ -10,9 +10,6 @@ import { CartDetails } from '@components/cartinfo/summary';
 export function Page() {
     const [dineinOrTakeaway, setDineinOrTakeaway] = useState("DINEIN");
     const cart = useRecoilValue(cartState)
-
-    const address = JSON.parse(localStorage?.getItem("Address") as string);
-
     let tableInfo = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("tableInfo") || '{}') : null;
 
     const onDineinOrTakeaway = (value: string) => {

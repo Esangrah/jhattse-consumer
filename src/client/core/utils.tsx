@@ -112,7 +112,7 @@ export const getColor = (rating?: number) => {
     if (rating === undefined) {
         return 1
     }
-    return rating < 2 ? 1 : (rating < 4 ? 2 : (rating < 4.5 ? 3 : 3))
+    return rating < 2.5 ? 1 : (rating < 4 ? 2 : (rating < 4.5 ? 3 : 3))
 }
 
 export const getLength = (iter: Array<any> | undefined | null) => {

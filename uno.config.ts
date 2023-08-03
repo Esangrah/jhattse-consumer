@@ -51,7 +51,7 @@ export default defineConfig({
                 500: "#941E17",
                 900: "#62110F",
             },
-            primary_yellow: "#fed340",
+            primary_yellow: "#E5B615",
             store_yellow: "#F8CE3A",
             custom_golden: "#E5B615",
             custom_black: "#000011",

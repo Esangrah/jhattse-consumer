@@ -88,7 +88,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                         JSON.parse(localStorage.getItem("location") || '{}')?.Location
                                             ?.name ? (
                                         <span>
-                                            <p className="text-base font-bold text-neutral-700">
+                                            <p className="text-sm font-bold text-neutral-700">
                                                 {
                                                     JSON.parse(localStorage.getItem("location") || '{}')
                                                         ?.Location?.name
@@ -97,7 +97,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                         </span>
                                     ) : (
                                         <span>
-                                            <p className="text-base font-bold text-neutral-700">
+                                            <p className="text-sm font-bold text-neutral-700">
                                                 Location Name
                                             </p>
                                         </span>
@@ -108,7 +108,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         </div>
                     </div>
 
-                    <div className="m-auto w-2/5 md:w-1/2 visible lt-sm:invisible">
+                    <div className="m-auto w-2/5 md:w-1/2 md:visible invisible">
                         <Searchbar />
                     </div>
 

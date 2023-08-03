@@ -127,7 +127,7 @@ export const Page = () => {
                                     </div>
                                 </div>
                                 <div className='w-full py-4'>
-                                    <button className='bg-store_yellow font-manrope border-yellow-300 font-bold lt-sm:text-sm text-neutral-900 lt-sm:px-1 px-2 py-2 rounded w-full' onClick={() => { navigate(`/order/${order?.id}`); }}>VIEW BILL</button>
+                                    <button className='bg-store_yellow font-manrope border-yellow-300 font-bold lt-sm:text-sm text-neutral-900 lt-sm:px-1 px-2 py-2 rounded w-full uppercase' onClick={() => { navigate(`/order/${order?.id}`); }}>View Invoice</button>
                                 </div>
                             </div>
 
