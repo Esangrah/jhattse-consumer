@@ -35,6 +35,13 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
         pageContext: {
             pageProps: {
                 initialProduct,
+            },
+            documentProps: {
+                title: `${initialProduct?.name} - Jhattse`,
+                description: `Get ${initialProduct?.name} from nearby local stores on Jhattse`,
+                image: getFirst(initialProduct?.images),
+                keywords: `Local Products,Local Services,${initialProduct?.name},Jhattse`,
+                canonical: `https://jhattse.com/product/${initialProduct.id}/${getSafeUrl(initialProduct?.name)}`,
             }
         },
 
@@ -80,12 +87,6 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
             <Container>
                 <Head>
                     <title>{`${product?.name} - Jhattse`}</title>
-                    <meta name="Keywords" content={`Local Products, Local Services,${product?.name},Jhattse`} />
-                    <meta name="Description" content={`Get ${product?.name} from nearby local stores on Jhattse`} />
-                    <link rel="canonical" href={`https://jhattse.com/product/${product.id}/${getSafeUrl(product?.name)}`} />
-                    <meta property="og:title" content={`${product?.name} on Jhattse`} />
-                    <meta name="og:description" content={`Get ${product?.name} from nearby local stores on Jhattse`} />
-                    <meta property="og:url" content={`https://jhattse.com/product/${product.id}/${getSafeUrl(product?.name)}`} />
                 </Head>
                 <Header />
                 <div className="flex flex-col text-manrope gap-2 px-20 lt-sm:px-4">

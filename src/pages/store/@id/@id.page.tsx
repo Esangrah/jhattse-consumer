@@ -42,6 +42,13 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
         pageContext: {
             pageProps: {
                 initialStore,
+            },
+            documentProps: {
+                title: `${initialStore?.name} - Jhattse`,
+                description: `${initialStore?.name} offering products and services on Jhattse`,
+                image: initialStore?.image,
+                keywords: `Local Stores,${initialStore?.name},Jhattse`,
+                canonical: `https://jhattse.com/store/${initialStore.id}/${getSafeUrl(initialStore?.name)}`,
             }
         }
     }
@@ -205,13 +212,6 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
             <div className="font-manrope">
                 <Head>
                     <title>{`${store?.name} - Jhattse`}</title>
-                    <meta name="Keywords" content={`Local Stores,${store?.name},Jhattse`} />
-                    <meta name="Description" content={`${store?.name} offering products and services on Jhattse`} />
-                    <link rel="canonical" href={`https://jhattse.com/store/${store.id}/${getSafeUrl(store?.name)}`} />
-                    <meta property="og:title" content={`${store?.name} on Jhattse`} />
-                    <meta name="og:description" content={`${store?.name} offering products and services on Jhattse`} />
-                    <meta name="og:image" content={`${store?.image}`} />
-                    <meta property="og:url" content={`https://jhattse.com/store/${store.id}/${getSafeUrl(store?.name)}`} />
                 </Head>
                 <Header />
                 <div className="lt-sm:px-0 px-10">

@@ -37,6 +37,13 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
                 popularProducts,
                 productCategories,
                 popularBrands,
+            },
+            documentProps: {
+                title: "Online Shopping - Jhattse",
+                description: "Discover products and services around me whether local or online. Find Stores and Product on Jhattse an online platform which provides product visiblity, best price discovering and all available deals and offers.",
+                image: "https://jhattse.com/consumer/square-logo-4x.png",
+                keywords: "Local Stores,Local+Online,Online Stores,Shopping Sites,Local Services,Online Shopping,Jhattse",
+                canonicalURL: "https://jhattse.com"
             }
         },
     };
@@ -51,25 +58,6 @@ export const Page: React.FC<Props> = ({
         <Container>
             <Head>
                 <title>Online Shopping - Jhattse</title>
-                <meta
-                    name="Keywords"
-                    content="Local Stores,Local+Online,Online Stores,Shopping Sites,Local Services,Online Shopping,Jhattse"
-                />
-                <meta
-                    name="Description"
-                    content="Discover products and services around me whether local or online. Find Stores and Product on Jhattse an online platform which provides product visiblity, best price discovering and all available deals and offers."
-                />
-                <link rel="canonical" href="https://jhattse.com" />
-                <meta property="og:title" content="Online Shopping - Jhattse" />
-                <meta
-                    property="og:description"
-                    content="Discover products and services around you whether local or online. Jhattse provides product visiblity, best price discovering and all available deals and offers."
-                />
-                <meta
-                    name="og:image"
-                    content="https://jhattse.com/consumer/square-logo-4x.png"
-                />
-                <meta property="og:url" content="https://jhattse.com" />
             </Head>
             <div className="flex justify-center">
                 <Header />

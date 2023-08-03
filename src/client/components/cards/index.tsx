@@ -53,8 +53,8 @@ export const Cards = ({ element, products, intent, isCarousel }: Props) => {
                 <div>
                     <CarouselContainer >
                         {
-                            cards.map((item) => {
-                                return <SwiperSlide style={{ width: "auto" }} className="min-w-0">{item}</SwiperSlide>
+                            cards.map((item, index) => {
+                                return <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={index}>{item}</SwiperSlide>
                             })
                         }
                     </CarouselContainer>

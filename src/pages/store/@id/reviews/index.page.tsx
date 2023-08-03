@@ -31,6 +31,13 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
                 initialStore,
                 initialReviews
             },
+            documentProps: {
+                title: `${initialStore?.name} Reviews - Jhattse`,
+                description: `${initialStore?.name} offering products and services on Jhattse`,
+                image: initialStore?.image,
+                keywords: `Local Stores,${initialStore?.name},${initialStore?.name} Reviews,Jhattse`,
+                canonical: `https://jhattse.com/store/${initialStore.id}/reviews/${getSafeUrl(initialStore?.name)}`,
+            }
         }
     }
 }
@@ -84,13 +91,6 @@ export const Page: React.FC<Props> = ({ initialReviews, initialStore }: Props) =
         (store != undefined) ?
             <Container>
                 <title>{`${store?.name} Reviews - Jhattse`}</title>
-                <meta name="Keywords" content={`Local Stores,${store?.name},${store?.name} Reviews,Jhattse`} />
-                <meta name="Description" content={`Reviews for ${store?.name} offering products and services on Jhattse`} />
-                <link rel="canonical" href={`https://jhattse.com/store/${store.id}/reviews/${getSafeUrl(store?.name)}`} />
-                <meta property="og:title" content={`${store?.name} Reviews on Jhattse`} />
-                <meta name="og:description" content={`Reviews for ${store?.name} offering products and services on Jhattse`} />
-                <meta name="og:image" content={`${store?.image}`} />
-                <meta property="og:url" content={`https://jhattse.com/store/${store.id}/reviews/${getSafeUrl(store?.name)}`} />
                 <BackBar />
                 <div className="lt-sm:grid-rows lg:grid-rows">
                     <div className="grid grid-row grid-flow-col w-full bg-yellow-400 p-2 font-bold text-lg">

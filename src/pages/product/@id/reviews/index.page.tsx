@@ -29,6 +29,13 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
         pageContext: {
             pageProps: {
                 initialProduct,
+            },
+            documentProps: {
+                title: `${initialProduct?.name} Reviews - Jhattse`,
+                description: `Read ${initialProduct?.name} Reviews on Jhattse`,
+                image: getImageUrl(initialProduct.images || []),
+                keywords: `Local Products Reviews,Local Services,${initialProduct?.name},${initialProduct?.name} Reviews,Jhattse`,
+                canonical: `https://jhattse.com/product/${initialProduct.id}/reviews/${getSafeUrl(initialProduct?.name)}`,
             }
         },
     }
@@ -87,13 +94,6 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
             <Container>
                 <Head>
                     <title>{`${product?.name} Reviews - Jhattse`}</title>
-                    <meta name="Keywords" content={`Local Products, Local Services,${product?.name},${product?.name} Reviews,Jhattse`} />
-                    <meta name="Description" content={`Read ${product?.name} reviews on Jhattse`} />
-                    <link rel="canonical" href={`https://jhattse.com/product/${product.id}/reviews/${getSafeUrl(product?.name)}`} />
-                    <meta property="og:title" content={`${product?.name} reviews on Jhattse`} />
-                    <meta name="og:description" content={`Read ${product?.name} reviews on Jhattse`} />
-                    <meta name="og:image" content={`${getImageUrl(product.images || [])}`} />
-                    <meta property="og:url" content={`https://jhattse.com/product/${product.id}/reviews/${getSafeUrl(product?.name)}`} />
                 </Head>
                 <div className="flex justify-center">
                     <Header />

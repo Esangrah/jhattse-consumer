@@ -23,12 +23,23 @@ export async function render(pageContext: PageContextServer) {
   }
 
   // See https://vite-plugin-ssr.com/head
-  const { documentProps } = pageContext.exports
-  const title = (documentProps && documentProps.title) || 'Vite SSR app'
-  const desc = (documentProps && documentProps.description) || 'App using Vite + vite-plugin-ssr'
+  const { documentProps } = pageContext
+  const title = (documentProps && documentProps.title) || 'Jhattse'
+  const ogTitle = documentProps && documentProps?.ogTitle || documentProps && documentProps?.title
+  const ogDescription = documentProps && documentProps?.ogDescription || documentProps && documentProps?.description
+  const ogImage = documentProps && documentProps?.ogImage || documentProps && documentProps?.image
+  const ogURL = documentProps && documentProps?.ogURL || documentProps && documentProps?.canonicalURL;
+  const seoText = `<title>${title}</title>
+  ${documentProps && documentProps?.description != undefined ? `<meta name="Description" content="${documentProps?.description}" />`: ""}
+  ${documentProps && documentProps?.keywords != undefined ? `<meta name="Keywords" content="${documentProps?.keywords}" />`: ""}
+  ${documentProps && documentProps?.canonicalURL != undefined ? `<link rel="canonical" href="${documentProps?.canonicalURL}" />`: ""}
+  ${ogTitle != undefined ? `<meta property="og:title" content="${ogTitle}" />`: ""}
+  ${ogDescription != undefined ? `<meta property="og:description" content="${ogDescription}" />`: ""}
+  ${ogImage != undefined ? `<meta name="og:image" content="${ogImage}" />`:""}
+  ${ogURL != undefined ? `<meta property="og:url" content="${ogURL}" />`:"" }`
 
   const documentHtml = escapeInject`<!DOCTYPE html>
-    <html lang="en">
+  <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,6 +50,7 @@ export async function render(pageContext: PageContextServer) {
         <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jhattse.com/public/consumer/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jhattse.com/public/consumer/favicon-16x16.png" />
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        ${dangerouslySkipEscape(seoText)}
         <meta name="theme-color" content="#000" />
         <meta httpEquiv='content-language' content='en-US' />
         <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet" />

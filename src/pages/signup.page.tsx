@@ -9,6 +9,22 @@ import { Footer } from '@components/footer';
 import Head from 'react-helmet';
 import { navigate } from 'vite-plugin-ssr/client/router';
 import { usePageContext } from '@renderer/usePageContext';
+import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
+
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
+    return {
+        pageContext: {
+            pageProps: {},
+            documentProps: {
+                title: "Signup - Jhattse",
+                description: "Signup on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers.",
+                image: "https://jhattse.com/consumer/square-logo-4x.png",
+                keywords: "Signup,Online Stores,Shopping Sites,Online Shopping,Jhattse",
+                canonical: "https://jhattse.com/signup",
+            }
+        },
+    };
+}
 
 export const Page: React.FC = () => {
     const isLogin = useRecoilValue(isLoggedIn);
@@ -25,7 +41,7 @@ export const Page: React.FC = () => {
         <Container>
             <Head>
                 <title>Signup - Jhattse</title>
-                <meta name="description" content="Signup on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers." />
+                <meta name="description" content="" />
             </Head>
             <Header />
             <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start py-4">

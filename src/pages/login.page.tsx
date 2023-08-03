@@ -4,13 +4,28 @@ import { Container } from "@components/container";
 import { Header } from "@components/header";
 import { SignIn } from "@components/authentication/signin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import type { PageContextBuiltIn } from "vite-plugin-ssr/types";
+
+export async function onBeforeRender(pageContext: PageContextBuiltIn) {
+    return {
+        pageContext: {
+            pageProps: {},
+            documentProps: {
+                title: "Login - Jhattse",
+                description: "Login on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers.",
+                image: "https://jhattse.com/consumer/square-logo-4x.png",
+                keywords: "Local Stores,Local+Online,Online Stores,Shopping Sites,Local Services,Online Shopping,Jhattse",
+                canonical: "https://jhattse.com/login",
+            }
+        },
+    };
+}
 
 export const Page: React.FC = () => {
     return (
         <Container>
             <Head>
                 <title>Login - Jhattse</title>
-                <meta name="description" content="Login on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers." />
             </Head>
             <Header />
             <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start py-4">
