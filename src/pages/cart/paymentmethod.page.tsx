@@ -176,7 +176,7 @@ export const Page = () => {
                     <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-2 lt-sm:text-base">Select Payment Method</h1></div>
                     <div className="h-4"></div>
                     <div className="flex flex-row grow h-full justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-2">
-                        <div className="flex flex-col gap-1 w-full">
+                        <div className="flex flex-col w-full">
                             <div className="flex flex-col bg-neutral-100 border border-neutral-300 gap-2 py-2 divide-y rounded-lg">
                                 <div className="flex flex-col gap-2 p-4">
                                     <div className="flex gap-2 items-center">

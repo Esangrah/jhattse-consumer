@@ -46,7 +46,7 @@ export const TrendingProducts = () => {
 
     ];
     return (
-        <div className="bg-neutral-100 px-20 lt-sm:px-0">
+        <div className="md:px-20 px-4">
             <div className="h-20 flex flex-col justify-center lt-sm:hidden">
                 <Breadcrumb className="font-normal text-lg list-none text-breadcrumbs">
                     <BreadcrumbItem>

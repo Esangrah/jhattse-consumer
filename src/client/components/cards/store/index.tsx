@@ -84,8 +84,8 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                     <h3 className="text-custom_black font-bold text-xl lt-sm:text-base">{store?.name}</h3>
                     <p className="text-custom_black font-normal lt-sm:text-sm">{store?.category?.name}</p>
                     <div className="flex flex-row gap-2 py-1">
-                        {store?.is_pickup && <button className="bg-storepickup hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >PICKUP</button>}
-                        {store?.is_delivery && <button className="bg-delivery hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >DELIVERY</button>}
+                        {store?.is_pickup && <button className="bg-customer-100 hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >PICKUP</button>}
+                        {store?.is_delivery && <button className="bg-business-100 hover:opacity-80 px-2 py-1 text-sm lt-sm:text-xs text-custom_black font-semibold rounded-sm" >DELIVERY</button>}
                     </div>
                     <StoreTiming storeTimings={storeTimings} />
                     <div className="flex flex-row gap-2 items-center">

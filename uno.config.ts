@@ -25,6 +25,14 @@ export default defineConfig({
                 500: "#ED7829",
                 900: "#D26023"
             },
+            business: {
+                DEFAULT: "#ED7829",
+                100: "#D4E2FF",
+                300: "#346BD9",
+                400: "#1247B2",
+                500: "#003091",
+                900: "#012773"
+            },
             neutral: {
                 50: "#F9FAFD",
                 100: "#F3F6FB",
@@ -45,7 +53,7 @@ export default defineConfig({
                 900: "#1C4732",
             },
             error: {
-                100: "#F2CED1",
+                100: "#FFE5E7",
                 300: "#C28387",
                 400: "#BA2932",
                 500: "#941E17",

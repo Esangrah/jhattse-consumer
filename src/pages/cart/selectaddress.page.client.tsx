@@ -47,7 +47,7 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
             <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-4 lt-sm:text-base">Select Delivery Address</h1></div>
             <div className="h-4"></div>
             <div className="flex flex-row grow h-full justify-between gap-8 lt-sm:flex-col px-20 lt-sm:px-0">
-                <div className="flex flex-col gap-1 w-full">
+                <div className="flex flex-col w-full">
                     <AddressPanel isDone={() => { }} />
                 </div>
                 <div className="lt-sm:sticky lt-sm:z-40 flex flex-col gap-4" style={{ bottom: "20px" }}>
@@ -55,25 +55,25 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
                         <h2 className="font-bold text-custom_black text-lg pb-1 pt-1">Order Summary</h2>
                         {
                             cartValues.map((item => {
-                                return <div className="bg-neutral-100 border border-neutral-300 rounded-lg text-custom_black p-2 flex gap-2  w-96 items-center justify-between">
+                                return <div className="bg-neutral-100 border border-neutral-300 rounded-lg p-2 flex gap-2 w-96 items-center justify-between h-20 font-manrope">
                                     <div className='flex gap-2 items-center'>
                                         <Image
                                             loader={sanityIoImageLoader}
                                             src={getImageUrl(item.product?.images || [])}
                                             alt={item?.product?.name || 'product'}
-                                            height="50"
-                                            width="50"
-                                            className="rounded-sm"
+                                            height="150"
+                                            width="150"
+                                            className="rounded-sm h-16 w-16"
                                         />
                                         <div >
-                                            <h4 className="text-base font-medium text-custom_black">{trimToLength(getCombinedName(item?.product as TProduct, item?.inventory?.variant_id), 20)}</h4>
-                                            <p className="text-base font-bold text-custom_black">{humanizeCurrency(item?.inventory?.price || item?.product?.mrp as number)}</p>
+                                            <h4 className="text-base font-bold text-neutral-600">{trimToLength(getCombinedName(item?.product as TProduct, item?.inventory?.variant_id), 20)}</h4>
+                                            <p className="text-lg font-medium text-neutral-700">{humanizeCurrency(item?.inventory?.price || item?.product?.mrp as number)}</p>
                                         </div>
                                     </div>
                                     <div className="pt-1" style={{ alignSelf: "flex-start" }}>
                                         {
-                                            item?.deliverable ? <span className="bg-delivery rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
-                                                <span className="bg-storepickup rounded px-2 py-1 text-sm font-bold text-bannerText">PICKUP</span>
+                                            item?.deliverable ? <span className="bg-business-100 rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
+                                                <span className="bg-customer-100 rounded px-2 py-1 text-sm font-bold text-bannerText">PICKUP</span>
                                         }
                                     </div>
                                 </div>

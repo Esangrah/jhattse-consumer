@@ -21,26 +21,22 @@ export const CartButtonV2 = ({
   btnSize,
   btnStyle,
 }: Props) => {
-  const [cart, setCart] = useRecoilState(cartState);
   const [Variant, setVariant] = useRecoilState(variantState);
 
   const onClickAdd = (product: TProduct) => {
-    console.log("add clicked");
     if (getLength(product?.variants) > 0 && typeof window !== "undefined") {
-      console.log("add clicked 2", getLength(product?.variants) > 0);
-      console.log("typeof window", typeof window !== "undefined");
       setVariant({
         Isvariant: true,
         product: product,
         showModal: true,
         quantity: 0,
       });
-      console.log("cartState", Variant);
+      console.debug("cartState", Variant);
     }
   };
   return inventory?.external_link !== undefined && inventory?.external_link?.length > 0 ? (
     <div
-      className={`flex justify-center items-center max-w-lg min-w-full`}
+      className={`flex items-center max-w-lg min-w-full`}
     >
       <Link
         href={inventory?.external_link}
@@ -51,13 +47,13 @@ export const CartButtonV2 = ({
     </div>
   ) : (
     <div
-      className={`flex justify-center items-center max-w-lg min-w-full`}
+      className={`flex items-center max-w-lg min-w-full`}
     >
       <button
         onClick={() => onClickAdd(product)}
-        className="bg-brand-500 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-bold lt-sm:w-full whitespace-nowrap select-none rounded"
+        className="bg-brand-500 py-2 px-9 lt-sm:px-2 md:text-lg text-sm text-center text-neutral-50 lt-sm:w-full whitespace-nowrap select-none rounded"
       >
-        ADD
+        Add to Cart
       </button>
     </div>
   );

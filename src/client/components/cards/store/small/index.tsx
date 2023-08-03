@@ -14,11 +14,9 @@ type Props = {
 export const SmallStoreCard = ({ store }: Props) => {
     const localDistance = store?.address?.distance;
     return (
-        <div className="grid grid-cols-3 p-2 gap-2 w-full bg-neutral-50 rounded-md" >
-            <div className="col-span-1">
-                <div className="px-2 w-max rounded-r-lg mt-1">
-                </div>
-                <div className="flex justify-center relative" >
+        <div className="flex flex-row gap-2 w-full bg-neutral-50 rounded-lg border border-neutral-300 overflow-hidden min-w-72 h-40" >
+            <div className="w-40">
+                <div className="flex relative h-full">
                     <Link href={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
                         <Image
                             loader={sanityIoImageLoader}
@@ -26,37 +24,37 @@ export const SmallStoreCard = ({ store }: Props) => {
                             alt="picture of store"
                             width="150"
                             height="150"
-                            className="border rounded-lg aspect-square"
+                            className="border rounded-l-lg aspect-square h-full"
                         />
                     </Link>
                 </div>
             </div>
-            <div className="col-span-2 leading-tight gap-1">
+            <div className="leading-tight p-2 px-0 flex flex-col gap-1.5 font-manrope">
                 <Link href={`/store/${store?.id}/${getSafeUrl(store?.name)}`}>
-                    <div className="font-semibold text-base line-clamp-2 leading-tight">{store?.name}</div>
+                    <div className="font-bold text-base line-clamp-2 leading-tight text-neutral-900">{store?.name}</div>
                 </Link>
                 {store?.category?.name !== undefined ?
-                    <p className="text-sm lt-sm:text-xs text-neutral-900 py-1"><span className="font-medium text-custom_gray">{store?.category?.name}</span></p> : null
+                    <p className="font-semibold text-sm text-neutral-500">{store?.category?.name}</p> : null
                 }
-                {store?.stats?.rating_overall ? <div className="py-2">
+                {store?.stats?.rating_overall ? <div className="">
                     <Star rating={store?.stats?.rating_overall} />
                 </div> :
-                    <div className="py-1">
-                        <div className="text-neutral-500">No Ratings</div>
+                    <div className="">
+                        <div className="text-error-500 text-sm">No Ratings</div>
                     </div>
                 }
-                <div className="flex flex-row gap-2 py-1">
-                    {store?.is_pickup && <button className="bg-storepickup text-sm lt-sm:text-xs text-bannerText font-bold px-2 py-1 rounded-sm whitespace-nowrap" >PICKUP</button>}
-                    {store?.is_delivery && <button className="bg-delivery text-sm lt-sm:text-xs text-bannerText font-bold px-2 py-1 rounded-sm whitespace-nowrap" >DELIVERY</button>}
+                <div className="flex flex-row gap-2">
+                    {store?.is_pickup && <button className="bg-brand-100 text-xs text-bannerText font-bold px-2 py-1 rounded-sm whitespace-nowrap" >PICKUP</button>}
+                    {store?.is_delivery && <button className="bg-business-100 text-xs text-bannerText font-bold px-2 py-1 rounded-sm whitespace-nowrap" >DELIVERY</button>}
                 </div>
-                <div className="flex flex-row text-sm lt-sm:text-xs items-center">
-                    <div className="text-neutral-600"><MdOutlineLocationOn className="text-sm lt-sm:text-xs" /></div><p className="text-sm lt-sm:text-xs text-neutral-600">{store?.address?.street_name}, {store?.address?.city?.name}{(localDistance != undefined && localDistance < 10000) && <><span className="text-neutral-700"> | </span><span className="text-sm lt-sm:text-xs text-neutral-600 font-semibold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : null)}</span></>}</p>
-                </div>
-                <div className="flex items-center text-sm lt-sm:text-xs text-custom_golden font-bold underline-offset-4 py-1">
-                    <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank">
-                        VIEW LOCATION
-                    </Link>
-                </div>
+                <Link href={`http://www.google.com/maps/place/${store?.address?.latitude},${store?.address?.longitude}`} target="_blank">
+                    <div className="flex flex-row text-xs font-bold gap-1 text-ellipsis">
+                        <div className="text-brand-500"><MdOutlineLocationOn className="text-xs" /></div>
+                        <div>
+                            <p className="text-xs text-brand-500">{store?.address?.street_name}, {store?.address?.city?.name}{(localDistance != undefined && localDistance < 10000) && <><span className="text-neutral-700"> | </span><span className="text-sm lt-sm:text-xs text-neutral-600 font-semibold whitespace-nowrap">{localDistance < 1000 ? localDistance.toFixed(0).toString() + " m" : (localDistance < 10000 ? (localDistance / 1000).toFixed(1).toString() + " km" : null)}</span></>}</p>
+                        </div>
+                    </div>
+                </Link>
             </div>
         </div>
     )

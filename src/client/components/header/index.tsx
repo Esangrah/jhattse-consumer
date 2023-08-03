@@ -183,14 +183,12 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem className="text-neutral-700" onClick={() => setShowModal(!showModal)} >
-                                                <>
-                                                    <span
-                                                        className="flex gap-2 justify-between text-error-300 text-base items-center font-semibold p-2"
-                                                    >
+                                                <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
+                                                    <span className="flex gap-2 justify-between text-error-300 text-base items-center font-semibold">
                                                         <MdLogout className="text-base" />
                                                     </span>
                                                     <span> Log Out</span>
-                                                </>
+                                                </div>
                                             </MenuItem>
                                         </MenuList>
                                     </Menu>

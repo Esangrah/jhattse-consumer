@@ -12,7 +12,7 @@ type Props = {
 export const ExporeBrandCard = ({ brand }: Props) => {
 
     return (
-        <div className="flex flex-col rounded scale-100 hover:scale-105 focus:scale-105 ease-in duration-200 w-full bg-neutral-50">
+        <div className="flex flex-col rounded scale-100 hover:scale-105 focus:scale-105 ease-in duration-200 max-w-52 w-full bg-neutral-50">
             <div className="flex grow justify-center min-h-32 w-full">
                 <Link href={`/brand/${brand.id}/${getSafeUrl(brand.name)}`}>
                     <Image

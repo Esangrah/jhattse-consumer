@@ -48,7 +48,7 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
                 description: `${initialStore?.name} offering products and services on Jhattse`,
                 image: initialStore?.image,
                 keywords: `Local Stores,${initialStore?.name},Jhattse`,
-                canonical: `https://jhattse.com/store/${initialStore.id}/${getSafeUrl(initialStore?.name)}`,
+                canonicalURL: `https://jhattse.com/store/${initialStore.id}/${getSafeUrl(initialStore?.name)}`,
             }
         }
     }

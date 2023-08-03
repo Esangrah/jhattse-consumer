@@ -37,12 +37,9 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
 
     }
 
-    return <div className="flex flex-col relative lt-sm:grow w-96 lt-sm:w-full font-manrope">
+    return <div className="flex flex-col relative lt-sm:grow md:w-96 w-full font-manrope">
 
         {
-            // cart?.size == 0 ?
-            //     <></>
-            //     :
             <div className={`flex flex-col gap-2 w-full lt-sm:grow sticky top-5 ${isHidden ? "lt-sm:justify-end" : "lt-sm:justify-between"}`}>
                 <div className={`bg-neutral-100 border border-neutral-300 px-3 py-4 lt-sm:w-full rounded-lg ${isHidden && "lt-sm:hidden"}`}>
                     <div className="flex flex-col gap-2 justify-between divide-y">
@@ -67,7 +64,7 @@ export const CartDetails = ({ placeOrder = '/cart/paymentmethod', btnName, actio
                         </div>
                     </div>
                 </div>
-                <div className='w-full pb-4  lt-sm:pt-10'>
+                <div className='w-full md:pb-4 pt-10'>
                     <button onClick={() => { actionFun ? actionFun() : goToOrderPage() }} className="bg-brand-500 border-brand-500 font-bold lt-sm:text-sm text-neutral-50 lt-sm:px-1 px-2 py-2 rounded w-full" >{btnName ? btnName : "PLACE ORDER"}</button>
                 </div>
             </div>

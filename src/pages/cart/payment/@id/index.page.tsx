@@ -19,7 +19,7 @@ export const Page: React.FC = () => {
 
     useEffect(() => {
         if (pageContext.urlPathname?.endsWith("success")) {
-            setState({ message: "Payment Successfull.", actionText: "View Order", next: "/cart/vieworder", image_url: "https://jhattse.com/public/assets/payment_successful.png", icon: <MdCheckCircle size={50} className='text-6xl text-green-500 ' />, order_info: "has been placed" });
+            setState({ message: "Payment Successful.", actionText: "View Order", next: "/cart/vieworder", image_url: "https://jhattse.com/public/assets/payment_successful.png", icon: <MdCheckCircle size={50} className='text-6xl text-green-500 ' />, order_info: "has been placed" });
             setCart((cart) => {
                 cart?.clear();
                 return new Map(cart);

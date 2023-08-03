@@ -12,7 +12,7 @@ interface Props {
 
 export const Container: React.FC<Props> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen mx-auto bg-neutral-50">
+    <div className="flex flex-col min-h-screen mx-auto bg-white">
       {children}
     </div>
   );
