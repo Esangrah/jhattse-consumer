@@ -78,9 +78,9 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
                 heading ? <h2 className="font-bold text-custom_black text-xl">{heading}</h2> : null
               }
               <button onClick={handleAddClick}
-                className={`text-golden font-bold flex items-center gap-2 ${btnPlacedButtom && "lt-sm:hidden"}`}>
+                className={`text-brand-500 font-bold flex items-center gap-2 ${btnPlacedButtom && "lt-sm:hidden"}`}>
                 <span><FaPlus /></span>
-                <span>ADD NEW ADDRESS</span>
+                <span>Add New Address</span>
               </button>
 
             </div>
@@ -96,8 +96,8 @@ const AddressPanel: React.FC<Props> = ({ isDone, title, heading, btnPlacedButtom
       </div>
       <div className={`hidden ${btnPlacedButtom && "lt-sm:block"} items-center align-bottom w-full lt-sm:fixed bottom-10 z-40 lt-sm:py-4 lt-sm:px-4`}>
         <button onClick={handleAddClick}
-          className="text-golden font-bold flex items-center gap-2 lt-sm:w-full lt-sm:bg-store_yellow lt-sm:border-yellow-300 lt-sm:text-custom_black lt-sm:rounded-sm lt-sm:text-sm p-2 lt-sm:justify-center">
-          <span>ADD NEW ADDRESS</span>
+          className="text-brand-500 font-bold flex items-center gap-2 lt-sm:w-full lt-sm:bg-store_yellow lt-sm:border-yellow-300 lt-sm:text-custom_black lt-sm:rounded-sm lt-sm:text-sm p-2 lt-sm:justify-center">
+          <span>Add new Address</span>
         </button>
       </div>
     </>

@@ -48,7 +48,7 @@ export const Page = () => {
                 if (typeof window !== "undefined" && typeof window.invokePayment === "function") {
                     let tableInfo = JSON.parse(localStorage.getItem("tableInfo") || '{}');
                     if (paymentMethod == "Cash" && tableInfo != undefined) {
-                        navigate("/cart/paymentsuccess")
+                        navigate("/cart/payment/success")
                         localStorage.removeItem("tableInfo");
                     }
                     if (paymentMethod == "Cash") {
@@ -107,10 +107,7 @@ export const Page = () => {
                         window.invokePayment(res);
                     }
                 }
-                setCart((cart) => {
-                    cart?.clear();
-                    return new Map(cart);
-                });
+                
             })
         }
 
@@ -179,15 +176,15 @@ export const Page = () => {
                     <div><h1 className="font-bold text-lg text-custom_black font-manrope px-20 lt-sm:px-2 lt-sm:text-base">Select Payment Method</h1></div>
                     <div className="h-4"></div>
                     <div className="flex flex-row grow h-full justify-between gap-4 lt-sm:flex-col px-20 lt-sm:px-2">
-                        <div className="flex flex-col gap-1 w-full">
-                            <div className="flex flex-col bg-neutral-50  gap-2 p-2 divide-y rounded-lg px-2">
-                                <div className="flex flex-col gap-2 py-4">
+                        <div className="flex flex-col w-full">
+                            <div className="flex flex-col bg-neutral-100 border border-neutral-300 gap-2 py-2 divide-y rounded-lg">
+                                <div className="flex flex-col gap-2 p-4">
                                     <div className="flex gap-2 items-center">
                                         <input type="radio" className="cursor-pointer" value='DC' name='paymentmethod' onChange={(e) => setPaymentMethod(e.target.value)} />
                                         <label htmlFor="paymentmethod">Credit/Debit</label>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-2 py-4">
+                                <div className="flex flex-col gap-2 p-4">
                                     <div className="flex gap-2 items-center">
                                         <input type="radio" className="cursor-pointer" value='UPI' name='paymentmethod' onChange={(e) => setPaymentMethod(e.target.value)} />
                                         <label htmlFor="paymentmethod">UPI</label>
@@ -200,7 +197,7 @@ export const Page = () => {
                                         </div>
                                     } */}
                                 </div>
-                                <div className="flex flex-col gap-2 py-4">
+                                <div className="flex flex-col gap-2 p-4">
                                     <div className="flex gap-2 items-center">
                                         <input type="radio" className="cursor-pointer" value='Cash' name='paymentmethod' onChange={(e) => setPaymentMethod(e.target.value)} />
                                         <label htmlFor="paymentmethod">Pay by Cash</label>

@@ -15,7 +15,7 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
                 description: "Login on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers.",
                 image: "https://jhattse.com/consumer/square-logo-4x.png",
                 keywords: "Local Stores,Local+Online,Online Stores,Shopping Sites,Local Services,Online Shopping,Jhattse",
-                canonical: "https://jhattse.com/login",
+                canonicalURL: "https://jhattse.com/login",
             }
         },
     };

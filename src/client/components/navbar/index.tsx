@@ -126,7 +126,7 @@ export const Navbar: React.FC = () => {
                     </motion.div>
                 </div>
             }
-            <div className="bg-neutral-50 h-10 lt-sm:h-16"></div>
+            <div className="md:h-10 h-16"></div>
             <div className="z-40 bg-neutral-50 fixed h-16 p-0 flex justify-center bottom-0 left-0 right-0 md:hidden block">
                 <ul className="flex flex-row justify-between grow py-2 px-8">
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">

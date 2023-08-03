@@ -5,19 +5,21 @@ import { PageShell } from '@renderer/PageShell'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
 import type { PageContextServer } from '@renderer/types'
 import { RecoilRoot } from 'recoil'
+import { VariantSelector } from '@components/variant/variantSelector'
 
 export async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext
   // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
   let pageHtml
   if (Page) {
-      pageHtml = ReactDOMServer.renderToString(
-        <PageShell pageContext={pageContext}>
-            <RecoilRoot>
-                <Page {...pageProps} />
-            </RecoilRoot>
-        </PageShell>
-      )
+    pageHtml = ReactDOMServer.renderToString(
+      <PageShell pageContext={pageContext}>
+        <RecoilRoot>
+          <VariantSelector />
+          <Page {...pageProps} />
+        </RecoilRoot>
+      </PageShell>
+    )
   } else {
     pageHtml = '';
   }

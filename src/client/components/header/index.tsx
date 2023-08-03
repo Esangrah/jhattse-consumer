@@ -50,7 +50,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="navbar w-full bg-neutral-100 flex flex-col sticky lt-sm:relative top-0 z-40 h-16 lt-sm:h-28 px-2 font-manrope">
+            <div className="navbar w-full bg-neutral-100 flex flex-col justify-center sticky lt-sm:relative top-0 z-40 h-16 lt-sm:h-28 px-2 font-manrope">
                 {/* Confirm Popup */}
                 <PopupComponent
                     showModal={showModal}
@@ -72,15 +72,15 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 loading="eager"
                             />
                         </Link>
-                        <div className="flex gap-1 lt-sm:hidden">
+                        <div className="md:flex items-center gap-1 hidden">
                             <button
                                 onClick={() => setLocationPopupShow(true)}
-                                className="whitespace-nowrap text-neutral-50 text-4xl font-semibold px-2 font-semibold"
+                                className="whitespace-nowrap text-neutral-50 text-4xl font-semibold px-2"
                             >
                                 <MdOutlineLocationOn className="text-brand-500" />
                             </button>
-                            <div className=" flex lt-sm:flex-row items-center gap-2" onClick={() => setLocationPopupShow(true)}>
-                                <p className="text-xs font-medium text-neutral-700">
+                            <div className="flex flex-row md:flex-col cursor-pointer lt-sm:items-center gap-1" onClick={() => setLocationPopupShow(true)}>
+                                <p className="text-sm font-medium text-neutral-700">
                                     Deliver to
                                 </p>
                                 <Suspense>
@@ -108,7 +108,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         </div>
                     </div>
 
-                    <div className="m-auto w-2/5 md:w-1/2 visible lt-sm:invisible">
+                    <div className="m-auto w-2/5 md:w-1/2 md:visible invisible">
                         <Searchbar />
                     </div>
 
@@ -123,7 +123,7 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                 {userLoggedIn ? (
                                     <Menu>
                                         <MenuButton
-                                            className="flex gap-1 items-center whitespace-nowrap text-neutral-700 text-lg font-semibold px-2 font-bold"
+                                            className="flex gap-1 items-center whitespace-nowrap text-neutral-700 text-lg px-2 font-bold"
                                             as={Button}
                                         >
                                             <div className="flex gap-1 items-center">
@@ -183,20 +183,18 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem className="text-neutral-700" onClick={() => setShowModal(!showModal)} >
-                                                <>
-                                                    <span
-                                                        className="flex gap-2 justify-between text-error-300 text-base items-center font-semibold p-2"
-                                                    >
+                                                <div className="flex gap-2 justify-between text-neutral-700 text-base items-center font-semibold p-2">
+                                                    <span className="flex gap-2 justify-between text-error-300 text-base items-center font-semibold">
                                                         <MdLogout className="text-base" />
                                                     </span>
                                                     <span> Log Out</span>
-                                                </>
+                                                </div>
                                             </MenuItem>
                                         </MenuList>
                                     </Menu>
                                 ) : (
                                     <Link href="/login">
-                                        <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
+                                        <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg px-2 font-bold">
                                             <FaRegUserCircle className="text-neutral-700" />{" "}
                                             <span className="text-base text-neutral-700">Login</span>
                                         </button>
@@ -207,37 +205,37 @@ export const Header: React.FC<Props> = ({ homeLink }) => {
                         <div className="flex items-center gap-2 relative py-2">
                             <Suspense>
                                 <Link href="/cart" className="z-30">
-                                    <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg font-semibold px-2 font-bold">
+                                    <button className="flex items-center gap-2 whitespace-nowrap text-neutral-50 text-lg  px-2 font-bold">
                                         <FaShoppingCart className="text-neutral-700" />{" "}
                                         <span className="text-base lt-sm:hidden text-neutral-700">
                                             Cart
                                         </span>
                                     </button>
                                 </Link>
-                                <span className={`absolute top-0 -right-2 flex justify-center items-center text-xs text-neutral-50 bg-success-500 rounded-full h-5 w-5${cart?.size > 0 ? "": " hidden"}`}>
+                                <span className={cart?.size > 0 ? `absolute top-0 -right-2 flex justify-center items-center text-xs text-neutral-50 bg-success-500 rounded-full h-5 w-5` : 'hidden'}>
                                     {cart.size}
                                 </span>
                             </Suspense>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-center md:hidden block md:w-1/3 w-full">
+                <div className="flex flex-row justify-center md:hidden md:w-1/3 w-full">
                     <Searchbar />
                 </div>
             </div>
-            <div className="hidden bg-neutral-50 text-custom_black flex gap-2 py-2 lt-sm:flex">
+            <div className="md:hidden bg-neutral-50 text-custom_black flex flex-row gap-2 py-2">
                 <div className="flex">
                     <button
                         onClick={() => setLocationPopupShow(true)}
-                        className="whitespace-nowrap text-custom_black font-semibold px-2 font-semibold"
+                        className="whitespace-nowrap text-custom_black font-semibold px-2"
                     >
                         <MdOutlineLocationOn />
                     </button>
-                    <div className="cursor-pointer" onClick={() => setLocationPopupShow(true)}>
+                    <div className="cursor-pointer flex flex-row items-center gap-2" onClick={() => setLocationPopupShow(true)}>
+                        <p className="text-xs font-medium text-neutral-700">
+                            Deliver to
+                        </p>
                         <Suspense>
-                            <p className="text-xs font-medium text-neutral-700">
-                                Deliver to
-                            </p>
                             {typeof window !== "undefined" && JSON.parse(localStorage.getItem("location") || '{}')?.Location?.name ?
                                 (
                                     <span>

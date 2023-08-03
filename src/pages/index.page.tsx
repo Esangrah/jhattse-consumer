@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
+import { Link } from "@renderer/Link"
 import { Container } from "@components/container"
 import { Section } from "@components/section";
 import { BrandCard, CategoryCard, RichCard } from "@components/cards";
@@ -15,6 +15,7 @@ import { staticImageLoader } from "@core/utils";
 import { CarouselContainer } from "@components/container/carousel";
 import { SwiperSlide } from "swiper/react";
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
+import { VariantSelector } from "@components/variant/variantSelector";
 
 type Props = {
     popularProducts: TProduct[];
@@ -111,7 +112,7 @@ export const Page: React.FC<Props> = ({
                             </SwiperSlide>
                         </CarouselContainer>
                     </div>
-                    <div className="rounded-xl md:flex-shrink-0 md:hidden">
+                    <div className="rounded-xl md:flex md:flex-shrink-0 hidden">
                         <Link href="https://business.jhattse.com/products">
                             <Image
                                 loader={staticImageLoader}
@@ -126,7 +127,7 @@ export const Page: React.FC<Props> = ({
                             />
                         </Link>
                     </div>
-                    <div className="rounded-xl relative w-full hidden md:flex">
+                    <div className="rounded-xl relative w-full md:hidden flex">
                         <Link href="https://business.jhattse.com/products">
                             <Image
                                 loader={staticImageLoader}

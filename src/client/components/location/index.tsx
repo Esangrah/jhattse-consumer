@@ -52,7 +52,7 @@ const Location: React.FC<Props> = ({ showModal, setShowModal }) => {
                         onClick={() => setShowModal(false)}
                     >
                         <div
-                            className="md:w-4/5 relative my-6 mx-auto max-w-1/2"
+                            className="w-4/5 relative my-6 mx-auto md:max-w-1/2"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/*content*/}

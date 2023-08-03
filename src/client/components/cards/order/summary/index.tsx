@@ -24,7 +24,7 @@ export const OrderSummaryCard = ({ order }: Props) => {
                 <div className="flex justify-between items-center">
                     <Link href={`/store/${order?.store?.id}/${getSafeUrl(order?.store?.name)}`}><h2 className="text-lg font-semibold text-custom_black">{order?.store?.name}</h2></Link>
                     {
-                        order.delivery_mode == "Delivery" ? <span className="bg-delivery rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
+                        order.delivery_mode == "Delivery" ? <span className="bg-business-100 rounded px-2 py-1 text-sm font-bold text-bannerText">DELIVERY</span> :
                             <span className="bg-storepickup rounded px-2 py-1 text-sm font-bold text-bannerText">PICKUP</span>
                     }
                 </div>

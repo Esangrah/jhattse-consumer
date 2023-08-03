@@ -48,24 +48,24 @@ export const CartButton = ({ product, inventory, mode, btnSize, btnStyle, Isvari
     return (
         (productQuantity == 0 || productQuantity == undefined) ?
             (inventory?.external_link !== undefined && inventory?.external_link?.length > 0 ?
-                <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} justify-center items-center max-w-lg min-w-full`}>
-                    <Link href={inventory?.external_link} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded">BUY NOW</Link>
+                <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} items-center max-w-lg`}>
+                    <Link href={inventory?.external_link} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-semibold whitespace-nowrap select-none rounded">BUY NOW</Link>
                 </div>
                 :
-                <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} justify-center items-center max-w-lg min-w-full`}>
-                    <button onClick={() => increase(product)} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-bold whitespace-nowrap select-none rounded">ADD</button>
+                <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 divide-x rounded shadow"} items-center max-w-lg`}>
+                    <button onClick={() => increase(product)} className="bg-brand-500 hover:opacity-80 focus:opacity-80 py-2 px-9 lt-sm:px-2 text-lg lt-sm:text-sm text-center text-neutral-50 font-semibold whitespace-nowrap select-none rounded">Add To Cart</button>
                 </div>)
             :
-            <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 font-bold rounded shadow"} text-lg lt-sm:text-sm justify-center items-center ${btnStyle ? btnStyle : "bg-brand-500 text-neutral-50"} p-2 min-w-full`}>
-                <div className="col-span-1 flex justify-center items-center">
+            <div className={`grid ${(productQuantity == 0 || productQuantity == undefined) ? "grid-cols-1" : "grid-cols-3 font-bold"} text-lg lt-sm:text-sm justify-center items-center ${btnStyle ? btnStyle : "bg-brand-500 text-neutral-50"} min-w-full`}>
+                <div className="col-span-1 flex justify-center items-center h-full p-2 bg-brand-500 rounded-lg text-neutral-50">
                     <button onClick={(event) => increase(product, -1)}>
                         {productQuantity == 1 ? <MdOutlineDelete /> : <FaMinus />}
                     </button>
                 </div>
                 <div className="col-span-1 justify-center items-center text-center"><span>{productQuantity}</span></div>
-                <div className="col-span-1 flex justify-center items-center h-full">
+                <div className="col-span-1 flex justify-center items-center h-full p-2 rounded-lg bg-brand-500 text-neutral-50">
                     <button onClick={(event) => increase(product)}><FaPlus /></button>
                 </div>
             </div>
-    )
+    ) 
 }

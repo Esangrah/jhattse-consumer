@@ -11,11 +11,11 @@ export { PageShell }
 function PageShell({ children, pageContext }: { children: React.ReactNode; pageContext: PageContext }) {
   return (
     <React.StrictMode>
-        <ChakraProvider>
-            <PageContextProvider pageContext={pageContext}>
-                {children}
-            </PageContextProvider>
-        </ChakraProvider>
+      <ChakraProvider>
+        <PageContextProvider pageContext={pageContext}>
+          {children}
+        </PageContextProvider>
+      </ChakraProvider>
     </React.StrictMode>
   )
 }

@@ -9,8 +9,7 @@ interface Props {
   closeBtnName?: string,
 }
 
-const PopupComponent: React.FC<Props> = ({ showModal, setShowModal, message, ActionFun, btnName, closeBtnName }) => {
-
+const PopupComponent: React.FC<Props> = ({ showModal, setShowModal, message, ActionFun, btnName, closeBtnName }) => {  
   return (
     <div>
       {showModal ? (
@@ -41,7 +40,7 @@ const PopupComponent: React.FC<Props> = ({ showModal, setShowModal, message, Act
                     {closeBtnName ? closeBtnName : "Close"}
                   </button>
                   <button
-                    className="flex-1 uppercase text-sm p-2 border-2 border-brand-500 text-neutral-700 bg-brand-500 rounded font-bold "
+                    className="flex-1 uppercase text-sm p-2 border-2 border-brand-500 text-neutral-50 bg-brand-500 rounded font-bold "
                     type="button"
                     onClick={() => { ActionFun() }}
                   >

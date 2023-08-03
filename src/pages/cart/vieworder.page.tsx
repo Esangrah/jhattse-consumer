@@ -69,7 +69,7 @@ export const Page = () => {
                                         <p className='text-sm text-customGray font-semibold'>{order?.added_on !== undefined && formatTime(order?.added_on)}</p>
                                     </div>
                                     <div className="h-10"></div>
-                                    <h2 className="font-bold text-base lt-sm:text-sm text-custom_black pb-4">Order Details</h2>
+                                    <h2 className="font-bold text-base lt-sm:text-sm text-neutral-700 pb-4">Order Details</h2>
 
                                     <div className='flex flex-col gap-4 divide-y'>
                                         <div className='flex flex-col gap-2'>
@@ -81,17 +81,17 @@ export const Page = () => {
                                                                 loader={sanityIoImageLoader}
                                                                 src={getFirst(orderItem?.inventory?.product?.images)?.url || "https://jhattse.com/assets/noimage.png"}
                                                                 alt={orderItem?.inventory?.product?.name || 'order item'}
-                                                                width="50"
-                                                                height="50"
-                                                                className="rounded-sm"
+                                                                width="150"
+                                                                height="150"
+                                                                className="rounded-sm h-18 w-18"
                                                             />
                                                             <div className='flex items-center gap-2'>
-                                                                <p className="text-ellipsis text-left break-words line-clamp-1 lt-sm:text-sm text-bannerText">{trimToLength(variantNameFromOrderItem(getFirst(orderDetails)), 20)}</p>
+                                                                <p className="text-ellipsis text-left break-words line-clamp-1 lt-sm:text-sm text-bannerText">{trimToLength(variantNameFromOrderItem(orderItem), 20)}</p>
                                                                 <span>{` x ${orderItem?.quantity}`}</span>
                                                             </div>
                                                         </div>
                                                         <div className="px-0">
-                                                            <p className="text-custom_black">{humanizeCurrency(orderItem?.price)}</p>
+                                                            <p className="text-neutral-700">{humanizeCurrency(orderItem?.price)}</p>
                                                         </div>
                                                     </div>
                                                 })
@@ -100,32 +100,32 @@ export const Page = () => {
                                         <div>
                                             <div className='flex items-center justify-between py-2'>
                                                 <span><p className='text-sm text-bannerText font-medium'>Order Total</p></span>
-                                                <span><p className='text-sm text-custom_black font-medium'>{humanizeCurrency(order?.cost)}</p></span>
+                                                <span><p className='text-sm text-neutral-700 font-medium'>{humanizeCurrency(order?.cost)}</p></span>
                                             </div>
                                             {order?.tax !== undefined && order?.tax > 0 &&
                                                 <div className='flex items-center justify-between py-2'>
                                                     <span><p className='text-sm text-bannerText font-medium'>GST</p></span>
-                                                    <span><p className='text-sm text-custom_black font-medium'>{order?.tax?.toFixed(2)}</p></span>
+                                                    <span><p className='text-sm text-neutral-700 font-medium'>{order?.tax?.toFixed(2)}</p></span>
                                                 </div>
                                             }
                                             {order?.service_charge !== undefined && order?.service_charge > 0 &&
                                                 <div className='flex items-center justify-between py-2'>
                                                     <span><p className='text-sm text-bannerText font-medium'>Service Charge</p></span>
-                                                    <span><p className='text-sm text-custom_black font-medium'>{order?.service_charge?.toFixed(2)}</p></span>
+                                                    <span><p className='text-sm text-neutral-700 font-medium'>{order?.service_charge?.toFixed(2)}</p></span>
                                                 </div>
                                             }
                                         </div>
                                         <div>
                                             <div className='flex items-center justify-between py-2'>
                                                 <span><p className='text-sm text-bannerText font-bold'>Total</p></span>
-                                                <span><p className='text-sm text-custom_black'>{humanizeCurrency(order?.payable)}</p></span>
+                                                <span><p className='text-sm text-neutral-700'>{humanizeCurrency(order?.payable)}</p></span>
                                             </div>
                                             <p className='text-sm text-secondaryCustomGray font-medium'>Paid through {order?.payment_mode}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='w-full py-4'>
-                                    <button className='bg-store_yellow font-manrope border-yellow-300 font-bold lt-sm:text-sm text-neutral-900 lt-sm:px-1 px-2 py-2 rounded w-full' onClick={() => { navigate(`/order/${order?.id}`); }}>VIEW BILL</button>
+                                    <button className='bg-brand-500 font-manrope border-yellow-300 font-bold lt-sm:text-sm text-neutral-50 px-1 md:px-2 py-2 rounded w-full uppercase' onClick={() => { navigate(`/order/${order?.id}`); }}>VIEW INVOICE</button>
                                 </div>
                             </div>
 

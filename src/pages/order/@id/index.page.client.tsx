@@ -7,6 +7,7 @@ import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from
 import { Navbar } from '@components/navbar';
 import { getCombinedName } from '@components/variant/variantSelector';
 import { usePageContext } from '@renderer/usePageContext';
+import { Header } from '@components/header';
 
 interface Props {
     initialOrder: TOrder
@@ -19,8 +20,8 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
     let content = null;
     let mode = pageContext.urlParsed?.search?.mode;
 
-    const discountedTotal = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.price || 0) * (current.quantity || 0)), 0): 0;
-    const total = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.mrp || 0) * (current.quantity || 0)), 0): 0;
+    const discountedTotal = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.price || 0) * (current.quantity || 0)), 0) : 0;
+    const total = order?.orderitems !== undefined ? order?.orderitems.reduce((prevTotal, current: TOrderItem) => prevTotal + ((current.mrp || 0) * (current.quantity || 0)), 0) : 0;
     const savings = total - discountedTotal;
     // const totalTax = order?.orderitems?.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? ((currentTax.price * currentTax.inventory.tax_rate) / 100 * currentTax.quantity) : ((currentTax.inventory.tax_rate * (currentTax.price / (1 + (currentTax.inventory.tax_rate) / 100))) / 100 * currentTax.quantity)), 0)
     // const grandTotal = order?.orderitems?.reduce((prevTax, currentTax) => prevTax + (currentTax?.inventory?.tax_exclusive ? ((((currentTax.price * currentTax.inventory.tax_rate) / 100) + currentTax?.price) * currentTax.quantity) : (currentTax?.price * currentTax.quantity)), 0)
@@ -43,7 +44,7 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
 
     useEffect(() => {
         // TODO:
-        let id = pageContext.urlParsed?.search.slug;
+        let id = pageContext.routeParams?.id;
         let token = pageContext.urlParsed?.search.token;
         if (id === order?.id) {
             return
@@ -54,14 +55,13 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
                 requestLogin(pageContext?.urlOriginal);
             }
         })
-
-    }, [pageContext?.urlOriginal])
+    }, [pageContext?.urlOriginal, order?.id])
 
     if (order) {
         content =
             <div className="">
-                <Navbar />
-                <div className="flex justify-center">
+                <Header />
+                <div className="flex justify-center py-4 bg-neutral-50">
                     <div className="grid gap-1 w-1/3 lt-sm:w-full p-4 bg-neutral-50">
                         <div className="flex justify-center text-neutral-900 font-semibold text-base leading-tight">Invoice/ Bill</div>
                         <div className="grid pb-1 border-neutral-900 border-b border-dashed gap-1">
@@ -237,6 +237,7 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
                         </div>
                     </div>
                 </div>
+                <Navbar />
             </div>
     }
     return (
