@@ -1,4 +1,4 @@
-import { usePageContext } from './usePageContext'
+import { usePageContext } from '@renderer/usePageContext'
 
 export function Link(props: { href?: string; className?: string; target?: string; children: React.ReactNode }) {
   const pageContext = usePageContext()

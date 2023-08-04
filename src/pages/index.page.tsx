@@ -15,7 +15,6 @@ import { staticImageLoader } from "@core/utils";
 import { CarouselContainer } from "@components/container/carousel";
 import { SwiperSlide } from "swiper/react";
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
-import { VariantSelector } from "@components/variant/variantSelector";
 
 type Props = {
     popularProducts: TProduct[];

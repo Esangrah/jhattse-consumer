@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Container } from "@components/container";
 import { FeatureCard } from "@components/cards";
 import { sanityIoImageLoader } from "@core/utils";
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'
 
 type Response = {
     message: string;

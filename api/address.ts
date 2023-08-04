@@ -1,7 +1,7 @@
 import { handleResponse, SERVER_HOST } from "@api";
 import { TAddress } from "@components/types";
-import fetch from 'cross-fetch';
 import axios from "axios";
+import fetch from 'cross-fetch'
 
 export const addAddress = async (addAddress: TAddress) => {
     let axiosMethod = addAddress.id == null ? axios.post : axios.put;

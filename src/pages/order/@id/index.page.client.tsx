@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { TOrder, TOrderItem, TProduct } from '@components/types';
-import { getOrderById } from "api/order";
+import { getOrderById } from "@api/order";
 import { MdPhoneEnabled, MdOutlineLocationOn } from 'react-icons/md';
 import Moment from "moment";
 import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from '@core/utils';

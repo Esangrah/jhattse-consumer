@@ -1,4 +1,4 @@
-import { usePageContext } from './usePageContext';
+import { usePageContext } from '@renderer/usePageContext';
 
 export function Image(props: { width?: string; height?: string; srcset?: string; alt: string; className?: string, quality?: number; src?: string; loader?: Function; priority?: string; loading?: "eager" | "lazy" | undefined; }) {
     const pageContext = usePageContext();

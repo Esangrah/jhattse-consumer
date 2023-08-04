@@ -1,4 +1,4 @@
-import { RiArrowGoBackFill } from "react-icons/ri";
+import { MdArrowBack } from 'react-icons/md'
 import { Link} from "@renderer/Link"
 import { Image } from "@renderer/Image";
 import { staticImageLoader } from "@core/utils";
@@ -31,7 +31,7 @@ export const BackBar: React.FC<Props> = ({ homeLink }) => {
         >
           <p className="text-sky-600 lt-sm:hidden">Back</p>
           <p className="text-sky-600 mt-1">
-            <RiArrowGoBackFill className="lt-sm:text-base" />
+            <MdArrowBack className="lt-sm:text-base" />
           </p>
         </span>
       </div>
