@@ -1,9 +1,9 @@
 
 import React, { useState } from "react";
-import { TAddress } from "@components/types";
-import { AddressCard } from "@components/cards/address";
+import { TAddress } from "#components/types";
+import { AddressCard } from "#components/cards/address";
 import { useRecoilState } from "recoil";
-import { addressState } from "@recoil/atoms";
+import { addressState } from "#recoil/atoms";
 
 
 interface Props {

@@ -1,11 +1,11 @@
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pageProps', 'urlPathname', 'routeParams']
 import ReactDOMServer from 'react-dom/server'
-import { PageShell } from '@renderer/PageShell'
+import { PageShell } from '#renderer/PageShell'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server'
-import type { PageContextServer } from '@renderer/types'
+import type { PageContextServer } from '#renderer/types'
 import { RecoilRoot } from 'recoil'
-import { VariantSelector } from '@components/variant/variantSelector'
+import { VariantSelector } from '#components/variant/variantSelector'
 
 export async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext
@@ -42,7 +42,7 @@ export async function render(pageContext: PageContextServer) {
 
   const documentHtml = escapeInject`<!DOCTYPE html>
   <html lang="en">
-      <head>
+      <Helmet>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="manifest" href="/manifest.json" />
@@ -64,7 +64,7 @@ export async function render(pageContext: PageContextServer) {
 
             gtag('config', 'G-6NQFW01JGJ');
         </script>
-      </head>
+      </Helmet>
       <body>
         <div id="react-root">${dangerouslySkipEscape(pageHtml)}</div>
       </body>

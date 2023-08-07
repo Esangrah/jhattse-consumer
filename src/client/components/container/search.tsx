@@ -1,6 +1,6 @@
-import { SmallProductCard, SmallStoreCard } from "@components/cards";
-import { ProductCardWithProvider } from "@components/cards/productcardwithprovider";
-import { TStore, TProduct, TSearchResult } from "@components/types";
+import { SmallProductCard, SmallStoreCard } from "#components/cards";
+import { ProductCardWithProvider } from "#components/cards/productcardwithprovider";
+import { TStore, TProduct, TSearchResult } from "#components/types";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";

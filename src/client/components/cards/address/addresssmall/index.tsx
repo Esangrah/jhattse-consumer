@@ -1,5 +1,5 @@
-import { TAddress } from "@components/types"
-import { addressState } from "@recoil/atoms"
+import { TAddress } from "#components/types"
+import { addressState } from "#recoil/atoms"
 import { useEffect, useState } from "react"
 import { useRecoilValue } from "recoil"
 import { navigate } from 'vite-plugin-ssr/client/router';

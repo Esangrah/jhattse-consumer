@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image } from "@renderer/Image";;
-import { Link } from '@renderer/Link';
-import { TCartItem } from '@components/types';
-import { getImageUrl, getSafeUrl, sanityIoImageLoader } from '@core/utils';
-import { Star } from '@components/star';
+import { Image } from "#renderer/Image";;
+import { Link } from '#renderer/Link';
+import { TCartItem } from '#components/types';
+import { getImageUrl, getSafeUrl, sanityIoImageLoader } from '#core/utils';
+import { Star } from '#components/star';
 
 
 interface Props {

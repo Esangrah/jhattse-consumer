@@ -1,6 +1,6 @@
-import { ReviewCard } from "@components/cards";
+import { ReviewCard } from "#components/cards";
 import React from "react";
-import { TReview } from "@components/types";
+import { TReview } from "#components/types";
 
 
 interface Props {

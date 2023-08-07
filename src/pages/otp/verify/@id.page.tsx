@@ -1,15 +1,15 @@
-import { Link } from '@renderer/Link';
+import { Link } from '#renderer/Link';
 import { useEffect, useState } from 'react'
 import { MdArrowBack } from 'react-icons/md'
-import { TOtp, TIdentity } from '@components/types';
-import { verifyMobileOtp, verifyMobile } from '@api/verification';
-import { requestLogin } from '@core/utils';
-import { getprofile } from '@api/authentication';
+import { TOtp, TIdentity } from '#components/types';
+import { verifyMobileOtp, verifyMobile } from '#api/verification';
+import { requestLogin } from '#core/utils';
+import { getprofile } from '#api/authentication';
 import { useRecoilState } from 'recoil'
-import { profileState } from '@recoil/atoms'
+import { profileState } from '#recoil/atoms'
 import Countdown from 'react-countdown';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 
 export const Page = () => {
     const [code, setcode] = useState(new Array(6).fill(""));

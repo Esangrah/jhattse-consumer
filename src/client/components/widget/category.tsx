@@ -1,7 +1,7 @@
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react"
-import { SmallProductCard } from "@components/cards"
-import { SearchContainer } from "@components/container"
-import { TProductCategoryControl } from "@components/types"
+import { SmallProductCard } from "#components/cards"
+import { SearchContainer } from "#components/container"
+import { TProductCategoryControl } from "#components/types"
 
 
 

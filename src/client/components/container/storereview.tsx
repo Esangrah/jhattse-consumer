@@ -1,6 +1,6 @@
-import { StoreReviewCard } from "@components/cards";
+import { StoreReviewCard } from "#components/cards";
 import React from "react";
-import { TReview } from "@components/types";
+import { TReview } from "#components/types";
 
 
 interface Props {
@@ -14,7 +14,7 @@ export const ReviewContainer: React.FC<Props> = ({element, reviews}: Props) => {
   return (
     <div className="flex flex grid gap-4 rounded-xl ">
       {reviews && reviews.map((review: TReview) => (
-        <RepeatElement review={review} ></RepeatElement>
+        <RepeatElement review={review} key={review?.id}></RepeatElement>
       ))}
     </div>
   )

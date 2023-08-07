@@ -1,25 +1,25 @@
-import Head from 'react-helmet';
-import { Image } from "@renderer/Image";
+import { Helmet } from 'react-helmet-async';
+import { Image } from "#renderer/Image";
 import React, { useState, useEffect } from 'react'
-import { Container } from "@components/container"
-import { Header } from "@components/header"
-import { Navbar } from "@components/navbar"
-import { Section } from "@components/section";
-import { TImage, TInventory, TProduct, TVariant } from "@components/types";
-import { getDetailProduct, getSimilarProducts } from '@api/product'
-import { RichCard } from "@components/cards";
-import { Star } from '@components/star';
-import { getFirst, getLength, getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
+import { Container } from "#components/container"
+import { Header } from "#components/header"
+import { Navbar } from "#components/navbar"
+import { Section } from "#components/section";
+import { TImage, TInventory, TProduct, TVariant } from "#components/types";
+import { getDetailProduct, getSimilarProducts } from '#api/product'
+import { RichCard } from "#components/cards";
+import { Star } from '#components/star';
+import { getFirst, getLength, getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '#core/utils';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import { Footer } from '@components/footer';
-import { CarouselContainer } from '@components/container/carousel';
+import { Footer } from '#components/footer';
+import { CarouselContainer } from '#components/container/carousel';
 import { MdOutlineCircle, MdCheckCircle } from 'react-icons/md';
 import { SwiperSlide } from 'swiper/react';
-import { CartButton } from '@components/cartbutton/special';
-import { getCombinedName, inventoryByVariantId } from '@components/variant/variantSelector';
-import { RatingWidget } from '@components/widget/rating';
-import { usePageContext } from '@renderer/usePageContext';
-import { Link } from '@renderer/Link';
+import { CartButton } from '#components/cartbutton/special';
+import { getCombinedName, inventoryByVariantId } from '#components/variant/variantSelector';
+import { RatingWidget } from '#components/widget/rating';
+import { usePageContext } from '#renderer/usePageContext';
+import { Link } from '#renderer/Link';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
@@ -85,9 +85,9 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
     if (product) {
         content =
             <Container>
-                <Head>
+                <Helmet>
                     <title>{`${product?.name} - Jhattse`}</title>
-                </Head>
+                </Helmet>
                 <Header />
                 <div className="flex flex-col text-manrope gap-2 px-20 lt-sm:px-4">
                     <div className="flex flex-col justify-center px-0 lt-sm:hidden h-20">
@@ -108,8 +108,8 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                         <div className="flex flex-row lt-sm:flex-col-reverse gap-3 max-h-60 sticky lt-sm:relative top-0">
                             <div className="2xl:flex flex-col lt-sm:flex-row gap-3 lt-sm:hidden overflow-x-scroll no-scrollbar">
                                 <CarouselContainer direction="vertical">
-                                    {product?.images?.map((image) => {
-                                        return <SwiperSlide style={{ width: "auto", height: "auto" }} className="min-w-0" onClick={(e) => setMainImage(image)}>
+                                    {product?.images?.map((image, index) => {
+                                        return <SwiperSlide style={{ width: "auto", height: "auto" }} className="min-w-0" onClick={(e) => setMainImage(image)} key={index}>
                                             <div className="shrink-0 w-12 h-12">
                                                 <Image
                                                     loader={sanityIoImageLoader}
@@ -257,7 +257,7 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
                                             <h3 className="font-bold text-lg py-2">Offers and Pricing</h3>
                                             {inventoryByVariantId(variant, product).map((inventory: TInventory) => {
                                                 return (
-                                                    <div className='flex flex-row gap-2 item-center'>
+                                                    <div className='flex flex-row gap-2 item-center' key={inventory?.id}>
                                                         <div className="radio flex flex-row items-center w-full gap-2">
                                                             <div className='flex flex-row gap-1 items-center' onClick={() => { setselectedInventory(inventory) }}>
                                                                 {

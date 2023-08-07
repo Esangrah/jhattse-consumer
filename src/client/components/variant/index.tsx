@@ -1,9 +1,9 @@
-import { CarouselContainer } from '@components/container/carousel'
-import { TInventory, TProduct, TVariant } from '@components/types'
-import { getFirst, getImageObject, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils'
-import { cartState } from '@recoil/atoms'
-import { variantState } from '@recoil/atoms/variant'
-import { Image } from "@renderer/Image";
+import { CarouselContainer } from '#components/container/carousel'
+import { TInventory, TProduct, TVariant } from '#components/types'
+import { getFirst, getImageObject, humanizeCurrency, sanityIoImageLoader, trimToLength } from '#core/utils'
+import { cartState } from '#recoil/atoms'
+import { variantState } from '#recoil/atoms/variant'
+import { Image } from "#renderer/Image";
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { SwiperSlide } from 'swiper/react'

@@ -1,5 +1,5 @@
-import { BackBar } from "@components/header/backbar";
-import { ProfileCard } from "@components/profile";
+import { BackBar } from "#components/header/backbar";
+import { ProfileCard } from "#components/profile";
 
 
 export const Page = () =>  {

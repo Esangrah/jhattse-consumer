@@ -1,9 +1,9 @@
 import { onlineSyncTable, orderTable } from "@db";
-import { TComponent, TCreateOrder, TOrder, TOrderItem } from "@components/types";
+import { TComponent, TCreateOrder, TOrder, TOrderItem } from "#components/types";
 import axios from 'axios';
-import { SERVER_HOST, handleResponse } from '@api';
+import { SERVER_HOST, handleResponse } from '#api';
 import { confirmSync } from './synconline';
-import { OrderStatus } from '@components/contants';
+import { OrderStatus } from '#components/contants';
 
 
 export const getStoreOrdersOffline = async (store_id: number, status: OrderStatus = OrderStatus.ALL) => {

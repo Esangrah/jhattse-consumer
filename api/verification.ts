@@ -1,5 +1,5 @@
-import { TOtp } from "@components/types";
-import { handleResponse, SERVER_HOST } from "@api";
+import { TOtp } from "#components/types";
+import { handleResponse, SERVER_HOST } from "#api";
 import axios from "axios";
 
 

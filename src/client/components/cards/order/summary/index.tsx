@@ -1,9 +1,9 @@
 
-import { TOrder } from '@components/types';
-import { getFirst, getLength, humanizeCurrency, trimToLength } from '@core/utils';
-import { getSafeUrl } from '@core/utils';
+import { TOrder } from '#components/types';
+import { getFirst, getLength, humanizeCurrency, trimToLength } from '#core/utils';
+import { getSafeUrl } from '#core/utils';
 import moment from 'moment';
-import { Link } from '@renderer/Link';
+import { Link } from '#renderer/Link';
 import { MdCheckCircle } from 'react-icons/md';
 import { MdPayments } from 'react-icons/md';
 import { FaShoppingBag } from 'react-icons/fa';

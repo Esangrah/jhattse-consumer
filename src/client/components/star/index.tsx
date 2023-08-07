@@ -1,4 +1,4 @@
-import { getColor } from "@core/utils";
+import { getColor } from "#core/utils";
 import React from "react";
 
 type Props = {

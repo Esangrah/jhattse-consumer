@@ -1,12 +1,12 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Searchbar } from "@components/header/searchbar";
-import { Image } from "@renderer/Image";
-import { Link } from "@renderer/Link";
+import { Searchbar } from "#components/header/searchbar";
+import { Image } from "#renderer/Image";
+import { Link } from "#renderer/Link";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { cartState, isLoggedIn } from "@recoil/atoms";
+import { cartState, isLoggedIn } from "#recoil/atoms";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
-import Location from "@components/location";
-import { staticImageLoader } from "@core/utils";
+import Location from "#components/location";
+import { staticImageLoader } from "#core/utils";
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 
 import {
@@ -18,9 +18,9 @@ import {
     MdOutlineLocationOn,
     MdOutlineAccountCircle
 } from "react-icons/md";
-import { signout } from "@api/authentication";
+import { signout } from "#api/authentication";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import PopupComponent from "@components/popup";
+import PopupComponent from "#components/popup";
 import { FaRegUserCircle } from "react-icons/fa";
 
 interface Props {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { TOrder, TOrderItem, TProduct } from '@components/types';
-import { getOrderById } from "api/order";
+import { TOrder, TOrderItem, TProduct } from '#components/types';
+import { getOrderById } from "#api/order";
 import { MdPhoneEnabled, MdOutlineLocationOn } from 'react-icons/md';
 import Moment from "moment";
-import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from '@core/utils';
-import { Navbar } from '@components/navbar';
-import { getCombinedName } from '@components/variant/variantSelector';
-import { usePageContext } from '@renderer/usePageContext';
-import { Header } from '@components/header';
+import { calculateCost, calculateTax, groupBy, requestLogin, trimToLength } from '#core/utils';
+import { Navbar } from '#components/navbar';
+import { getCombinedName } from '#components/variant/variantSelector';
+import { usePageContext } from '#renderer/usePageContext';
+import { Header } from '#components/header';
 
 interface Props {
     initialOrder: TOrder
@@ -154,7 +154,7 @@ export const Page: React.FC<Props> = ({ initialOrder }: Props) => {
                             </div>
                             {order?.orderitems && order?.orderitems.map((orderItem: TOrderItem) => {
                                 return (
-                                    <div className="grid grid-cols-6 border-b border-neutral-900 border-dashed w-full items-start p-1" data-orderitem-id={orderItem.id}>
+                                    <div className="grid grid-cols-6 border-b border-neutral-900 border-dashed w-full items-start p-1" data-orderitem-id={orderItem.id} key={orderItem.id}>
                                         <div className="grid col-span-2">
                                             <div className="flex text-neutral-900 line-clamp-2 text-xs overflow-hidden">{trimToLength(getCombinedName(orderItem?.inventory?.product as TProduct, orderItem?.inventory?.variant_id), 20)}</div>
                                             <div className="flex text-neutral-900 text-xs overflow-hidden">{orderItem?.inventory?.product?.gtin}</div>

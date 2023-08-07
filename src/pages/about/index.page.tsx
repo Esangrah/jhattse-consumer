@@ -1,14 +1,14 @@
-import Head from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import React from "react";
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { Footer } from "@components/footer";
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { Footer } from "#components/footer";
 
 
 export const Page: React.FC = () => {
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>About Us - Jhattse by Esangrah</title>
                 <meta name="description" content="Jhattse is next-gen billing and customer engagement platform for businesses. Jhattse provide its users product discovery and offers" />
                 <meta name="og:title" content="About Us - Jhattse by Esangrah" />
@@ -16,7 +16,7 @@ export const Page: React.FC = () => {
                 <meta name="og:image" content="https://jhattse.com/consumer/square-logo-4x.png" />
                 <link rel="canonical" href="https://jhattse.com/about" />
                 <link rel="shortcut icon" href="https://jhattse.com/consumer/circular-logo.png" />
-            </Head>
+            </Helmet>
             <div className="flex justify-center">
                 <Header />
             </div>

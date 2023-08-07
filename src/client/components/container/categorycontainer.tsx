@@ -1,5 +1,5 @@
-import { ProductCategoryCard } from "@components/cards";
-import { TProductCategory } from "@components/types";
+import { ProductCategoryCard } from "#components/cards";
+import { TProductCategory } from "#components/types";
 import React from "react";
 
 interface Props {

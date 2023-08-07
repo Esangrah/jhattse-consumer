@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { TIdentity } from "@components/types";
-import { signup, socialSignup } from "@api/authentication";
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { TIdentity } from "#components/types";
+import { signup, socialSignup } from "#api/authentication";
 import { FaGoogle } from "react-icons/fa";
 import { useGoogleLogin } from "@react-oauth/google";
-import { sanityIoImageLoader, staticImageLoader } from "@core/utils";
+import { sanityIoImageLoader, staticImageLoader } from "#core/utils";
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 interface Props {

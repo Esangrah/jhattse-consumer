@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { search } from "@api/search";
+import { search } from "#api/search";
 import {
     ProductCategoryCard,
     SmallProductCard,
     SmallStoreCard,
-} from "@components/cards";
-import { SearchContainer } from "@components/container";
-import { BackBar } from "@components/header/backbar"
-import { Searchbar } from "@components/header/searchbar";
+} from "#components/cards";
+import { SearchContainer } from "#components/container";
+import { BackBar } from "#components/header/backbar"
+import { Searchbar } from "#components/header/searchbar";
 import {
     TInventory,
     TProduct,
     TProductCategory,
     TSearchResult,
     TStore,
-} from "@components/types";
+} from "#components/types";
 import { MdSearch } from "react-icons/md";
 import { motion } from "framer-motion";
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
 const spinTransition = {
     loop: Infinity,

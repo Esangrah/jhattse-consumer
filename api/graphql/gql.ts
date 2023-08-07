@@ -1,4 +1,4 @@
-import { SERVER_HOST } from "@api";
+import { SERVER_HOST } from "#api";
 import { Client, cacheExchange, fetchExchange } from "urql";
 
 const client = new Client({

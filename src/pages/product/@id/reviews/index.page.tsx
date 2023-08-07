@@ -1,19 +1,19 @@
-import Head from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import React, { useState, useEffect } from 'react'
-import { Container } from "@components/container"
-import { Header } from "@components/header"
-import { Navbar } from "@components/navbar"
-import { ReviewCard } from '@components/cards';
-import { getReviews, getMyReview } from '@api/rating';
-import { getDetailProduct } from '@api/product';
-import { ReviewContainer } from '@components/container';
-import { AddReview } from '@components/addreview';
-import { TProduct, TReview } from "@components/types";
-import { getColor, getImageObject, getImageUrl, getSafeUrl, sanityIoImageLoader } from '@core/utils';
-import { Footer } from '@components/footer';
-import { Image } from "@renderer/Image";
-import { Link } from '@renderer/Link';
-import { usePageContext } from '@renderer/usePageContext';
+import { Container } from "#components/container"
+import { Header } from "#components/header"
+import { Navbar } from "#components/navbar"
+import { ReviewCard } from '#components/cards';
+import { getReviews, getMyReview } from '#api/rating';
+import { getDetailProduct } from '#api/product';
+import { ReviewContainer } from '#components/container';
+import { AddReview } from '#components/addreview';
+import { TProduct, TReview } from "#components/types";
+import { getColor, getImageObject, getImageUrl, getSafeUrl, sanityIoImageLoader } from '#core/utils';
+import { Footer } from '#components/footer';
+import { Image } from "#renderer/Image";
+import { Link } from '#renderer/Link';
+import { usePageContext } from '#renderer/usePageContext';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
@@ -92,9 +92,9 @@ export const Page: React.FC<Props> = ({ initialProduct }: Props) => {
     if (product) {
         content =
             <Container>
-                <Head>
+                <Helmet>
                     <title>{`${product?.name} Reviews - Jhattse`}</title>
-                </Head>
+                </Helmet>
                 <div className="flex justify-center">
                     <Header />
                 </div>

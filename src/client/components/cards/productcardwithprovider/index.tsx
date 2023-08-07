@@ -1,11 +1,11 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { Star } from "@components/star"
-import { TProduct } from "@components/types";
-import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { Star } from "#components/star"
+import { TProduct } from "#components/types";
+import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '#core/utils';
 import { FaStar } from "react-icons/fa";
-import { AddToCart } from "@components/addtocart";
+import { AddToCart } from "#components/addtocart";
 
 type Props = {
     product: TProduct;
@@ -49,12 +49,12 @@ export const ProductCardWithProvider: React.FC<Props> = ({ product }) => {
                             <p className="font-bold text-custom_gray text-base pr-1">{storeRating?.toFixed(1)}</p>
                             {
                                 Array.from({ length: storeRating }).map((_, i) => (
-                                    <span className="text-custom_yellow"><FaStar key={i} /></span>
+                                    <span className="text-custom_yellow" key={i}><FaStar key={i} /></span>
                                 ))
                             }
                             {
                                 Array.from({ length: 5 - storeRating }).map((_, i) => (
-                                    <span className="text-radioButtonBorder"><FaStar key={i} /></span>
+                                    <span className="text-radioButtonBorder" key={i}><FaStar key={i} /></span>
                                 ))
                             }
                         </div>

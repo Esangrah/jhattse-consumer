@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import Head from 'react-helmet';
-import { Container } from "@components/container";
-import { Header } from "@components/header";
+import { Helmet } from 'react-helmet-async';
+import { Container } from "#components/container";
+import { Header } from "#components/header";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useRecoilState } from 'recoil';
-import { cartState } from '@recoil/atoms';
-import { createOrder, retryOrder } from '@api/order';
-import { CartDetails } from '@components/cartinfo/summary';
-import { TComponent, TCreateOrder, TCreateOrderRetry, TIdentity, TOrder } from '@components/types';
+import { cartState } from '#recoil/atoms';
+import { createOrder, retryOrder } from '#api/order';
+import { CartDetails } from '#components/cartinfo/summary';
+import { TComponent, TCreateOrder, TCreateOrderRetry, TIdentity, TOrder } from '#components/types';
 import { NonLoggedUser } from './nonloggeduser';
 import { message } from 'antd';
-import { getOrders } from "@api/order"
+import { getOrders } from "#api/order"
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 
@@ -116,7 +116,7 @@ export const Page = () => {
     return (
         userInfo === undefined || userInfo === null ? <NonLoggedUser setUserInfo={setUserInfo} /> :
             <div>
-                <Head>
+                <Helmet>
                     <script src=" https://payments.open.money/layer" />
                     <script>
                         {`window.invokePayment = function invokePayment(res) {
@@ -154,7 +154,7 @@ export const Page = () => {
                             );
                         }`}
                     </script>
-                </Head>
+                </Helmet>
                 <Container>
                     <Header />
                     <div className="px-20 lt-sm:px-2 lt-sm:hidden">

@@ -1,7 +1,7 @@
-import { TCartItem, TProduct } from "@components/types"
-import { getCombinedName } from "@components/variant/variantSelector"
-import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from "@core/utils"
-import { Image } from "@renderer/Image"
+import { TCartItem, TProduct } from "#components/types"
+import { getCombinedName } from "#components/variant/variantSelector"
+import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from "#core/utils"
+import { Image } from "#renderer/Image"
 
 
 
@@ -19,7 +19,7 @@ export const OrderItemWidget = ({ title, cartValues, classes }: Props) => {
             <h2 className="font-bold text-neutral-700 text-lg pb-1 pt-1">{title}</h2>
             {
                 cartValues.map((item => {
-                    return <div className="bg-neutral-100 border border-neutral-300 rounded-lg flex gap-2 w-96 items-center justify-between h-20 font-manrope overflow-hidden">
+                    return <div className="bg-neutral-100 border border-neutral-300 rounded-lg flex gap-2 w-96 items-center justify-between h-20 font-manrope overflow-hidden" key={item?.variant_id}>
                         <div className='flex gap-2 items-center'>
                             <Image
                                 loader={sanityIoImageLoader}

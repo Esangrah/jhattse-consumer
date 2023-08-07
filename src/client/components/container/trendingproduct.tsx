@@ -1,5 +1,5 @@
-import { TrendingProductCard } from "@components/cards/product/trending";
-import { TProduct } from "@components/types";
+import { TrendingProductCard } from "#components/cards/product/trending";
+import { TProduct } from "#components/types";
 import React from "react";
 
 interface Props {

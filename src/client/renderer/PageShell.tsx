@@ -5,6 +5,7 @@ import './PageShell.css'
 import '../index.css';
 import 'virtual:uno.css'
 import { ChakraProvider } from '@chakra-ui/react'
+import { HelmetProvider } from 'react-helmet-async';
 
 export { PageShell }
 
@@ -12,9 +13,11 @@ function PageShell({ children, pageContext }: { children: React.ReactNode; pageC
   return (
     <React.StrictMode>
       <ChakraProvider>
-        <PageContextProvider pageContext={pageContext}>
+        <HelmetProvider>
+          <PageContextProvider pageContext={pageContext}>
           {children}
-        </PageContextProvider>
+          </PageContextProvider>
+        </HelmetProvider>
       </ChakraProvider>
     </React.StrictMode>
   )

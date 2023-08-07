@@ -1,9 +1,9 @@
-import { CartButton } from "@components/cartbutton";
-import { CartButtonV2 } from "@components/cartbutton/v2";
-import { TCartItem, TInventory, TProduct } from "@components/types";
-import { getLength } from "@core/utils";
-import { cartState } from "@recoil/atoms/cart";
-import { Link} from "@renderer/Link"
+import { CartButton } from "#components/cartbutton";
+import { CartButtonV2 } from "#components/cartbutton/v2";
+import { TCartItem, TInventory, TProduct } from "#components/types";
+import { getLength } from "#core/utils";
+import { cartState } from "#recoil/atoms/cart";
+import { Link} from "#renderer/Link"
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 

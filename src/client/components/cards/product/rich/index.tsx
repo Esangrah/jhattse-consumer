@@ -1,8 +1,8 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { Link } from "@renderer/Link"
-import { Star } from "@components/star";
-import { TProduct } from "@components/types";
+import { Image } from "#renderer/Image";
+import { Link } from "#renderer/Link"
+import { Star } from "#components/star";
+import { TProduct } from "#components/types";
 import {
     getFirst,
     getImageObject,
@@ -10,8 +10,8 @@ import {
     getSafeUrl,
     humanizeCurrency,
     sanityIoImageLoader,
-} from "@core/utils";
-import { AddToCart } from "@components/addtocart";
+} from "#core/utils";
+import { AddToCart } from "#components/addtocart";
 
 type Props = {
     product: TProduct;

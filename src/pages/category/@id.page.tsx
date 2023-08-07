@@ -1,15 +1,15 @@
-import Head from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import React, { useEffect, useState } from "react";
-import { Container } from "@components/container"
-import { Header } from "@components/header";
-import { Navbar } from "@components/navbar";
-import { Section } from "@components/section";
-import { ProductCardWithProvider, SmallCategoryCard } from "@components/cards";
-import { SearchContainer } from "@components/container"
-import { TProduct, TProductCategory } from "@components/types";
-import { getFeaturedProducts, getProductCategory, getProductCategories } from "@api/product";
-import { getSafeUrl } from "@core/utils";
-import { usePageContext } from '@renderer/usePageContext';
+import { Container } from "#components/container"
+import { Header } from "#components/header";
+import { Navbar } from "#components/navbar";
+import { Section } from "#components/section";
+import { ProductCardWithProvider, SmallCategoryCard } from "#components/cards";
+import { SearchContainer } from "#components/container"
+import { TProduct, TProductCategory } from "#components/types";
+import { getFeaturedProducts, getProductCategory, getProductCategories } from "#api/product";
+import { getSafeUrl } from "#core/utils";
+import { usePageContext } from '#renderer/usePageContext';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
@@ -93,7 +93,7 @@ export const Page: React.FC<Props> = ({ initialProductCategory, initialProductSu
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>{`${productCategory?.name} products - Jhattse`}</title>
                 <meta name="Keywords" content={`${productCategory?.name} Products, Local Services,${productCategory?.name},Jhattse`} />
                 <meta name="Description" content={`Get ${productCategory?.name} products from nearby local stores on Jhattse`} />
@@ -102,7 +102,7 @@ export const Page: React.FC<Props> = ({ initialProductCategory, initialProductSu
                 <meta name="og:description" content={`Get ${productCategory?.name} products from nearby local stores on Jhattse`} />
                 <meta name="og:image" content={`${productCategory?.image}`} />
                 <meta property="og:url" content={`https://jhattse.com/category/${productCategory?.id}/${getSafeUrl(productCategory?.name)}`} />
-            </Head>
+            </Helmet>
             <Header />
             <div className="px-20 lt-sm:px-4">
                 <div className="divide-y-2 divide-solid">

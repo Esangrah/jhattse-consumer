@@ -1,13 +1,13 @@
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import Head from 'react-helmet'
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { Helmet } from 'react-helmet-async'
 
 
 export const Page = () => (
   <>
-    <Head>
+    <Helmet>
       <title>Jhattse - Offline</title>
-    </Head>
+    </Helmet>
     <Container>
         <Header />
         <div className="flex flex-col flex-grow justify-center">

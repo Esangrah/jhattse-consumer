@@ -1,10 +1,10 @@
 import React from "react";
-import { TInventory, TProduct } from "@components/types";
+import { TInventory, TProduct } from "#components/types";
 import { useRecoilState } from "recoil";
-import { cartState } from "@recoil/atoms";
-import { Link} from "@renderer/Link"
-import { variantState } from "@recoil/atoms/variant";
-import { getLength } from "@core/utils";
+import { cartState } from "#recoil/atoms";
+import { Link} from "#renderer/Link"
+import { variantState } from "#recoil/atoms/variant";
+import { getLength } from "#core/utils";
 
 type Props = {
   product: TProduct;

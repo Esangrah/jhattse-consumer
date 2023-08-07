@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Link } from '@renderer/Link'
+import { Link } from '#renderer/Link'
 import { getDistance } from 'geolib'
 import { MdLocationPin, MdShare } from 'react-icons/md';
-import { Star } from '@components/star'
-import { TStore, TStoreImage } from '@components/types'
-import { getLocation } from '@core/geolocation'
-import { getSafeUrl, sanityIoImageLoader } from '@core/utils'
+import { Star } from '#components/star'
+import { TStore, TStoreImage } from '#components/types'
+import { getLocation } from '#core/geolocation'
+import { getSafeUrl, sanityIoImageLoader } from '#core/utils'
 import { RWebShare } from 'react-web-share'
-import { StoreTiming } from '@components/storetiming'
+import { StoreTiming } from '#components/storetiming'
 import { FaPhoneAlt } from 'react-icons/fa'
-import { CarouselContainer } from '@components/container/carousel'
+import { CarouselContainer } from '#components/container/carousel'
 import { SwiperSlide } from 'swiper/react'
-import { Image } from "@renderer/Image";
-import { getStoreImages } from '@api/store'
+import { Image } from "#renderer/Image";
+import { getStoreImages } from '#api/store'
 
 
 interface Props {
@@ -61,7 +61,7 @@ export const StoreTopCard = ({ store, storeTimings }: Props) => {
                 </SwiperSlide>
                 {
                     storeImages?.map((storeImage) => {
-                        return <SwiperSlide style={{ width: "auto" }} className="min-w-0">
+                        return <SwiperSlide style={{ width: "auto" }} className="min-w-0" key={storeImage?.id}>
                             <div className="p-1 flex-shrink-0">
                                 <Image
                                     loader={sanityIoImageLoader}

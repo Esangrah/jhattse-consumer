@@ -1,5 +1,5 @@
-import { handleResponse, SERVER_HOST } from "@api";
-import { TIdentity, TPasswordReset } from "@components/types";
+import { handleResponse, SERVER_HOST } from "#api";
+import { TIdentity, TPasswordReset } from "#components/types";
 import Cookies from 'js-cookie';
 import axios from "axios";
 

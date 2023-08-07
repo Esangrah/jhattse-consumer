@@ -1,4 +1,4 @@
-import { handleResponse, SERVER_HOST } from "@api";
+import { handleResponse, SERVER_HOST } from "#api";
 import axios from "axios";
 
 export const getProductBrands = async (name: string, pageNumber: number = 0, pageSize: number = 10) => {

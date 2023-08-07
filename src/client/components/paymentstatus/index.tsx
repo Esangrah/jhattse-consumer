@@ -1,16 +1,16 @@
 
-import { TScreenInfo } from "@components/types";
-import { getOrders, getPaymentStatus } from '@api/order';
-import { TOrder } from '@components/types';
-import { getFirst, getLength, sanityIoImageLoader } from '@core/utils';
-import Head from 'react-helmet';
-import { Image } from "@renderer/Image";;
+import { TScreenInfo } from "#components/types";
+import { getOrders, getPaymentStatus } from '#api/order';
+import { TOrder } from '#components/types';
+import { getFirst, getLength, sanityIoImageLoader } from '#core/utils';
+import { Helmet } from 'react-helmet-async';
+import { Image } from "#renderer/Image";;
 import React, { useEffect, useState } from 'react'
-import { variantNameFromOrderItem } from "@components/variant/variantSelector";
+import { variantNameFromOrderItem } from "#components/variant/variantSelector";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { OrderItemWidget } from "@components/widget/orderitems";
+import { OrderItemWidget } from "#components/widget/orderitems";
 import { useRecoilValue } from "recoil";
-import { cartState } from "@recoil/atoms/cart";
+import { cartState } from "#recoil/atoms/cart";
 
 
 
@@ -52,9 +52,9 @@ export const PaymentStatus: React.FC<Props> = ({ actionText, message, next, imag
 
     return (
         <div className="flex flex-col grow">
-            <Head>
+            <Helmet>
                 <meta name="robots" content="noindex,nofollow" />
-            </Head>
+            </Helmet>
             <div className='w-full grow flex flex-col gap-10 font-manrope md:px-20 md:py-10 px-4'>
                 <div className='flex justify-center md:p-3 px-0 py-0 w-full rounded-lg bg-error-100'>
                     <div className='lt-sm:hidden flex justify-center p-3'>

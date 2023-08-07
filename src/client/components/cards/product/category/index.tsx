@@ -1,7 +1,7 @@
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { TProductCategory } from "@components/types";
-import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { TProductCategory } from "#components/types";
+import { getSafeUrl, sanityIoImageLoader } from '#core/utils';
 import { FaChevronRight } from "react-icons/fa";
 
 

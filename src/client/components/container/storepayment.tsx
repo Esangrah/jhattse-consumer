@@ -1,6 +1,6 @@
 import React from "react";
-import { PaymentCard } from "@components/cards";
-import { TPaymentMethod } from "@components/types";
+import { PaymentCard } from "#components/cards";
+import { TPaymentMethod } from "#components/types";
 
 
 interface Props {
@@ -14,7 +14,7 @@ export const PaymentContainer: React.FC<Props> = ({ element, payments }: Props) 
     return (
         <div className="flex flex grid gap-4 rounded-xl ">
             {payments && payments.map((payment: TPaymentMethod) => (
-                <RepeatElement payment={payment} ></RepeatElement>
+                <RepeatElement payment={payment} key={payment?.id}></RepeatElement>
             ))}
         </div>
     )

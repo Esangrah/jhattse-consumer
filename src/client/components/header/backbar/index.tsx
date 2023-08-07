@@ -1,7 +1,7 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Link} from "@renderer/Link"
-import { Image } from "@renderer/Image";
-import { staticImageLoader } from "@core/utils";
+import { Link} from "#renderer/Link"
+import { Image } from "#renderer/Image";
+import { staticImageLoader } from "#core/utils";
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 interface Props {

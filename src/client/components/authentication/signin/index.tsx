@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { TIdentity } from "@components/types";
-import { login, getprofile, socialLogin } from "@api/authentication";
-import { isLoggedIn } from "@recoil/atoms";
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { TIdentity } from "#components/types";
+import { login, getprofile, socialLogin } from "#api/authentication";
+import { isLoggedIn } from "#recoil/atoms";
 import { useRecoilState } from "recoil";
 import { FaGoogle } from "react-icons/fa";
 import { useGoogleLogin } from '@react-oauth/google';
-import { getBusinessUrl, staticImageLoader } from "@core/utils";
+import { getBusinessUrl, staticImageLoader } from "#core/utils";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
 
 

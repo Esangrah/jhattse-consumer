@@ -1,6 +1,6 @@
-import { handleResponse, SERVER_HOST } from "@api";
-import { TOrderItem } from "@components/types";
-import { saveOrderItem } from "@core/offline/order";
+import { handleResponse, SERVER_HOST } from "#api";
+import { TOrderItem } from "#components/types";
+import { saveOrderItem } from "#core/offline/order";
 import axios from "axios";
 
 

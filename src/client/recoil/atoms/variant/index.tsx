@@ -1,5 +1,5 @@
-import { TInventory, TIsVariant, TProduct } from "@components/types";
-import { Atoms } from "@recoil/constants";
+import { TInventory, TIsVariant, TProduct } from "#components/types";
+import { Atoms } from "#recoil/constants";
 import { atom, selector } from 'recoil';
 
 const localStorage = typeof window !== `undefined` ? window.localStorage : null

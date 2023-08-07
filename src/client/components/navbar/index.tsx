@@ -3,16 +3,16 @@ import { navigate } from 'vite-plugin-ssr/client/router';
 import { motion } from "framer-motion";
 import { MdPhoneEnabled, MdOutlineHome, MdOutlineQrCodeScanner, MdOutlineLocationOn, MdOutlineAccountCircle} from 'react-icons/md';
 import { FaStoreAlt } from 'react-icons/fa';
-import QRScanner from "@components/qr";
+import QRScanner from "#components/qr";
 
-import { Link } from "@renderer/Link";
-import { TStore } from "@components/types";
+import { Link } from "#renderer/Link";
+import { TStore } from "#components/types";
 import { getDistance } from 'geolib';
-import { getLocation } from "@core/geolocation";
+import { getLocation } from "#core/geolocation";
 import { Html5QrcodeError } from "html5-qrcode/esm/core";
-import { isLoggedIn } from "@recoil/atoms";
+import { isLoggedIn } from "#recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { Sidebar } from "@components/sidebar";
+import { Sidebar } from "#components/sidebar";
 
 export const Navbar: React.FC = () => {
     const [isQROpen, setQROpen] = useState(false);
@@ -145,10 +145,11 @@ export const Navbar: React.FC = () => {
                         </div>
                     </li>
                     <li className="nav-item text-neutral-900 px-1 flex items-center select-none">
-                        {/* <Link to="/account" className="flex flex-col items-center"> */}
-                        <span onClick={() => setIsShowSidebar(!isShowSidebar)} className="flex flex-col items-center">
-                            <MdOutlineAccountCircle size="1.8em" /><p className="text-[10px]">Account</p>
-                        </span>
+                        <Link href="/account" className="flex flex-col items-center">
+                            <span onClick={() => setIsShowSidebar(!isShowSidebar)} className="flex flex-col items-center">
+                                <MdOutlineAccountCircle size="1.8em" /><p className="text-[10px]">Account</p>
+                            </span>
+                        </Link>
                     </li>
                 </ul>
             </div>

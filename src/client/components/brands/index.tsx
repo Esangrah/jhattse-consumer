@@ -1,7 +1,7 @@
-import { TBrand } from '@components/types'
+import { TBrand } from '#components/types'
 import React, { useState, useEffect } from 'react'
-import { BrandContainer } from "@components/container/brandcontainer"
-import { getProductBrands } from '@api/brand'
+import { BrandContainer } from "#components/container/brandcontainer"
+import { getProductBrands } from '#api/brand'
 import { Dropdown, MenuProps, Space, Typography } from "antd";
 import { FaFilter } from "react-icons/fa";
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { Star } from "@components/star"
-import { TProduct } from "@components/types";
-import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
-import { CartButtonV2 } from "@components/cartbutton/v2";
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { Star } from "#components/star"
+import { TProduct } from "#components/types";
+import { getFirst, getImageObject, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '#core/utils';
+import { CartButtonV2 } from "#components/cartbutton/v2";
 
 type Props = {
     product: TProduct;

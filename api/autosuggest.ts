@@ -1,5 +1,5 @@
-import { SERVER_HOST } from "@api";
-import { TData, TSearch, TSearchContext } from "@components/types";
+import { SERVER_HOST } from "#api";
+import { TData, TSearch, TSearchContext } from "#components/types";
 import fetch from 'cross-fetch';
 
 export const getAutoSuggest = async (

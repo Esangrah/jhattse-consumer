@@ -1,6 +1,6 @@
-import { getMyStores } from "@api/store";
+import { getMyStores } from "#api/store";
 import { storeTable } from "@db";
-import { TStore } from "@components/types";
+import { TStore } from "#components/types";
 
 export const saveStoresOffline = async () => {
     if (typeof(navigator) === "undefined" || navigator.onLine) {

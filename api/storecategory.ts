@@ -1,6 +1,6 @@
 import axios from "axios";
-import { handleResponse, HEADERS, SERVER_HOST } from "@api";
-import { TStoreCategory } from "@components/types";
+import { handleResponse, HEADERS, SERVER_HOST } from "#api";
+import { TStoreCategory } from "#components/types";
 
 
 export const getStoreCategories = async () => {

@@ -1,7 +1,7 @@
-import { TReview } from "@components/types";
-import { sanityIoImageLoader } from "@core/utils";
+import { TReview } from "#components/types";
+import { sanityIoImageLoader } from "#core/utils";
 import Moment from "moment";
-import { Image } from "@renderer/Image";
+import { Image } from "#renderer/Image";
 
 
 type Props = {

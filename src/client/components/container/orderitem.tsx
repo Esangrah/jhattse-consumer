@@ -1,7 +1,7 @@
 
 import React from "react";
-import { OrderItemCard } from "@components/cards";
-import { TOrderItem } from "@components/types";
+import { OrderItemCard } from "#components/cards";
+import { TOrderItem } from "#components/types";
 
 
 

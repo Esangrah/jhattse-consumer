@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import UnoCSS from 'unocss/vite'
 import tsconfigPaths from 'vite-tsconfig-paths';
 import Pages from 'vite-plugin-pages'
@@ -20,7 +21,8 @@ const test = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [Pages({ dirs: 'src/pages', routeStyle: 'next' }), ssr(), VitePWA({
+    plugins: [Pages({ dirs: 'src/pages', routeStyle: 'next' }), ssr(), viteCommonjs(),
+    VitePWA({
         registerType: 'prompt',
         useCredentials: true,
         // assetPrefix: 'https://cdn.jhattse.com/business',
@@ -43,10 +45,42 @@ export default defineConfig({
         devOptions: {
             enabled: false
         }
-    }), UnoCSS(), react(), tsconfigPaths()],
+    }),
+    UnoCSS(), react(), tsconfigPaths()],
     server: { port: 3000 },
     build: {
         minify: false,
+        rollupOptions: {
+            output: {
+                format: "es",
+            },
+            external: [
+                "react", // ignore react stuff
+                "react/jsx-runtime",
+                "react-dom",
+                "recoil",
+                "@chakra-ui/react",
+                "react-icons",
+                "react-icons/fa",
+                "react-icons/md",
+                "swiper/react",
+                "react-helmet-async"
+            ],
+        },
+        // commonjsOptions: { include: [], transformMixedEsModules: true, },
+    },
+    // optimizeDeps: {
+    //     disabled: 'build'
+    // },
+    resolve: {
+        alias: {
+            "#api": "/api",
+            "#components": "/src/client/components",
+            "#recoil": "/src/client/recoil",
+            "#core": "/src/client/core",
+            "#renderer": "/src/client/renderer",
+        },
+        preserveSymlinks: true
     },
     root: "",
     // @ts-ignore

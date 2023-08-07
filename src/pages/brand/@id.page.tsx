@@ -1,12 +1,12 @@
-import Head from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import React, { useEffect, useState } from "react";
-import { Image } from "@renderer/Image";
-import { Container } from "@components/container"
-import { Header } from "@components/header";
-import { Section } from "@components/section";
-import { RichCard, SmallProductCard } from "@components/cards";
-import { SearchContainer } from "@components/container";
-import { Footer } from "@components/footer";
+import { Image } from "#renderer/Image";
+import { Container } from "#components/container"
+import { Header } from "#components/header";
+import { Section } from "#components/section";
+import { RichCard, SmallProductCard } from "#components/cards";
+import { SearchContainer } from "#components/container";
+import { Footer } from "#components/footer";
 import {
     TBrand,
     TFeedback,
@@ -14,16 +14,16 @@ import {
     TProduct,
     TProductCategory,
     TSocialAccount,
-} from "@components/types";
-import { getFeaturedProducts } from "@api/product";
+} from "#components/types";
+import { getFeaturedProducts } from "#api/product";
 import {
     getLength,
     getSafeUrl,
     humanizeNumber,
     requestLogin,
     sanityIoImageLoader,
-} from "@core/utils";
-import { getBestSeller, getBrand, getBrandCategories } from "@api/brand";
+} from "#core/utils";
+import { getBestSeller, getBrand, getBrandCategories } from "#api/brand";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -35,13 +35,13 @@ import {
     Tabs
 } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
-import { addFeedback } from "@api/feedback";
-import { isLoggedIn } from "@recoil/atoms/profile";
+import { addFeedback } from "#api/feedback";
+import { isLoggedIn } from "#recoil/atoms/profile";
 import { useRecoilValue } from "recoil";
 import { message } from "antd";
 import { SocialIcon } from "react-social-icons";
-import { usePageContext } from "@renderer/usePageContext";
-import { Link } from '@renderer/Link';
+import { usePageContext } from "#renderer/usePageContext";
+import { Link } from '#renderer/Link';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 interface Props {
@@ -166,7 +166,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>{`${brand?.name} products - Jhattse`}</title>
                 <meta name="Keywords" content={`Local Products,Local Services,Buy ${brand?.name},${brand?.name},Jhattse`} />
                 <meta name="Description" content={`Get ${brand?.name} products from nearby local stores on Jhattse`} />
@@ -175,7 +175,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                 <meta name="og:description" content={`Get ${brand?.name} products from nearby local stores on Jhattse`} />
                 <meta name="og:image" content={`${brand?.image}`} />
                 <meta property="og:url" content={`https://jhattse.com/brand/${brand?.id}/${getSafeUrl( brand?.name)}`} />
-            </Head>
+            </Helmet>
             <Header />
             <div className="px-20 lt-sm:px-2 font-manrope">
                 <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
@@ -265,6 +265,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                                     href={`/category/${item?.id}/${getSafeUrl(
                                                         item?.name
                                                     )}`}
+                                                    key={item?.id}
                                                 >
                                                     <div className="py-1 rounded-lg flex justify-center items-center relative">
                                                         <Image
@@ -395,7 +396,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                             {getLength(brand?.social_accounts) > 0 &&
                                                 brand?.social_accounts?.map((item) => {
                                                     return (
-                                                        <span className="select-none">
+                                                        <span className="select-none" key={item?.id}>
                                                             <SocialIcon url={item?.link} />{" "}
                                                             {`${humanizeNumber(item?.followers || 0)} ${item?.followers !== undefined && item?.followers < 2 ? "follower" : "followers"
                                                                 }`}
@@ -499,7 +500,7 @@ export const Page: React.FC<Props> = ({ initialBrand, initialProductList }: Prop
                                     {getLength(brand?.social_accounts) > 0 &&
                                         brand?.social_accounts?.map((item: TSocialAccount) => {
                                             return (
-                                                <div className="flex gap-4 items-center">
+                                                <div className="flex gap-4 items-center" key={item?.id}>
                                                     <span className="select-none">
                                                         <SocialIcon url={item?.link} />{" "}
                                                         {`${humanizeNumber(item.followers || 0)}${item.followers !== undefined && item.followers < 2 ? " follower" : "+ followers"

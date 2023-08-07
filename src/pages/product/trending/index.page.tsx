@@ -1,10 +1,10 @@
-import Head from 'react-helmet'
-import { Header } from '@components/header';
-import { Navbar } from '@components/navbar';
-import { TrendingProducts } from '@components/trending';
-import { Footer } from '@components/footer';
+import { Helmet } from 'react-helmet-async'
+import { Header } from '#components/header';
+import { Navbar } from '#components/navbar';
+import { TrendingProducts } from '#components/trending';
+import { Footer } from '#components/footer';
 import { PageContextBuiltIn } from 'vite-plugin-ssr/types';
-import { Container } from '@components/container';
+import { Container } from '#components/container';
 
 export async function onBeforeRender(pageContext: PageContextBuiltIn) {
     return {
@@ -24,9 +24,9 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
 export const Page = () => {
     return (
         <>
-            <Head>
+            <Helmet>
                 <title>Trending Products - Jhattse</title>
-            </Head>
+            </Helmet>
             <Header />
             <Container>
                 <TrendingProducts />

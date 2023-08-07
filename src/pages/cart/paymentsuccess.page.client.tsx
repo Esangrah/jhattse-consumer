@@ -1,16 +1,16 @@
-import { getOrderById } from '@api/order';
-import { Container } from '@components/container';
-import { Header } from '@components/header';
-import { TOrder } from '@components/types';
-import { getLength, sanityIoImageLoader } from '@core/utils';
-import Head from 'react-helmet';
-import { Image } from "@renderer/Image";;
+import { getOrderById } from '#api/order';
+import { Container } from '#components/container';
+import { Header } from '#components/header';
+import { TOrder } from '#components/types';
+import { getLength, sanityIoImageLoader } from '#core/utils';
+import { Helmet } from 'react-helmet-async';
+import { Image } from "#renderer/Image";;
 import { useEffect, useState } from 'react'
 import { MdCheckCircle } from 'react-icons/md';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { cartState } from '@recoil/atoms';
+import { cartState } from '#recoil/atoms';
 import { useRecoilValue } from 'recoil';
-import { OrderItemWidget } from '@components/widget/orderitems';
+import { OrderItemWidget } from '#components/widget/orderitems';
 
 export const Page = () => {
     const orderId = typeof window !== "undefined" && localStorage.getItem("orderId");
@@ -35,9 +35,9 @@ export const Page = () => {
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <meta name="robots" content="noindex,nofollow" />
-            </Head>
+            </Helmet>
             <Header />
             <div className='w-full grow flex flex-col gap-10 font-manrope md:px-20 md:py-10 px-4'>
                 <div className='flex justify-center md:p-3 px-0 py-0 w-full rounded-lg bg-business-100'>

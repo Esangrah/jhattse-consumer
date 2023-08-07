@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "@api/order";
-import { OrderSummaryContainer } from "@components/container"
-import { OrderStatus } from "@components/contants";
-import { BackBar } from "@components/header/backbar";
-import { TOrder } from "@components/types";
-import { requestLogin } from "@core/utils";
+import { getOrders } from "#api/order";
+import { OrderSummaryContainer } from "#components/container"
+import { OrderStatus } from "#components/contants";
+import { BackBar } from "#components/header/backbar";
+import { TOrder } from "#components/types";
+import { requestLogin } from "#core/utils";
 import { FaBox } from "react-icons/fa";
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
 
 export const Page = () => {

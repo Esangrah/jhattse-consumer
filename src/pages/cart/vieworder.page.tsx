@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Container } from "@components/container";
-import { Header } from "@components/header"
+import { Container } from "#components/container";
+import { Header } from "#components/header"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import { getOrders } from '@api/order';
-import { TOrder } from '@components/types';
-import { sanityIoImageLoader, humanizeCurrency, trimToLength, getFirst } from '@core/utils';
-import { Image } from "@renderer/Image";;
+import { getOrders } from '#api/order';
+import { TOrder } from '#components/types';
+import { sanityIoImageLoader, humanizeCurrency, trimToLength, getFirst } from '#core/utils';
+import { Image } from "#renderer/Image";;
 import moment from 'moment';
-import { variantNameFromOrderItem } from '@components/variant/variantSelector';
+import { variantNameFromOrderItem } from '#components/variant/variantSelector';
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 
@@ -75,7 +75,7 @@ export const Page = () => {
                                         <div className='flex flex-col gap-2'>
                                             {
                                                 order?.orderitems?.map((orderItem) => {
-                                                    return <div className='w-full flex justify-between items-center'>
+                                                    return <div className='w-full flex justify-between items-center' key={orderItem?.inventory_id}>
                                                         <div className='flex gap-2 items-center text-bannerText font-medium'>
                                                             <Image
                                                                 loader={sanityIoImageLoader}

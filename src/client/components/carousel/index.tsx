@@ -1,7 +1,7 @@
 import React from "react";
-import { Image } from "@renderer/Image";
+import { Image } from "#renderer/Image";
 import { TImage } from "./../types";
-import { sanityIoImageLoader } from "@core/utils";
+import { sanityIoImageLoader } from "#core/utils";
 
 interface Props {
     images: TImage[]

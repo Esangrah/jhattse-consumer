@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Head from 'react-helmet';
-import { getProductCategoriesList, getStoreProducts } from '@api/product';
-import { getStore } from '@api/store';
-import { SmallProductCard, StoreTopCard } from '@components/cards';
-import { SearchContainer } from '@components/container';
-import { Header } from '@components/header';
-import { TProduct, TStore, TOption, TProductCategory, TProductCategoryControl, TData, TSearchResult } from '@components/types'
-import { getFilteredResults, getSafeUrl } from '@core/utils';
-import { getStoreTiming } from '@api/storetiming';
+import { Helmet } from 'react-helmet-async';
+import { getProductCategoriesList, getStoreProducts } from '#api/product';
+import { getStore } from '#api/store';
+import { SmallProductCard, StoreTopCard } from '#components/cards';
+import { SearchContainer } from '#components/container';
+import { Header } from '#components/header';
+import { TProduct, TStore, TOption, TProductCategory, TProductCategoryControl, TData, TSearchResult } from '#components/types'
+import { getFilteredResults, getSafeUrl } from '#core/utils';
+import { getStoreTiming } from '#api/storetiming';
 import { AutoComplete, Button, Collapse, Input } from 'antd';
 import { MdOutlineClose, MdSearch } from 'react-icons/md';
-import { Footer } from '@components/footer';
+import { Footer } from '#components/footer';
 import {
     Menu,
     MenuButton,
@@ -22,10 +22,10 @@ import {
     BreadcrumbLink,
 } from '@chakra-ui/react'
 import { Accordion } from '@chakra-ui/react'
-import { Link } from '@renderer/Link';
-import { CategoryWidget } from '@components/widget/category';
-import IntersectionObserverWrapper from '@components/intersectionObserverWrapper';
-import { usePageContext } from '@renderer/usePageContext';
+import { Link } from '#renderer/Link';
+import { CategoryWidget } from '#components/widget/category';
+import IntersectionObserverWrapper from '#components/intersectionObserverWrapper';
+import { usePageContext } from '#renderer/usePageContext';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 
@@ -210,9 +210,9 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
     return (
         store != undefined ?
             <div className="font-manrope">
-                <Head>
+                <Helmet>
                     <title>{`${store?.name} - Jhattse`}</title>
-                </Head>
+                </Helmet>
                 <Header />
                 <div className="lt-sm:px-0 px-10">
                     <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">
@@ -329,11 +329,11 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden lt-sm:block flex flex-col items-center gap-2 w-full p-2">
+                    <div className="md:hidden block flex flex-col items-center gap-2 w-full p-2">
                         <Accordion defaultIndex={[0]} index={accordionIndexes} allowMultiple>
                             {
                                 productCategoriesList?.map((item, index) => {
-                                    return <CategoryWidget getNextResults={(page: number) => { getResults(store.id, searchQuery, item.id, item?.pageNumber != 0) }} handleAccordionButton={handleAccordionButton} handleAccordionItem={() => setSelectedProductCategory(item)} index={index} isLoading={isLoading && selectedProductCategory?.id == item.id} productCategoryItem={item} />
+                                    return <CategoryWidget getNextResults={(page: number) => { getResults(store.id, searchQuery, item.id, item?.pageNumber != 0) }} handleAccordionButton={handleAccordionButton} handleAccordionItem={() => setSelectedProductCategory(item)} index={index} isLoading={isLoading && selectedProductCategory?.id == item.id} productCategoryItem={item} key={index} />
                                 })
                             }
                         </Accordion>
@@ -351,7 +351,7 @@ export const Page: React.FC<Props> = ({ initialStore }: Props) => {
                                 <MenuList className='bg-neutral-50 p-2 mx-auto'>
                                     {
                                         productCategoriesList?.map((item, index) => {
-                                            return <MenuItem className='p-1 text-custom_gray font-medium leading-5 tracking-wide' onClick={() => handleCategoryButton(item, index)}><Link href={`#${item.name}`}>{item.name}</Link></MenuItem>
+                                            return <MenuItem className='p-1 text-custom_gray font-medium leading-5 tracking-wide' onClick={() => handleCategoryButton(item, index)} key={index}><Link href={`#${item.name}`}>{item.name}</Link></MenuItem>
                                         })
                                     }
                                 </MenuList>

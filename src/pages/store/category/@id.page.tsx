@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import Head from 'react-helmet';
-import { Container } from "@components/container"
-import { Header } from "@components/header"
-import { Navbar } from "@components/navbar";
-import { Title } from "@components/header/title";
-import { SmallStoreCard } from "@components/cards";
-import { SearchContainer } from "@components/container"
-import { TStore, TStoreCategory } from "@components/types";
-import { getNearestStores } from "@api/store";
-import { getStoreCategory } from "@api/storecategory";
-import { getSafeUrl } from "@core/utils";
+import { Helmet } from 'react-helmet-async';
+import { Container } from "#components/container"
+import { Header } from "#components/header"
+import { Navbar } from "#components/navbar";
+import { Title } from "#components/header/title";
+import { SmallStoreCard } from "#components/cards";
+import { SearchContainer } from "#components/container"
+import { TStore, TStoreCategory } from "#components/types";
+import { getNearestStores } from "#api/store";
+import { getStoreCategory } from "#api/storecategory";
+import { getSafeUrl } from "#core/utils";
 import { MdStorefront } from "react-icons/md";
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 
@@ -69,7 +69,7 @@ const StoreList: React.FC<Props> = ({ initialStoreCategory }: Props) => {
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>{`${storeCategory.name} Near You - Jhattse`}</title>
                 <meta name="Keywords" content={`${storeCategory.name} around me,Stores around me,Local Services,Online Shopping,Jhattse`} />
                 <meta name="Description" content={`Find ${storeCategory.name} stores and services around you whether local or online. Jhattse provides best price and all available deals and offers.`} />
@@ -77,7 +77,7 @@ const StoreList: React.FC<Props> = ({ initialStoreCategory }: Props) => {
                 <meta property="og:title" content={`${storeCategory.name} Near You - Jhattse`} />
                 <meta property="og:description" content={`Find ${storeCategory.name} and services around me whether local or online. Jhattse provides product visiblity, best price discovering and all available deals and offers.`} />
                 <meta property="og:url" content={`https://jhattse.com/store/category/${storeCategory.id}/${getSafeUrl(storeCategory.name)}`} />
-            </Head>
+            </Helmet>
             <Header />
             <Title title={`Stores near you > ${storeCategory.name}`} />
             <div className="flex p-2">

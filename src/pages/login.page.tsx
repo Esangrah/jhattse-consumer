@@ -1,8 +1,8 @@
 import React from "react";
-import Head from 'react-helmet';
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { SignIn } from "@components/authentication/signin";
+import { Helmet } from 'react-helmet-async';
+import { Container } from "../client/components/container";
+import { Header } from "../client/components/header";
+import { SignIn } from "../client/components/authentication/signin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { PageContextBuiltIn } from "vite-plugin-ssr/types";
 
@@ -24,9 +24,9 @@ export async function onBeforeRender(pageContext: PageContextBuiltIn) {
 export const Page: React.FC = () => {
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Login - Jhattse</title>
-            </Head>
+            </Helmet>
             <Header />
             <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start py-4">
                 <div className="col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 lt-sm:col-start-1 lt-sm:col-span-6">

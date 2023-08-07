@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { SignUp as SignUpForm } from "@components/authentication/signup";
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { SignUp as SignUpForm } from "#components/authentication/signup";
 import { useRecoilValue } from "recoil";
-import { isLoggedIn } from '@recoil/atoms';
+import { isLoggedIn } from '#recoil/atoms';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { Footer } from '@components/footer';
-import Head from 'react-helmet';
+import { Footer } from '#components/footer';
+import { Helmet } from 'react-helmet-async';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types';
 
 export async function onBeforeRender(pageContext: PageContextBuiltIn) {
@@ -39,10 +39,10 @@ export const Page: React.FC = () => {
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Signup - Jhattse</title>
                 <meta name="description" content="" />
-            </Head>
+            </Helmet>
             <Header />
             <div className="grid grid-flow-col grid-cols-6 place-content-center lt-sm:place-content-start py-4">
                 <div className="col-start-3 col-span-2 lg:col-start-2 lg:col-span-4 lt-sm:col-start-1 lt-sm:col-span-6">

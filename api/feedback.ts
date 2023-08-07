@@ -1,5 +1,5 @@
-import { handleResponse, SERVER_HOST } from "@api";
-import { TFeedback } from "@components/types";
+import { handleResponse, SERVER_HOST } from "#api";
+import { TFeedback } from "#components/types";
 import axios from "axios";
 
 export const addFeedback = async (order: TFeedback) => {

@@ -1,7 +1,7 @@
-import { TStoreTiming } from '@components/types';
+import { TStoreTiming } from '#components/types';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import moment from "moment";
-import { getFirst } from '@core/utils';
+import { getFirst } from '#core/utils';
 
 interface Props {
     storeTimings: TStoreTiming[];
@@ -72,7 +72,7 @@ export const StoreTiming = ({ storeTimings }: Props) => {
                         weekDays?.map((storeTime: any, index) => {
                             let filteredWeekTime: TStoreTiming[] = storeTimings.filter((storeTiming) => storeTiming.day_of_week === index);
                             let weekStoreTime: TStoreTiming = getFirst(filteredWeekTime);
-                            return <div className={`grid grid-cols-4 gap-1 justify-start px-2 py-1 text-sm tracking-wide ${currentDayIndex === index ? "text-neutral-800 font-semibold" : "text-neutral-700"}`}>
+                            return <div className={`grid grid-cols-4 gap-1 justify-start px-2 py-1 text-sm tracking-wide ${currentDayIndex === index ? "text-neutral-800 font-semibold" : "text-neutral-700"}`} key={index}>
                                 <span>{storeTime} :</span>
                                 <span className="col-span-3">{weekStoreTime !== undefined ? `${tConvert(weekStoreTime?.open_time)} to ${tConvert(weekStoreTime?.close_time)}` : "Closed"}</span>
                             </div>

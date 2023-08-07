@@ -1,16 +1,16 @@
 import React from 'react'
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { CartDetails } from '@components/cartinfo/summary';
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { CartDetails } from '#components/cartinfo/summary';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import AddressPanel from '@components/address';
-import { cartState } from '@recoil/atoms';
+import AddressPanel from '#components/address';
+import { cartState } from '#recoil/atoms';
 import { useRecoilValue } from 'recoil';
-import { Image } from "@renderer/Image";;
-import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
+import { Image } from "#renderer/Image";;
+import { getImageUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '#core/utils';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { getCombinedName } from '@components/variant/variantSelector';
-import { TProduct } from '@components/types';
+import { getCombinedName } from '#components/variant/variantSelector';
+import { TProduct } from '#components/types';
 
 interface Props {
     title?: string
@@ -55,7 +55,7 @@ export const Page: React.FC<Props> = ({ isDone, title }) => {
                         <h2 className="font-bold text-custom_black text-lg pb-1 pt-1">Order Summary</h2>
                         {
                             cartValues.map((item => {
-                                return <div className="bg-neutral-100 border border-neutral-300 rounded-lg p-2 flex gap-2 w-96 items-center justify-between h-20 font-manrope">
+                                return <div className="bg-neutral-100 border border-neutral-300 rounded-lg p-2 flex gap-2 w-96 items-center justify-between h-20 font-manrope" key={item?.variant_id}>
                                     <div className='flex gap-2 items-center'>
                                         <Image
                                             loader={sanityIoImageLoader}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil';
-import { cartDetailsState } from '@recoil/atoms';
+import { cartDetailsState } from '#recoil/atoms';
 
 
 

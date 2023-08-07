@@ -1,5 +1,5 @@
-import { refresh } from '@api/authentication';
-import { TData, TImage, TOption, TOrderItem } from '@components/types';
+import { refresh } from '#api/authentication';
+import { TData, TImage, TOption, TOrderItem } from '#components/types';
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 export const requestLogin = (next: string | undefined) => {

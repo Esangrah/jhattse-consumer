@@ -1,5 +1,5 @@
-import { ExporeBrandCard } from "@components/cards/brands/explore";
-import { TBrand } from "@components/types";
+import { ExporeBrandCard } from "#components/cards/brands/explore";
+import { TBrand } from "#components/types";
 import React from "react";
 
 interface Props {

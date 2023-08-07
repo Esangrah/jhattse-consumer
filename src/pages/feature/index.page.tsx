@@ -1,10 +1,10 @@
-import Head from 'react-helmet';
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
+import { Helmet } from 'react-helmet-async';
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
 import React, { useState } from "react";
-import { Container } from "@components/container";
-import { FeatureCard } from "@components/cards";
-import { sanityIoImageLoader } from "@core/utils";
+import { Container } from "#components/container";
+import { FeatureCard } from "#components/cards";
+import { sanityIoImageLoader } from "#core/utils";
 import fetch from 'cross-fetch';
 
 type Response = {
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Jhattse by Esangrah</title>
                 <meta name="description" content="Jhattse is next-gen billing and customer engagement platform for businesses. Jhattse provide its users product discovery and offers" />
                 <meta name="og:title" content="Jhattse by Esangrah" />
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
                 <meta name="og:image" content="https://jhattse.com/consumer/square-logo-4x.png" />
                 <link rel="canonical" href="https://jhattse.com/feature" />
                 <link rel="shortcut icon" href="https://jhattse.com/consumer/circular-logo.png" />
-            </Head>
+            </Helmet>
 
             <div className="nav w-full bg-neutral-900 flex items-center justify-between sticky top-0 z-40 h-14 px-2">
                 <div className="flex flex-row items-center">

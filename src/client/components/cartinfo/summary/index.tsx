@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { cartDetailsState, cartState, isLoggedIn } from '@recoil/atoms';
-import { humanizeCurrency } from '@core/utils';
-import { TOrder } from '@components/types';
+import { cartDetailsState, cartState, isLoggedIn } from '#recoil/atoms';
+import { humanizeCurrency } from '#core/utils';
+import { TOrder } from '#components/types';
 import { navigate } from 'vite-plugin-ssr/client/router';
 
 type Props = {

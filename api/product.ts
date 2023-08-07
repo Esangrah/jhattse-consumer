@@ -1,5 +1,5 @@
-import { handleResponse, SERVER_HOST } from "@api";
-import { TProduct, TProductCategory } from "@components/types";
+import { handleResponse, SERVER_HOST } from "#api";
+import { TProduct, TProductCategory } from "#components/types";
 import fetch from 'cross-fetch';
 import axios from "axios";
 

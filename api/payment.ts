@@ -1,6 +1,6 @@
 import axios from "axios";
-import { handleResponse, SERVER_HOST } from "@api";
-import { TPaymentMethod } from "@components/types";
+import { handleResponse, SERVER_HOST } from "#api";
+import { TPaymentMethod } from "#components/types";
 
 export const getStorePayments = async (store_id: number) => {
     const res = await axios.get(`${SERVER_HOST}/api/v1/storepayments/?store_id=${store_id}`);

@@ -1,9 +1,18 @@
 import express from 'express'
 import { renderPage } from 'vite-plugin-ssr/server'
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const isProduction = process.env.NODE_ENV === 'production'
 console.log(process.env.NODE_ENV)
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 const root = `${__dirname}/..`
+
+// Load server build, see https://github.com/brillout/vite-plugin-import-build#manual-import
+import '../../dist/frontend/server/importBuild.cjs'
 
 startServer()
 
@@ -25,7 +34,7 @@ async function startServer() {
   } else {
     // In production, we need to serve our static assets ourselves.
     // (In dev, Vite's middleware serves our static assets.)
-    app.use(express.static(`${root}/frontend/client`))
+    app.use(express.static(`${root}/dist/assets`))
   }
 
   // ...

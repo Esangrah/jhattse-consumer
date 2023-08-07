@@ -1,9 +1,9 @@
-import { Image } from "@renderer/Image";;
-import { Link } from '@renderer/Link';
+import { Image } from "#renderer/Image";;
+import { Link } from '#renderer/Link';
 import { MdOutlineLocationOn} from "react-icons/md";
-import { TStore } from '@components/types';
-import { Star } from '@components/star';
-import { getSafeUrl, sanityIoImageLoader } from '@core/utils';
+import { TStore } from '#components/types';
+import { Star } from '#components/star';
+import { getSafeUrl, sanityIoImageLoader } from '#core/utils';
 
 
 type Props = {

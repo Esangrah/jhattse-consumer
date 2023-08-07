@@ -1,13 +1,13 @@
-import { TSearch, TData, TSearchDescriptor } from "@components/types";
+import { TSearch, TData, TSearchDescriptor } from "#components/types";
 import { AutoComplete, Input } from "antd";
 import React, { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { getSafeUrl } from "@core/utils";
-import { Link} from "@renderer/Link";
+import { getSafeUrl } from "#core/utils";
+import { Link} from "#renderer/Link";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
-import { getSearch } from "@api/graphql/search";
+import { getSearch } from "#api/graphql/search";
 
 interface Props {
     mode?: string;

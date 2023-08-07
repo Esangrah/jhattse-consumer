@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { TAddReviews, TReview } from '@components/types'
-import { addReviews } from "@api/rating";
-import { requestLogin, sanityIoImageLoader } from "@core/utils";
+import { TAddReviews, TReview } from '#components/types'
+import { addReviews } from "#api/rating";
+import { requestLogin, sanityIoImageLoader } from "#core/utils";
 import Moment from "moment";
-import { Image } from "@renderer/Image";
-import { usePageContext } from '@renderer/usePageContext';
+import { Image } from "#renderer/Image";
+import { usePageContext } from '#renderer/usePageContext';
 
 type Props = {
     product_id: number;

@@ -1,6 +1,6 @@
-import { Cards } from "@components/cards";
-import { TBrand, TProduct, TProductCategory } from "@components/types";
-import { Link} from "@renderer/Link"
+import { Cards } from "#components/cards";
+import { TBrand, TProduct, TProductCategory } from "#components/types";
+import { Link} from "#renderer/Link"
 
 type Props = {
     title?: string,

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Container } from "@components/container";
-import { Header } from "@components/header"
+import { Container } from "#components/container";
+import { Header } from "#components/header"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
-import { cartState } from '@recoil/atoms';
-import { CartInfo } from '@components/cartinfo';
-import { CartDetails } from '@components/cartinfo/summary';
+import { cartState } from '#recoil/atoms';
+import { CartInfo } from '#components/cartinfo';
+import { CartDetails } from '#components/cartinfo/summary';
 
 export function Page() {
     const [dineinOrTakeaway, setDineinOrTakeaway] = useState("DINEIN");

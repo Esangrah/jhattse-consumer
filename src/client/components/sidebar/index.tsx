@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Image } from "@renderer/Image";
-import { Link } from "@renderer/Link";
+import { Image } from "#renderer/Image";
+import { Link } from "#renderer/Link";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { isLoggedIn, profileState } from "@recoil/atoms/profile";
-import { signout } from "@api/authentication";
-import PopupComponent from '@components/popup';
-import { sanityIoImageLoader, staticImageLoader } from '@core/utils';
+import { isLoggedIn, profileState } from "#recoil/atoms/profile";
+import { signout } from "#api/authentication";
+import PopupComponent from '#components/popup';
+import { sanityIoImageLoader, staticImageLoader } from '#core/utils';
 import { MdEdit } from 'react-icons/md';
 import { FaChevronRight, FaClipboardList, FaShoppingCart } from "react-icons/fa"
 import { MdPersonPinCircle, MdPayments, MdShoppingBag, MdMoreVert, MdNavigateNext, MdLogout } from "react-icons/md"
@@ -21,7 +21,7 @@ import {
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { MdOutlineClose } from 'react-icons/md';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 
 interface Props {
     homeLink?: string

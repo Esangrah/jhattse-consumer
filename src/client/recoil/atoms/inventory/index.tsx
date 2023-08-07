@@ -1,5 +1,5 @@
-import { TInventory } from "@components/types";
-import { Atoms } from "@recoil/constants";
+import { TInventory } from "#components/types";
+import { Atoms } from "#recoil/constants";
 import { atom } from "recoil";
 
 

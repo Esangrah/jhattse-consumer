@@ -1,7 +1,7 @@
-import { TProduct } from '@components/types'
+import { TProduct } from '#components/types'
 import React, { useState, useEffect } from 'react'
-import { TrendingProductContainer } from "@components/container/trendingproduct"
-import { getPopularProducts } from '@api/product'
+import { TrendingProductContainer } from "#components/container/trendingproduct"
+import { getPopularProducts } from '#api/product'
 import { Dropdown, MenuProps, Space, Typography } from "antd";
 import { FaFilter } from "react-icons/fa";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';

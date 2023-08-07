@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "@components/header"
-import { Container } from "@components/container";
-import { Navbar } from "@components/navbar";
-import { TScreenInfo } from "@components/types";
-import { PaymentStatus } from "@components/paymentstatus";
+import { Header } from "#components/header"
+import { Container } from "#components/container";
+import { Navbar } from "#components/navbar";
+import { TScreenInfo } from "#components/types";
+import { PaymentStatus } from "#components/paymentstatus";
 import { MdCheckCircle } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
-import { usePageContext } from "@renderer/usePageContext";
-import { cartState } from "@recoil/atoms";
+import { usePageContext } from "#renderer/usePageContext";
+import { cartState } from "#recoil/atoms";
 import { useRecoilState } from "recoil";
 
 

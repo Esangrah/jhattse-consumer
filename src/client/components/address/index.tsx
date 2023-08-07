@@ -1,14 +1,14 @@
 
-import { TAddress } from '@components/types';
+import { TAddress } from '#components/types';
 import React, { useEffect, useState } from 'react'
-import Addaddress from '@components/address/add'
-import { AddressContainer } from '@components/container/address';
-import { getAddresses } from '@api/address';
+import Addaddress from '#components/address/add'
+import { AddressContainer } from '#components/container/address';
+import { getAddresses } from '#api/address';
 import { useRecoilState } from 'recoil';
-import { addressState } from '@recoil/atoms';
-import { requestLogin } from '@core/utils';
+import { addressState } from '#recoil/atoms';
+import { requestLogin } from '#core/utils';
 import { FaPlus } from 'react-icons/fa';
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 
 interface Props {
   title?: string

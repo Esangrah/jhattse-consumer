@@ -1,8 +1,8 @@
-import { getReviews } from "@api/rating"
-import { Star } from "@components/star"
-import { TReview, TProduct } from "@components/types"
-import { getColor, getSafeUrl } from "@core/utils"
-import { Link} from "@renderer/Link"
+import { getReviews } from "#api/rating"
+import { Star } from "#components/star"
+import { TReview, TProduct } from "#components/types"
+import { getColor, getSafeUrl } from "#core/utils"
+import { Link} from "#renderer/Link"
 import { useEffect, useState } from "react"
 
 
@@ -50,7 +50,7 @@ export const RatingWidget = ({ isLoading, product }: Props) => {
             </div>
             <div className="flex flex-col gap-4 divide-y">
                 {reviews?.map((review: TReview) => {
-                    return <div className="flex flex-row gap-4 py-2">
+                    return <div className="flex flex-row gap-4 py-2" key={review?.id}>
                         <Star rating={review?.rating} /><div><p className="text-neutral-700 text-sm">{review?.comment}</p></div>
                     </div>
                 })}

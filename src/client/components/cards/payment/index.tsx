@@ -2,8 +2,8 @@ import { useState } from "react";
 import { message } from "antd";
 import { MdDelete } from "react-icons/md";
 import { BsCheckSquare, BsCheckSquareFill } from "react-icons/bs";
-import { deleteStorePayment } from "@api/payment";
-import { TPaymentMethod } from "@components/types";
+import { deleteStorePayment } from "#api/payment";
+import { TPaymentMethod } from "#components/types";
 
 
 type Props = {

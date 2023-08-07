@@ -1,6 +1,6 @@
 import React from "react";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { TScreenInfo } from "@components/types";
+import { TScreenInfo } from "#components/types";
 
 interface Props extends TScreenInfo {
   actionText: string;

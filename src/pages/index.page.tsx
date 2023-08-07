@@ -1,21 +1,21 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { Link } from "@renderer/Link"
-import { Container } from "@components/container"
-import { Section } from "@components/section";
-import { BrandCard, CategoryCard, RichCard } from "@components/cards";
-import { TBrand, TProduct, TProductCategory } from "@components/types";
-import { getPopularProducts, getProductCategories } from "@api/product";
-import Head from 'react-helmet';
-import { getProductBrands } from "@api/brand";
-import { Header } from "@components/header"
-import { Navbar } from "@components/navbar";
-import { Footer } from "@components/footer";
-import { staticImageLoader } from "@core/utils";
-import { CarouselContainer } from "@components/container/carousel";
+import { Image } from "#renderer/Image";
+import { Link } from "#renderer/Link"
+import { Container } from "#components/container"
+import { Section } from "#components/section";
+import { BrandCard, CategoryCard, RichCard } from "#components/cards";
+import { TBrand, TProduct, TProductCategory } from "#components/types";
+import { getPopularProducts, getProductCategories } from "#api/product";
+import { Helmet } from 'react-helmet-async';
+import { getProductBrands } from "#api/brand";
+import { Header } from "#components/header"
+import { Navbar } from "#components/navbar";
+import { Footer } from "#components/footer";
+import { staticImageLoader } from "#core/utils";
+import { CarouselContainer } from "#components/container/carousel";
 import { SwiperSlide } from "swiper/react";
 import type { PageContextBuiltIn } from 'vite-plugin-ssr/types'
-import { VariantSelector } from "@components/variant/variantSelector";
+import { VariantSelector } from "#components/variant/variantSelector";
 
 type Props = {
     popularProducts: TProduct[];
@@ -57,9 +57,9 @@ export const Page: React.FC<Props> = ({
 }: Props) => {
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Online Shopping - Jhattse</title>
-            </Head>
+            </Helmet>
             <div className="flex justify-center">
                 <Header />
             </div>

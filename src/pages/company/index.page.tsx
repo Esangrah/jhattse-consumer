@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Image } from "@renderer/Image";
+import { Image } from "#renderer/Image";
 
 import { SwiperSlide } from "swiper/react";
-import { CarouselContainer } from "@components/container/carousel";
+import { CarouselContainer } from "#components/container/carousel";
 import { MdMenu } from "react-icons/md";
 
 export function Page() {

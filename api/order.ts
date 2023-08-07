@@ -1,7 +1,7 @@
-import { handleResponse, SERVER_HOST } from "@api";
-import { OrderStatus } from "@components/contants";
-import { TCreateOrder, TOrder } from "@components/types";
-import { getOrdersOffline, saveOrderOffline } from "@core/offline/order";
+import { handleResponse, SERVER_HOST } from "#api";
+import { OrderStatus } from "#components/contants";
+import { TCreateOrder, TOrder } from "#components/types";
+import { getOrdersOffline, saveOrderOffline } from "#core/offline/order";
 import axios from "axios";
 
 export const createOrder = async (order: TCreateOrder) => {

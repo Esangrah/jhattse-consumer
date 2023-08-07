@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { CartDetails } from '@components/cartinfo/summary';
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { CartDetails } from '#components/cartinfo/summary';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Input } from '@chakra-ui/react';
 import { navigate } from 'vite-plugin-ssr/client/router';
 

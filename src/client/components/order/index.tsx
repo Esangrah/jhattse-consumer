@@ -1,12 +1,12 @@
-import { createOrder, getOrders } from "@api/order";
-import { OrderSummaryContainer } from "@components/container/ordersummary";
-import { TComponent, TCreateOrder, TOrder } from "@components/types";
-import { requestLogin } from "@core/utils";
-import { addressState, cartState, orderLastIds } from "@recoil/atoms";
+import { createOrder, getOrders } from "#api/order";
+import { OrderSummaryContainer } from "#components/container/ordersummary";
+import { TComponent, TCreateOrder, TOrder } from "#components/types";
+import { requestLogin } from "#core/utils";
+import { addressState, cartState, orderLastIds } from "#recoil/atoms";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { BackBar } from "@components/header/backbar";
-import { usePageContext } from "@renderer/usePageContext";
+import { BackBar } from "#components/header/backbar";
+import { usePageContext } from "#renderer/usePageContext";
 
 interface Props {
     title?: string

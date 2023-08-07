@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "@renderer/Link";
-import { TProductCategory } from '@components/types'
-import { getAllProductCategory } from '@api/product'
-import { requestLogin } from '@core/utils'
-import { usePageContext } from '@renderer/usePageContext';
-import { Header } from '@components/header';
-import { Navbar } from '@components/navbar';
-import { ProductCategoryContainer } from '@components/container/categorycontainer';
+import { Link } from "#renderer/Link";
+import { TProductCategory } from '#components/types'
+import { getAllProductCategory } from '#api/product'
+import { requestLogin } from '#core/utils'
+import { usePageContext } from '#renderer/usePageContext';
+import { Header } from '#components/header';
+import { Navbar } from '#components/navbar';
+import { ProductCategoryContainer } from '#components/container/categorycontainer';
 
 
 export const Page: React.FC = () => {

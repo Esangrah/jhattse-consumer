@@ -1,6 +1,6 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { sanityIoImageLoader } from "@core/utils";
+import { Image } from "#renderer/Image";
+import { sanityIoImageLoader } from "#core/utils";
 
 type Props = {
   title: string;

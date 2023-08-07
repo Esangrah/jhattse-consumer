@@ -1,6 +1,6 @@
 import axios from "axios";
-import { handleResponse, SERVER_HOST } from "@api";
-import { TAddReviews, TReview } from "@components/types"
+import { handleResponse, SERVER_HOST } from "#api";
+import { TAddReviews, TReview } from "#components/types"
 
 export const getReviews = async (product_id: number, size: number = 10, ordering: string = 'high') => {
     const res = await axios.get(`${SERVER_HOST}/api/v1/productratings/?product_id=${product_id}&ordering=${ordering}&limit=${size}`);

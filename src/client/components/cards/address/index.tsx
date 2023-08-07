@@ -1,9 +1,9 @@
-import { removeAddress } from '@api/address';
-import PopupComponent from '@components/popup';
-import { TAddress } from '@components/types';
-import { requestLogin } from '@core/utils';
+import { removeAddress } from '#api/address';
+import PopupComponent from '#components/popup';
+import { TAddress } from '#components/types';
+import { requestLogin } from '#core/utils';
 import React, { useState } from 'react'
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 import { MdDelete, MdEdit } from 'react-icons/md';
 
 type Props = {

@@ -1,10 +1,10 @@
-import { addAddress, getAllStates, getCitiesOfState } from '@api/address';
-import { TAddress, TCities, TData, TGeoLocation, TOption, TStates } from '@components/types';
-import { getFilteredResults, requestLogin } from '@core/utils';
+import { addAddress, getAllStates, getCitiesOfState } from '#api/address';
+import { TAddress, TCities, TData, TGeoLocation, TOption, TStates } from '#components/types';
+import { getFilteredResults, requestLogin } from '#core/utils';
 import React, { useEffect, useState } from 'react'
 import { MdMyLocation, MdOutlineClose } from 'react-icons/md';
-import { getLocation } from "@core/geolocation";
-import { usePageContext } from "@renderer/usePageContext";
+import { getLocation } from "#core/geolocation";
+import { usePageContext } from "#renderer/usePageContext";
 import { Select } from "antd";
 
 

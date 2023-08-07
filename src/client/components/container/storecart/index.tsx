@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { MdOutlineLocationOn} from 'react-icons/md';
-import { TCartItem } from '@components/types';
-import { CartItemCard } from '@components/cards/cartitem';
-import { Link } from '@renderer/Link';
-import { getFirst, getLength, getSafeUrl } from '@core/utils';
-import { InstructionForm } from '@components/instruction';
+import { TCartItem } from '#components/types';
+import { CartItemCard } from '#components/cards/cartitem';
+import { Link } from '#renderer/Link';
+import { getFirst, getLength, getSafeUrl } from '#core/utils';
+import { InstructionForm } from '#components/instruction';
 
 interface Props {
     cartItems: TCartItem[]

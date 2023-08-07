@@ -1,7 +1,7 @@
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { TCard } from "@components/types";
-import { sanityIoImageLoader } from '@core/utils';
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { TCard } from "#components/types";
+import { sanityIoImageLoader } from '#core/utils';
 
 type Props = {
     element: TCard;

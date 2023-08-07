@@ -1,4 +1,4 @@
-import { Link} from "@renderer/Link"
+import { Link} from "#renderer/Link"
 import { FaMapMarkerAlt, FaPhoneSquareAlt, FaWhatsappSquare } from "react-icons/fa";
 import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";

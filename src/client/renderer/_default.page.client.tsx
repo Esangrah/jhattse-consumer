@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-import { PageShell } from '@renderer/PageShell'
+import { PageShell } from '#renderer/PageShell'
 import type { PageContextClient } from './types'
 import { RecoilRoot } from 'recoil'
-import { VariantSelector } from '@components/variant/variantSelector'
+import { VariantSelector } from '#components/variant/variantSelector'
 
 export const clientRouting = true
 export const hydrationCanBeAborted = true
@@ -23,10 +23,11 @@ export async function render(pageContext: PageContextClient) {
   )
   // SPA
   if (container?.innerHTML === '' || !pageContext.isHydration) {
-    if (!root) {
+    if (container?.innerHTML === '') {
       root = createRoot(container as Element)
+    } else {
+        root.render(page)
     }
-    root.render(page)
     // SSR
   } else {
     root = hydrateRoot(container as Element, page)

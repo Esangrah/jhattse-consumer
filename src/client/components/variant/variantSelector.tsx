@@ -1,12 +1,10 @@
-import { variantState } from "@recoil/atoms/variant";
-import Variant from "@components/variant";
+import { variantState } from "#recoil/atoms/variant";
+import Variant from "#components/variant";
 import { useRecoilValue } from "recoil";
-import { TCartItem, TInventory, TOrderItem, TProduct, TVariant } from "@components/types";
+import { TCartItem, TInventory, TOrderItem, TProduct, TVariant } from "#components/types";
 
 export function VariantSelector() {
     const IsVariant = useRecoilValue(variantState);
-    console.log("varint select", IsVariant);
-    
     return IsVariant && IsVariant.Isvariant ? <Variant showModal={IsVariant.showModal} product={IsVariant.product} inventory={IsVariant?.inventory} quantity={IsVariant?.quantity} /> : null;
 }
 

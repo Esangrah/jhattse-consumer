@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-import { Atoms } from "@recoil/constants";
-import { TIdentity } from "@components/types";
+import { Atoms } from "#recoil/constants";
+import { TIdentity } from "#components/types";
 
 export const profileState = atom < TIdentity > ({
     key: Atoms.Profile,

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { handleResponse, HEADERS, SERVER_HOST } from "@api";
-import { TStore } from "@components/types";
-import { getLocation } from "@core/geolocation";
-import { getMyStoresOffline, getStoreOffline } from "@core/offline/store";
+import { handleResponse, HEADERS, SERVER_HOST } from "#api";
+import { TStore } from "#components/types";
+import { getLocation } from "#core/geolocation";
+import { getMyStoresOffline, getStoreOffline } from "#core/offline/store";
 
 export const getNearestStores = async (category_id: number, pageNumber: number = 0, pageSize: number = 10) => {
     let location = await getLocation();

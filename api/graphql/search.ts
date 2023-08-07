@@ -1,6 +1,6 @@
 import { handleResponse } from ".";
 import client from "./gql";
-import { TSearch, TSearchContext } from "@components/types";
+import { TSearch, TSearchContext } from "#components/types";
 
 export const getSearch = async (
     query: string,

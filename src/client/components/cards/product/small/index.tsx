@@ -1,11 +1,11 @@
-import { Star } from '@components/star';
-import { TProduct, TVariant } from '@components/types';
-import { Image } from "@renderer/Image";;
-import { Link } from '@renderer/Link';
-import { getFirst, getImageObject, getImageUrl, getLength, getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '@core/utils';
-import { AddToCart } from '@components/addtocart';
+import { Star } from '#components/star';
+import { TProduct, TVariant } from '#components/types';
+import { Image } from "#renderer/Image";;
+import { Link } from '#renderer/Link';
+import { getFirst, getImageObject, getImageUrl, getLength, getSafeUrl, humanizeCurrency, sanityIoImageLoader, trimToLength } from '#core/utils';
+import { AddToCart } from '#components/addtocart';
 import { useState } from 'react';
-import { getCombinedName, inventoryByVariantId } from '@components/variant/variantSelector';
+import { getCombinedName, inventoryByVariantId } from '#components/variant/variantSelector';
 
 type Props = {
     product: TProduct;

@@ -1,4 +1,4 @@
-import { TGeoLocation } from "@components/types";
+import { TGeoLocation } from "#components/types";
 let geoOptions = {
     timeout: 10 * 1000,
     enableHighAccuracy: true,

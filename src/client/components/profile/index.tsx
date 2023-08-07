@@ -1,17 +1,17 @@
-import { getprofile, updateProfile, uploadProfileImage } from '@api/authentication'
-import { TIdentity, TOtp } from '@components/types'
+import { getprofile, updateProfile, uploadProfileImage } from '#api/authentication'
+import { TIdentity, TOtp } from '#components/types'
 import React, { useEffect, useState } from 'react'
-import { Image } from "@renderer/Image";
+import { Image } from "#renderer/Image";
 import { MdEdit, MdVerified, MdOutlineClose } from 'react-icons/md'
 import { FaCamera } from 'react-icons/fa'
 import { useRecoilState } from 'recoil'
-import { profileState } from '@recoil/atoms'
-import { requestLogin, sanityIoImageLoader } from '@core/utils'
-import { verifyMobile } from '@api/verification'
+import { profileState } from '#recoil/atoms'
+import { requestLogin, sanityIoImageLoader } from '#core/utils'
+import { verifyMobile } from '#api/verification'
 import { motion } from "framer-motion";
-import FileUploadPopup from '@components/popup/fileupload'
+import FileUploadPopup from '#components/popup/fileupload'
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from '@renderer/usePageContext';
+import { usePageContext } from '#renderer/usePageContext';
 
 export const ProfileCard = () => {
     const [user, setUser] = useRecoilState<TIdentity>(profileState);

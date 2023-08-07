@@ -1,5 +1,5 @@
-import { OrderSummaryCard } from "@components/cards/order/summary";
-import { TOrder } from "@components/types";
+import { OrderSummaryCard } from "#components/cards/order/summary";
+import { TOrder } from "#components/types";
 import React from "react";
 
 interface Props {

@@ -1,4 +1,4 @@
-import { CarouselContainer } from "@components/container/carousel";
+import { CarouselContainer } from "#components/container/carousel";
 import { SwiperSlide } from "swiper/react";
 import { TProduct, TProductCategory } from "./../types";
 import { SimpleCard } from "./product/simple";

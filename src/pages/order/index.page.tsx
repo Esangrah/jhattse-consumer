@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
-import AddressPanel from '@components/address';
-import { BackBar } from "@components/header/backbar"
-import { Title } from '@components/header/title';
-import { Link} from "@renderer/Link"
-import { TCartItem } from '@components/types';
+import AddressPanel from '#components/address';
+import { BackBar } from "#components/header/backbar"
+import { Title } from '#components/header/title';
+import { Link} from "#renderer/Link"
+import { TCartItem } from '#components/types';
 import { useRecoilValue } from 'recoil';
-import { cartState } from '@recoil/atoms';
+import { cartState } from '#recoil/atoms';
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { AddressSmallCard, OrderInfoCard, StoreCartContainer } from '@components/cards';
-import { usePageContext } from '@renderer/usePageContext';
+import { AddressSmallCard, OrderInfoCard, StoreCartContainer } from '#components/cards';
+import { usePageContext } from '#renderer/usePageContext';
 
 export const Page = () => {
     const [stage, setStage] = useState < number > (1);
@@ -74,8 +74,8 @@ export const Page = () => {
                         </div>}
                         <StoreCartContainer cartItems={deliveryItems} />
                         <div className="flex flex-col gap-3">
-                            {Array.from(groupBy(pickupItems).values()).map((storePickupCartItems: TCartItem[]) => {
-                                return <StoreCartContainer cartItems={storePickupCartItems} />
+                            {Array.from(groupBy(pickupItems).values()).map((storePickupCartItems: TCartItem[], index) => {
+                                return <StoreCartContainer cartItems={storePickupCartItems} key={index} />
                             })}
                         </div>
                         <div>

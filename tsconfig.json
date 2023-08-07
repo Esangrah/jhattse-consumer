@@ -5,16 +5,16 @@
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
         "paths": {
-            "@components/*": [
+            "#components/*": [
                 "src/client/components/*"
             ],
-            "@components": [
+            "#components": [
                 "src/client/components"
             ],
-            "@core/*": [
+            "#core/*": [
                 "src/client/core/*"
             ],
-            "@core": [
+            "#core": [
                 "src/client/core"
             ],
             "@db": [
@@ -29,10 +29,10 @@
             "@public": [
                 "public"
             ],
-            "@renderer/*": [
+            "#renderer/*": [
                 "src/client/renderer/*"
             ],
-            "@renderer": [
+            "#renderer": [
                 "src/client/renderer"
             ],
             "@styles/*": [
@@ -41,16 +41,16 @@
             "@styles": [
                 "src/client/styles"
             ],
-            "@recoil/*": [
+            "#recoil/*": [
                 "src/client/recoil/*"
             ],
-            "@recoil": [
+            "#recoil": [
                 "src/client/recoil"
             ],
-            "@api": [
+            "#api": [
                 "api"
             ],
-            "@api/*": [
+            "#api/*": [
                 "api/*"
             ]
         },
@@ -68,24 +68,27 @@
         ],
         "strict": true,
         "outDir": "dist/frontend",
-        "module": "ESNext",
+        "module": "ES2020",
         "moduleResolution": "Node",
         "skipLibCheck": true,
         "sourceMap": true,
-        "target": "ES2017"
+        "target": "ES6"
     },
     "include": [
         "src/**/*",
-        "src/**/*",
         "api/**/*",
         "types/*",
-        "server.ts",
         "node_modules/vite/types/*"
     ],
+    "exclude": [
+        "node_modules",
+    ],
     "ts-node": {
+        "esm": true,
         "transpileOnly": true,
         "compilerOptions": {
-            "module": "CommonJS"
+            "module": "ES2020"
         }
-    }
+    },
+    "lib": ["esnext"]
 }

@@ -1,14 +1,14 @@
-import Head from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import React, { useEffect, useRef, useState } from "react";
-import { Container } from "@components/container"
-import { Header } from "@components/header"
-import { Navbar } from "@components/navbar";
-import { Title } from "@components/header/title";
-import { SmallStoreCard } from "@components/cards";
-import { SearchContainer } from "@components/container"
-import { TStore, TStoreCategory } from "@components/types";
-import { getNearestStores } from "@api/store";
-import { getStoreCategories } from "@api/storecategory";
+import { Container } from "#components/container"
+import { Header } from "#components/header"
+import { Navbar } from "#components/navbar";
+import { Title } from "#components/header/title";
+import { SmallStoreCard } from "#components/cards";
+import { SearchContainer } from "#components/container"
+import { TStore, TStoreCategory } from "#components/types";
+import { getNearestStores } from "#api/store";
+import { getStoreCategories } from "#api/storecategory";
 import gsap from "gsap";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { MdStorefront } from "react-icons/md";
@@ -108,7 +108,7 @@ export const Page: React.FC = () => {
 
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Stores Near You - Jhattse</title>
                 <meta name="Keywords" content="Local Stores,Local+Online Stores,Stores near you,Local Services,Online Shopping,Jhattse" />
                 <meta name="Description" content="Find Stores and services near me whether local or online. Jhattse provides product visiblity, best price discovering and all available deals and offers." />
@@ -116,7 +116,7 @@ export const Page: React.FC = () => {
                 <meta property="og:title" content="Stores Near You - Jhattse" />
                 <meta property="og:description" content="Find Stores and services around you whether local or online. Jhattse provides product visiblity, best price discovering and all available deals and offers." />
                 <meta property="og:url" content={`https://jhattse.com/store`} />
-            </Head>
+            </Helmet>
             <Header />
             <div className="px-20 lt-sm:px-2">
                 <div className="lt-sm:hidden h-20 flex items-center text-sm text-manrope">

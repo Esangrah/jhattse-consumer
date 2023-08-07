@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@components/container";
-import { Header } from "@components/header";
+import { Container } from "#components/container";
+import { Header } from "#components/header";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
 
 export const Page: React.FC = () => {

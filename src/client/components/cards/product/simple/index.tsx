@@ -1,8 +1,8 @@
 import React from "react";
-import { Image } from "@renderer/Image";
-import { Link} from "@renderer/Link"
-import { TProduct } from "@components/types";
-import { getImageObject, getSafeUrl, sanityIoImageLoader } from '@core/utils';
+import { Image } from "#renderer/Image";
+import { Link} from "#renderer/Link"
+import { TProduct } from "#components/types";
+import { getImageObject, getSafeUrl, sanityIoImageLoader } from '#core/utils';
 
 type Props = {
     product: TProduct;

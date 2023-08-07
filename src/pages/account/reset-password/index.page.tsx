@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BackBar } from "@components/header/backbar";
-import { Title } from "@components/header/title";
-import { passwordReset } from "@api/authentication";
-import { TPasswordReset } from "@components/types";
+import { BackBar } from "#components/header/backbar";
+import { Title } from "#components/header/title";
+import { passwordReset } from "#api/authentication";
+import { TPasswordReset } from "#components/types";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from "@renderer/usePageContext";
+import { usePageContext } from "#renderer/usePageContext";
 
 export const Page = () => {
     const [state, setState] = useState<TPasswordReset>();

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { cartState } from '@recoil/atoms';
-import { Image } from "@renderer/Image";;
-import { Link } from '@renderer/Link';
-import { CartButton } from '@components/cartbutton';
-import { TCartItem, TProduct } from "@components/types";
-import { Star } from '@components/star';
-import { getImageUrl, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '@core/utils';
+import { cartState } from '#recoil/atoms';
+import { Image } from "#renderer/Image";;
+import { Link } from '#renderer/Link';
+import { CartButton } from '#components/cartbutton';
+import { TCartItem, TProduct } from "#components/types";
+import { Star } from '#components/star';
+import { getImageUrl, getSafeUrl, humanizeCurrency, sanityIoImageLoader } from '#core/utils';
 import { MdDelete, MdOutlineShoppingCart } from 'react-icons/md';
-import PopupComponent from '@components/popup';
-import { cartInventoryFilter, getCombinedName } from '@components/variant/variantSelector';
+import PopupComponent from '#components/popup';
+import { cartInventoryFilter, getCombinedName } from '#components/variant/variantSelector';
 
 
 export const CartInfo: React.FC = () => {

@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { Image } from "@renderer/Image";
-import { TOrderItem } from '@components/types';
-import { getImageObject, sanityIoImageLoader } from '@core/utils';
+import { Image } from "#renderer/Image";
+import { TOrderItem } from '#components/types';
+import { getImageObject, sanityIoImageLoader } from '#core/utils';
 
 
 interface Props {

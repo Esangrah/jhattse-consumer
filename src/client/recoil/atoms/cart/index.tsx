@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil';
-import { Atoms } from "@recoil/constants";
-import { TCartItem } from '@components/types';
+import { Atoms } from "#recoil/constants";
+import { TCartItem } from '#components/types';
 
 const localStorage = typeof window !== `undefined` ? window.localStorage : null
 

@@ -1,22 +1,22 @@
-import { Link} from "@renderer/Link"
-import { Header } from "@components/header"
+import { Link} from "#renderer/Link"
+import { Header } from "#components/header"
 import { FaBox } from "react-icons/fa"
 import { GoLocation } from "react-icons/go"
 import { IoMdNotificationsOutline } from "react-icons/io"
 import { FaRegUser } from "react-icons/fa"
 import { useEffect, useState } from "react"
-import { TIdentity, TOrder } from "@components/types"
+import { TIdentity, TOrder } from "#components/types"
 import { useRecoilValue } from "recoil"
-import { isLoggedIn } from "@recoil/atoms"
+import { isLoggedIn } from "#recoil/atoms"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
-import AddressPanel from "@components/address"
-import { getOrders } from "@api/order"
-import { OrderStatus } from "@components/contants"
-import { requestLogin } from "@core/utils"
-import { OrderSummaryContainer } from "@components/container"
-import ReferAndEarn from "@components/referAndEarn";
+import AddressPanel from "#components/address"
+import { getOrders } from "#api/order"
+import { OrderStatus } from "#components/contants"
+import { requestLogin } from "#core/utils"
+import { OrderSummaryContainer } from "#components/container"
+import ReferAndEarn from "#components/referAndEarn";
 import { navigate } from 'vite-plugin-ssr/client/router';
-import { usePageContext } from "@renderer/usePageContext"
+import { usePageContext } from "#renderer/usePageContext"
 
 export const Page = () => {
     const [profile, setProfile] = useState<TIdentity>();

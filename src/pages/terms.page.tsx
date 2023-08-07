@@ -1,17 +1,17 @@
 import React from "react";
-import { Container } from "@components/container";
-import { Header } from "@components/header";
-import { Footer } from "@components/footer";
-import { Link } from "@renderer/Link";
-import Head from "react-helmet";
+import { Container } from "#components/container";
+import { Header } from "#components/header";
+import { Footer } from "#components/footer";
+import { Link } from "#renderer/Link";
+import { Helmet } from 'react-helmet-async';
 
 export const Page: React.FC = () => {
     return (
         <Container>
-            <Head>
+            <Helmet>
                 <title>Terms & Conditions - Jhattse</title>
                 <meta name="description" content="Terms and Conditions on Jhattse. Jhattse is a local ecommerce platform which provides product visibility, best price discovering and all available deals and offers." />
-            </Head>
+            </Helmet>
             <Header />
             <div className="flex flex-col h-full p-4 font-manrope">
                 <h2 className="text-xl"><strong>Terms and Conditions</strong></h2>
