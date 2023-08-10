@@ -2,7 +2,7 @@ import { OrderStatus, WSMessageType } from "./contants";
 
 declare global {
     interface Window {
-        invokePayment:any;
+        invokePayment: any;
     }
 }
 
@@ -24,9 +24,9 @@ export type TImage = {
 
 export type TStoreImage = {
     url: string
-    description?: string 
+    description?: string
     priority: number
-    store_id: number 
+    store_id: number
     id: number
 }
 
@@ -354,7 +354,22 @@ export type TOrderInfo = {
     table_id?: number;
     is_AC?: boolean;
     dinein_or_takeaway?: string;
-};
+    ref_by?: string
+    gstin?: string
+    address?: string
+    place_of_supply?: string
+    first_name?: string
+    last_name?: string
+    gst?: boolean
+    template?: string
+    gst_response?: gst_response
+}
+
+export type gst_response = {
+    IRN?: string
+    AckNo?: number
+    qrcode?: string
+}
 
 export type TComponent = {
     quantity: number;
